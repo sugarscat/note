@@ -46,6 +46,47 @@ public void connection throws ClassNotFoundException, SQLException {// 需要抛
 }
 ```
 
-### 操作数据库
+### 操作数据库(参考[SQL 语言](SQL 语言.md))
 
-1. 
+1. 查找：
+   ```
+   String selectSql = "SELECT * FROM 表名 WHERE 字段 = ?";
+   // "?"为占位符，"FROM"后面为表名，WHERE"后面为条件
+   ```
+   例如：在用户表中查找小明的信息
+   ```
+   Connection conn = null;
+   PreparedStatement ps = null;
+   ResultSet rs = null;
+   String selectSql = "SELECT * FROM userinfo WHERe userName = ?";
+   conn = DriverManager.getConnection(url, userName, password);// 此处未写数据库配置
+   ps = conn.prepareStatement(selectSql);
+   // 一一对应，将字符串传给占位符
+   ps.setString(1, "小明");
+   rs = ps.executeQuery();// 执行SQL语句
+   while (rs.next()){
+      String ID = rs.getString("ID");
+      String name = rs.getString("userName");
+      String pd = rs.getString ("password");
+      System.out.println( ID + " " + name + " " + pd);
+   }
+   ```
+2. 插入：
+   ```
+   Stirng insertSql =  "INSERT INTO 表名(字段, 字段, ..., 字段) VALUES(?, ?, ..., ?)";
+   // "VALUES"后面填插入的数据
+   ```
+   例如：在用户表添加小军的信息
+   ```
+   
+   ```
+3. 更新：
+   ```
+   Stirng updateSql = "UPDATE 表名 SET 字段 = '字段值' WHERE 字段 = ?";
+   // "?"填数据，"WHERE"后面为条件
+   ```
+4. 删除：
+   ```
+   Stirng deleteSql = "DELETE FROM 表名 WHERE 字段 = ?";
+   // "FROM"后面为表名，WHERE"后面为条件，第一个"?"填字段
+   ```
