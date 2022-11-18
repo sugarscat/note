@@ -29,6 +29,8 @@
 
 ```
 public void connection throws ClassNotFoundException, SQLException {// 需要抛出异常
+   Connection conn;
+   Statement stmt;
    Class.forName("com.mysql.cj.jdbc.Driver");
    // 数据库配置
    String url = "jdbc:mysql://127.0.0.1:3306/database_operation";// 根据建立的数据库写url
