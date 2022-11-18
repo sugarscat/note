@@ -1,4 +1,4 @@
-# Java操作数据库数据库
+# Java操作数据库
 
 ### 下载JDBC驱动包
 [点击前往官方网站](https://dev.mysql.com/downloads/connector/j/)
