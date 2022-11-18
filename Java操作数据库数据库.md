@@ -28,16 +28,22 @@
 ### 连接数据库
 
 ```
-Class.forName("com.mysql.cj.jdbc.Driver");
-// 数据库配置
-String url = "jdbc:mysql://127.0.0.1:3306/database_operation";// 根据建立的数据库写url
-String userName = "root";
-String password = "";// 数据库密码
-// 创建连接
-conn = DriverManager.getConnection(url, userName, password);
-stmt = conn.createStatement();
-System.out.println("数据库连接成功");
-// 关闭连接
-conn.close();
-stmt.close();
+public void connection throws ClassNotFoundException, SQLException {// 需要抛出异常
+   Class.forName("com.mysql.cj.jdbc.Driver");
+   // 数据库配置
+   String url = "jdbc:mysql://127.0.0.1:3306/database_operation";// 根据建立的数据库写url
+   String userName = "root";
+   String password = "";// 数据库密码
+   // 创建连接
+   conn = DriverManager.getConnection(url, userName, password);
+   stmt = conn.createStatement();
+   System.out.println("数据库连接成功");
+   // 关闭连接
+   conn.close();
+   stmt.close();
+}
 ```
+
+### 操作数据库
+
+1. 
