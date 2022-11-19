@@ -76,14 +76,24 @@ public void connection throws ClassNotFoundException, SQLException {// 需要抛
    Stirng insertSql =  "INSERT INTO 表名(字段, 字段, ..., 字段) VALUES(?, ?, ..., ?)";
    // "VALUES"后面填插入的数据
    ```
-   例如：在用户表添加小军的信息
+   例如：在用户表中添加小军的信息
    ```
-   
+   String insertSql =  "INSERT INTO userinfo(ID, userName, password) VALUES(?, ?, ?)";
+   ps = conn.prepareStatement(insertSql);
+   ps.setString(1, "3");
+   ps.setString(2, "小军");
+   ps.setString(3, "123456");
+   int count = ps.executeUpdate();// 执行SQL语句
+   System.out.println("添加了" + count + "条数据。");
    ```
 3. 更新：
    ```
    Stirng updateSql = "UPDATE 表名 SET 字段 = '字段值' WHERE 字段 = ?";
    // "?"填数据，"WHERE"后面为条件
+   ```
+   例如：在用户表中删除小明的信息
+   ```
+   
    ```
 4. 删除：
    ```
