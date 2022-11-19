@@ -46,7 +46,8 @@ public void connection throws ClassNotFoundException, SQLException {// 需要抛
 }
 ```
 
-### 操作数据库(参考[SQL 语言](SQL 语言.md))
+### 操作数据库
+(参考[SQL 语言](SQL 语言.md))
 
 1. 查找：
    ```
