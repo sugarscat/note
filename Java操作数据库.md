@@ -33,7 +33,7 @@ public void connection throws ClassNotFoundException, SQLException {// 需要抛
    Statement stmt;
    Class.forName("com.mysql.cj.jdbc.Driver");
    // 数据库配置
-   String url = "jdbc:mysql://127.0.0.1:3306/database_operation";// 根据建立的数据库写url
+   String url = "jdbc:mysql://localhost:3306/database_operation";// 根据建立的数据库写url
    String userName = "root";
    String password = "";// 数据库密码
    // 创建连接
@@ -74,7 +74,7 @@ public void connection throws ClassNotFoundException, SQLException {// 需要抛
    ```
 2. 插入：
    ```
-   Stirng insertSql =  "INSERT INTO 表名(字段, 字段, ..., 字段) VALUES(?, ?, ..., ?)";
+   String insertSql =  "INSERT INTO 表名(字段, 字段, ..., 字段) VALUES(?, ?, ..., ?)";
    // "VALUES"后面填插入的数据
    ```
    例如：在用户表中添加小军的信息
@@ -89,15 +89,93 @@ public void connection throws ClassNotFoundException, SQLException {// 需要抛
    ```
 3. 更新：
    ```
-   Stirng updateSql = "UPDATE 表名 SET 字段 = '字段值' WHERE 字段 = ?";
+   String updateSql = "UPDATE 表名 SET 字段 = ? WHERE 字段 = ?";
    // "?"填数据，"WHERE"后面为条件
    ```
-   例如：在用户表中删除小明的信息
+   例如：在用户表中更新小明的密码
    ```
-   
+   String updateSql = "UPDATE userinfo SET password = ? WHERE userName = ?";
+   ps = conn.prepareStatement(updateSql);
+   ps.setString(1, "123456");
+   ps.setString(2, "小明");
+   int count = ps.executeUpdate();// 执行SQL语句
+   System.out.println("更新了" + count + "条数据。");
    ```
 4. 删除：
    ```
-   Stirng deleteSql = "DELETE FROM 表名 WHERE 字段 = ?";
+   String deleteSql = "DELETE FROM 表名 WHERE 字段 = ?";
    // "FROM"后面为表名，WHERE"后面为条件，第一个"?"填字段
    ```
+   例如：在用户表中删除小明的信息
+   ```
+   String deleteSql = "DELETE FROM userinfo WHERE userName = ?";
+   ps = conn.prepareStatement(deleteSql);
+   ps.setString(1, "小明");
+   int count = ps.executeUpdate();// 执行SQL语句
+   System.out.println("删除了" + count + "条数据。");
+   ```
+### 例题： 
+使用PreparedStatement接口实现对数据库StudentScore中的Student表进行动态查询、插入、修改和删除操作：
+```
+import java.sql.*;
+public class Main {
+private static String driver = "com.mysql.cj.jdbc.Driver";
+private static String url = "jdbc:mysql://localhost:3306/PreparedStatement?"
++ "useSSL = false&serverTimezone = UTC";// 根据建立的数据库写url
+private static String user = "root";
+private static String password = "123456";
+
+    public static void main(String[] args) {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        String selectSql = "SELECT * FROM Student WHERE dept = ?";
+        String insertSql =  "INSERT INTO Student(sNO, sName, sex, age, dept) VALUES(?, ?, ?, ?, ?)";
+        String updateSql = "UPDATE Student SET dept = '金融' WHERE sNo = ?";
+        String deleteSql = "DELETE FROM Student WHERE sNo = ?";
+        try {
+            Class.forName(driver);
+            conn = DriverManager.getConnection(url, user, password);
+            ps = conn.prepareStatement(selectSql);
+            ps.setString(1, "计算机");
+            rs = ps.executeQuery();
+            while (rs.next()){
+                String no = rs.getString("sNo");
+                String name = rs.getString("sName");
+                String sex = rs.getString("sex");
+                int age = rs.getInt("age");
+                String dept = rs.getString("dept");
+                System.out.println(no + " " + name + " " + sex + " " + age + " " + dept);
+            }
+            ps = conn.prepareStatement(insertSql);
+            ps.setString(1, "202101099");
+            ps.setString(2, "小明");
+            ps.setString(3, "男");
+            ps.setInt(4, 18);
+            ps.setString(5, "外语");
+            int count = ps.executeUpdate();
+            System.out.println("添加" + count + "条数据。");
+            ps = conn.prepareStatement(updateSql);
+            ps.setString(1, "202101009");
+            count = ps.executeUpdate();
+            System.out.println("修改了" + count + "条记录。");
+            ps = conn.prepareStatement(deleteSql);
+            ps.setString(1, "202101009");
+            count = ps.executeUpdate();
+            System.out.println("删除了" + count + "条记录。");
+        } catch (ClassNotFoundException | SQLException e) {
+            throw new RuntimeException(e);
+        }
+        finally {
+            try {
+                // 关闭连接
+                if (rs != null) rs.close();
+                if (ps != null) ps.close();
+                if (conn != null) conn.close();
+                } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+}
+```
