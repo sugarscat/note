@@ -59,7 +59,7 @@ public void connection throws ClassNotFoundException, SQLException {// 需要抛
    Connection conn = null;
    PreparedStatement ps = null;
    ResultSet rs = null;
-   String selectSql = "SELECT * FROM userinfo WHERe userName = ?";
+   String selectSql = "SELECT * FROM userinfo WHERE userName = ?";
    conn = DriverManager.getConnection(url, userName, password);// 此处未写数据库配置
    ps = conn.prepareStatement(selectSql);
    // 一一对应，将字符串传给占位符
