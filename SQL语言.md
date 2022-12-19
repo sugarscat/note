@@ -110,7 +110,7 @@
 
 ---
 
-1. 子查询的子查询
+#### 1. 子查询的子查询
    ```
    SELECT 字段, ...
    FROM 表1
@@ -121,7 +121,7 @@
    WHERE 字段 = 值));
    ```
    
-2. WHERE
+#### 2. WHERE
    >    + WHERE 子句用于过滤记录，即缩小访问数据的范围。
    >
    >    + WHERE 后跟一个返回 true 或 false 的条件。
@@ -140,18 +140,18 @@
    + LIKE : 搜索某种模式
    + IN	: 指定针对某个列的多个可能值
    
-3. IN 和 BETWEEN
+#### 3. IN 和 BETWEEN
    > + N 操作符在 WHERE 子句中使用，作用是在指定的几个特定值中任选一个值。
    >
    > + BETWEEN 操作符在 WHERE 子句中使用，作用是选取介于某个范围内的值。
    
-   1. IN
-      ```
-      SELECT * FROM 表名 WHERE 字段 IN (值, ... );
-      ```
+1. IN
+   ```
+   SELECT * FROM 表名 WHERE 字段 IN (值, ... );
+   ```
 
-   2. BETWEEN
-      ```
-      SELECT * FROM 表名 WHERE 字段 BETWEEN 值 AND 值;
-      ```
-4. AND, OR, NOT
+2. BETWEEN
+   ```
+   SELECT * FROM 表名 WHERE 字段 BETWEEN 值 AND 值;
+   ```
+#### 4. AND, OR, NOT
