@@ -44,3 +44,11 @@
     ```
     INSERT INTO 表1(字段1) SELECT n字段2 FROM 表2; 
     ```
+   
+#### 2. 更新数据
+> UPDATE 语句用于更新表中的记录。
+
+   ```
+   UPDATE 表名 SET 字段 = 值, ... WHERE 字段 = 值, ...;
+   // WHERE 后面是条件
+   ```
