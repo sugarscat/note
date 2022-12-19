@@ -37,13 +37,10 @@
    
 2. 插入行的一部分
     ```
-    INSERT INTO 表名(字段, 字段, ..., 字段) 
-    VALUES (值, 值, ..., 值);
+    INSERT INTO 表名(字段, 字段, ..., 字段) VALUES (值, 值, ..., 值);
     ```
       
 3. 嵌套插入
     ```
-    INSERT INTO 表1(字段1)
-    SELECT n字段2
-    FROM 表2; 
+    INSERT INTO 表1(字段1) SELECT n字段2 FROM 表2; 
     ```
