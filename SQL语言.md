@@ -234,16 +234,26 @@
 > + 连接 vs 子查询：连接可以替换子查询，并且比子查询的效率一般会更快。
 
 1. 内连接（INNER JOIN）
-   ``` SELECT 字段, ... FROM vendors INNER JOIN products ON vendors.vend_id = products.vend_id;```
+   ``` 
+   SELECT 字段, ... FROM vendors INNER JOIN products ON vendors.vend_id = products.vend_id;
+   ```
 
 2. 自连接
-   ```SELECT 字段, ... FROM customers c1, customers c2 WHERE c1.cust_name = c2.cust_name AND c2.cust_contact = 'Jim Jones';```
+   ```
+   SELECT 字段, ... FROM customers c1, customers c2 WHERE c1.cust_name = c2.cust_name AND c2.cust_contact = 'Jim Jones';
+   ```
 
 3. 自然连接（NATURAL JOIN）
-   ```SELECT 字段, ... FROM Products NATURAL JOIN Customers;```
+   ```
+   SELECT 字段, ... FROM Products NATURAL JOIN Customers;
+   ```
 
 4. 左连接（LEFT JOIN）
-   ```SELECT 字段, ... FROM customers LEFT JOIN orders ON customers.cust_id = orders.cust_id;```
+   ```
+   SELECT 字段, ... FROM customers LEFT JOIN orders ON customers.cust_id = orders.cust_id;
+   ```
 
 5. 右连接（RIGHT JOIN）
-   ```SELECT 字段, ... FROM customers RIGHT JOIN orders ON customers.cust_id = orders.cust_id;```
+   ```
+   SELECT 字段, ... FROM customers RIGHT JOIN orders ON customers.cust_id = orders.cust_id;
+   ```
