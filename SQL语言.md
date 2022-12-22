@@ -380,7 +380,7 @@
 
 ---
 
-### 六、排序和分组
+### 六、 排序和分组
 
 #### 1. ORDER BY 
 > + 用于对结果集进行排序。
@@ -436,5 +436,159 @@
    SELECT 字段, COUNT(*) AS 别名 FROM 表名 WHERE 字段 IS NOT NULL GROUP BY 字段 HAVING COUNT(*) >= 1;
    ```
 
+---
+
+### 七、 数据定义
+> DDL 的主要功能是定义数据库对象（如：数据库、数据表、视图、索引等）。
+
+#### 1. 数据库（DATABASE）
+1. 创建数据库
+   ```
+   CREATE DATABASE 表名;
+   ```
+
+2. 删除数据库
+   ```
+   DROP DATABASE 表名;
+   ```
+   
+3. 选择数据库
+   ```
+   USE test;
+   ```
+
+#### 2. 数据表（TABLE）
+1. 创建数据表
+   1. 普通创建
+      ```
+      CREATE TABLE user (
+      id int(10) unsigned NOT NULL COMMENT 'Id',
+      username varchar(64) NOT NULL DEFAULT 'default' COMMENT '用户名',
+      password varchar(64) NOT NULL DEFAULT 'default' COMMENT '密码',
+      email varchar(64) NOT NULL DEFAULT 'default' COMMENT '邮箱'
+      ) COMMENT='用户表';
+      ```
+
+   2. 根据已有的表创建新表
+      ```
+      CREATE TABLE 表名 AS SELECT * FROM 表名;
+      ```
+      
+2. 删除数据表
+   ```
+   DROP TABLE 表名;
+   ```
+   
+3. 修改数据表
+ 
+   1. 添加列
+      ```
+      ALTER TABLE user ADD age int(3);
+      ```
+   
+   2. 删除列
+      ```
+      ALTER TABLE user DROP COLUMN age;
+      ```
+      
+   3. 修改列
+      ``` 
+      ALTER TABLE user MODIFY COLUMN age tinyint;
+      ```
+
+   4. 添加主键
+      ```
+      ALTER TABLE user ADD PRIMARY KEY (id);
+      ```   
+
+   5. 删除主键
+      ```
+      ALTER TABLE user DROP PRIMARY KEY;
+      ```
+      
+#### 3. 视图（VIEW）
+> + 定义
+>
+>   + 视图是基于 SQL 语句的结果集的可视化的表。
+>
+>   + 视图是虚拟的表，本身不包含数据，也就不能对其进行索引操作。对视图的操作和对普通表的操作一样。
+>
+> + 作用
+>
+>   + 简化复杂的 SQL 操作，比如复杂的联结；
+>
+>   + 只使用实际表的一部分数据；
+>
+>   + 通过只给用户访问视图的权限，保证数据的安全性；
+>
+>   + 更改数据格式和表示。
+
+1. 创建视图
+   ```
+   CREATE VIEW top_10_user_view AS SELECT id, username FROM user WHERE id < 10;
+   ```
+   
+2. 删除视图
+   ```
+   DROP VIEW top_10_user_view;
+   ```
+
+#### 4. 索引（INDEX）
+> + 作用
+>
+>   + 通过索引可以更加快速高效地查询数据。
+>
+>   + 用户无法看到索引，它们只能被用来加速查询。
+>
+> + 注意：更新一个包含索引的表需要比更新一个没有索引的表花费更多的时间，这是由于索引本身也需要更新。因此，理想的做法是仅仅在常常被搜索的列（以及表）上面创建索引。
+>
+> + 唯一索引：唯一索引表明此索引的每一个索引值只对应唯一的数据记录。
+
+1. 创建索引
+   ```
+   CREATE INDEX user_index ON user (id);
+   ```
+   
+2. 创建唯一索引
+   ```
+   CREATE UNIQUE INDEX user_index ON user (id);
+   ```
+   
+3. 删除索引
+   ```
+   ALTER TABLE user DROP INDEX user_index;
+   ```
+
+#### 5. 约束
+> + 如果存在违反约束的数据行为，行为会被约束终止。
+>
+> + 约束可以在创建表时规定（通过 CREATE TABLE 语句），或者在表创建之后规定（通过 ALTER TABLE 语句）。
+>
+> + 约束类型
+>
+>   + NOT NULL - 指示某列不能存储 NULL 值。
+>
+>   + UNIQUE - 保证某列的每行必须有唯一的值。
+>
+>   + PRIMARY KEY - NOT NULL 和 UNIQUE 的结合。确保某列（或两个列多个列的结合）有唯一标识，有助于更容易更快速地找到表中的一个特定的记录。
+>
+>   + FOREIGN KEY - 保证一个表中的数据匹配另一个表中的值的参照完整性。
+>
+>   + CHECK - 保证列中的值符合指定的条件。
+>
+>   + DEFAULT - 规定没有给列赋值时的默认值。
+
+1. 创建表时使用约束条件：
+   ```
+   CREATE TABLE Users (
+   Id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '自增Id',
+   Username VARCHAR(64) NOT NULL UNIQUE DEFAULT 'default' COMMENT '用户名',
+   Password VARCHAR(64) NOT NULL DEFAULT 'default' COMMENT '密码',
+   Email VARCHAR(64) NOT NULL DEFAULT 'default' COMMENT '邮箱地址',
+   Enabled TINYINT(4) DEFAULT NULL COMMENT '是否有效',
+   PRIMARY KEY (Id)
+   ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COMMENT='用户表';
+   ```
+   
 ---
 
