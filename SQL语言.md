@@ -269,11 +269,31 @@
 >
 >   + 通常返回的列名取自第一个查询。
 > 
->   + 默认会去除相同行，如果需要保留相同行，使用 UNION ALL。
->   + 只能包含一个 ORDER BY 子句，并且必须位于语句的最后。
+> + 默认会去除相同行，如果需要保留相同行，使用 UNION ALL。
+> 
+> + 只能包含一个 ORDER BY 子句，并且必须位于语句的最后。
 >
 > + 应用场景
 > 
 >   + 在一个查询中从不同的表返回结构数据。
 >   + 对一个表执行多个查询，按一个查询返回数据。
 
+1. 组合查询
+   ```
+   SELECT cust_name, cust_contact, cust_email
+   FROM customers
+   WHERE cust_state IN ('IL', 'IN', 'MI')
+   UNION
+   SELECT cust_name, cust_contact, cust_email
+   FROM customers
+   WHERE cust_name = 'Fun4All';
+   ```
+
+#### 3. OIN vs UNION
+> + JOIN 中连接表的列可能不同，但在 UNION 中，所有查询的列数和列顺序必须相同。
+>
+> + UNION 将查询之后的行放在一起（垂直放置），但 JOIN 将查询之后的列放在一起（水平放置），即它构成一个笛卡尔积。
+
+---
+
+### 五、函数
