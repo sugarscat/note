@@ -711,7 +711,7 @@ COMMIT;
 >
 >   + 每次只能给一个变量赋值，不支持集合的操作。
 
-#### 创建存储过程
+#### 1. 创建存储过程
 ```
 DROP PROCEDURE IF EXISTS `proc_adder`;
 DELIMITER ;;
@@ -730,7 +730,7 @@ END
 DELIMITER;
 ```
 
-#### 使用存储过程
+#### 2. 使用存储过程
 ```
 set @b=5;
 call proc_adder(2,@b,@s);
