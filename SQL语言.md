@@ -790,3 +790,76 @@ call getTotal();
 
 ---
 
+### 十二、 触发器
+> + 触发器是一种与表操作有关的数据库对象，当触发器所在表上出现指定事件时，将调用该对象，即表的操作事件触发表上的触发器的执行。
+>
+> + 可以使用触发器来进行审计跟踪，把修改记录到另外一张表中。
+>
+> + MySQL 不允许在触发器中使用 CALL 语句 ，也就是不能调用存储过程。
+
+#### 1. BEGIN 和 END
+> + 当触发器的触发条件满足时，将会执行 BEGIN 和 END 之间的触发器执行动作。
+>
+> + 注意：在 MySQL 中，分号 ; 是语句结束的标识符，遇到分号表示该段语句已经结束，MySQL 可以开始执行了。因此，解释器遇到触发器执行动作中的分号后就开始执行，然后会报错，因为没有找到和 BEGIN 匹配的 END。 这时就会用到 DELIMITER 命令（DELIMITER 是定界符，分隔符的意思）。它是一条命令，不需要语句结束标识，语法为：DELIMITER new_delemiter。new_delemiter 可以设为 1 个或多个长度的符号，默认的是分号 ;，我们可以把它修改为其他符号，如 $ - DELIMITER $ 。在这之后的语句，以分号结束，解释器不会有什么反应，只有遇到了 $，才认为是语句结束。注意，使用完之后，我们还应该记得把它给修改回来。
+
+#### 2. NEW 和 OLD
+> + MySQL 中定义了 NEW 和 OLD 关键字，用来表示触发器的所在表中，触发了触发器的那一行数据。
+>
+> + 在 INSERT 型触发器中，NEW 用来表示将要（BEFORE）或已经（AFTER）插入的新数据；
+>
+> + 在 UPDATE 型触发器中，OLD 用来表示将要或已经被修改的原数据，NEW 用来表示将要或已经修改为的新数据；
+> 
+> + 在 DELETE 型触发器中，OLD 用来表示将要或已经被删除的原数据；
+>
+> + 使用方法：NEW.columnName （columnName 为相应数据表某一列名）
+
+#### 3. 创建触发器
+> + CREATE TRIGGER 指令用于创建触发器。
+
+1. 语法：
+   ```
+   CREATE TRIGGER trigger_name
+   trigger_time
+   trigger_event
+   ON table_name
+   FOR EACH ROW
+   BEGIN
+   trigger_statements
+   END;
+   ```
+
+2. 说明：
+   > + trigger_name：触发器名
+   >
+   > + trigger_time: 触发器的触发时机。取值为 BEFORE 或 AFTER。
+   >
+   > + trigger_event: 触发器的监听事件。取值为 INSERT、UPDATE 或 DELETE。
+   > 
+   > + table_name: 触发器的监听目标。指定在哪张表上建立触发器。
+   >
+   > + FOR EACH ROW: 行级监视，Mysql 固定写法，其他 DBMS 不同。
+   > 
+   > + trigger_statements: 触发器执行动作。是一条或多条 SQL 语句的列表，列表内的每条语句都必须用分号 ; 来结尾。
+
+3. 示例：
+   ```
+   DELIMITER $
+   CREATE TRIGGER `trigger_insert_user`
+   AFTER INSERT ON `user`
+   FOR EACH ROW
+   BEGIN
+   INSERT INTO `user_history`(user_id, operate_type, operate_time)
+   VALUES (NEW.id, 'add a user',  now());
+   END $
+   DELIMITER;
+   ```
+
+4. 查看触发器
+   ```
+   SHOW TRIGGERS;
+   ```
+   
+5. 删除触发器
+   ```
+   DROP TRIGGER IF EXISTS trigger_insert_user;
+   ```
