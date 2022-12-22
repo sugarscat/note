@@ -592,3 +592,201 @@
    
 ---
 
+### 八、 事务处理
+> + 不能回退 SELECT 语句，回退 SELECT 语句也没意义；也不能回退 CREATE 和 DROP 语句。
+>
+> + MySQL 默认是隐式提交，每执行一条语句就把这条语句当成一个事务然后进行提交。当出现 START TRANSACTION 语句时，会关闭隐式提交；当 COMMIT 或 ROLLBACK 语句执行后，事务会自动关闭，重新恢复隐式提交。
+> 
+> + 通过 set autocommit=0 可以取消自动提交，直到 set autocommit=1 才会提交；autocommit 标记是针对每个连接而不是针对服务器的。
+> 
+> + 指令
+>
+>   + START TRANSACTION - 指令用于标记事务的起始点。
+>
+>   + SAVEPOINT - 指令用于创建保留点。
+>
+>   + ROLLBACK TO - 指令用于回滚到指定的保留点；如果没有设置保留点，则回退到 START TRANSACTION 语句处。
+>
+>   + COMMIT - 提交事务。
+
+```
+-- 开始事务
+START TRANSACTION;
+ 
+-- 插入操作 A
+INSERT INTO `user`
+VALUES (1, 'root1', 'root1', 'xxxx@163.com');
+ 
+-- 创建保留点 updateA
+SAVEPOINT updateA;
+ 
+-- 插入操作 B
+INSERT INTO `user`
+VALUES (2, 'root2', 'root2', 'xxxx@163.com');
+ 
+-- 回滚到保留点 updateA
+ROLLBACK TO updateA;
+ 
+-- 提交事务，只有操作 A 生效
+COMMIT;
+```
+
+---
+
+### 九、 权限控制
+> + GRANT 和 REVOKE 可在几个层次上控制访问权限：
+>
+> + 整个服务器，使用 GRANT ALL 和 REVOKE ALL；
+>
+> + 整个数据库，使用 ON database.*；
+>
+> + 特定的表，使用 ON database.table；
+>
+> + 特定的列；
+>
+> + 特定的存储过程。
+>
+> + 新创建的账户没有任何权限。
+> 
+> + 账户用 username@host 的形式定义，username@% 使用的是默认主机名。
+>
+> + MySQL 的账户信息保存在 mysql 这个数据库中。
+
+1. 创建账户
+   ```
+   CREATE USER myuser IDENTIFIED BY 'mypassword';
+   ```
+   
+2. 修改账户名
+   ```
+   UPDATE user SET user='newuser' WHERE user='myuser';
+   FLUSH PRIVILEGES;
+   ```
+
+3. 删除账户
+   ```
+   DROP USER myuser;
+   ```
+   
+4. 查看权限
+   ```
+   SHOW GRANTS FOR myuser;
+   ```
+   
+5. 授予权限
+   ```
+   GRANT SELECT, INSERT ON *.* TO myuser;
+   ```
+
+6. 删除权限
+   ```
+   REVOKE SELECT, INSERT ON *.* FROM myuser;
+   ```
+   
+7. 更改密码
+   ```
+   SET PASSWORD FOR myuser = 'mypass';
+   ```
+   
+---
+
+### 十、 存储过程
+> + 存储过程可以看成是对一系列 SQL 操作的批处理；
+>
+> + 好处
+>
+>   + 代码封装，保证了一定的安全性；
+>
+>   + 代码复用；
+>
+>   + 由于是预先编译，因此具有很高的性能。
+>
+> + 创建存储过程
+>
+>   + 命令行中创建存储过程需要自定义分隔符，因为命令行是以 ; 为结束符，而存储过程中也包含了分号，因此会错误把这部分分号当成是结束符，造成语法错误。
+>
+>   + 包含 in、out 和 inout 三种参数。
+>
+>   + 给变量赋值都需要用 select into 语句。
+>
+>   + 每次只能给一个变量赋值，不支持集合的操作。
+
+#### 创建存储过程
+```
+DROP PROCEDURE IF EXISTS `proc_adder`;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `proc_adder`(IN a int, IN b int, OUT sum int)
+BEGIN
+DECLARE c int;
+if a is null then set a = 0;
+end if;
+
+    if b is null then set b = 0;
+    end if;
+ 
+    set sum  = a + b;
+END
+;;
+DELIMITER;
+```
+
+#### 使用存储过程
+```
+set @b=5;
+call proc_adder(2,@b,@s);
+select @s as sum;
+```
+
+### 十一、 游标
+> + 游标（cursor）是一个存储在 DBMS 服务器上的数据库查询，它不是一条 SELECT 语句，而是被该语句检索出来的结果集。
+>
+> + 在存储过程中使用游标可以对一个结果集进行移动遍历。
+>
+> + 游标主要用于交互式应用，其中用户需要对数据集中的任意行进行浏览和修改。
+>
+> + 使用游标的四个步骤：
+>
+>   + 声明游标，这个过程没有实际检索出数据；
+>
+>   + 打开游标；
+>
+>   + 取出数据；
+>
+>   + 关闭游标；
+
+```
+DELIMITER $
+CREATE  PROCEDURE getTotal()
+BEGIN
+DECLARE total INT;
+-- 创建接收游标数据的变量
+DECLARE sid INT;
+DECLARE sname VARCHAR(10);
+-- 创建总数变量
+DECLARE sage INT;
+-- 创建结束标志变量
+DECLARE done INT DEFAULT false;
+-- 创建游标
+DECLARE cur CURSOR FOR SELECT id,name,age from cursor_table where age>30;
+-- 指定游标循环结束时的返回值
+DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = true;
+SET total = 0;
+OPEN cur;
+FETCH cur INTO sid, sname, sage;
+WHILE(NOT done)
+DO
+SET total = total + 1;
+FETCH cur INTO sid, sname, sage;
+END WHILE;
+
+    CLOSE cur;
+    SELECT total;
+END $
+DELIMITER ;
+
+-- 调用存储过程
+call getTotal();
+```
+
+---
+
