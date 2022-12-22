@@ -177,5 +177,73 @@
    
 3. NOT
    ```
-   SELECT 字段 FROM 表名 WHERE 字段 NOT BETWEEN 值 AND 值;
+   SELECT 字段, ... FROM 表名 WHERE 字段 NOT BETWEEN 值 AND 值;
    ```
+   
+#### 5. Like
+> + LIKE 操作符在 WHERE 子句中使用，作用是确定字符串是否匹配模式。
+>
+> + 只有字段是文本值时才使用 LIKE。
+>
+> + LIKE 支持两个通配符匹配选项：% 和 _。
+>
+> + 不要滥用通配符，通配符位于开头处匹配会非常慢。
+> 
+> + % 表示任何字符出现任意次数。
+>
+> + _ 表示任何字符出现一次。
+
+1. % 示例
+   ```
+   SELECT 字段, ... FROM 表名 WHERE 字段 LIKE '%值%';
+   ```
+2. _ 示例
+   ```
+   SELECT 字段 FROM 表名 WHERE 字段 LIKE '_值';
+   ```   
+
+---
+
+### 四、 连接和组合
+
+#### 1. 连接（JOIN）
+> + 如果一个 JOIN 至少有一个公共字段并且它们之间存在关系，则该 JOIN 可以在两个或多个表上工作。
+>
+> + 连接用于连接多个表，使用 JOIN 关键字，并且条件语句使用 ON 而不是 WHERE。
+> 
+> + JOIN 保持基表（结构和数据）不变。
+> 
+> + JOIN 有两种连接类型：内连接和外连接。
+>
+> + 内连接又称等值连接，使用 INNER
+> 
+> + JOIN 关键字。在没有条件语句的情况下返回笛卡尔积。
+> 
+> + 自连接可以看成内连接的一种，只是连接的表是自身而已。
+>
+> + 自然连接是把同名列通过 = 测试连接起来的，同名列可以有多个。
+> 
+> + 内连接提供连接的列，而自然连接自动连接所有同名列。
+>
+> + 外连接返回一个表中的所有行，并且仅返回来自次表中满足连接条件的那些行，即两个表中的列是相等的。外连接分为左外连接、右外连接、全外连接（Mysql 不支持）。
+>
+> + 左外连接就是保留左表没有关联的行。
+> 
+> + 右外连接就是保留右表没有关联的行。
+>
+> + 连接 vs 子查询：连接可以替换子查询，并且比子查询的效率一般会更快。
+
+1. 内连接（INNER JOIN）
+   ``` SELECT 字段, ... FROM vendors INNER JOIN products ON vendors.vend_id = products.vend_id;```
+
+2. 自连接
+   ```SELECT 字段, ... FROM customers c1, customers c2 WHERE c1.cust_name = c2.cust_name AND c2.cust_contact = 'Jim Jones';```
+
+3. 自然连接（NATURAL JOIN）
+   ```SELECT 字段, ... FROM Products NATURAL JOIN Customers;```
+
+4. 左连接（LEFT JOIN）
+   ```SELECT 字段, ... FROM customers LEFT JOIN orders ON customers.cust_id = orders.cust_id;```
+
+5. 右连接（RIGHT JOIN）
+   ```SELECT 字段, ... FROM customers RIGHT JOIN orders ON customers.cust_id = orders.cust_id;```
