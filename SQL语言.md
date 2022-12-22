@@ -652,38 +652,38 @@ COMMIT;
 >
 > + MySQL 的账户信息保存在 mysql 这个数据库中。
 
-1. 创建账户
+#### 1. 创建账户
    ```
    CREATE USER myuser IDENTIFIED BY 'mypassword';
    ```
    
-2. 修改账户名
+#### 2. 修改账户名
    ```
    UPDATE user SET user='newuser' WHERE user='myuser';
    FLUSH PRIVILEGES;
    ```
 
-3. 删除账户
+#### 3. 删除账户
    ```
    DROP USER myuser;
    ```
    
-4. 查看权限
+#### 4. 查看权限
    ```
    SHOW GRANTS FOR myuser;
    ```
    
-5. 授予权限
+#### 5. 授予权限
    ```
    GRANT SELECT, INSERT ON *.* TO myuser;
    ```
 
-6. 删除权限
+#### 6. 删除权限
    ```
    REVOKE SELECT, INSERT ON *.* FROM myuser;
    ```
    
-7. 更改密码
+#### 7. 更改密码
    ```
    SET PASSWORD FOR myuser = 'mypass';
    ```
@@ -854,12 +854,12 @@ call getTotal();
    DELIMITER;
    ```
 
-4. 查看触发器
-   ```
-   SHOW TRIGGERS;
-   ```
+#### 4. 查看触发器
+```
+SHOW TRIGGERS;
+```
    
-5. 删除触发器
-   ```
-   DROP TRIGGER IF EXISTS trigger_insert_user;
-   ```
+#### 5. 删除触发器
+```
+DROP TRIGGER IF EXISTS trigger_insert_user;
+```
