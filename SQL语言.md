@@ -22,6 +22,8 @@
     -- 注释2
     /* 注释3 */
    ```
+   
+4. AS 后是”别名“
 
 ---
 
@@ -373,9 +375,66 @@
 > + 使用 DISTINCT 可以让汇总函数值汇总不同的值。
 >
 >  ```
->  SELECT AVG(DISTINCT col1) AS avg_col FROM mytable
+>  SELECT AVG(DISTINCT 字段) AS 别名 FROM 表名;
 >  ```
 
 ---
 
 ### 六、排序和分组
+
+#### 1. ORDER BY 
+> + 用于对结果集进行排序。
+>
+>  + ASC ：升序（默认）
+>
+>  + DESC ：降序
+>
+> + 可以按多个列进行排序，并且为每个列指定不同的排序方式
+
+1. 指定多个列的排序方向
+   ```
+   SELECT 字段, ... FROM 表名
+   ORDER BY 字段 DESC, 字段 ASC;
+   ```
+
+#### 2. GROUP BY
+> + GROUP BY 子句将记录分组到汇总行中。
+> 
+> + GROUP BY 为每个组返回一个记录。
+> 
+> + GROUP BY 通常还涉及聚合：COUNT，MAX，SUM，AVG 等。
+>
+> + GROUP BY 可以按一列或多列进行分组。
+> 
+> + GROUP BY 按分组字段进行排序后，ORDER BY 可以以汇总字段来进行排序。
+
+1. 分组
+   ```
+   SELECT 字段, COUNT(字段) AS 别名 FROM 表名 GROUP BY 字段;
+   ```
+
+2. 分组后排序
+   ```
+   SELECT 字段, COUNT(字段) AS 别名 FROM 表名 GROUP BY 字段 ORDER BY 字段 DESC;
+   ```
+
+#### 3. HAVING
+> + HAVING 用于对汇总的 GROUP BY 结果进行过滤。
+>
+> + HAVING 要求存在一个 GROUP BY 子句。
+> 
+> + WHERE 和 HAVING 可以在相同的查询中。
+>
+> + HAVING vs WHERE
+> 
+>  + WHERE 和 HAVING 都是用于过滤。
+>
+>  + HAVING 适用于汇总的组记录；而 WHERE 适用于单个记录。
+
+1. 使用 WHERE 和 HAVING 过滤数据
+   ```
+   SELECT 字段, COUNT(*) AS 别名 FROM 表名 WHERE 字段 IS NOT NULL GROUP BY 字段 HAVING COUNT(*) >= 1;
+   ```
+
+---
+
