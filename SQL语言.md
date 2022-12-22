@@ -258,7 +258,7 @@
    SELECT 字段, ... FROM customers RIGHT JOIN orders ON customers.cust_id = orders.cust_id;
    ```
 
-#### 组合（UNION）
+#### 2. 组合（UNION）
 > + UNION 运算符将两个或更多查询的结果组合起来，并生成一个结果集，其中包含来自 UNION 中参与查询的提取行。
 >
 > + UNION 基本规则
