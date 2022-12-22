@@ -167,5 +167,15 @@
 
 1. AND
    ```
-   SELECT 字段, ... FROM products WHERE 字段 = 值 AND 字段 <= 值;
+   SELECT 字段, ... FROM 表名 WHERE 字段 = 值 AND 字段 <= 值;
+   ```
+   
+2. OR
+   ```
+   SELECT 字段, ... FROM 表名 WHERE 字段 = 值 OR 字段 = 值;
+   ```
+   
+3. NOT
+   ```
+   SELECT 字段 FROM 表名 WHERE 字段 NOT BETWEEN 值 AND 值;
    ```
