@@ -676,7 +676,14 @@ COMMIT;
 #### 5. 授予权限
    ```
    GRANT SELECT, INSERT ON *.* TO myuser;
+   GRANT all privileges ON *.* TO 'root' @'%' identified BY 'Mysql@123';
    ```
+
+   1. GRANT 与 ON 之间为操作（SELECT, INSERT ···）。
+   2. ON 与 TO 之间为数据库名，格式为：数据库名 + .*。
+   3. TO 后面为账户。
+   4. @ 后面为ip地址，% 表示随意ip。
+   5. BY 后面为密码。
 
 #### 6. 删除权限
    ```
