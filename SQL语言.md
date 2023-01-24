@@ -677,6 +677,7 @@ COMMIT;
    ```
    GRANT SELECT, INSERT ON *.* TO myuser;
    GRANT all privileges ON *.* TO 'root' @'%' identified BY 'Mysql@123';
+   grant create,alter,drop,select,insert,update,delete on apollodb.* to dev001@'%';
    ```
 
    1. GRANT 与 ON 之间为操作（SELECT, INSERT ···）。
