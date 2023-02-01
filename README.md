@@ -57,7 +57,7 @@
 
 1. cd 到构建输出的目录下
     ```shell
-    cd dist
+    cd docs/.vuepress/dist
     ````
 
 2. 提交修改
