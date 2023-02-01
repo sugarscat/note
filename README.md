@@ -49,3 +49,32 @@
     ```shell
     npm run docs:build
     ```
+
+### Pages 页面提交
+> 此功能需开启SSH公钥
+
+#### Windows
+
+1. cd 到构建输出的目录下
+    ```shell
+    cd dist
+    ````
+
+2. 提交修改
+    ```shell
+    git init
+    ```
+    ```shell
+    git add -A
+    ```
+    ```shell
+    git commit -m 'deploy'
+    ```
+
+3. 强制推送到远端
+    ```shell
+    git push -f git@gitee.com:Sugarscat/note.git master:g-pages
+    ```
+    ```shell
+    exit
+    ```
