@@ -1,2 +1,6 @@
 .idea
-/.idea/
+/.idea/'node_modules'
+'.temp'
+'.cache'
+/node_modules/
+/docs/.vuepress/dist/
