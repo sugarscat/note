@@ -1,6 +1,5 @@
 import { defineUserConfig } from 'vuepress'
 import { backToTopPlugin } from '@vuepress/plugin-back-to-top'
-import Theme from './theme.config';
 
 export default defineUserConfig({
     base: '/note/',
@@ -8,8 +7,8 @@ export default defineUserConfig({
     lang: 'zh-CN',
     title: 'Note',
     description: '这是我的笔记。',
-    // theme: Theme,
     head: [['link', { rel: 'icon', href: 'favicon.ico' }]],
+    port: 3001,
     plugins: [
         backToTopPlugin(),
     ],
