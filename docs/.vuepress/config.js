@@ -5,7 +5,7 @@ export default defineUserConfig({
     base: '/note/',
     publicPath: '/note/',
     lang: 'zh-CN',
-    title: 'Note',
+    title: '目录',
     description: '这是我的笔记。',
     head: [['link', { rel: 'icon', href: 'favicon.ico' }]],
     port: 3001,
