@@ -6,9 +6,6 @@
   "directories": {
     "doc": "docs"
   },
-  "dependencies": {
-    "vuepress-webpack": "^2.0.0-beta.60"
-  },
   "devDependencies": {
     "@vuepress/client": "^2.0.0-beta.60",
     "@vuepress/plugin-back-to-top": "^2.0.0-beta.60",
@@ -22,7 +19,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://gitee.com/Sugarscat/note.git"
+    "url": "https://github.com/Sugarscat/note.git"
   },
   "author": "",
   "license": "ISC"
