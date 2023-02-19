@@ -19,10 +19,10 @@ jobs:
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v2
-        run: pnpm add -D vuepress@next @vuepress/client@next vue
         with:
           # 选择要使用的 pnpm 版本
           version: 7
+          run: pnpm add -D vuepress@next @vuepress/client@next vue
           # 使用 pnpm 安装依赖
           run_install: true
 
