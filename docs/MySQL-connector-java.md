@@ -1,17 +1,17 @@
-# Java操作数据库
+# Java 连接数据库
 
 ### 下载JDBC驱动包
 [点击前往官方网站](https://dev.mysql.com/downloads/connector/j/)
 
 选择 Platform Independent
 
-![](images/Java操作数据库数据库/下载驱动包.png)
+![](./images/connector-java/download.png)
 
 ### 导入JDBC数据库驱动包
 
 1. 将驱动包放到目录libs下
 
-   ![](images/Java操作数据库数据库/libs.png)
+   ![](./images/connector-java/libs.png)
 
 2. 按照下面步骤添加库：
 
@@ -19,11 +19,11 @@
 
    2. 选择添加为库
    
-      ![](images/Java操作数据库数据库/右键mysql-connector-java.jar.png) 
+      ![](./images/connector-java/右键mysql-connector-java.jar.png) 
 
    3. 在弹出窗口选择模块库：
    
-      ![](images/Java操作数据库数据库/模块库.png)
+      ![](./images/connector-java/模块库.png)
    
 ### 连接数据库
 

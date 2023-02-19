@@ -8,7 +8,6 @@ export default defineUserConfig({
     title: 'Note',
     description: '这是我的笔记。',
     head: [['link', { rel: 'icon', href: 'favicon.ico' }]],
-    port: 3001,
     plugins: [
         backToTopPlugin(),
     ],

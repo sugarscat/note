@@ -5,10 +5,7 @@
 
 ### 目录
 
-1. [SQL语言](docs/SQL语言.md)
-2. [Java操作数据库](docs/Java操作数据库.md)
-3. [Linux命令](docs/Linux命令.md)
-4. [算法](docs/算法.md)
+[目录](docs/index.md)
 
 ### Pages 页面
 > 用VuePress构建
@@ -42,6 +39,7 @@
 
 5. 步骤 5: 在本地启动服务器来开发你的文档网站
     ```shell
+    npm install
     npm run docs:dev
     ```
 
