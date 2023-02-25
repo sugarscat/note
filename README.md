@@ -5,7 +5,9 @@
 
 ### 目录
 
-[目录](docs/index.md)
+[笔记目录](docs/notes/index.md)
+
+[文档目录](docs/documents/index.md)
 
 ### Pages 页面
 > 用VuePress构建

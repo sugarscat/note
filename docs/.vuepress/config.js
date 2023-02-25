@@ -20,19 +20,27 @@ export default defineUserConfig({
         // 导航栏
         navbar: [
             {
-                text: '目录',
+                text: '首页',
                 link: '/',
+            },
+            {
+                text: '笔记',
+                link: '/notes',
+            },
+            {
+                text: '文档',
+                link: '/documents',
             },
             {
                 text: '仓库',
                 children: [
                     {
-                        text: 'Gitee',
-                        link: 'https://gitee.com/Sugarscat/note',
-                    },
-                    {
                         text: 'Github',
                         link: 'https://github.com/Sugarscat/note',
+                    },
+                    {
+                        text: 'Gitee',
+                        link: 'https://gitee.com/Sugarscat/note',
                     },
                 ],
             },
