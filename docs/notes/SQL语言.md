@@ -105,6 +105,10 @@
    SELECT * FROM 表名 LIMIT 0, 5;
    -- 返回第 3 ~ 5 行
    SELECT * FROM 表名 LIMIT 2, 3;
+   --查询前2种
+   SELECT Top 2  * from 表名,
+   --查询前百分之五
+   SELECT Top 5 percent  * from 表名,
    ```
 
 ---
