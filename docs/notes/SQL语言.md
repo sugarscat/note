@@ -201,11 +201,13 @@
 
 1. % 示例
    ```
-   SELECT 字段, ... FROM 表名 WHERE 字段 LIKE '%值%';
+   SELECT 字段, ... FROM 表名 
+   WHERE 字段 LIKE '%值%';
    ```
 2. _ 示例
    ```
-   SELECT 字段 FROM 表名 WHERE 字段 LIKE '_值';
+   SELECT 字段 FROM 表名 
+   WHERE 字段 LIKE '_值';
    ```   
 
 ---
@@ -241,27 +243,32 @@
 
 1. 内连接（INNER JOIN）
    ``` 
-   SELECT 字段, ... FROM vendors INNER JOIN products ON vendors.vend_id = products.vend_id;
+   SELECT 字段, ... FROM vendors 
+   INNER JOIN products ON vendors.vend_id = products.vend_id;
    ```
 
 2. 自连接
    ```
-   SELECT 字段, ... FROM customers c1, customers c2 WHERE c1.cust_name = c2.cust_name AND c2.cust_contact = 'Jim Jones';
+   SELECT 字段, ... FROM customers c1, customers c2 
+   WHERE c1.cust_name = c2.cust_name AND c2.cust_contact = 'Jim Jones';
    ```
 
 3. 自然连接（NATURAL JOIN）
    ```
-   SELECT 字段, ... FROM Products NATURAL JOIN Customers;
+   SELECT 字段, ... FROM Products 
+   NATURAL JOIN Customers;
    ```
 
 4. 左连接（LEFT JOIN）
    ```
-   SELECT 字段, ... FROM customers LEFT JOIN orders ON customers.cust_id = orders.cust_id;
+   SELECT 字段, ... FROM customers 
+   LEFT JOIN orders ON customers.cust_id = orders.cust_id;
    ```
 
 5. 右连接（RIGHT JOIN）
    ```
-   SELECT 字段, ... FROM customers RIGHT JOIN orders ON customers.cust_id = orders.cust_id;
+   SELECT 字段, ... FROM customers 
+   RIGHT JOIN orders ON customers.cust_id = orders.cust_id;
    ```
 
 #### 2. 组合（UNION）
@@ -437,7 +444,8 @@
 
 1. 使用 WHERE 和 HAVING 过滤数据
    ```
-   SELECT 字段, COUNT(*) AS 别名 FROM 表名 WHERE 字段 IS NOT NULL GROUP BY 字段 HAVING COUNT(*) >= 1;
+   SELECT 字段, COUNT(*) AS 别名 FROM 表名 
+   WHERE 字段 IS NOT NULL GROUP BY 字段 HAVING COUNT(*) >= 1;
    ```
 
 ---
@@ -529,7 +537,8 @@
 
 1. 创建视图
    ```
-   CREATE VIEW top_10_user_view AS SELECT id, username FROM user WHERE id < 10;
+   CREATE VIEW top_10_user_view AS 
+   SELECT id, username FROM user WHERE id < 10;
    ```
    
 2. 删除视图
@@ -544,7 +553,8 @@
 >
 >   + 用户无法看到索引，它们只能被用来加速查询。
 >
-> + 注意：更新一个包含索引的表需要比更新一个没有索引的表花费更多的时间，这是由于索引本身也需要更新。因此，理想的做法是仅仅在常常被搜索的列（以及表）上面创建索引。
+> + 注意：更新一个包含索引的表需要比更新一个没有索引的表花费更多的时间，这是由于索引本身也需要更新。
+> + 因此，理想的做法是仅仅在常常被搜索的列（以及表）上面创建索引。
 >
 > + 唯一索引：唯一索引表明此索引的每一个索引值只对应唯一的数据记录。
 
@@ -779,7 +789,7 @@ DECLARE sage INT;
 -- 创建结束标志变量
 DECLARE done INT DEFAULT false;
 -- 创建游标
-DECLARE cur CURSOR FOR SELECT id,name,age from cursor_table where age>30;
+DECLARE cur CURSOR FOR SELECT id,name,age FROM cursor_table where age>30;
 -- 指定游标循环结束时的返回值
 DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = true;
 SET total = 0;
@@ -812,7 +822,12 @@ call getTotal();
 #### 1. BEGIN 和 END
 > + 当触发器的触发条件满足时，将会执行 BEGIN 和 END 之间的触发器执行动作。
 >
-> + 注意：在 MySQL 中，分号 ; 是语句结束的标识符，遇到分号表示该段语句已经结束，MySQL 可以开始执行了。因此，解释器遇到触发器执行动作中的分号后就开始执行，然后会报错，因为没有找到和 BEGIN 匹配的 END。 这时就会用到 DELIMITER 命令（DELIMITER 是定界符，分隔符的意思）。它是一条命令，不需要语句结束标识，语法为：DELIMITER new_delemiter。new_delemiter 可以设为 1 个或多个长度的符号，默认的是分号 ;，我们可以把它修改为其他符号，如 $ - DELIMITER $ 。在这之后的语句，以分号结束，解释器不会有什么反应，只有遇到了 $，才认为是语句结束。注意，使用完之后，我们还应该记得把它给修改回来。
+> + 注意：在 MySQL 中，分号 ; 是语句结束的标识符，遇到分号表示该段语句已经结束，MySQL 可以开始执行了。
+> + 因此，解释器遇到触发器执行动作中的分号后就开始执行，然后会报错，因为没有找到和 BEGIN 匹配的 END。 
+> + 这时就会用到 DELIMITER 命令（DELIMITER 是定界符，分隔符的意思）。
+> + 它是一条命令，不需要语句结束标识，语法为：DELIMITER new_delemiter。new_delemiter 可以设为 1 个或多个长度的符号，默认的是分号 ";"，
+> + 我们可以把它修改为其他符号，如 $ - DELIMITER $ 。
+> + 在这之后的语句，以分号结束，解释器不会有什么反应，只有遇到了 $，才认为是语句结束。注意，使用完之后，我们还应该记得把它给修改回来。
 
 #### 2. NEW 和 OLD
 > + MySQL 中定义了 NEW 和 OLD 关键字，用来表示触发器的所在表中，触发了触发器的那一行数据。
