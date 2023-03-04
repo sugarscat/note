@@ -25,7 +25,13 @@ command [-options] [parameter]
 | mkdir [目录名]	    | make directory        | 	创建目录              |
 | rm [文件名]	       | remove                | 	删除指定文件            |
 | clear	          | clear                 | 	清屏                |
-| ln -s [被链接的源文件] | 无	                    | 建立文件的软链接（类似于快捷方式 ） |
+
+#### 软连接
+> 建立文件的软链接（类似于快捷方式）
+
+```shell
+ln -s [被链接的源文件]
+```
 
 > ln -s 命令注意：
 >
