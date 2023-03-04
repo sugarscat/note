@@ -13,7 +13,7 @@ export default defineUserConfig({
     ],
     markdown: {
         headers: {
-            level: [2, 3, 4, 5],
+            level: [2, 3, 4, 5, 6],
         },
     },
     theme: defaultTheme({
