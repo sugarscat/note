@@ -16,15 +16,15 @@ command [-options] [parameter]
 
 #### 常用命令
 
-| 命令          | 对应英文                  | 作用            |
-|:------------|:----------------------|:--------------|
-| ls	         | list	                 | 查看当前文件夹下的内容   |
-| pwd	        | print work directory	 | 查看当前所在文件夹     |
-| cd[目录名]	    | change directory      | 	切换文件夹        |
-| touch[文件名]	 | touch                 | 	如果文件不存在，新建文件 |
-| mkdir[目录名]	 | make directory        | 	创建目录         |
-| rm[文件名]	    | remove                | 	删除指定文件       |
-| clear	      | clear                 | 	清屏           |
+| 命令           | 对应英文                  | 作用            |
+|:-------------|:----------------------|:--------------|
+| ls	          | list	                 | 查看当前文件夹下的内容   |
+| pwd	         | print work directory	 | 查看当前所在文件夹     |
+| cd [目录名]	    | change directory      | 	切换文件夹        |
+| touch [文件名]  | touch                 | 	如果文件不存在，新建文件 |
+| mkdir [目录名]	 | make directory        | 	创建目录         |
+| rm [文件名]	    | remove                | 	删除指定文件       |
+| clear	       | clear                 | 	清屏           |
 
 ### 一、有关用户的操作
 
