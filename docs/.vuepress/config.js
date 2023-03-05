@@ -1,6 +1,8 @@
 import { defineUserConfig } from 'vuepress'
 import { backToTopPlugin } from '@vuepress/plugin-back-to-top'
 import { defaultTheme } from 'vuepress'
+import { searchPlugin } from '@vuepress/plugin-search'
+
 export default defineUserConfig({
     base: '/note/',
     publicPath: '/note/',
@@ -8,9 +10,6 @@ export default defineUserConfig({
     title: 'Note',
     description: '这是我的笔记。',
     head: [['link', { rel: 'icon', href: 'favicon.ico' }]],
-    plugins: [
-        backToTopPlugin(),
-    ],
     markdown: {
         headers: {
             level: [2, 3, 4, 5, 6],
@@ -46,4 +45,21 @@ export default defineUserConfig({
             },
         ],
     }),
+    plugins: [
+        backToTopPlugin(),
+
+        /*searchPlugin({
+            // 配置项
+            locales: {
+                '/': {
+                    placeholder: '搜索',
+                },
+            },
+            maxSuggestions: 5,
+            // 排除首页
+            isSearchable: (page) => page.path !== '/',
+            // 允许搜索 Frontmatter 中的 `tags`
+            getExtraFields: (page) => page.frontmatter.tags ?? [],
+        }),*/
+    ],
 })
