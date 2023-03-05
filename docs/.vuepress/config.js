@@ -1,7 +1,6 @@
 import { defineUserConfig } from 'vuepress'
 import { backToTopPlugin } from '@vuepress/plugin-back-to-top'
 import { defaultTheme } from 'vuepress'
-import { searchPlugin } from '@vuepress/plugin-search'
 
 export default defineUserConfig({
     base: '/note/',
@@ -12,7 +11,7 @@ export default defineUserConfig({
     head: [['link', { rel: 'icon', href: 'favicon.ico' }]],
     markdown: {
         headers: {
-            level: [2, 3, 4, 5, 6],
+            level: [2, 3, 4, 5],
         },
     },
     theme: defaultTheme({
@@ -47,19 +46,5 @@ export default defineUserConfig({
     }),
     plugins: [
         backToTopPlugin(),
-
-        /*searchPlugin({
-            // 配置项
-            locales: {
-                '/': {
-                    placeholder: '搜索',
-                },
-            },
-            maxSuggestions: 5,
-            // 排除首页
-            isSearchable: (page) => page.path !== '/',
-            // 允许搜索 Frontmatter 中的 `tags`
-            getExtraFields: (page) => page.frontmatter.tags ?? [],
-        }),*/
     ],
 })
