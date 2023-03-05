@@ -5,13 +5,13 @@
 
 选择 Platform Independent
 
-![](./images/connector-java/download.png)
+![](./images/connector-java/download.avif)
 
 ### 导入JDBC数据库驱动包
 
 1. 将驱动包放到目录libs下
 
-   ![](./images/connector-java/libs.png)
+   ![](./images/connector-java/libs.avif)
 
 2. 按照下面步骤添加库：
 
@@ -19,11 +19,11 @@
 
    2. 选择添加为库
    
-      ![](./images/connector-java/右键mysql-connector-java.jar.png) 
+      ![](./images/connector-java/右键mysql-connector-java.jar.avif) 
 
    3. 在弹出窗口选择模块库：
    
-      ![](./images/connector-java/模块库.png)
+      ![](./images/connector-java/模块库.avif)
    
 ### 连接数据库
 
