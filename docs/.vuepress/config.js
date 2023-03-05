@@ -1,7 +1,6 @@
 import { defineUserConfig } from 'vuepress'
 import { backToTopPlugin } from '@vuepress/plugin-back-to-top'
 import { defaultTheme } from 'vuepress'
-
 export default defineUserConfig({
     base: '/note/',
     publicPath: '/note/',
@@ -9,9 +8,12 @@ export default defineUserConfig({
     title: 'Note',
     description: '这是我的笔记。',
     head: [['link', { rel: 'icon', href: 'favicon.ico' }]],
+    plugins: [
+        backToTopPlugin(),
+    ],
     markdown: {
         headers: {
-            level: [2, 3, 4, 5],
+            level: [2, 3, 4, 5, 6],
         },
     },
     theme: defaultTheme({
@@ -44,7 +46,4 @@ export default defineUserConfig({
             },
         ],
     }),
-    plugins: [
-        backToTopPlugin(),
-    ],
 })
