@@ -3,13 +3,13 @@
 ### 基本
 
 1. 一行SQL语句
-    ```
+    ```sql
     -- 一行 SQL 语句
     UPDATE user SET username='robot', password='robot' WHERE username = 'root';
     ```
 
 2. 多行SQL语句
-    ```
+    ```sql
     -- 多行 SQL 语句
     UPDATE user
     SET username='robot', password='robot'
@@ -17,7 +17,7 @@
    ```
    
 3. 三种注释
-    ```
+    ```sql
     ## 注释1
     -- 注释2
     /* 注释3 */
@@ -35,24 +35,24 @@
 
 1. 插入完整的一行
 
-    ```
+    ```sql
     INSERT INTO 表名 VALUES (值, 值, ..., 值);
     ```
    
 2. 插入行的一部分
-    ```
+    ```sql
     INSERT INTO 表名(字段, 字段, ..., 字段) VALUES (值, 值, ..., 值);
     ```
     
 3. 嵌套插入
-    ```
+    ```sql
     INSERT INTO 表1(字段1) SELECT n字段2 FROM 表2; 
     ```
 
 #### 2. 更新数据
 + UPDATE 语句用于更新表中的记录。
 
-   ```
+   ```sql
    UPDATE 表名 SET 字段 = 值, ... WHERE 字段 = 值, ...;
    -- WHERE 后面是条件
    ```
@@ -62,12 +62,12 @@
 + TRUNCATE TABLE 可以清空表，也就是删除所有行。
 
 1. 删除指定数据
-   ```
+   ```sql
    DELETE FROM 表名 WHERE 字段 = 值;
    ```
    
 2. 清空表中数据
-   ```
+   ```sql
    TRUNCATE TABLE 表名;
    ```
    
@@ -79,22 +79,22 @@
 + DESC ：降序
 
 1. 查找全部数据
-   ```
+   ```sql
    SELECT * FROM 表名;
    ```
    
 2. 查找部分数据
-   ```
+   ```sql
    SELECT 字段, ... FROM 表名;
    ```
    
 3. 查询不同的值
-   ```
+   ```sql
    SELECT DISTINCT 字段 FROM 表名;
    ```
    
 4. 限制查询结果
-   ```
+   ```sql
    -- 返回前 5 行
    SELECT * FROM 表名 LIMIT 5;
    SELECT * FROM 表名 LIMIT 0, 5;
@@ -112,7 +112,7 @@
 > 子查询是嵌套在较大查询中的 SQL 查询。子查询也称为内部查询或内部选择，而包含子查询的语句也称为外部查询或外部选择。
 
 #### 1. 子查询的子查询
-   ```
+   ```sql
    SELECT 字段, ...
    FROM 表1
    WHERE 字段 IN (SELECT 字段
@@ -142,12 +142,12 @@
 + BETWEEN 操作符在 WHERE 子句中使用，作用是选取介于某个范围内的值。
 
 1. IN
-   ```
+   ```sql
    SELECT * FROM 表名 WHERE 字段 IN (值, ... );
    ```
 
 2. BETWEEN
-   ```
+   ```sql
    SELECT * FROM 表名 WHERE 字段 BETWEEN 值 AND 值;
    ```
 #### 4. AND, OR, NOT
@@ -158,17 +158,17 @@
 + NOT 操作符用于否定一个条件。
 
 1. AND
-   ```
+   ```sql
    SELECT 字段, ... FROM 表名 WHERE 字段 = 值 AND 字段 <= 值;
    ```
    
 2. OR
-   ```
+   ```sql
    SELECT 字段, ... FROM 表名 WHERE 字段 = 值 OR 字段 = 值;
    ```
    
 3. NOT
-   ```
+   ```sql
    SELECT 字段, ... FROM 表名 WHERE 字段 NOT BETWEEN 值 AND 值;
    ```
    
@@ -181,12 +181,12 @@
 + _ 表示任何字符出现一次。
 
 1. % 示例
-   ```
+   ```sql
    SELECT 字段, ... FROM 表名 
    WHERE 字段 LIKE '%值%';
    ```
 2. _ 示例
-   ```
+   ```sql
    SELECT 字段 FROM 表名 
    WHERE 字段 LIKE '_值';
    ```
@@ -211,31 +211,31 @@
 + 连接 vs 子查询：连接可以替换子查询，并且比子查询的效率一般会更快。
 
 1. 内连接（INNER JOIN）
-   ``` 
+   ``` sql
    SELECT 字段, ... FROM vendors 
    INNER JOIN products ON vendors.vend_id = products.vend_id;
    ```
 
 2. 自连接
-   ```
+   ```sql
    SELECT 字段, ... FROM customers c1, customers c2 
    WHERE c1.cust_name = c2.cust_name AND c2.cust_contact = 'Jim Jones';
    ```
 
 3. 自然连接（NATURAL JOIN）
-   ```
+   ```sql
    SELECT 字段, ... FROM Products 
    NATURAL JOIN Customers;
    ```
 
 4. 左连接（LEFT JOIN）
-   ```
+   ```sql
    SELECT 字段, ... FROM customers 
    LEFT JOIN orders ON customers.cust_id = orders.cust_id;
    ```
 
 5. 右连接（RIGHT JOIN）
-   ```
+   ```sql
    SELECT 字段, ... FROM customers 
    RIGHT JOIN orders ON customers.cust_id = orders.cust_id;
    ```
@@ -253,7 +253,7 @@
     + 对一个表执行多个查询，按一个查询返回数据。
 
 1. 组合查询
-   ```
+   ```sql
    SELECT cust_name, cust_contact, cust_email
    FROM customers
    WHERE cust_state IN ('IL', 'IN', 'MI')
@@ -283,7 +283,7 @@
 
 + SOUNDEX() 可以将一个字符串转换为描述其语音表示的字母数字模式。
 
-```
+```sql
 SELECT *
 FROM mytable
 WHERE SOUNDEX(col1) = SOUNDEX('apple')
@@ -314,7 +314,7 @@ WHERE SOUNDEX(col1) = SOUNDEX('apple')
 | Year()        | 返回一个日期的年份部分       |
 
 + 如：
-```
+```sql
 SELECT NOW(); -- 显示当前时间
 ```
 
@@ -342,7 +342,7 @@ SELECT NOW(); -- 显示当前时间
 
 + AVG() 会忽略 NULL 行。
 + 使用 DISTINCT 可以让汇总函数值汇总不同的值。
-```
+```sql
 SELECT AVG(DISTINCT 字段) AS 别名 FROM 表名;
 ```
 
@@ -357,7 +357,7 @@ SELECT AVG(DISTINCT 字段) AS 别名 FROM 表名;
 + 可以按多个列进行排序，并且为每个列指定不同的排序方式
 
 1. 指定多个列的排序方向
-   ```
+   ```sql
    SELECT 字段, ... FROM 表名
    ORDER BY 字段 DESC, 字段 ASC;
    ```
@@ -370,12 +370,12 @@ SELECT AVG(DISTINCT 字段) AS 别名 FROM 表名;
 + GROUP BY 按分组字段进行排序后，ORDER BY 可以以汇总字段来进行排序。
 
 1. 分组
-   ```
+   ```sql
    SELECT 字段, COUNT(字段) AS 别名 FROM 表名 GROUP BY 字段;
    ```
 
 2. 分组后排序
-   ```
+   ```sql
    SELECT 字段, COUNT(字段) AS 别名 FROM 表名 GROUP BY 字段 ORDER BY 字段 DESC;
    ```
 
@@ -388,7 +388,7 @@ SELECT AVG(DISTINCT 字段) AS 别名 FROM 表名;
 + HAVING 适用于汇总的组记录；而 WHERE 适用于单个记录。
 
 1. 使用 WHERE 和 HAVING 过滤数据
-   ```
+   ```sql
    SELECT 字段, COUNT(*) AS 别名 FROM 表名 
    WHERE 字段 IS NOT NULL GROUP BY 字段 HAVING COUNT(*) >= 1;
    ```
@@ -400,24 +400,24 @@ SELECT AVG(DISTINCT 字段) AS 别名 FROM 表名;
 
 #### 1. 数据库（DATABASE）
 1. 创建数据库
-   ```
+   ```sql
    CREATE DATABASE 表名;
    ```
 
 2. 删除数据库
-   ```
+   ```sql
    DROP DATABASE 表名;
    ```
    
 3. 选择数据库
-   ```
+   ```sql
    USE test;
    ```
 
 #### 2. 数据表（TABLE）
 1. 创建数据表
    1. 普通创建
-      ```
+      ```sql
       CREATE TABLE user (
       id int(10) unsigned NOT NULL COMMENT 'Id',
       username varchar(64) NOT NULL DEFAULT 'default' COMMENT '用户名',
@@ -427,39 +427,39 @@ SELECT AVG(DISTINCT 字段) AS 别名 FROM 表名;
       ```
 
    2. 根据已有的表创建新表
-      ```
+      ```sql
       CREATE TABLE 表名 AS SELECT * FROM 表名;
       ```
    
 2. 删除数据表
-   ```
+   ```sql
    DROP TABLE 表名;
    ```
    
 3. 修改数据表
 
    1. 添加列
-      ```
+      ```sql
       ALTER TABLE user ADD age int(3);
       ```
    
    2. 删除列
-      ```
+      ```sql
       ALTER TABLE user DROP COLUMN age;
       ```
       
    3. 修改列
-      ``` 
+      ``` sql
       ALTER TABLE user MODIFY COLUMN age tinyint;
       ```
 
    4. 添加主键
-      ```
+      ```sql
       ALTER TABLE user ADD PRIMARY KEY (id);
       ```
 
    5. 删除主键
-      ```
+      ```sql
       ALTER TABLE user DROP PRIMARY KEY;
       ```
       
@@ -476,13 +476,13 @@ SELECT AVG(DISTINCT 字段) AS 别名 FROM 表名;
     + 更改数据格式和表示。
 
 1. 创建视图
-   ```
+   ```sql
    CREATE VIEW top_10_user_view AS 
    SELECT id, username FROM user WHERE id < 10;
    ```
    
 2. 删除视图
-   ```
+   ```sql
    DROP VIEW top_10_user_view;
    ```
 
@@ -495,17 +495,17 @@ SELECT AVG(DISTINCT 字段) AS 别名 FROM 表名;
 + 唯一索引：唯一索引表明此索引的每一个索引值只对应唯一的数据记录。
 
 1. 创建索引
-   ```
+   ```sql
    CREATE INDEX user_index ON user (id);
    ```
    
 2. 创建唯一索引
-   ```
+   ```sql
    CREATE UNIQUE INDEX user_index ON user (id);
    ```
    
 3. 删除索引
-   ```
+   ```sql
    ALTER TABLE user DROP INDEX user_index;
    ```
 
@@ -521,7 +521,7 @@ SELECT AVG(DISTINCT 字段) AS 别名 FROM 表名;
     + DEFAULT - 规定没有给列赋值时的默认值。
 
 1. 创建表时使用约束条件：
-   ```
+   ```sql
    CREATE TABLE Users (
    Id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '自增Id',
    Username VARCHAR(64) NOT NULL UNIQUE DEFAULT 'default' COMMENT '用户名',
@@ -544,7 +544,7 @@ SELECT AVG(DISTINCT 字段) AS 别名 FROM 表名;
     + ROLLBACK TO - 指令用于回滚到指定的保留点；如果没有设置保留点，则回退到 START TRANSACTION 语句处。
     + COMMIT - 提交事务。
 
-```
+```sql
 -- 开始事务
 START TRANSACTION;
  
@@ -580,28 +580,28 @@ COMMIT;
 + MySQL 的账户信息保存在 mysql 这个数据库中。
 
 #### 1. 创建账户
-   ```
+   ```sql
    CREATE USER myuser IDENTIFIED BY 'mypassword';
    ```
 
 #### 2. 修改账户名
-   ```
+   ```sql
    UPDATE user SET user='newuser' WHERE user='myuser';
    FLUSH PRIVILEGES;
    ```
 
 #### 3. 删除账户
-   ```
+   ```sql
    DROP USER myuser;
    ```
 
 #### 4. 查看权限
-   ```
+   ```sql
    SHOW GRANTS FOR myuser;
    ```
 
 #### 5. 授予权限
-   ```
+   ```sql
    GRANT SELECT, INSERT ON *.* TO myuser;
    GRANT all privileges ON *.* TO 'root' @'%' identified BY 'Mysql@123';
    grant create,alter,drop,select,insert,update,delete on apollodb.* to dev001@'%';
@@ -614,12 +614,12 @@ COMMIT;
    5. BY 后面为密码。
 
 #### 6. 删除权限
-   ```
+   ```sql
    REVOKE SELECT, INSERT ON *.* FROM myuser;
    ```
 
 #### 7. 更改密码
-   ```
+   ```sql
    SET PASSWORD FOR myuser = 'mypass';
    ```
 
@@ -638,7 +638,7 @@ COMMIT;
     + 每次只能给一个变量赋值，不支持集合的操作。
 
 #### 1. 创建存储过程
-```
+```sql
 DROP PROCEDURE IF EXISTS `proc_adder`;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `proc_adder`(IN a int, IN b int, OUT sum int)
@@ -657,7 +657,7 @@ DELIMITER;
 ```
 
 #### 2. 使用存储过程
-```
+```sql
 set @b=5;
 call proc_adder(2,@b,@s);
 select @s as sum;
@@ -673,7 +673,7 @@ select @s as sum;
     + 取出数据；
     + 关闭游标；
 
-```
+```sql
 DELIMITER $
 CREATE  PROCEDURE getTotal()
 BEGIN
@@ -734,7 +734,7 @@ call getTotal();
 + CREATE TRIGGER 指令用于创建触发器。
 
 1. 语法：
-   ```
+   ```sql
    CREATE TRIGGER trigger_name
    trigger_time
    trigger_event
@@ -754,7 +754,7 @@ call getTotal();
    + trigger_statements: 触发器执行动作。是一条或多条 SQL 语句的列表，列表内的每条语句都必须用分号 ; 来结尾。
 
 3. 示例：
-   ```
+   ```sql
    DELIMITER $
    CREATE TRIGGER `trigger_insert_user`
    AFTER INSERT ON `user`
@@ -767,11 +767,11 @@ call getTotal();
    ```
 
 #### 4. 查看触发器
-```
+```sql
 SHOW TRIGGERS;
 ```
 
 #### 5. 删除触发器
-```
+```sql
 DROP TRIGGER IF EXISTS trigger_insert_user;
 ```
