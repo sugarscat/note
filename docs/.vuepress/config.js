@@ -2,8 +2,8 @@ import { defineUserConfig } from 'vuepress'
 import { backToTopPlugin } from '@vuepress/plugin-back-to-top'
 import { defaultTheme } from 'vuepress'
 export default defineUserConfig({
-    base: '/note/',
-    publicPath: '/note/',
+    base: '/',
+    publicPath: '/',
     lang: 'zh-CN',
     title: 'Note',
     description: '这是我的笔记。',
