@@ -27,7 +27,7 @@
    
 ### 连接数据库
 
-```
+```java
 public void connection throws ClassNotFoundException, SQLException {// 需要抛出异常
    Connection conn;
    Statement stmt;
@@ -50,12 +50,12 @@ public void connection throws ClassNotFoundException, SQLException {// 需要抛
 参考[SQL语言](SQL语言.md)
 
 1. 查找：
-   ```
+   ```java
    String selectSql = "SELECT * FROM 表名 WHERE 字段 = ?";
    // "?"为占位符，"FROM"后面为表名，WHERE"后面为条件
    ```
    例如：在用户表中查找小明的信息
-   ```
+   ```java
    Connection conn = null;
    PreparedStatement ps = null;
    ResultSet rs = null;
@@ -73,12 +73,12 @@ public void connection throws ClassNotFoundException, SQLException {// 需要抛
    }
    ```
 2. 插入：
-   ```
+   ```java
    String insertSql =  "INSERT INTO 表名(字段, 字段, ..., 字段) VALUES(?, ?, ..., ?)";
    // "VALUES"后面填插入的数据
    ```
    例如：在用户表中添加小军的信息
-   ```
+   ```java
    String insertSql =  "INSERT INTO userinfo(ID, userName, password) VALUES(?, ?, ?)";
    ps = conn.prepareStatement(insertSql);
    ps.setString(1, "3");
@@ -88,12 +88,12 @@ public void connection throws ClassNotFoundException, SQLException {// 需要抛
    System.out.println("添加了" + count + "条数据。");
    ```
 3. 更新：
-   ```
+   ```java
    String updateSql = "UPDATE 表名 SET 字段 = ? WHERE 字段 = ?";
    // "?"填数据，"WHERE"后面为条件
    ```
    例如：在用户表中更新小明的密码
-   ```
+   ```java
    String updateSql = "UPDATE userinfo SET password = ? WHERE userName = ?";
    ps = conn.prepareStatement(updateSql);
    ps.setString(1, "123456");
@@ -102,12 +102,12 @@ public void connection throws ClassNotFoundException, SQLException {// 需要抛
    System.out.println("更新了" + count + "条数据。");
    ```
 4. 删除：
-   ```
+   ```java
    String deleteSql = "DELETE FROM 表名 WHERE 字段 = ?";
    // "FROM"后面为表名，WHERE"后面为条件，第一个"?"填字段
    ```
    例如：在用户表中删除小明的信息
-   ```
+   ```java
    String deleteSql = "DELETE FROM userinfo WHERE userName = ?";
    ps = conn.prepareStatement(deleteSql);
    ps.setString(1, "小明");
@@ -116,7 +116,7 @@ public void connection throws ClassNotFoundException, SQLException {// 需要抛
    ```
 ### 例题： 
 使用PreparedStatement接口实现对数据库StudentScore中的Student表进行动态查询、插入、修改和删除操作：
-```
+```java
 import java.sql.*;
 public class Main {
 private static String driver = "com.mysql.cj.jdbc.Driver";
