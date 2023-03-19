@@ -19,7 +19,7 @@ tar zxvf jdk-18_linux-x64_bin.tar.gz -C /usr/local/java/
 
 1. vim 编辑
 
-   ```
+   ```sh
    vim /etc/profile
    ```
 
