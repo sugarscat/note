@@ -37,8 +37,6 @@ tar zxvf jdk-18_linux-x64_bin.tar.gz -C /usr/local/java/
 
 ```sh
 java -version
-# 或
-java -V
 ```
 
 ### 5. 启动 jar 包
