@@ -341,6 +341,53 @@ location / {
         }
 ```
 
+1. location 语法：
+	```
+	location [=|~|~*|^~] /uri/ { … }
+	```
+
+	- =     严格匹配。如果请求匹配这个location，那么将停止搜索并立即处理此请求
+	- ~     区分大小写匹配(可用正则表达式)
+	- ~*    不区分大小写匹配(可用正则表达式)
+	- !~    区分大小写不匹配
+	- !~*   不区分大小写不匹配
+	- ^~    如果把这个前缀用于一个常规字符串,那么告诉nginx 如果路径匹配那么不测试正则表达式
+
+2. alias 与 root 的区别
+
+	- root   实际访问文件路径会拼接URL中的路径
+	- alias  实际访问文件路径不会拼接URL中的路径
+
+	示例如下：
+
+	```conf
+	location ^~ /test/ {  
+   		alias /usr/local/nginx/html/static/;  
+	}
+	```
+
+	- 请求：/test/test1.html
+	- 实际访问：/usr/local/nginx/html/static/test1.html 文件
+
+	```conf
+	location ^~ /test/ {  
+   		root /usr/local/nginx/html/;  
+	}
+	```
+
+	- 请求：/test/test1.html
+	- 实际访问：/usr/local/nginx/html/test/test1.html 文件
+
+3. last 和 break 关键字的区别
+	- last 和 break 当出现在location 之外时，两者的作用是一致的没有任何差异
+	- last 和 break 当出现在location 内部时：
+	- last    使用了last 指令，rewrite 后会跳出location 作用域，重新开始再走一次刚才的行为
+	- break  使用了break 指令，rewrite后不会跳出location 作用域，它的生命也在这个location中终结
+
+4. permanent 和 redirect 关键字的区别
+	- rewrite … permanent 永久性重定向，请求日志中的状态码为301
+	- rewrite … redirect 临时重定向，请求日志中的状态码为302
+
 ## 四、代理
 
 ### 1. 正向代理
@@ -378,7 +425,7 @@ server {
 
 简单来说就是使用分布式的场景，将原先的一台服务器做成一个集群，然后将请求分发到各个服务器上。使用 Nginx 进行反向代理，然后访问 Nginx，由 Nginx 将请求分发到不同的服务器上，以实现负载均衡。
 
-### 2.实现
+### 2. 实现
 
 如：分别在 8081 和 8082 端口开启两个相同的服务，由 Ngnix 进行负载均衡
 
@@ -386,8 +433,8 @@ server {
 # 在http块中的全局块中配置
 # upstream 固定写法 后面的 myserver 可以自定义
 upstream myserver{
-    server 192.168.80.102:8081;
-    server 192.168.80.102:8082;
+    server ip:8081;
+    server ip:8082;
 }
 
 # server配置
@@ -400,6 +447,72 @@ upstream myserver{
         proxy_pass http://myserver;
         }
     }
+```
+
+### 3. 规则
+
+#### 1. 轮询(默认)
+
+每个请求按时间顺序逐一分配到不同的后端服务器，如果后端服务器 down 掉，能自动剔除。
+
+#### 2. weight 权重
+
+weight 代表权重默认为 1,权重越高被分配的客户端越多。
+
+如：
+
+```conf
+upstream myserver { 
+	server ip:8081 weight=1 ;
+	server ip:8082 weight=2 ;
+}
+server {  
+    listen       80;  
+    location / {
+    proxy_pass http://myserver; 
+}
+```
+
+#### 3. ip_hash
+
+每个请求按访问 ip 的 hash 结果分配，这样每个访客固定访问一个后端服务器，可以解决 session 问题。
+
+如：
+
+```conf
+#配置负载均衡的服务器和端口
+upstream myserver { 
+	server ip:8081;
+	server ip:8082;
+    ip_hash;
+}
+server {  
+    listen       80;  
+    location / {
+    proxy_pass http://myserver; 
+   }
+}
+```
+
+#### 4. fair
+
+按后端服务器的响应时间来分配请求，响应时间短的优先分配。
+
+如：
+
+```conf
+#配置负载均衡的服务器和端口
+upstream myserver {   
+	server ip:8081;
+	server ip:8082;
+    fair;
+}
+server {  
+    listen       80;   
+    location / {
+    proxy_pass http://myserver; 
+    }    
+}
 ```
 
 ## 我的 sugarscat.cn 配置
