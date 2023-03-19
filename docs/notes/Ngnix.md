@@ -56,16 +56,16 @@ cd /usr/local
 mkdir nginx
 cd nginx
 # 下载
-wget http://nginx.org/download/nginx-1.13.7.tar.gz
+wget http://nginx.org/download/nginx-1.18.0.tar.gz
 # 解压
-tar -xvf nginx-1.13.7.tar.gz 
+tar -xvf nginx-1.18.0.tar.gz 
 ```
 
 ### 3. 编译安装
 
 ```sh
 # 进入nginx目录
-cd /usr/local/nginx/nginx-1.13.7
+cd /usr/local/nginx/nginx-1.18.0
 
 # 执行命令（二选一）
 ./configure --prefix=/usr/local/nginx
