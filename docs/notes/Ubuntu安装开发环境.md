@@ -5,14 +5,14 @@
 ### 1. 下载
 
 ```sh
-wget https://download.oracle.com/java/18/latest/jdk-18_linux-x64_bin.tar.gz
+wget https://download.oracle.com/java/19/latest/jdk-19_linux-x64_bin.tar.gz 
 ```
 
 ### 2. 解压
 
 ```sh
 mkdir /usr/local/java
-tar zxvf jdk-18_linux-x64_bin.tar.gz -C /usr/local/java/
+tar zxvf jdk-19_linux-x64_bin.tar.gz -C /usr/local/java/
 ```
 
 ### 3. 添加环境变量
@@ -26,7 +26,7 @@ tar zxvf jdk-18_linux-x64_bin.tar.gz -C /usr/local/java/
 2. 添加
 
    ```config
-   export JAVA_HOME=/usr/local/java/jdk-18.0.1.1
+   export JAVA_HOME=/usr/local/java/jdk-19.0.2
    export JRE_HOME=${JAVA_HOME}/jre  
    export CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib  
    export PATH=${JAVA_HOME}/bin:$PATH
