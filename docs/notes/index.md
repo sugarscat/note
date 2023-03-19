@@ -5,5 +5,5 @@
 3. [Linux命令](Linux命令.md)
 4. [数据结构](数据结构.md)
 5. [Ngnix](Ngnix.md)
-6. [Ubuntu 安装开发环境](Ubuntu 安装开发环境.md)
+6. [Ubuntu 安装开发环境](Ubuntu安装开发环境.md)
 
