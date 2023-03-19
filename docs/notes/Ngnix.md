@@ -517,7 +517,7 @@ http {
     #
     server {
         listen       443 ssl;
-        server_name  localhost;
+        server_name  sugarscat.cn;
 
         ssl_certificate      /usr/local/nginx/cert/sugarscat.cn.cer;
         ssl_certificate_key  /usr/local/nginx/cert/sugarscat.cn.key;
@@ -535,6 +535,5 @@ http {
     }
 
 }
-
 ```
 
