@@ -405,7 +405,6 @@ upstream myserver{
 ## 我的 sugarscat.cn 配置
 
 ```conf
-
 #user  nobody;
 worker_processes  1;
 
@@ -498,6 +497,21 @@ http {
         #}
     }
 
+	server {
+        listen       80;
+        server_name  note.sugarscat.cn;
+        rewrite ^(.*)$ https://$host$1 permanent;
+
+        location / {
+            root   html/note/;
+            index  index.html index.htm;
+        }
+
+        error_page   500 502 503 504  /50x.html;
+        location = /50x.html {
+            root   html;
+        }
+    }
 
     # another virtual host using mix of IP-, name-, and port-based configuration
     #
@@ -533,7 +547,25 @@ http {
             index  index.html index.htm;
         }
     }
+    
+    server {
+        listen       443 ssl;
+        server_name  note.sugarscat.cn;
 
+        ssl_certificate      /usr/local/nginx/cert/sugarscat.cn.cer;
+        ssl_certificate_key  /usr/local/nginx/cert/sugarscat.cn.key;
+
+        ssl_session_cache    shared:SSL:1m;
+        ssl_session_timeout  5m;
+
+        ssl_ciphers  HIGH:!aNULL:!MD5;
+        ssl_prefer_server_ciphers  on;
+
+        location / {
+            root   html/note/;
+            index  index.html index.htm;
+        }
+    }
 }
 ```
 
