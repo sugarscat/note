@@ -30,6 +30,11 @@ tar zxvf jdk-19_linux-x64_bin.tar.gz -C /usr/local/java/
    export JRE_HOME=${JAVA_HOME}/jre  
    export CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib  
    export PATH=${JAVA_HOME}/bin:$PATH
+   ```
+
+3. 执行
+
+   ```sh
    source /etc/profile
    ```
 
