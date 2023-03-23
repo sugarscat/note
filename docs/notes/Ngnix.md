@@ -108,7 +108,7 @@ make install
 ./nginx -s stop
 # 或者直接杀掉进程
 ps -ef | grep nginx # 查找进程
-kill kill -9 xxxx(pid)
+kill -9 xxxx(pid)
 ```
 
 ### 3. 重新加载 nginx 
@@ -164,7 +164,56 @@ kill kill -9 xxxx(pid)
    apt-get --purge remove nginx-core
    ```
 
-   
+### 6. 设置开机自启
+
+1. 创建 nginx.service
+
+   ```sh
+   vi nginx.service
+   ```
+
+2. 开始编辑
+
+   ```sh
+   [Unit]
+   Description=nginx service
+   After=network.target 
+      
+   [Service] 
+   Type=forking 
+   ExecStart=/usr/local/nginx/sbin/nginx
+   ExecReload=/usr/local/nginx/sbin/nginx -s reload
+   ExecStop=/usr/local/nginx/sbin/nginx -s quit
+   PrivateTmp=true 
+      
+   [Install] 
+   WantedBy=multi-user.target
+   ```
+
+3. 将nginx.service移动到/usr/lib/systemd/system/目录下
+
+   ```sh
+   cp ./nginx.service /usr/lib/systemd/system/
+   ```
+
+4. 重启配置服务
+
+   ```sh
+   systemctl daemon-reload
+   ```
+
+ 5. 查看 nginx 服务状态
+
+    ```sh
+    systemctl start nginx
+    systemctl status nginx
+    ```
+
+6. 配置 nginx 开机自启
+
+   ```sh
+   systemctl enable nginx
+   ```
 
 ## 三、Nginx 配置文件
 
