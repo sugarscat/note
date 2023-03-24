@@ -84,7 +84,8 @@ make install
 ## 二、常用命令
 
 ::: tip 提示
- 以下命令需要进入nginx的安装目录中的 sbin 目录。
+ 以下命令需要进入 nginx 的安装目录中的 sbin 目录。
+
  ```sh
  cd /usr/local/nginx/sbin # 依据自己安装目录
  ```
@@ -128,7 +129,7 @@ kill -9 xxxx(pid)
 ### 5. 卸载 nginx
 
 ::: tip 提示
-应先关闭所以有关 Nginx 的进程
+应先关闭所有有关 Nginx 的进程
 :::
 
 1. 查看相关依赖
@@ -221,7 +222,7 @@ kill -9 xxxx(pid)
 
 ### 1. 概述
 
-> 默认在Linux上安装的Nginx，配置文件在安装的nginx目录下的conf目录下，名字叫做nginx.conf
+> 默认在Linux上安装的Nginx，配置文件在安装的nginx目录下的conf目录下，名字叫做 nginx.conf
 
 1. nginx.conf主要由三部分组成
 
