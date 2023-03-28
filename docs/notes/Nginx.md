@@ -1,4 +1,4 @@
-# Ngnix 
+# Nginx 
 
 ## 一、安装
 
