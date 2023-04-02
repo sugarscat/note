@@ -1,6 +1,7 @@
 import { defineUserConfig } from 'vuepress'
 import { backToTopPlugin } from '@vuepress/plugin-back-to-top'
 import { defaultTheme } from 'vuepress'
+import { searchPlugin } from '@vuepress/plugin-search'
 export default defineUserConfig({
     base: '/',
     publicPath: '/',
@@ -10,6 +11,14 @@ export default defineUserConfig({
     head: [['link', { rel: 'icon', href: 'favicon.ico' }]],
     plugins: [
         backToTopPlugin(),
+        searchPlugin({
+            // 配置项
+            locales: {
+                '/': {
+                    placeholder: '搜索',
+                },
+            },
+        }),
     ],
     markdown: {
         headers: {

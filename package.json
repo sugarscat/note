@@ -9,6 +9,8 @@
   "devDependencies": {
     "@vuepress/client": "^2.0.0-beta.61",
     "@vuepress/plugin-back-to-top": "^2.0.0-beta.60",
+    "@vuepress/plugin-docsearch": "^2.0.0-beta.61",
+    "@vuepress/plugin-search": "^2.0.0-beta.61",
     "vue": "^3.2.47",
     "vuepress": "^2.0.0-beta.61"
   },
@@ -22,5 +24,6 @@
     "url": "https://github.com/Sugarscat/note.git"
   },
   "author": "Sugarscat",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {}
 }
