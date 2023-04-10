@@ -1,13 +1,13 @@
 # Java 连接数据库
 
-### 下载JDBC驱动包
+## 下载JDBC驱动包
 [点击前往官方网站](https://dev.mysql.com/downloads/connector/j/)
 
 选择 Platform Independent
 
 ![](./images/connector-java/download.avif)
 
-### 导入JDBC数据库驱动包
+## 导入JDBC数据库驱动包
 
 1. 将驱动包放到目录libs下
 
@@ -25,7 +25,7 @@
    
       ![](./images/connector-java/模块库.avif)
    
-### 连接数据库
+## 连接数据库
 
 ```java
 public void connection throws ClassNotFoundException, SQLException {// 需要抛出异常
@@ -46,7 +46,7 @@ public void connection throws ClassNotFoundException, SQLException {// 需要抛
 }
 ```
 
-### 操作数据库
+## 操作数据库
 参考[SQL语言](SQL语言.md)
 
 1. 查找：
@@ -114,7 +114,7 @@ public void connection throws ClassNotFoundException, SQLException {// 需要抛
    int count = ps.executeUpdate();// 执行SQL语句
    System.out.println("删除了" + count + "条数据。");
    ```
-### 例题： 
+## 例题： 
 使用PreparedStatement接口实现对数据库StudentScore中的Student表进行动态查询、插入、修改和删除操作：
 ```java
 import java.sql.*;
