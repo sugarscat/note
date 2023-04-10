@@ -126,7 +126,7 @@ kill -9 xxxx(pid)
 ./nginx -v
 ```
 
-### 5. 卸载 nginx
+## 三、卸载 nginx
 
 ::: tip 提示
 应先关闭所有有关 Nginx 的进程
@@ -165,7 +165,7 @@ kill -9 xxxx(pid)
    apt-get --purge remove nginx-core
    ```
 
-### 6. 设置开机自启
+## 四、设置开机自启
 
 1. 创建 nginx.service
 
@@ -216,7 +216,7 @@ kill -9 xxxx(pid)
    systemctl enable nginx
    ```
 
-## 三、Nginx 配置文件
+## 五、Nginx 配置文件
 
 > nginx.conf
 
@@ -438,7 +438,7 @@ location / {
 	- rewrite … permanent 永久性重定向，请求日志中的状态码为301
 	- rewrite … redirect 临时重定向，请求日志中的状态码为302
 
-## 四、代理
+## 六、代理
 
 ### 1. 正向代理
 
@@ -469,7 +469,7 @@ server {
 >
 > 客户端通过域名访问服务器时会将域名与被解析的 ip 一同放在请求中。当请求到了nginx 中时。nginx 会先去匹配 ip，如果 listen中没有找到对应的 ip，就会通过域名进行匹配，匹配成功以后，再匹配端口。当这三步完成，就会找到对应的 server 的 location对应的资源。
 
-## 五、负载均衡
+## 七、负载均衡
 
 ### 1. 概述
 
