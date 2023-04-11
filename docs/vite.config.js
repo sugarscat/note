@@ -6,6 +6,8 @@ export default defineConfig({
             placeholder: "搜索文档",
             buttonLabel: "搜索",
             previewLength: 10,
+            encode: false,
+            tokenize: "full"
         }),
     ],
     server: {
