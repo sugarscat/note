@@ -5,13 +5,13 @@
 
 选择 Platform Independent
 
-![](./images/connector-java/download.avif)
+![](../images/connector-java/download.avif)
 
 ## 导入JDBC数据库驱动包
 
 1. 将驱动包放到目录libs下
 
-   ![](./images/connector-java/libs.avif)
+   ![](../images/connector-java/libs.avif)
 
 2. 按照下面步骤添加库：
 
@@ -19,11 +19,11 @@
 
    2. 选择添加为库
    
-      ![](./images/connector-java/右键mysql-connector-java.jar.avif) 
+      ![](../images/connector-java/右键mysql-connector-java.jar.avif) 
 
    3. 在弹出窗口选择模块库：
    
-      ![](./images/connector-java/模块库.avif)
+      ![](../images/connector-java/模块库.avif)
    
 ## 连接数据库
 
@@ -47,7 +47,7 @@ public void connection throws ClassNotFoundException, SQLException {// 需要抛
 ```
 
 ## 操作数据库
-参考[SQL语言](SQL语言.md)
+参考[SQL语言](MySQL.md)
 
 1. 查找：
    ```java

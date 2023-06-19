@@ -1,15 +1,24 @@
 export default {
     '/notes/': [
         {
-            text: '目录',
+            text: '编程',
             collapsible: true,
             items: [
-                {text: 'SQL语言', link: '/notes/SQL语言.md'},
-                {text: 'Java连接MySQL数据库', link: '/notes/MySQL-connector-java.md'},
-                {text: 'Linux命令', link: '/notes/Linux命令.md'},
-                {text: '数据结构', link: '/notes/数据结构.md'},
-                {text: 'Nginx', link: '/notes/Nginx.md'},
-                {text: 'Ubuntu 安装开发环境', link: '/notes/Ubuntu安装开发环境.md'},
+                {text: 'MySQL', link: '/notes/programming/MySQL.md'},
+                {text: 'Java 连接MySQL数据库', link: '/notes/programming/MySQL-connector-java.md'},
+                {text: 'Linux 命令', link: '/notes/programming/Linux-command.md'},
+                {text: '数据结构', link: '/notes/programming/数据结构.md'},
+                {text: 'Nginx', link: '/notes/programming/Nginx.md'},
+                {text: 'Ubuntu 安装开发环境', link: '/notes/programming/Ubuntu安装开发环境.md'},
+                {text: 'VS Code 基本使用', link: '/notes/programming/vs-code.md'},
+            ]
+        },
+        {
+            text: '设计',
+            collapsible: true,
+            items: [
+                {text: 'Blender 建模', link: '/notes/design/Blender.md'},
+
             ]
         },
     ],
