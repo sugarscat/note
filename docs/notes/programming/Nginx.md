@@ -1,4 +1,4 @@
-# Nginx 
+# Nginx
 
 ## 一、安装
 
@@ -203,7 +203,7 @@ kill -9 xxxx(pid)
    systemctl daemon-reload
    ```
 
- 5. 查看 nginx 服务状态
+5. 查看 nginx 服务状态
 
     ```sh
     systemctl start nginx
@@ -564,4 +564,3 @@ server {
     }    
 }
 ```
-
