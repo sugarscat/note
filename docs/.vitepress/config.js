@@ -4,18 +4,18 @@ import sidebar from './nav/sidebar'
 export default {
     base: '/book',
     lang: 'zh-CN',
-    title: 'Note',
-    description: '我的笔记。',
+    title: 'Book',
+    description: '所记录的文字。',
     themeConfig: {
         nav: navbar,
         logo: '/favicon.ico',
         sidebar: sidebar,
         editLink: {
-            pattern: 'https://github.com/Sugarscat/note/edit/master/docs/:path',
+            pattern: 'https://github.com/Sugarscat/book/edit/master/docs/:path',
             text: '在 GitHub 上编辑此页'
         },
         socialLinks: [
-            {icon: 'github', link: 'https://github.com/Sugarscat/note'}
+            {icon: 'github', link: 'https://github.com/Sugarscat/book'}
         ],
         // footer: {
         //     message: 'MIT Licensed',

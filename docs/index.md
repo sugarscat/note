@@ -2,7 +2,7 @@
 layout: home
 
 hero:
-    name: Note
+    name: Book
     tagline: 用 vitepress 构建。
     actions:
         -   theme: brand
