@@ -2,7 +2,7 @@ import navbar from './nav/navbar'
 import sidebar from './nav/sidebar'
 
 export default {
-    base: '/note',
+    base: '/book',
     lang: 'zh-CN',
     title: 'Note',
     description: '我的笔记。',
