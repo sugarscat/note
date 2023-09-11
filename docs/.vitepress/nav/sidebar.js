@@ -14,6 +14,14 @@ export default {
             ]
         },
         {
+            text: '服务器',
+            collapsible: true,
+            items: [
+                {text: 'ACME申请证书', link: '/notes/server/acme.md'},
+
+            ]
+        },
+        {
             text: '设计',
             collapsible: true,
             items: [
