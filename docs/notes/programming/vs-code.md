@@ -4,13 +4,13 @@
 
 1. 注释：
 
-    a) 单行注释：[ctrl+k,ctrl+c] 或 ctrl+/
+    a. 单行注释：[ctrl+k,ctrl+c] 或 ctrl+/
 
-    b) 取消单行注释：[ctrl+k,ctrl+u] (按下ctrl不放，再按k + u)
+    b. 取消单行注释：[ctrl+k,ctrl+u] (按下ctrl不放，再按k + u)
 
-    c) 多行注释：[alt+shift+A]
+    c. 多行注释：[alt+shift+A]
 
-    d) 多行注释：/**
+    d. 多行注释：/**
 
 2. 移动行：alt+up/down
 
