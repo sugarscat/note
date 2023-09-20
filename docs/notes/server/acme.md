@@ -36,7 +36,7 @@ acme 被 ZeroSSL 收购，其默认的证书方式为 ZeroSSL，但此证书生�
 ```sh
 export Ali_Key=""
 export Ali_Secret=""
-acme.sh --issue --dns dns_ali  -d 域名
+acme.sh --issue --dns dns_ali -d 域名
 ```
 
 ::: tip 提示
