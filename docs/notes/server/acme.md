@@ -36,9 +36,16 @@ acme 被 ZeroSSL 收购，其默认的证书方式为 ZeroSSL，但此证书生�
 ```sh
 export Ali_Key=""
 export Ali_Secret=""
-acme.sh --issue --dns dns_ali  -d sugarscat.cn
+acme.sh --issue --dns dns_ali  -d 域名
 ```
 
 ::: tip 提示
 此命令为 阿里云api
 :::
+
+## 5. 证书默认存放位置
+
+```txt
+/root/.acme.sh/sugarscat.cn_ecc/域名.cer
+/root/.acme.sh/sugarscat.cn_ecc/域名.key
+```
