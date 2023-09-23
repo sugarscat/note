@@ -17,7 +17,7 @@ export default {
             text: '服务器',
             collapsible: true,
             items: [
-                {text: 'ACME申请证书', link: '/notes/server/acme.md'},
+                {text: 'ACME 申请证书', link: '/notes/server/acme.md'},
 
             ]
         },
@@ -26,6 +26,14 @@ export default {
             collapsible: true,
             items: [
                 {text: 'Blender 建模', link: '/notes/design/Blender.md'},
+
+            ]
+        },
+        {
+            text: '工具',
+            collapsible: true,
+            items: [
+                {text: '腹灵F12 68键 RGB', link: '/notes/tools/F12.md'},
 
             ]
         },

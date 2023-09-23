@@ -5,7 +5,7 @@ export default {
     base: '/book',
     lang: 'zh-CN',
     title: 'Book',
-    description: '所记录的文字。',
+    description: '心灵记忆过往，镜头捕捉瞬间。。',
     themeConfig: {
         nav: navbar,
         logo: '/favicon.ico',
