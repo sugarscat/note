@@ -46,6 +46,6 @@ acme.sh --issue --dns dns_ali -d 域名
 ## 5. 证书默认存放位置
 
 ```txt
-/root/.acme.sh/sugarscat.cn_ecc/域名.cer
-/root/.acme.sh/sugarscat.cn_ecc/域名.key
+/root/.acme.sh/域名_ecc/域名.cer
+/root/.acme.sh/域名_ecc/域名.key
 ```
