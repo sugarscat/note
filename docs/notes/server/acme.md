@@ -49,8 +49,6 @@ acme.sh --issue --dns dns_ali -d 域名
 
 :::
 
-
-
 ## 5. 证书默认存放位置
 
 ```txt
