@@ -1,11 +1,11 @@
-import navbar from './nav/navbar'
-import sidebar from './nav/sidebar'
+import navbar from './navbar'
+import sidebar from './sidebar'
 
 export default {
     base: '/book',
     lang: 'zh-CN',
     title: 'Book',
-    description: '心灵记忆过往，镜头捕捉瞬间。。',
+    description: '心灵记忆过往，镜头捕捉瞬间。',
     themeConfig: {
         nav: navbar,
         logo: '/favicon.ico',
