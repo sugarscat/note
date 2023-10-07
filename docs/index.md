@@ -13,11 +13,4 @@ hero:
             text: 开始阅读文档
             link: /documents/
             
-features:
-    -   icon: 🧩
-        title: 个人笔记
-        details: 可能存在错误，仅供参考！
-    -   icon: 🎉
-        title: 文档
-        details: 个人编写的教程。
 ---
