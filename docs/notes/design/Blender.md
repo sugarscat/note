@@ -66,4 +66,4 @@
 
 ## 二、交作业
 
-[椅子.blend](../files/椅子.blend)
+[椅子](https://sugarscat.com/3d/?name=chair&modelY=-10&scale=30)
