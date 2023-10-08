@@ -11,6 +11,7 @@ export default {
                 {text: 'Nginx', link: '/notes/programming/Nginx.md'},
                 {text: 'Ubuntu 安装开发环境', link: '/notes/programming/Ubuntu安装开发环境.md'},
                 {text: 'VS Code 基本使用', link: '/notes/programming/vs-code.md'},
+                {text: 'Vue 官方文档', link: 'https://cn.vuejs.org/guide/introduction.html'},
             ]
         },
         {

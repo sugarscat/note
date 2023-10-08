@@ -9,6 +9,7 @@
 5. [Nginx](./programming/Nginx.md)
 6. [Ubuntu 安装开发环境](./programming/Ubuntu安装开发环境.md)
 7. [VS Code 基本使用](./programming/vs-code.md)
+8. [Vue 官方文档](https://cn.vuejs.org/guide/introduction.html)
 
 ## 服务器
 
