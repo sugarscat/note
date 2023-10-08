@@ -66,4 +66,4 @@
 
 ## 二、交作业
 
-[椅子](https://sugarscat.com/3d/?path=models/chair.glb&modelY=-10&scale=35)
+[椅子](https://sugarscat.com/3d/?path=models/chair.glb&modelY=-10&scale=35&cameraX=200&cameraY=150&cameraZ=-150&cameraFov=45)
