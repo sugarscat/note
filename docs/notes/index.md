@@ -2,13 +2,13 @@
 
 ## 编程
 
-1. [MySQL](./programming/MySQL.md)
-2. [Java 连接MySQL数据库](./programming/MySQL-connector-java.md)
-3. [Linux 命令](./programming/Linux-command.md)
-4. [数据结构](./programming/数据结构.md)
-5. [Nginx](./programming/Nginx.md)
-6. [Ubuntu 安装开发环境](./programming/Ubuntu安装开发环境.md)
-7. [VS Code 基本使用](./programming/vs-code.md)
+1. [MySQL](./program/MySQL.md)
+2. [Java 连接MySQL数据库](./program/MySQL-connector-java.md)
+3. [Linux 命令](./program/Linux-command.md)
+4. [数据结构](./program/数据结构.md)
+5. [Nginx](./program/Nginx.md)
+6. [Ubuntu 安装开发环境](./program/Ubuntu安装开发环境.md)
+7. [VS Code 基本使用](./program/vs-code.md)
 8. [Vue 官方文档](https://cn.vuejs.org/guide/introduction.html)
 
 ## 服务器
