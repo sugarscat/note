@@ -74,8 +74,8 @@ a {
 
 /* 修改滚动条的颜色 */
 .VPSidebar::-webkit-scrollbar {
-    width: 3px; /* 设置滚动条宽度 */
-    height: 3px;
+    width: 4px; /* 设置滚动条宽度 */
+    height: 4px;
 }
 
 /* 修改滚动条的轨道颜色 */
