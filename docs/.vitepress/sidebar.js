@@ -12,6 +12,7 @@ export default {
                 {text: 'Ubuntu 安装开发环境', link: '/notes/program/Ubuntu安装开发环境.md'},
                 {text: 'VS Code 基本使用', link: '/notes/program/vs-code.md'},
                 {text: 'Vue 官方文档', link: 'https://cn.vuejs.org/guide/introduction.html'},
+                {text: 'w3school 官方文档', link: 'https://www.w3school.com.cn/html/html5_intro.asp'},
             ]
         },
         {
