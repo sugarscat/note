@@ -4,11 +4,7 @@ export default [
         link: '/',
     },
     {
-        text: '笔记',
-        link: '/notes/',
-    },
-    {
-        text: '文档',
-        link: '/documents/',
-    },
+        text: '目录',
+        link: '/menu.md',
+    }
 ]

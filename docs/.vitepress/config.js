@@ -2,20 +2,16 @@ import navbar from './navbar'
 import sidebar from './sidebar'
 
 export default {
-    base: '/book',
+    base: '/note',
     lang: 'zh-CN',
-    title: 'Book',
+    title: 'Note',
     description: '心灵记忆过往，镜头捕捉瞬间。',
     themeConfig: {
         nav: navbar,
         logo: '/favicon.ico',
         sidebar: sidebar,
-        editLink: {
-            pattern: 'https://github.com/Sugarscat/book/edit/master/docs/:path',
-            text: '在 GitHub 上编辑此页'
-        },
         socialLinks: [
-            {icon: 'github', link: 'https://github.com/Sugarscat/book'}
+            {icon: 'github', link: 'https://github.com/Sugarscat/note'}
         ],
         // footer: {
         //     message: 'MIT Licensed',
