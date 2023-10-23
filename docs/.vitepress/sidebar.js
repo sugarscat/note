@@ -11,12 +11,13 @@ export default {
                 {text: 'MySQL', link: '/program/MySQL.md'},
                 {text: 'Java 连接MySQL数据库', link: '/program/MySQL-connector-java.md'},
                 {text: 'Linux 命令', link: '/program/Linux-command.md'},
-                {text: '数据结构', link: '/program/数据结构.md'},
                 {text: 'Nginx', link: '/program/Nginx.md'},
                 {text: 'Ubuntu 安装开发环境', link: '/program/Ubuntu安装开发环境.md'},
                 {text: 'VS Code 基本使用', link: '/program/vs-code.md'},
                 {text: 'Vue 官方文档', link: 'https://cn.vuejs.org/guide/introduction.html'},
                 {text: 'w3school 官方文档', link: 'https://www.w3school.com.cn/html/html5_intro.asp'},
+                {text: '企业级开发', link: '/program/企业级开发.md'},
+                {text: '机器学习', link: '/program/MachineLearning.md'},
             ]
         },
         {
