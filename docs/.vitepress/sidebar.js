@@ -17,6 +17,7 @@ export default {
                 {text: 'Vue 官方文档', link: 'https://cn.vuejs.org/guide/introduction.html'},
                 {text: 'w3school 官方文档', link: 'https://www.w3school.com.cn/html/html5_intro.asp'},
                 {text: '企业级开发', link: '/program/企业级开发.md'},
+                {text: 'SpringBoot', link: '/program/SpringBoot.md'},
                 {text: '机器学习', link: '/program/MachineLearning.md'},
             ]
         },
