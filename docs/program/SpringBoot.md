@@ -873,8 +873,20 @@ spring:
 
 1. 注解
 
-   @PathVariable、@RequestHeader、@ModelAttribute、@RequestParam、@MatrixVariable、@CookieValue、@RequestBody
+   - @PathVariable
 
+   - @RequestHeader
+   
+   - @ModelAttribute
+   
+   - @RequestParam
+   
+   - @MatrixVariable
+   
+   - @CookieValue
+   
+   - @RequestBody
+   
    ```java
    @RestController
    public class ParameterTestController {
@@ -907,6 +919,7 @@ spring:
    
       @PostMapping("/save")
       public Map postMethod(@RequestBody String content){
+         // 获取请求体中的数据
          Map<String,Object> map = new HashMap<>();
          map.put("content",content);
          return map;
