@@ -331,7 +331,7 @@ mycar.price = "200000"
 // 根据 application.properties 中的配置内容一一绑定 
 public class Car {
    private String brand;
- private Integer price;
+   private Integer price;
 }
 ```
 
@@ -439,7 +439,7 @@ public CharacterEncodingFilter characterEncodingFilter() {}
 
 ### Lombok
 
-简化JavaBean开发。
+#### 简化JavaBean开发
 
 ```properties
 <dependency>
@@ -447,4 +447,411 @@ public CharacterEncodingFilter characterEncodingFilter() {}
    <artifactId>lombok</artifactId>
 </dependency>
 ```
+
+> idea中搜索安装lombok插件
+
+```java
+@NoArgsConstructor  // 无参构造器
+@AllArgsConstructor  // 全参构造器
+@Data  // 自动添加 Getter 和 Setter
+@ToString  // toString 方法
+@EqualsAndHashCode // Equals 和 HashCode 方法
+public class User {
+
+    private String name;
+    private Integer age;
+    private Pet pet;
+
+    public User(String name,Integer age){
+        this.name = name;
+        this.age = age;
+    }
+
+}
+```
+
+#### 简化日志开发
+
+```java
+@Slf4j  // 简化日志开发
+@RestController
+public class HelloController {
+    @RequestMapping("/hello")
+    public String handle01(@RequestParam("name") String name){
+        log.info("请求进来了....");  // 简化日志开发
+        return "Hello, Spring Boot 2!"+"你好："+name;
+    }
+}
+```
+
+#### dev-tools 自动重启
+
+项目或者页面修改以后：Ctrl+F9，自动重启。
+
+若只是修改了 web 静态页面，则不会重启，只进行更新。
+
+```xml
+<dependency>
+   <groupId>org.springframework.boot</groupId>
+   <artifactId>spring-boot-devtools</artifactId>
+   <optional>true</optional>
+</dependency>
+```
+
+#### Spring Initailizr 项目初始化向导
+
+`idea` 基本已内置。
+
+## 配置文件
+
+### ApplicationProperties 配置
+
+[Application Properties 配置](#application-properties-配置)
+
+[@ConfigurationProperties](#configurationproperties)
+
+### yaml 配置
+
+#### 简介
+
+YAML 是 "YAML Ain't Markup Language"（YAML 不是一种标记语言）的递归缩写。在开发的这种语言时，YAML 的意思其实是："Yet Another Markup Language"（仍是一种标记语言）。 非常适合用来做以数据为中心的配置文件
+
+#### 基本语法
+
+- key: value；kv之间有空格；
+
+- 大小写敏感；
+
+- 使用缩进表示层级关系；
+
+- 缩进不允许使用 `Tab`，只允许空格；【原则上，实际可用】
+
+- 缩进的空格数不重要，只要相同层级的元素左对齐即可；
+
+- `#` 表示注释；
+
+- 字符串无需加引号，如果要加，`''`与 `""` 表示字符串内容会被转义/不转义。
+
+#### 数据类型
+
+1. 字面量：单个的、不可再分的值。date、boolean、string、number、null
+
+   ```yaml
+   k: v
+   ```
+
+2. 对象：键值对的集合。map、hash、set、object
+
+   ```yaml
+   # 行内写法
+   k: {k1:v1, k2:v2, k3:v3}
+   # 或
+   k:
+     k1: v1
+     k2: v2
+     k3: v3
+   
+   ```
+
+3. 数组：一组按次序排列的值。array、list、queue
+
+   ```yaml
+   # 行内写法
+   k: [v1, v2, v3]
+   # 或者
+   k:
+     - v1
+     - v2
+     - v3
+   ```
+
+#### 示例
+
+```java
+@ConfigurationProperties(prefix = "person")
+// 根据 application.xml 中的配置内容一一绑定 
+@Data
+public class Person {
+    private String userName;
+    private Boolean boss;
+    private Date birth;
+    private Integer age;
+    private Pet pet;
+    private String[] interests;
+    private List<String> animal;
+    private Map<String, Object> score;
+    private Set<Double> salarys;
+    private Map<String, List<Pet>> allPets;
+}
+
+@Data
+public class Pet {
+    private String name;
+    private Double weight;
+}
+```
+
+--> `application.xml`
+
+```yaml
+person:
+  userName: zhangsan
+  boss: false
+  birth: 2019/12/12 20:12:33
+  age: 18
+  pet:
+  name: tomcat
+  weight: 23.4
+  interests: [篮球,游泳]
+  animal:
+    - jerry
+    - mario
+  score:
+  english:
+  first: 30
+  second: 40
+  third: 50
+  math: [131,140,148]
+  chinese: {first: 128,second: 136}
+  salarys: [3999,4999.98,5999.99]
+  allPets:
+  sick:
+    - {name: tom}
+    - {name: jerry,weight: 47}
+  health: [{name: mario,weight: 47}]
+```
+
+双引号不会转义：`/n` 会被视为换行；
+
+单引号会转义：`/n` 不会被视为换行，视为字符串。
+
+> 将 `/n` 转义成字符串。
+
+#### @Autowired
+
+是一种注解，可以对成员变量、方法和构造函数进行标注，来完成自动装配的工作，@Autowired标注可以放在成员变量上，也可以放在成员变量的 set 方法上，也可以放在任意方法上表示，自动执行当前方法，如果方法有参数，会在IOC容器中自动寻找同类型参数为其传值。
+
+```java
+@RestController
+public class PersonController {
+    @Autowired
+    Person person;
+    // 自动绑定 application.xml 中的值
+    
+    @RequestMapping("/person")
+    public Person person() {
+        return person;
+    }
+}
+```
+
+#### 配置提示
+
+自定义的类和配置文件绑定一般没有提示。
+
+```xml
+<dependency>
+ <groupId>org.springframework.boot</groupId>
+ <artifactId>spring-boot-configuration-processor</artifactId>
+ <optional>true</optional>
+</dependency>
+```
+
+打包时，不将配置提示包加入其中：
+
+```xml
+<build>
+ <plugins>
+  <plugin>
+   <groupId>org.springframework.boot</groupId>
+   <artifactId>spring-boot-maven-plugin</artifactId>
+   <configuration>
+      <excludes>
+         <exclude>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+         </exclude>
+      </excludes>
+   </configuration>
+  </plugin>
+ </plugins>
+</build>
+```
+
+## WEB 开发 ↓↓↓
+
+## SpringMVC 配置
+
+[SpringMVC](./SpringMVC.md)
+
+### 静态资源访问
+
+#### 静态资源目录
+
+静态资源放在类路径下： `/static` 或 `/public` 或 `/resources` 或 `/META-INF/resources`
+
+访问 ： 当前项目根路径/ + 静态资源名
+
+原理： 静态映射/**。
+
+> 请求进来，先去找Controller看能不能处理，不能处理的所有请求又都交给静态资源处理器，静态资源也找不到则响应404页面。
+
+#### 改变默认的静态资源路径
+
+```properties
+spring.mvc.static-path-pattern=/mypath/**
+```
+
+或
+
+```yaml
+spring:
+  resources:
+    static-locations: [classpath:/mypath/]
+```
+
+#### 静态资源访问前缀
+
+默认无前缀 。
+
+有前缀：
+
+```yaml
+spring:
+  mvc:
+    static-path-pattern: /res/**
+```
+
+当前项目 + static-path-pattern + 静态资源名 = 静态资源文件夹下找。
+
+> 即：/index.html --> /res/index.html
+
+:::tip 提示
+可用于拦截器不拦截静态资源。
+:::
+
+#### webjar
+
+把静态资源变成 jar 包。
+
+> 不常用，了解就行。
+
+#### 欢迎页支持
+
+静态资源路径下 `index.html` 可以配置静态资源路径 。
+
+:::warning 提示
+但是不可以配置静态资源的访问前缀；否则导致 `index.html` 不能被默认访问。
+
+```yaml
+spring:
+  mvc:
+    static-path-pattern: /res/** # 这个会导致welcome page功能失效
+```
+
+:::
+
+#### 自定义 Favicon
+
+`favicon.ico` 放在静态资源目录下即可。
+
+> 同样不可以配置静态资源的访问前缀。
+
+#### 静态资源配置原理
+
+- SpringBoot启动默认加载 xxxAutoConfiguration 类（自动配置类） ；
+
+- SpringMVC功能的自动配置类 WebMvcAutoConfiguration 生效；
+
+  ```java
+  @Configuration(proxyBeanMethods = false)
+  @ConditionalOnWebApplication(type = Type.SERVLET)
+  @ConditionalOnClass({ Servlet.class, DispatcherServlet.class, WebMvcConfigurer.class })
+  @ConditionalOnMissingBean(WebMvcConfigurationSupport.class)
+  @AutoConfigureOrder(Ordered.HIGHEST_PRECEDENCE + 10)
+  @AutoConfigureAfter({ DispatcherServletAutoConfiguration.class,TaskExecutionAutoConfiguration.class,ValidationAutoConfiguration.class })
+  public class WebMvcAutoConfiguration {}
+  ```
+
+- 配置文件的相关属性和xxx进行了绑定。WebMvcProperties==spring.mvc、ResourceProperties==spring.resources；
+
+- 配置类只有一个有参构造器。
+
+## 请求参数处理
+
+### 请求映射
+
+#### Rest 使用与原理
+
+1. xxxMapping
+
+2. Rest 风格支持（使用HTTP请求方式动词来表示对资源的操作）
+
+   - 以前：/getUser 获取用户 /deleteUser 删除用户 /editUser 修改用户 /saveUser 保存用户；
+
+   - 现在： /user GET-获取用户 DELETE-删除用户 PUT-修改用户 POST-保存用户；
+
+   - 核心Filter、HiddenHttpMethodFilter 用法：
+
+     - 表单 `method=post`，隐藏域 `_method=put SpringBoot` 中手动开启；
+
+     - SpringBoot 中手动开启。
+
+       ```java
+       // 源码默认关闭。
+       @Bean
+       @ConditionalOnMissingBean(HiddenHttpMethodFilter.class)
+       @ConditionalOnProperty(prefix = "spring.mvc.hiddenmethod.filter", name = "enabled", matchIfMissing = false)
+       public OrderedHiddenHttpMethodFilter hiddenHttpMethodFilter() {
+         return new OrderedHiddenHttpMethodFilter();
+       }
+       ```
+
+       开启
+
+       ```yaml
+       spring:
+         mvc:
+           hiddenmethod:
+             filter:
+               enabled: true
+       ```
+
+   - 扩展：如何把_method 这个名字换成我们自己喜欢的。
+
+     ```java
+     //自定义filter
+     @Bean
+     public HiddenHttpMethodFilter hiddenHttpMethodFilter(){
+         HiddenHttpMethodFilter methodFilter = new HiddenHttpMethodFilter();
+         methodFilter.setMethodParam("_m");
+         return methodFilter;
+     }
+     ```
+
+   代码示例
+
+   ```java
+   @RequestMapping(value = "/user",method = RequestMethod.GET)
+   public String getUser() {
+      return "GET-张三";
+   }
+   
+   @RequestMapping(value = "/user",method = RequestMethod.POST)
+   public String saveUser(){
+      return "POST-张三";
+   }
+   
+   @RequestMapping(value = "/user",method = RequestMethod.PUT)
+   public String putUser(){
+      return "PUT-张三";
+   }
+   
+   @RequestMapping(value = "/user",method = RequestMethod.DELETE)
+   public String deleteUser(){
+      return "DELETE-张三";
+   }
+   ```
+
+#### 普通参数与基本注解
 
