@@ -162,6 +162,10 @@ server.port=8080  # 端口
 
 ## 容器功能
 
+### @Bean
+
+Spring 的 @Bean 注解用于告诉方法，产生一个 Bean 对象，然后这个 Bean 对象交给 Spring 管理。产生这个 Bean 对象的方法 Spring 只会调用一次，随后这个 Spring 将会将这个 Bean 对象放在自己的 IOC 容器中。
+
 ### 组件添加
 
 #### @Configuration 配置文件
@@ -684,9 +688,9 @@ public class PersonController {
 
 [SpringMVC](./SpringMVC.md)
 
-### 静态资源访问
+## 静态资源访问
 
-#### 静态资源目录
+### 静态资源目录
 
 静态资源放在类路径下： `/static` 或 `/public` 或 `/resources` 或 `/META-INF/resources`
 
@@ -696,7 +700,7 @@ public class PersonController {
 
 > 请求进来，先去找Controller看能不能处理，不能处理的所有请求又都交给静态资源处理器，静态资源也找不到则响应404页面。
 
-#### 改变默认的静态资源路径
+### 改变默认的静态资源路径
 
 ```properties
 spring.mvc.static-path-pattern=/mypath/**
@@ -710,7 +714,7 @@ spring:
     static-locations: [classpath:/mypath/]
 ```
 
-#### 静态资源访问前缀
+### 静态资源访问前缀
 
 默认无前缀 。
 
@@ -730,13 +734,13 @@ spring:
 可用于拦截器不拦截静态资源。
 :::
 
-#### webjar
+### webjar
 
 把静态资源变成 jar 包。
 
 > 不常用，了解就行。
 
-#### 欢迎页支持
+### 欢迎页支持
 
 静态资源路径下 `index.html` 可以配置静态资源路径 。
 
@@ -751,13 +755,13 @@ spring:
 
 :::
 
-#### 自定义 Favicon
+### 自定义 Favicon
 
 `favicon.ico` 放在静态资源目录下即可。
 
 > 同样不可以配置静态资源的访问前缀。
 
-#### 静态资源配置原理
+### 静态资源配置原理
 
 - SpringBoot启动默认加载 xxxAutoConfiguration 类（自动配置类） ；
 
@@ -817,7 +821,7 @@ spring:
                enabled: true
        ```
 
-   - 扩展：如何把_method 这个名字换成我们自己喜欢的。
+   - 扩展：如何把 `_method` 这个名字换成我们自己喜欢的。
 
      ```java
      //自定义filter
@@ -829,7 +833,7 @@ spring:
      }
      ```
 
-   代码示例
+3. 代码示例
 
    ```java
    @RequestMapping(value = "/user",method = RequestMethod.GET)
@@ -853,5 +857,86 @@ spring:
    }
    ```
 
+4. 简化
+
+   ```java
+   @RequestMapping(value = "/user",method = RequestMethod.GET)
+   @RequestMapping(value = "/user",method = RequestMethod.POST)
+   // ...
+   // 等同于
+   @GETMapping("/user")
+   @POSTMapping("/user")
+   // ...
+   ```
+
 #### 普通参数与基本注解
 
+1. 注解
+
+   @PathVariable、@RequestHeader、@ModelAttribute、@RequestParam、@MatrixVariable、@CookieValue、@RequestBody
+
+   ```java
+   @RestController
+   public class ParameterTestController {
+   
+      // car/2/owner/zhangsan
+      @GetMapping("/car/{id}/owner/{username}")
+      public Map<String,Object> getCar(@PathVariable("id") Integer id,
+            @PathVariable("username") String name,
+            @PathVariable Map<String,String> pv,
+            @RequestHeader("User-Agent") String userAgent,
+            @RequestHeader Map<String,String> header,
+            @RequestParam("age") Integer age,
+            @RequestParam("inters") List<String> inters,
+            @RequestParam Map<String,String> params,
+            @CookieValue("_ga") String _ga,
+            @CookieValue("_ga") Cookie cookie){
+         Map<String,Object> map = new HashMap<>();
+         // map.put("id",id);
+         // map.put("name",name);
+         // map.put("pv",pv);
+         // map.put("userAgent",userAgent);
+         // map.put("headers",header);
+         map.put("age",age);
+         map.put("inters",inters);
+         map.put("params",params);
+         map.put("_ga",_ga);
+         System.out.println(cookie.getName()+"===>"+cookie.getValue());
+         return map;
+      }
+   
+      @PostMapping("/save")
+      public Map postMethod(@RequestBody String content){
+         Map<String,Object> map = new HashMap<>();
+         map.put("content",content);
+         return map;
+      }
+   
+      //1、语法： 请求路径：/cars/sell;low=34;brand=byd,audi,yd
+      //2、SpringBoot默认是禁用了矩阵变量的功能
+      // 手动开启：原理。对于路径的处理。UrlPathHelper进行解析。
+      // removeSemicolonContent（移除分号内容）支持矩阵变量的
+      //3、矩阵变量必须有url路径变量才能被解析
+      @GetMapping("/cars/{path}")
+      public Map carsSell(@MatrixVariable("low") Integer low,
+      @MatrixVariable("brand") List<String> brand,
+      @PathVariable("path") String path){
+         Map<String,Object> map = new HashMap<>();
+      
+         map.put("low",low);
+         map.put("brand",brand);
+         map.put("path",path);
+         return map;
+      }
+      
+      // /boss/1;age=20/2;age=10
+      @GetMapping("/boss/{bossId}/{empId}")
+      public Map boss(@MatrixVariable(value = "age",pathVar = "bossId") Integer bossAge,
+      @MatrixVariable(value = "age",pathVar = "empId") Integer empAge){
+         Map<String,Object> map = new HashMap<>();
+         map.put("bossAge",bossAge);
+         map.put("empAge",empAge);
+         return map;
+      }
+   }
+   ```
