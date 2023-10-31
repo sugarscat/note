@@ -441,9 +441,7 @@ public CharacterEncodingFilter characterEncodingFilter() {}
 
 ## 开发小技巧
 
-### Lombok
-
-#### 简化JavaBean开发
+### Lombok 简化JavaBean开发
 
 ```properties
 <dependency>
@@ -452,7 +450,7 @@ public CharacterEncodingFilter characterEncodingFilter() {}
 </dependency>
 ```
 
-> idea中搜索安装lombok插件
+`idea` 中搜索安装 `lombok` 插件
 
 ```java
 @NoArgsConstructor  // 无参构造器
@@ -474,7 +472,7 @@ public class User {
 }
 ```
 
-#### 简化日志开发
+### 简化日志开发
 
 ```java
 @Slf4j  // 简化日志开发
@@ -488,7 +486,7 @@ public class HelloController {
 }
 ```
 
-#### dev-tools 自动重启
+### dev-tools 自动重启
 
 项目或者页面修改以后：Ctrl+F9，自动重启。
 
@@ -502,7 +500,7 @@ public class HelloController {
 </dependency>
 ```
 
-#### Spring Initailizr 项目初始化向导
+### Spring Initailizr 项目初始化向导
 
 `idea` 基本已内置。
 
@@ -869,87 +867,139 @@ spring:
    // ...
    ```
 
-#### 普通参数与基本注解
+### 普通参数与基本注解
 
-1. 注解
+#### 注解
 
-   - @PathVariable
+- `@PathVariable`：可以将 `URL` 中占位符参数绑定到控制器处理方法的入参中：`URL` 中的 `{xxx}` 占位符可以通过 `@PathVariable(“xxx”)` 绑定到操作方法的入参中。
 
-   - @RequestHeader
-   
-   - @ModelAttribute
-   
-   - @RequestParam
-   
-   - @MatrixVariable
-   
-   - @CookieValue
-   
-   - @RequestBody
-   
-   ```java
-   @RestController
-   public class ParameterTestController {
-   
-      // car/2/owner/zhangsan
-      @GetMapping("/car/{id}/owner/{username}")
-      public Map<String,Object> getCar(@PathVariable("id") Integer id,
-            @PathVariable("username") String name,
-            @PathVariable Map<String,String> pv,
-            @RequestHeader("User-Agent") String userAgent,
-            @RequestHeader Map<String,String> header,
-            @RequestParam("age") Integer age,
-            @RequestParam("inters") List<String> inters,
-            @RequestParam Map<String,String> params,
-            @CookieValue("_ga") String _ga,
-            @CookieValue("_ga") Cookie cookie){
-         Map<String,Object> map = new HashMap<>();
-         // map.put("id",id);
-         // map.put("name",name);
-         // map.put("pv",pv);
-         // map.put("userAgent",userAgent);
-         // map.put("headers",header);
-         map.put("age",age);
-         map.put("inters",inters);
-         map.put("params",params);
-         map.put("_ga",_ga);
-         System.out.println(cookie.getName()+"===>"+cookie.getValue());
-         return map;
-      }
-   
-      @PostMapping("/save")
-      public Map postMethod(@RequestBody String content){
-         // 获取请求体中的数据
-         Map<String,Object> map = new HashMap<>();
-         map.put("content",content);
-         return map;
-      }
-   
-      //1、语法： 请求路径：/cars/sell;low=34;brand=byd,audi,yd
-      //2、SpringBoot默认是禁用了矩阵变量的功能
-      // 手动开启：原理。对于路径的处理。UrlPathHelper进行解析。
-      // removeSemicolonContent（移除分号内容）支持矩阵变量的
-      //3、矩阵变量必须有url路径变量才能被解析
-      @GetMapping("/cars/{path}")
-      public Map carsSell(@MatrixVariable("low") Integer low,
-      @MatrixVariable("brand") List<String> brand,
-      @PathVariable("path") String path){
-         Map<String,Object> map = new HashMap<>();
-      
-         map.put("low",low);
-         map.put("brand",brand);
-         map.put("path",path);
-         return map;
-      }
-      
-      // /boss/1;age=20/2;age=10
-      @GetMapping("/boss/{bossId}/{empId}")
-      public Map boss(@MatrixVariable(value = "age",pathVar = "bossId") Integer bossAge,
-      @MatrixVariable(value = "age",pathVar = "empId") Integer empAge){
-         Map<String,Object> map = new HashMap<>();
-         map.put("bossAge",bossAge);
-         map.put("empAge",empAge);
-         return map;
-      }
+- `@RequestHeader`：用于映射控制器参数以请求头值。
+
+- `@ModelAttribute`：每次执行方法时都会先执行 `@ModelAttribute` 注解的方法，并将结果添加到 `model` 中。
+
+- `@RequestParam`：把请求中的指定名称的参数传递给控制器中的形参赋值。
+
+- `@MatrixVariable`：拓展了 `URL` 请求地址的功能。使用 `@Matrixvariable` 注解时多个变量可以使用 `;`(分号)分隔，该注解允许开发者进行多条件组合査询。
+
+  启用 `@MatrixVariable`:
+
+  ![@MatrixVariable](../image/SpringBoot/@MatrixVariable1.png)
+
+  ![@MatrixVariable](../image/SpringBoot/@MatrixVariable2.png)
+
+- `@CookieValue`：可让处理方法入参绑定某个 `Cookie` 值。
+
+- `@RequestBody`：主要用来接收前端传递给后端的 `json` 字符串中的数据的(请求体中的数据的)。
+
+```java
+@RestController
+public class ParameterTestController {
+
+   // car/2/owner/zhangsan
+   @GetMapping("/car/{id}/owner/{username}")
+   public Map<String,Object> getCar(@PathVariable("id") Integer id,
+         @PathVariable("username") String name,
+         @PathVariable Map<String,String> pv,
+         @RequestHeader("User-Agent") String userAgent,
+         @RequestHeader Map<String,String> header,
+         @RequestParam("age") Integer age,
+         @RequestParam("inters") List<String> inters,
+         @RequestParam Map<String,String> params,
+         @CookieValue("_ga") String _ga,
+         @CookieValue("_ga") Cookie cookie){
+      Map<String,Object> map = new HashMap<>();
+      // map.put("id",id);
+      // map.put("name",name);
+      // map.put("pv",pv);
+      // map.put("userAgent",userAgent);
+      // map.put("headers",header);
+      map.put("age",age);
+      map.put("inters",inters);
+      map.put("params",params);
+      map.put("_ga",_ga);
+      System.out.println(cookie.getName()+"===>"+cookie.getValue());
+      return map;
    }
-   ```
+
+   @PostMapping("/save")
+   public Map postMethod(@RequestBody String content){
+      // 获取请求体中的数据
+      Map<String,Object> map = new HashMap<>();
+      map.put("content",content);
+      return map;
+   }
+
+   //1、语法： 请求路径：/cars/sell;low=34;brand=byd,audi,yd
+   //2、SpringBoot默认是禁用了矩阵变量的功能
+   // 手动开启：原理。对于路径的处理。UrlPathHelper进行解析。
+   // removeSemicolonContent（移除分号内容）支持矩阵变量的
+   //3、矩阵变量必须有url路径变量才能被解析
+   @GetMapping("/cars/{path}")
+   public Map carsSell(@MatrixVariable("low") Integer low,
+           @MatrixVariable("brand") List<String> brand,
+              @PathVariable("path") String path){
+      Map<String,Object> map = new HashMap<>();
+   
+      map.put("low",low);
+      map.put("brand",brand);
+      map.put("path",path);
+      return map;
+   }
+   
+   // /boss/1;age=20/2;age=10
+   // pathVar 获取哪个路径的矩阵变量
+   @GetMapping("/boss/{bossId}/{empId}")
+   public Map boss(@MatrixVariable(value = "age",pathVar = "bossId") Integer bossAge,
+   @MatrixVariable(value = "age",pathVar = "empId") Integer empAge){
+      Map<String,Object> map = new HashMap<>();
+      map.put("bossAge",bossAge);
+      map.put("empAge",empAge);
+      return map;
+   }
+}
+```
+
+#### Servlet API
+
+### 参数处理原理
+
+- `HandlerMapping` 中找到能处理请求的 `Handler`（Controller.method()） ；
+
+- 为当前 `Handler` 找一个适配器 `HandlerAdapter`、` RequestMappingHandlerAdapter`
+
+- 适配器执行目标方法并确定方法参数的每一个值。
+
+#### HandlerAdapter
+
+- 支持方法上标注 `@RequestMapping`；
+
+- 支持函数式编程的。
+
+#### 执行目标方法
+
+```java
+// 以下代码是源码
+// Actually invoke the handler.
+// DispatcherServlet -- doDispatch
+mv = ha.handle(processedRequest, response, mappedHandler.getHandler());
+
+mav = inv2okeHandlerMethod(request, response, handlerMethod); // 执行目标方法
+// ServletInvocableHandlerMethod
+Object returnValue = invokeForRequest(webRequest, mavContainer, providedArgs);
+// 获取方法的参数值
+Object[] args = getMethodArgumentValues(request, mavContainer, providedArgs);
+```
+
+#### 参数解析器
+
+> `HandlerMethodArgumentResolver`
+
+- 确定将要执行的目标方法的每一个参数的值是什么; 
+
+- SpringMVC 目标方法能写多少种参数类型，取决于参数解析器；
+- 当前解析器是否支持解析这种参数；
+- 支持就调用 resolveArgument。
+
+#### 返回值处理器
+
+其实 `@RequestMapping` 方法可以返回多种类型的数据，但是我们现在基本上都只会用 `@ResponseBody` 这种方式，别的方式基本上不会使用了。
