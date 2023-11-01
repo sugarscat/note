@@ -4,7 +4,7 @@
 
 ## HelloWorld
 
-1. 创建maven工程
+1. 创建 maven 工程
 
 2. 引入依赖
 
@@ -120,12 +120,12 @@ server.port=8080  # 端口
 
    - 引入Tomcat依赖；
 
-   - 配置Tomcat。
+   - 配置 Tomcat。
 
-2. 自动配好SpringMVC
+2. 自动配好 SpringMVC
 
-   - 引入SpringMVC全套组件；
-   - 自动配好SpringMVC常用组件（功能）。
+   - 引入 SpringMVC 全套组件；
+   - 自动配好SpringMVC 常用组件（功能）。
 
 3. 自动配好 Web 常见功能
 
@@ -172,15 +172,14 @@ Spring 的 @Bean 注解用于告诉方法，产生一个 Bean 对象，然后这
 
 1. 基本使用
 
+    - 配置类里面使用 `@Bean` 标注在方法上给容器注册组件，默认也是单实例的；
+    - 配置类本身也是组件；
+    - `proxyBeanMethods`：代理 `bean` 的方法；
+    - `Full(proxyBeanMethods = true)`：保证每个 `@Bean` 方法被调用多少次返回的组件都是单实例的；
+    - `Lite(proxyBeanMethods = false)`：每个 `@Bean` 方法被调用多少次返回的组件都是新创建的；
+    - 组件依赖必须使用 `Full` 模式默认。其他默认是否 `Lite` 模式。
+
    ```java
-   /**
-    * 1、配置类里面使用@Bean标注在方法上给容器注册组件，默认也是单实例的
-    * 2、配置类本身也是组件
-    * 3、proxyBeanMethods：代理bean的方法
-    * Full(proxyBeanMethods = true)【保证每个@Bean方法被调用多少次返回的组件都是单实例的】
-    * Lite(proxyBeanMethods = false)【每个@Bean方法被调用多少次返回的组件都是新创建的】
-    * 组件依赖必须使用 Full 模式默认。其他默认是否 Lite 模式
-    */
    @Configuration(proxyBeanMethods = false) // 告诉 SpringBoot 这是一个配置类 == 配置文件
    public class MyConfig {
       /**
@@ -194,7 +193,7 @@ Spring 的 @Bean 注解用于告诉方法，产生一个 Bean 对象，然后这
          zhangsan.setPet(tomcatPet());
          return zhangsan;
       }
-
+   
       @Bean("tom")
       public Pet tomcatPet(){
          return new Pet("tomcat");
@@ -215,7 +214,7 @@ Spring 的 @Bean 注解用于告诉方法，产生一个 Bean 对象，然后这
       public static void main(String[] args) {
          // 1、返回我们IOC容器
          ConfigurableApplicationContext run = SpringApplication.run(MainApplication.class, args);
-
+   
          // 2、查看容器里面的组件
          String[] names = run.getBeanDefinitionNames();
          for (String name : names) {
@@ -228,14 +227,14 @@ Spring 的 @Bean 注解用于告诉方法，产生一个 Bean 对象，然后这
          // 4. com.atguigu.boot.config.MyConfig$$EnhancerBySpringCGLIB$$51f1e1ca@1654a892
          MyConfig bean = run.getBean(MyConfig.class);
          System.out.println(bean);
-
+   
          // 如果@Configuration(proxyBeanMethods = true)代理对象调用方法。
          // SpringBoot 总会检查这个组件是否在容器中有。
          // 保持组件单实例
          User user = bean.user01();
          User user1 = bean.user01();
          System.out.println(user == user1);
-
+   
          User user01 = run.getBean("user01", User.class);
          Pet tom = run.getBean("tom", Pet.class);
          System.out.println("用户的宠物："+(user01.getPet() == tom));
@@ -246,17 +245,9 @@ Spring 的 @Bean 注解用于告诉方法，产生一个 Bean 对象，然后这
 3. Full 模式与 Lite 模式
 
    - 配置类组件之间无依赖关系用Lite模式加速容器启动过程，减少判断 ；
-   - 配置类组件之间有依赖关系，方法会被调用得到之前单实例组件，用Full模式。
-
-   配置类里面使用@Bean标注在方法上给容器注册组件，默认也是单实例的；
-
-   配置类本身也是组件；
-
-   proxyBeanMethods: 代理 bean 的方法：
-
-    Full(proxyBeanMethods = true)
-
-    Lite(proxyBeanMethods = false)
+   - 配置类组件之间有依赖关系，方法会被调用得到之前单实例组件，用Full模式；
+   - 配置类里面使用@Bean标注在方法上给容器注册组件，默认也是单实例的；
+   - 配置类本身也是组件。
 
 4. 其他办法
 
@@ -407,7 +398,7 @@ public @interface EnableAutoConfiguration {}
 #### 按需开启自动配置项
 
 - 虽然我们127个场景的所有自动配置启动的时候默认全部加载。
-- 按照`条件装配`规则（@Conditional），最终会按需配置。
+- 按照条件装配规则 `@Conditional`，最终会按需配置。
 
 #### 修改默认配置
 
@@ -516,7 +507,7 @@ public class HelloController {
 
 #### 简介
 
-YAML 是 "YAML Ain't Markup Language"（YAML 不是一种标记语言）的递归缩写。在开发的这种语言时，YAML 的意思其实是："Yet Another Markup Language"（仍是一种标记语言）。 非常适合用来做以数据为中心的配置文件
+YAML 是 "YAML Ain't Markup Language"（YAML 不是一种标记语言）的递归缩写。在开发的这种语言时，YAML 的意思其实是："Yet Another Markup Language"（仍是一种标记语言）， 非常适合用来做以数据为中心的配置文件。
 
 #### 基本语法
 
@@ -761,9 +752,9 @@ spring:
 
 ### 静态资源配置原理
 
-- SpringBoot启动默认加载 xxxAutoConfiguration 类（自动配置类） ；
+- SpringBoot 启动默认加载 `xxxAutoConfiguration` 类（自动配置类） ；
 
-- SpringMVC功能的自动配置类 WebMvcAutoConfiguration 生效；
+- SpringMVC 功能的自动配置类 `WebMvcAutoConfiguration` 生效；
 
   ```java
   @Configuration(proxyBeanMethods = false)
@@ -775,7 +766,7 @@ spring:
   public class WebMvcAutoConfiguration {}
   ```
 
-- 配置文件的相关属性和xxx进行了绑定。WebMvcProperties==spring.mvc、ResourceProperties==spring.resources；
+- 配置文件的相关属性和 `xxx` 进行了绑定。`WebMvcProperties==spring.mvc`、`ResourceProperties==spring.resources`；
 
 - 配置类只有一个有参构造器。
 
@@ -785,15 +776,15 @@ spring:
 
 #### Rest 使用与原理
 
-1. xxxMapping
+1. `xxxMapping`
 
 2. Rest 风格支持（使用HTTP请求方式动词来表示对资源的操作）
 
-   - 以前：/getUser 获取用户 /deleteUser 删除用户 /editUser 修改用户 /saveUser 保存用户；
+   - 以前：`/getUser` 获取用户 `/deleteUser` 删除用户 `/editUser` 修改用户 `/saveUser` 保存用户；
 
-   - 现在： /user GET-获取用户 DELETE-删除用户 PUT-修改用户 POST-保存用户；
+   - 现在： `/user` GET-获取用户 DELETE-删除用户 PUT-修改用户 POST-保存用户；
 
-   - 核心Filter、HiddenHttpMethodFilter 用法：
+   - 核心 `Filter`、`HiddenHttpMethodFilter` 用法：
 
      - 表单 `method=post`，隐藏域 `_method=put SpringBoot` 中手动开启；
 
@@ -961,11 +952,70 @@ public class ParameterTestController {
 
 #### Servlet API
 
+`WebRequest`、`ServletRequest`、`MultipartRequest`、 `HttpSession`、`javax.servlet.http.PushBuilder`、`Principal`、`InputStream`、`Reader`、 `HttpMethod`、`Locale`、`TimeZone`、`ZoneId`
+
+:::tip 提示
+`ServletRequestMethodArgumentResolver` 可以解析以上的部分参数。
+:::
+
+#### 复杂参数
+
+`Map`、`Model`（map、model里面的数据会被放在 request 的请求域 request.setAttribute）、`Errors/BindingResult`、`RedirectAttributes`（ 重 定向携带数据）、`ServletResponse`（response）、`SessionStatus`、`UriComponentsBuilder`、`ServletUriComponentsBuilder`
+
+```java
+Map<String,Object> map;
+Model model;
+HttpServletRequest request;
+// request 都是可以给request域中放数据，
+request.getAttribute();
+```
+
+1. `model`：从广义上来说，Model 指的是 MVC 中的 M，即 Model (模型)。从狭义上讲，Model 就是个 key-value 集合。实际上，上图home方法得到的model对象就是一个 `java.util.Map` ，你可以将Model类型替换为`Map<String, Object>` ，或者ModelMap —— 一个实现了 Mode l接口的`java.util.HashMap`。
+
+2. `Map`、`Model`类型的参数，会返回 `mavContainer.getModel()` ---> `BindingAwareModelMap` 是 `Model` ，也是 `Map` （来自源码）。
+
+   ![map_model.png](../image/SpringBoot/map_model.png)
+
+#### 自定义参数
+
+可以自动类型转换与格式化，可以级联封装。
+
+```html
+<input name="userName" placeholder="姓名" /> <br/>
+<input name="age" placeholder="年龄"/> <br/>
+<input name="birth" placeholder="生日"/> <br/>
+<input name="pet.name" placeholder="宠物姓名"/><br/>
+<input name="pet.age" placeholder="宠物年龄"/>
+```
+
+```java
+@Data
+public class Person {
+    private String username;
+    private Integer age;
+    private Data birth;
+    private Pet pet;
+}
+
+@Data
+public class Pet {
+    private String name;
+    private Integer age;
+}
+```
+
+#### POJO封装过程
+
+`ServletModelAttributeMethodProcessor`
+
+- 当 `handler` 的参数类型为自定义的实体类类型或者添加了 `@ModelAttribute` 注解，`ServletModelAttributeMethodProcessor` 会对参数进行解析绑定。
+- 判断有没有 `@ModelAttribute` 注解，或者不是 `Java` 基本数据类型（ `Date`、`Number`、`Enum` 等）。
+
 ### 参数处理原理
 
 - `HandlerMapping` 中找到能处理请求的 `Handler`（Controller.method()） ；
 
-- 为当前 `Handler` 找一个适配器 `HandlerAdapter`、` RequestMappingHandlerAdapter`
+- 为当前 `Handler` 找一个适配器 `HandlerAdapter`、`RequestMappingHandlerAdapter`
 
 - 适配器执行目标方法并确定方法参数的每一个值。
 
@@ -994,12 +1044,238 @@ Object[] args = getMethodArgumentValues(request, mavContainer, providedArgs);
 
 > `HandlerMethodArgumentResolver`
 
-- 确定将要执行的目标方法的每一个参数的值是什么; 
+- 确定将要执行的目标方法的每一个参数的值是什么;
 
-- SpringMVC 目标方法能写多少种参数类型，取决于参数解析器；
+- `SpringMVC` 目标方法能写多少种参数类型，取决于参数解析器；
 - 当前解析器是否支持解析这种参数；
-- 支持就调用 resolveArgument。
+- 支持就调用 `resolveArgument`。
 
 #### 返回值处理器
 
 其实 `@RequestMapping` 方法可以返回多种类型的数据，但是我们现在基本上都只会用 `@ResponseBody` 这种方式，别的方式基本上不会使用了。
+
+## 数据响应与内容协商
+
+### 响应 JSON
+
+#### jackson.jar + @ResponseBody
+
+```xml
+<dependency>
+  <groupId>org.springframework.boot</groupId>
+  <artifactId>spring-boot-starter-web</artifactId>
+</dependency>
+<!-- web场景自动引入了json场景 -->
+<dependency>
+  <groupId>org.springframework.boot</groupId>
+  <artifactId>spring-boot-starter-json</artifactId> 
+  <version>2.3.4.RELEASE</version>
+  <scope>compile</scope>
+</dependency>
+```
+
+Java 代码处理请求返回 JSON 数据
+
+```java
+@Controller
+public class HelloController {
+
+    @GetMapping("/hello")
+    @ResponseBody
+    public User hello() {
+        User user = new User();
+        user.setName("张三");
+        user.setAge(18);
+        return user;
+    }
+}
+```
+
+数据
+
+```json
+{
+   "name":"张三",
+   "age":18
+}
+```
+
+给前端自动返回json数据。
+
+##### 返回值解析器原理
+
+1. 返回值处理器判断是否支持这种类型返回值 `supportsReturnType`；
+
+2. 返回值处理器调用 `handleReturnValue` 进行处理；
+
+3. `RequestResponseBodyMethodProcessor` 可以处理返回值标了 `@ResponseBody` 注解的。
+   - 利用 `MessageConverters` 进行处理 将数据写为 `json`；
+     - 内容协商（浏览器默认会以请求头的方式告诉服务器他能接受什么样的内容类型）；
+     - 服务器最终根据自己自身的能力，决定服务器能生产出什么样内容类型的数据。
+
+4. `SpringMVC` 会挨个遍历所有容器底层的 `HttpMessageConverter`，看谁能处理？
+   - 得到 `MappingJackson2HttpMessageConverter` 可以将对象写为 `json`；
+   - 利用 `MappingJackson2HttpMessageConverter` 将对象转为 `json` 再写出去。
+
+##### SpringMVC 支持的返回值
+
+```text
+1 ModelAndView
+2 Model
+3 View
+4 ResponseEntity
+5 ResponseBodyEmitter
+6 StreamingResponseBody
+7 HttpEntity
+8 HttpHeaders
+9 Callable
+10 DeferredResult
+11 ListenableFuture
+12 CompletionStage
+13 WebAsyncTask
+14 有 @ModelAttribute 且为对象类型的
+15 @ResponseBody 注解 ---> RequestResponseBodyMethodProcessor；
+```
+
+#### HTTPMessageConverter 原理
+
+1. MessageConverter规范
+   - `HttpMessageConverter`: 看是否支持将此 `Class` 类型的对象，转为 `MediaType` 类型的数据。
+   - 例子：`Person` 对象转为 `JSON`。或者 `JSON` 转为 `Person`。
+
+2. 默认的 MessageConverter
+
+   ```text
+   0 - 只支持Byte类型的
+   1 - String
+   2 - String
+   3 - Resource
+   4 - ResourceRegion
+   5 - DOMSource.class \ SAXSource.class \ StAXSource.class \ StreamSource.class \ Source.class
+   6 - MultiValueMap
+   7 - true
+   8 - true
+   9 - 支持注解方式xml处理的。
+   ```
+
+   最终 `MappingJackson2HttpMessageConverter` 把对象转为 `JSON`（利用底层的 `jackson` 的 `objectMapper` 转换的）
+
+#### 内容协商
+
+根据客户端接收能力不同，返回不同媒体类型的数据。
+
+1. 开启浏览器参数方式内容协商功能
+
+   ```yaml
+   spring:
+     contentnegotiation:
+       favor-parameter: true # 开启请求参数内容协商模式
+   ```
+
+2. 确定客户端接收什么样的内容类型；
+
+   - `Parameter` 策略优先确定是要返回 `json` 数据（获取请求头中的 `format` 的值）；
+   - 最终进行内容协商返回给客户端 `json` 即可。
+
+3. 内容协商原理
+
+   - 判断当前响应头中是否已经有确定的媒体类型 `MediaType`；
+
+   - 获取客户端（PostMan、浏览器）支持接收的内容类型。（获取客户端 `Accept` 请求头字段）【application/xml】 `contentNegotiationManager` 内容协商管理器 默认使用基于请求头的策略 `HeaderContentNegotiationStrategy` 确定客户端可以接收的内容类型；
+
+   - 遍历循环所有当前系统的 `MessageConverter` ，看谁支持操作这个对象；
+
+   - 找到支持操作当前数据的 `converter` ，把 `converter` 支持的媒体类型统计出来。
+
+   - 客户端需要【application/xml】。服务端能力【10种、json、xml】
+
+   - 进行内容协商的最佳匹配媒体类型
+
+   - 用 支持 将对象转为最佳匹配媒体类型的 `converter`。调用它进行转化
+
+#### 自定义 MessageConverter
+
+实现多协议数据兼容：`json`、`xml`、`x-guigu 0`、`@ResponseBody` 响应数据出去 调用 `RequestResponseBodyMethodProcessor` 处理；
+
+1. `Processor` 处理方法返回值, 通过 `MessageConverter` 处理；
+
+2. 所有 MessageConverter 合起来可以支持各种媒体类型数据的操作（读、写）;
+
+3. 内容协商找到最终的 `messageConverter`。
+
+:::warning 提示
+有可能我们添加的自定义的功能会覆盖默认很多功能，导致一些默认的功能失效。
+:::
+
+PersonMessageConvert
+
+```java
+/*
+ * 自定义的Convert
+ */
+public class PersonMessageConvert implements HttpMessageConverter<Person> {
+    @Override
+    public boolean canRead(Class<?> clazz, MediaType mediaType) {
+        return false;
+    }
+ 
+    @Override
+    public boolean canWrite(Class<?> clazz, MediaType mediaType) {
+        return clazz.isAssignableFrom(Person.class);
+    }
+ 
+    /*
+     * @Description 服务器需要统计所有MessageConvert都能写出哪些类型，我们这里也要自定义
+     * @Author zoe
+     * @Date 2023/1/8 22:54
+     * @Param
+     **/
+    @Override
+    public List<MediaType> getSupportedMediaTypes() {
+        return MediaType.parseMediaTypes("application/x-person");
+    }
+ 
+    @Override
+    public Person read(Class<? extends Person> clazz, HttpInputMessage inputMessage) throws IOException, HttpMessageNotReadableException {
+        return null;
+    }
+ 
+    @Override
+    public void write(Person person, MediaType contentType, HttpOutputMessage outputMessage) throws IOException, HttpMessageNotWritableException {
+        //自定义协会数据的写出
+        String data = person.getUsername() + ";" + person.getAge() + ";" +person.getPet() + ";";
+        //写出去
+        OutputStream body = outputMessage.getBody();
+        body.write(data.getBytes());
+    }
+}
+```
+
+方法
+
+```java
+@ResponseBody
+@GetMapping("/test/person")
+public Person getPeroson() {
+   Person person = new Person();
+   person.setUsername("张三");
+   person.setAge(18);
+   person.setPet(new Pet());
+   return person;
+}
+```
+
+WebMvcConfigurer
+
+```java
+@Bean
+public WebMvcConfigurer webMvcConfigurer() {
+   return new WebMvcConfigurer() {
+      @Override
+      public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
+            converters.add(new PersonMessageConvert());
+      }
+   }
+}
+```
+
