@@ -1119,7 +1119,7 @@ public class HelloController {
 
 ##### SpringMVC 支持的返回值
 
-```text
+```txt
 1 ModelAndView
 2 Model
 3 View
@@ -1145,7 +1145,7 @@ public class HelloController {
 
 2. 默认的 MessageConverter
 
-   ```text
+   ```txt
    0 - 只支持Byte类型的
    1 - String
    2 - String
@@ -1160,7 +1160,7 @@ public class HelloController {
 
    最终 `MappingJackson2HttpMessageConverter` 把对象转为 `JSON`（利用底层的 `jackson` 的 `objectMapper` 转换的）
 
-#### 内容协商
+### 内容协商
 
 根据客户端接收能力不同，返回不同媒体类型的数据。
 
@@ -1193,7 +1193,7 @@ public class HelloController {
 
    - 用 支持 将对象转为最佳匹配媒体类型的 `converter`。调用它进行转化
 
-#### 自定义 MessageConverter
+### 自定义 MessageConverter
 
 实现多协议数据兼容：`json`、`xml`、`x-guigu 0`、`@ResponseBody` 响应数据出去 调用 `RequestResponseBodyMethodProcessor` 处理；
 
@@ -1278,3 +1278,117 @@ public WebMvcConfigurer webMvcConfigurer() {
    }
 }
 ```
+
+## 拦截器
+
+### HandlerInterceptor 接口
+
+1. 配置好拦截器要拦截哪些请求
+
+2. 把这些配置放在容器中
+
+```java
+/**
+ * 登录检查
+ */
+@Slf4j
+public class LoginInterceptor implements HandlerInterceptor {
+
+    /**
+     * 目标方法执行之前
+     * @param request
+     * @param response
+     * @param handler
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        String requestURI = request.getRequestURI();
+        log.info("preHandle拦截的请求路径是{}",requestURI);
+        // 登录检查逻辑
+        HttpSession session = request.getSession();
+        Object loginUser = session.getAttribute("loginUser");
+        if(loginUser != null){
+            // 放行
+            return true;
+        }
+        // 拦截住，未登录跳转到登录页
+        request.setAttribute("msg","请先登录");
+//        re.sendRedirect("/");
+        request.getRequestDispatcher("/").forward(request,response);
+        return false;
+    }
+
+    /**
+     * 目标方法执行完成以后
+     * @param request
+     * @param response
+     * @param handler
+     * @param modelAndView
+     * @throws Exception
+     */
+    @Override
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
+        log.info("postHandle执行{}",modelAndView);
+    }
+
+    /**
+     * 页面渲染以后
+     * @param request
+     * @param response
+     * @param handler
+     * @param ex
+     * @throws Exception
+     */
+    @Override
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+        log.info("afterCompletion执行异常{}",ex);
+    }
+}
+```
+
+### 配置拦截器
+
+1. 编写一个拦截器实现HandlerInterceptor接口
+
+2. 拦截器注册到容器中（实现WebMvcConfigurer的addInterceptors）
+
+3. 指定拦截规则【如果是拦截所有，静态资源也会被拦截】
+
+```java
+@Configuration
+public class AdminWebConfig implements WebMvcConfigurer {
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(new LoginInterceptor())
+                .addPathPatterns("/**")  // 所有请求都被拦截包括静态资源
+                .excludePathPatterns("/","/login","/css/**","/fonts/**","/images/**","/js/**"); 
+        //放行的请求
+    }
+}
+```
+
+### 拦截器原理
+
+1. 根据当前请求，找到 `HandlerExecutionChain` 【可以处理请求的 `handler` 以及 `handler` 的所有拦截器】；
+
+2. 先来顺序执行 所有拦截器的 `preHandle` 方法；
+
+3. 如果当前拦截器 `prehandler` 返回为 `true` ，则执行下一个拦截器的 `preHandle`；
+
+4. 如果当前拦截器返回为 `false` ，直接倒序执行所有已经执行了的拦截器的  `afterCompletion`；
+
+5. 如果任何一个拦截器返回 `false` ，直接跳出不执行目标方法；
+
+6. 所有拦截器都返回 `true` ，执行目标方法；
+
+7. 倒序执行所有拦截器的 `postHandle` 方法；
+
+8. 前面的步骤有任何异常都会直接倒序触发 `afterCompletion`；
+
+9. 页面成功渲染完成以后，也会倒序触发 `afterCompletion`。
+
+   ![img](../image/SpringBoot/拦截器.png)
+

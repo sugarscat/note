@@ -1,5 +1,4 @@
-export default {
-    '/': [
+export default  [
         {
             text: '目录',
             link: '/menu.md'
@@ -7,6 +6,7 @@ export default {
         {
             text: '编程',
             collapsible: true,
+            collapsed: true,
             items: [
                 {text: 'MySQL', link: '/program/MySQL.md'},
                 {text: 'Java 连接MySQL数据库', link: '/program/MySQL-connector-java.md'},
@@ -23,6 +23,7 @@ export default {
         {
             text: '服务器',
             collapsible: true,
+            collapsed: true,
             items: [
                 {text: 'ACME 申请证书', link: '/server/acme.md'},
 
@@ -31,6 +32,7 @@ export default {
         {
             text: '设计',
             collapsible: true,
+            collapsed: true,
             items: [
                 {text: 'Blender 建模', link: '/design/Blender.md'},
 
@@ -39,10 +41,10 @@ export default {
         {
             text: '工具',
             collapsible: true,
+            collapsed: true,
             items: [
                 {text: '腹灵F12 68键 RGB', link: '/tools/F12.md'},
 
             ]
         },
-    ],
-}
+    ]

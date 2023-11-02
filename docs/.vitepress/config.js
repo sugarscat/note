@@ -6,6 +6,7 @@ export default {
     lang: 'zh-CN',
     title: 'Note',
     description: '心灵记忆过往，镜头捕捉瞬间。',
+    lastUpdated: true,
     themeConfig: {
         nav: navbar,
         logo: '/favicon.ico',
@@ -13,10 +14,16 @@ export default {
         socialLinks: [
             {icon: 'github', link: 'https://github.com/Sugarscat/note'}
         ],
+        lastUpdatedText: '最后更新',
+        docFooter: {
+        prev: '上一页',
+        next: '下一页'
+        },
+        outlineTitle: '这一页',
         // footer: {
         //     message: 'MIT Licensed',
         //     copyright: '<a href="https://beian.miit.gov.cn/" target="_blank"></a>'
         // }
     },
-    lastUpdated: true,
+    cleanUrls: 'without-subfolders',
 }
