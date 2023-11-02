@@ -17,7 +17,7 @@
     SET username='robot', password='robot'
     WHERE username = 'root';
    ```
-   
+
 3. 三种注释
 
     ```sql
@@ -25,7 +25,7 @@
     -- 注释2
     /* 注释3 */
    ```
-   
+
 4. AS 后是”别名“
 
 ---
@@ -43,13 +43,13 @@
     ```sql
     INSERT INTO 表名 VALUES (值, 值, ..., 值);
     ```
-   
+
 2. 插入行的一部分
 
     ```sql
     INSERT INTO 表名(字段, 字段, ..., 字段) VALUES (值, 值, ..., 值);
     ```
-    
+
 3. 嵌套插入
 
     ```sql
@@ -75,17 +75,17 @@
    ```sql
    DELETE FROM 表名 WHERE 字段 = 值;
    ```
-   
+
 2. 清空表中数据
 
    ```sql
    TRUNCATE TABLE 表名;
    ```
-   
+
 ### 4. 查找数据
 
 + SELECT 语句用于从数据库中查询数据。
-+ DISTINCT 用于返回唯一不同的值。它作用于所有列，也就是说所有列的值都相同才算相同。 
++ DISTINCT 用于返回唯一不同的值。它作用于所有列，也就是说所有列的值都相同才算相同。
 + 限制返回的行数。可以有两个参数，第一个参数为起始行，从 0 开始；第二个参数为返回的总行数。
 + ASC ：升序（默认）
 + DESC ：降序
@@ -95,19 +95,19 @@
    ```sql
    SELECT * FROM 表名;
    ```
-   
+
 2. 查找部分数据
 
    ```sql
    SELECT 字段, ... FROM 表名;
    ```
-   
+
 3. 查询不同的值
 
    ```sql
    SELECT DISTINCT 字段 FROM 表名;
    ```
-   
+
 4. 限制查询结果
 
    ```sql
@@ -186,19 +186,19 @@
    ```sql
    SELECT 字段, ... FROM 表名 WHERE 字段 = 值 AND 字段 <= 值;
    ```
-   
+
 2. OR
 
    ```sql
    SELECT 字段, ... FROM 表名 WHERE 字段 = 值 OR 字段 = 值;
    ```
-   
+
 3. NOT
 
    ```sql
    SELECT 字段, ... FROM 表名 WHERE 字段 NOT BETWEEN 值 AND 值;
    ```
-   
+
 ### 5. Like
 
 + LIKE 操作符在 WHERE 子句中使用，作用是确定字符串是否匹配模式。
@@ -394,7 +394,7 @@ SELECT AVG(DISTINCT 字段) AS 别名 FROM 表名;
 
 ## 六、 排序和分组
 
-### 1. ORDER BY 
+### 1. ORDER BY
 
 + 用于对结果集进行排序。
 + ASC ：升序（默认）
@@ -463,7 +463,7 @@ SELECT AVG(DISTINCT 字段) AS 别名 FROM 表名;
    ```sql
    DROP DATABASE 表名;
    ```
-   
+
 3. 选择数据库
 
    ```sql
@@ -489,13 +489,13 @@ SELECT AVG(DISTINCT 字段) AS 别名 FROM 表名;
       ```sql
       CREATE TABLE 表名 AS SELECT * FROM 表名;
       ```
-   
+
 2. 删除数据表
 
    ```sql
    DROP TABLE 表名;
    ```
-   
+
 3. 修改数据表
 
    1. 添加列
@@ -503,13 +503,13 @@ SELECT AVG(DISTINCT 字段) AS 别名 FROM 表名;
       ```sql
       ALTER TABLE user ADD age int(3);
       ```
-   
+
    2. 删除列
 
       ```sql
       ALTER TABLE user DROP COLUMN age;
       ```
-      
+
    3. 修改列
 
       ``` sql
@@ -527,7 +527,7 @@ SELECT AVG(DISTINCT 字段) AS 别名 FROM 表名;
       ```sql
       ALTER TABLE user DROP PRIMARY KEY;
       ```
-      
+
 ### 3. 视图（VIEW）
 
 + 定义
@@ -546,7 +546,7 @@ SELECT AVG(DISTINCT 字段) AS 别名 FROM 表名;
    CREATE VIEW top_10_user_view AS 
    SELECT id, username FROM user WHERE id < 10;
    ```
-   
+
 2. 删除视图
 
    ```sql
@@ -567,13 +567,13 @@ SELECT AVG(DISTINCT 字段) AS 别名 FROM 表名;
    ```sql
    CREATE INDEX user_index ON user (id);
    ```
-   
+
 2. 创建唯一索引
 
    ```sql
    CREATE UNIQUE INDEX user_index ON user (id);
    ```
-   
+
 3. 删除索引
 
    ```sql
@@ -805,7 +805,7 @@ call getTotal();
 
 + 当触发器的触发条件满足时，将会执行 BEGIN 和 END 之间的触发器执行动作。
 + 注意：在 MySQL 中，分号 ; 是语句结束的标识符，遇到分号表示该段语句已经结束，MySQL 可以开始执行了。
-+ 因此，解释器遇到触发器执行动作中的分号后就开始执行，然后会报错，因为没有找到和 BEGIN 匹配的 END。 
++ 因此，解释器遇到触发器执行动作中的分号后就开始执行，然后会报错，因为没有找到和 BEGIN 匹配的 END。
 + 这时就会用到 DELIMITER 命令（DELIMITER 是定界符，分隔符的意思）。
 + 它是一条命令，不需要语句结束标识，语法为：DELIMITER new_delemiter。new_delemiter 可以设为 1 个或多个长度的符号，默认的是分号 ";"，
 + 我们可以把它修改为其他符号，如 $ - DELIMITER $ 。
