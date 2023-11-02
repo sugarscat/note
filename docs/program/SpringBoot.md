@@ -1204,7 +1204,7 @@ public class HelloController {
 3. 内容协商找到最终的 `messageConverter`。
 
 :::warning 提示
-有可能我们添加的自定义的功能会覆盖默认很多功能，导致一些默认的功能失效。
+添加的自定义的功能可能会覆盖默认很多功能，导致一些默认的功能失效。
 :::
 
 PersonMessageConvert
@@ -1278,4 +1278,3 @@ public WebMvcConfigurer webMvcConfigurer() {
    }
 }
 ```
-
