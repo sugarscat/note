@@ -2,25 +2,25 @@
 
 ## 编程
 
-[MySQL](./program/MySQL.md)
+[MySQL](./code/MySQL.md)
 
-[Java 连接MySQL数据库](./program/MySQL-connector-java.md)
+[Java 连接MySQL数据库](./code/MySQL-connector-java.md)
 
-[Linux 命令](./program/Linux-command.md)
+[Linux 命令](./code/Linux-command.md)
 
-[Nginx](./program/Nginx.md)
+[Nginx](./code/Nginx.md)
 
-[Ubuntu 安装开发环境](./program/Ubuntu安装开发环境.md)
+[Ubuntu 安装开发环境](./code/Ubuntu安装开发环境.md)
 
-[VS Code 基本使用](./program/vs-code.md)
+[VS Code 基本使用](./code/vs-code.md)
 
 [Vue 官方文档](https://cn.vuejs.org/guide/introduction.html)
 
-[企业级开发](./program/企业级开发.md)
+[企业级开发](./code/企业级开发.md)
 
-[SpringBoot](./program/SpringBoot.md)
+[SpringBoot](./code/SpringBoot.md)
 
-[机器学习](./program/MachineLearning.md)
+[机器学习](./code/MachineLearning.md)
 
 ## 服务器
 
