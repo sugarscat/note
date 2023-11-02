@@ -1392,3 +1392,52 @@ public class AdminWebConfig implements WebMvcConfigurer {
 
    ![img](../image/SpringBoot/拦截器.png)
 
+## 文件上传
+
+```java
+/**
+* MultipartFile 自动封装上传过来的文件
+* @param email
+* @param username
+* @param headerImg
+* @param photos
+* @return
+*/
+@PostMapping("/upload")
+public String upload(@RequestParam("email") String email,
+                     @RequestParam("username") String username,
+                     @RequestPart("headerImg") MultipartFile headerImg,
+                     @RequestPart("photos") MultipartFile[] photos) throws IOException {
+
+   log.info("上传的信息：email={}，username={}，headerImg={}，photos={}",
+            email,username,headerImg.getSize(),photos.length);
+
+   if(!headerImg.isEmpty()){
+      //保存到文件服务器，OSS服务器
+      String originalFilename = headerImg.getOriginalFilename();
+      headerImg.transferTo(new File("H:\\cache\\"+originalFilename));
+   }
+
+   if(photos.length > 0){
+      for (MultipartFile photo : photos) {
+            if(!photo.isEmpty()){
+               String originalFilename = photo.getOriginalFilename();
+               photo.transferTo(new File("H:\\cache\\"+originalFilename));
+            }
+      }
+   }
+
+
+   return "main";
+}
+```
+
+### 文件上传配置
+
+1. 文件上传自动配置类：`MultipartAutoConfiguration` - `MultipartProperties`；
+2. 自动配置好了 `StandardServletMultipartResolver`【文件上传解析器】；
+3. 原理步骤：
+   - 请求进来使用文件上传解析器判断（ `isMultipart` ）并封装（ `resolveMultipart` ，返回 `MultipartHttpServletRequest` ）文件上传请求；
+   - 参数解析器来解析请求中的文件内容封装成 `MultipartFile`；
+   - 将 `request` 中文件信息封装为一个 `Map` ； `MultiValueMap<String, MultipartFile>`。
+4. `FileCopyUtils`：实现文件流的拷贝。

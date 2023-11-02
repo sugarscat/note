@@ -32,7 +32,6 @@ sudo systemctl stop nginx
 sudo systemctl restart nginx
 ```
 
-
 :::
 
 ### 1. 安装依赖包
@@ -79,8 +78,6 @@ make
 make install
 ```
 
-
-
 ## 二、常用命令
 
 ::: tip 提示
@@ -89,6 +86,7 @@ make install
  ```sh
  cd /usr/local/nginx/sbin # 依据自己安装目录
  ```
+
 :::
 
 ### 1. 启动 Ngnix
@@ -112,7 +110,7 @@ ps -ef | grep nginx # 查找进程
 kill -9 xxxx(pid)
 ```
 
-### 3. 重新加载 nginx 
+### 3. 重新加载 nginx
 
 > 重载 conf 配置
 
@@ -235,14 +233,14 @@ kill -9 xxxx(pid)
 ### 2. 配置文件结构
 
 - 全局块在最上层
-	- 其次是 events 块
-		- 最后是 http 块
-			+ server 块
-				- localtion 块
-				- localtion 块
-			+ server 块
-				- localtion 块
-				- localtion 块
+  - 其次是 events 块
+    - 最后是 http 块
+      - server 块
+        - localtion 块
+        - localtion 块
+      - server 块
+        - localtion 块
+        - localtion 块
 
 ### 3.  配置文件概览
 
@@ -288,7 +286,7 @@ http {
 
 # server 块 ------------------------------------------------------------------
 server {
-	    # server 全局块 ---------------------------
+     # server 全局块 ---------------------------
         listen       80;
         server_name  localhost;
 
@@ -296,7 +294,7 @@ server {
 
         #access_log  logs/host.access.log  main;
 
-	    # location 块 -----------------------------
+     # location 块 -----------------------------
         location / {
             root   html;
             index  index.html index.htm;
@@ -335,7 +333,7 @@ server {
         #}
 }
 
-# 可以配置多个server块	
+# 可以配置多个server块 
 
 }
 ```
@@ -392,51 +390,54 @@ location / {
 ```
 
 1. location 语法：
-	```
-	location [=|~|~*|^~] /uri/ { … }
-	```
 
-	- =     严格匹配。如果请求匹配这个location，那么将停止搜索并立即处理此请求
-	- ~     区分大小写匹配(可用正则表达式)
-	- ~*    不区分大小写匹配(可用正则表达式)
-	- !~    区分大小写不匹配
-	- !~*   不区分大小写不匹配
-	- ^~    如果把这个前缀用于一个常规字符串,那么告诉nginx 如果路径匹配那么不测试正则表达式
+ ```
+ location [=|~|~*|^~] /uri/ { … }
+ ```
+
+- =     严格匹配。如果请求匹配这个location，那么将停止搜索并立即处理此请求
+- ~     区分大小写匹配(可用正则表达式)
+- ~*    不区分大小写匹配(可用正则表达式)
+- !~    区分大小写不匹配
+- !~*   不区分大小写不匹配
+- ^~    如果把这个前缀用于一个常规字符串,那么告诉nginx 如果路径匹配那么不测试正则表达式
 
 2. alias 与 root 的区别
 
-	- root   实际访问文件路径会拼接URL中的路径
-	- alias  实际访问文件路径不会拼接URL中的路径
+- root   实际访问文件路径会拼接URL中的路径
+- alias  实际访问文件路径不会拼接URL中的路径
 
-	示例如下：
+ 示例如下：
 
-	```conf
-	location ^~ /test/ {  
-   		alias /usr/local/nginx/html/static/;  
-	}
-	```
+ ```conf
+ location ^~ /test/ {  
+     alias /usr/local/nginx/html/static/;  
+ }
+ ```
 
-	- 请求：/test/test1.html
-	- 实际访问：/usr/local/nginx/html/static/test1.html 文件
+- 请求：/test/test1.html
+- 实际访问：/usr/local/nginx/html/static/test1.html 文件
 
-	```conf
-	location ^~ /test/ {  
-   		root /usr/local/nginx/html/;  
-	}
-	```
+ ```conf
+ location ^~ /test/ {  
+     root /usr/local/nginx/html/;  
+ }
+ ```
 
-	- 请求：/test/test1.html
-	- 实际访问：/usr/local/nginx/html/test/test1.html 文件
+- 请求：/test/test1.html
+- 实际访问：/usr/local/nginx/html/test/test1.html 文件
 
 3. last 和 break 关键字的区别
-	- last 和 break 当出现在location 之外时，两者的作用是一致的没有任何差异
-	- last 和 break 当出现在location 内部时：
-	- last    使用了last 指令，rewrite 后会跳出location 作用域，重新开始再走一次刚才的行为
-	- break  使用了break 指令，rewrite后不会跳出location 作用域，它的生命也在这个location中终结
+
+- last 和 break 当出现在location 之外时，两者的作用是一致的没有任何差异
+- last 和 break 当出现在location 内部时：
+- last    使用了last 指令，rewrite 后会跳出location 作用域，重新开始再走一次刚才的行为
+- break  使用了break 指令，rewrite后不会跳出location 作用域，它的生命也在这个location中终结
 
 4. permanent 和 redirect 关键字的区别
-	- rewrite … permanent 永久性重定向，请求日志中的状态码为301
-	- rewrite … redirect 临时重定向，请求日志中的状态码为302
+
+- rewrite … permanent 永久性重定向，请求日志中的状态码为301
+- rewrite … redirect 临时重定向，请求日志中的状态码为302
 
 ## 六、代理
 
@@ -491,7 +492,7 @@ upstream myserver{
     server {
       # 监听80端口
         listen 80;   
-    	#location块
+     #location块
         location / {
 # 反向代理到上面的两台服务器 写上自定义的名称
         proxy_pass http://myserver;
@@ -513,8 +514,8 @@ weight 代表权重默认为 1,权重越高被分配的客户端越多。
 
 ```conf
 upstream myserver { 
-	server ip:8081 weight=1 ;
-	server ip:8082 weight=2 ;
+ server ip:8081 weight=1 ;
+ server ip:8082 weight=2 ;
 }
 server {  
     listen       80;  
@@ -532,8 +533,8 @@ server {
 ```conf
 #配置负载均衡的服务器和端口
 upstream myserver { 
-	server ip:8081;
-	server ip:8082;
+ server ip:8081;
+ server ip:8082;
     ip_hash;
 }
 server {  
@@ -553,8 +554,8 @@ server {
 ```conf
 #配置负载均衡的服务器和端口
 upstream myserver {   
-	server ip:8081;
-	server ip:8082;
+ server ip:8081;
+ server ip:8082;
     fair;
 }
 server {  
