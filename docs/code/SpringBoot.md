@@ -1441,3 +1441,469 @@ public String upload(@RequestParam("email") String email,
    - 参数解析器来解析请求中的文件内容封装成 `MultipartFile`；
    - 将 `request` 中文件信息封装为一个 `Map` ； `MultiValueMap<String, MultipartFile>`。
 4. `FileCopyUtils`：实现文件流的拷贝。
+
+## 异常处理
+
+### 默认规则
+
+- 默认情况下，SpringBoot 提供 `/error` 处理所有错误的映射；
+
+- 对于机器客户端，它将生成 `JSON` 响应，其中包含错误，`HTTP` 状态和异常消息的详细信息；
+
+- 对于浏览器客户端，响应一个 `whitelabel` 错误视图，以 `HTML` 格式呈现相同的数据；
+
+- 要完全替换默认行为，可以实现 `ErrorController` 并注册该类型的 `Bean` 定义，或添加 `ErrorAttributes` 类型的组件以使用现有机制但替换其内容。
+
+- `error/` 下的 `4xx`，`5xx` 页面会被自动解析，可用于自定义错误页，有错误异常时会精确匹配错误状态码页面，没有就找 4xx.html，如果都没有就触发白页。
+
+  ![error](../image/SpringBoot/error.png)
+
+### 自定义错误规则
+
+1. 自定义错误页面：
+
+   `error/404.html`、`error/5xx.html`
+
+2. `@ControllerAdvice + @ExceptionHandler` 处理全局异常，底层是 `ExceptionHandlerExceptionResolver` 支持的；
+
+3. `@ResponseStatus + 自定义异常`：底层是 `ResponseStatusExceptionResolver` ，把 `responsestatus` 注解的信息底层调用 `response.sendError(statusCode, resolvedReason)`，`tomcat` 发送的 `/error`；
+
+4. `Spring` 底层的异常，如参数类型转换异常： `DefaultHandlerExceptionResolver` 处理框架底层的异常；
+
+   - `response.sendError(HttpServletResponse.SC_BAD_REQUEST, ex.getMessage());`。
+
+5. 自定义实现 `HandlerExceptionResolver` 处理异常，可以作为默认的全局异常处理规则；
+
+6. `ErrorViewResolver` 实现自定义处理异常；
+
+   - `response.sendError`，`error` 请求就会转给 `controller`；
+   - 你的异常没有任何人能处理，`tomcat` 底层 `response.sendError`，`error` 请求就会转给 `controller`；
+   - `basicErrorController` 要去的页面地址是 `ErrorViewResolver`。
+
+### 异常处理步骤流程
+
+1. 执行目标方法，目标方法运行期间有任何异常都会被`catch`、而且标志当前请求结束；并且用 `dispatchException`；
+2. 进入视图解析流程
+   `processDispatchResult(processedRequest, response, mappedHandler, mv, dispatchException);`
+3. `mv = processHandlerException`；处理`handler`发生的异常，处理完成返回`ModelAndView`；
+   - 遍历所有的 `handlerExceptionResolvers`，看谁能处理当前异常【`HandlerExceptionResolver`处理器异常解析器】
+   - 系统默认的异常解析器
+
+## Web 原生组件注入
+
+### 使用 Servlet API
+
+```java
+// 指定原生 Servlet 组件都放在那里。
+@ServletComponentScan(basePackages = "com.atguigu.admin")
+// 效果：直接响应，没有经过 Spring 的拦截器
+@WebServlet(urlPatterns = "/my")
+// 拦截器
+@WebFilter(urlPatterns={"/css/*","/images/*"})
+// 监听器
+@WebListener
+```
+
+::: tip 拓展
+
+`DispatchServlet` 如何注册进来：
+
+- 容器中自动配置了 `DispatcherServlet`  属性绑定到 `WebMvcProperties`；对应的配置文件配置项是 `spring.mvc`。
+- 通过 `ServletRegistrationBean<DispatcherServlet>` 把 `DispatcherServlet`  配置进来。
+- 默认映射的是 `/` 路径。
+
+:::
+
+### 使用 RegistrationBean
+
+`ServletRegistrationBean`,`FilterRegistrationBean`,`ServletListenerRegistrationBean`
+
+```java
+@Configuration
+public class MyRegistConfig {
+
+    @Bean
+    public ServletRegistrationBean myServlet(){
+        MyServlet myServlet = new MyServlet();
+
+        return new ServletRegistrationBean(myServlet,"/my","/my02");
+    }
+
+
+    @Bean
+    public FilterRegistrationBean myFilter(){
+
+        MyFilter myFilter = new MyFilter();
+//        return new FilterRegistrationBean(myFilter,myServlet());
+        FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean(myFilter);
+        filterRegistrationBean.setUrlPatterns(Arrays.asList("/my","/css/*"));
+        return filterRegistrationBean;
+    }
+
+    @Bean
+    public ServletListenerRegistrationBean myListener(){
+        MySwervletContextListener mySwervletContextListener = new MySwervletContextListener();
+        return new ServletListenerRegistrationBean(mySwervletContextListener);
+    }
+}
+```
+
+## 数据访问
+
+### 导入 JDBC 场景
+
+```xml
+<dependency>
+   <groupId>org.springframework.boot</groupId>
+   <artifactId>spring-boot-starter-data-jdbc</artifactId>
+</dependency>
+```
+
+### 导入 mysql 驱动
+
+```xml
+<dependency>
+   <groupId>mysql</groupId>
+   <artifactId>mysql-connector-java</artifactId>
+</dependency>
+```
+
+### 修改 JDBC 配置项
+
+```yaml
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/db_account
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+  jdbc:
+    template:
+      query-timeout: 3
+      # 3 秒没结果，就超时
+
+```
+
+### JDBC 测试
+
+```java
+@Slf4j
+@SpringBootTest
+class MysqlTest {
+
+    @Autowired
+    JdbcTemplate jdbcTemplate;
+
+    @Test
+    void contextLoads() {
+
+        Long aLong = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM `table_test`", Long.class);
+        log.info("记录总数：{}",aLong);
+    }
+
+}
+```
+
+## 使用 Druid 数据源
+
+> [Druid](https://github.com/alibaba/druid)
+
+### 创建数据源
+
+```xml
+<dependency>
+   <groupId>com.alibaba</groupId>
+   <artifactId>druid</artifactId>
+   <version>1.2.8</version>
+</dependency>
+```
+
+### 修改 Druid 配置项
+
+```yaml
+datasource:
+    url: jdbc:mysql://localhost:3306/db_account
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+```
+
+```java
+@Configuration
+public class DruidConfig {
+
+   @ConfigurationProperties(prefix = "spring.datasource")
+   @Bean
+   public DataSource druid() {
+      return new DruidDataSource();
+   }
+
+   @Bean
+   public JdbcTemplate jdbcTemplate(@Qualifier("druid") DataSource druid) {
+      return new JdbcTemplate(druid);
+   }
+
+}
+```
+
+### 使用官方 starter 方式
+
+#### 引入 starter
+
+```xml
+<dependency>
+   <groupId>com.alibaba</groupId>
+   <artifactId>druid-spring-boot-starter</artifactId>
+   <version>1.2.8</version>
+</dependency>
+```
+
+#### 配置示例
+
+```yaml
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/db_account
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+    druid:
+      aop-patterns: com.atguigu.admin.*  #监控SpringBean
+      filters: stat,wall     # 底层开启功能，stat（sql监控），wall（防火墙）
+
+      stat-view-servlet:   # 配置监控页功能
+        enabled: true
+        login-username: admin
+        login-password: admin
+        resetEnable: false
+
+      web-stat-filter:  # 监控web
+        enabled: true
+        urlPattern: /*
+        exclusions: '*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*'
+
+      filter:
+        stat:    # 对上面filters里面的stat的详细配置
+          slow-sql-millis: 1000
+          logSlowSql: true
+          enabled: true
+        wall:
+          enabled: true
+          config:
+            drop-table-allow: false
+```
+
+## MyBatis
+
+### 引入 MyBatis 依赖
+
+```xml
+<dependency>
+   <groupId>org.mybatis.spring.boot</groupId>
+   <artifactId>mybatis-spring-boot-starter</artifactId>
+   <version>2.1.4</version>
+</dependency>
+<dependency>
+   <groupId>mysql</groupId>
+   <artifactId>mysql-connector-java</artifactId>
+</dependency>
+```
+
+### 配置 MyBatis 数据源
+
+```yaml
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/db_account
+    username: root
+    password: 123456
+```
+
+### 使用 MyBatis 注解
+
+```java
+@Mapper
+public interface UserMapper {
+    @Select("select * from t_user where id = #{id}")
+    User findById(Integer id);
+}
+```
+
+## MyBatis Plus
+
+### 引入 MyBatis Plus 依赖
+
+```xml
+<dependency>
+   <groupId>com.baomidou</groupId>
+   <artifactId>mybatis-plus-boot-starter</artifactId>
+   <version>3.4.1</version>
+</dependency>
+<dependency>
+   <groupId>mysql</groupId>
+   <artifactId>mysql-connector-java</artifactId>
+</dependency>
+```
+
+### 配置 MyBatis Plus 数据源
+
+```yaml
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/db_account
+    username: root
+    password: 123456
+```
+
+### MyBatis Plus 示例
+
+只需要我们的 `Mapper` 继承 `BaseMapper` 就可以拥有 `crud` 能力。
+
+```java
+@Mapper
+public interface UserMapper extends BaseMapper<User> {}
+```
+
+### 注解与配置
+
+- 如果数据库的表名与类名不匹配，则可以使用`@TableName`注解指定表名。
+
+   ```java
+   @TableName("t_user")
+   ```
+
+- 如果数据库的字段名与类中的属性名不匹配，则可以使用`@TableField`注解指定字段名。
+
+   ```java
+   @TableField("user_name")
+   ```
+
+  也可以开启⾃动驼峰命名规则（camel case）映射，从经典数据库列名 A_COLUMN（下划线命名） 到 经典 Java 属性名 aColumn（驼峰命名） 的类似映射。
+
+   ```yaml
+   mybatis-plus:
+     configuration:
+       map-underscore-to-camel-case: true
+   ```
+
+- 使用 `@TableId` 注解指定主键字段。
+
+   ```java
+   @TableId("id")
+   ```
+
+- `@TableField(fill = FieldFill.INSERT)` 表示在插入时填充字段。
+
+- `@TableField(fill = FieldFill.UPDATE)` 表示在更新时填充字段。
+
+- `@TableField(condition = SqlCondition.LIKE)` 表示模糊查询字段。
+
+- `@TableField(exist = false)` 表示该字段在数据库中不存在。
+
+- 开启数据库的 `ID` 自增策略：
+
+   ```yaml
+   mybatis-plus:
+     global-config:
+      db-config:
+         id-type: auto
+   ```
+
+- 开启 `log4j` 日志输出：
+
+   ```yaml
+   mybatis-plus:
+     configuration:
+      log-impl: org.apache.ibatis.logging.log4j2.Log4j2Impl
+   ```
+
+## CRUD 功能
+
+`CRUD` 其实是数据库基本操作中的 `Create` (创建)、`~~Read~~` `Retrieve` (读取)、`Update` (更新)、`Delete` (删除)。
+
+## Redis
+
+### 引入 Redis 依赖
+
+```xml
+<dependency>
+   <groupId>org.springframework.boot</groupId>
+   <artifactId>spring-boot-starter-data-redis</artifactId>
+</dependency>
+```
+
+### 配置 Redis
+
+```yaml
+spring:
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    # password: 123456 # 有密码时配置
+    # database: 0
+    lettuce:
+      pool:
+        # 最大连接数
+        max-active: 8
+        # 当池耗尽时，连接分配在引发异常之前应阻塞的最长时间。
+        max-wait: -1
+        # 池中“空闲”连接的最大数量
+        max-idle: 8
+        # 池中要维护的最小空闲连接数的目标
+        min-idle: 0
+```
+
+:::tip 提示
+
+- `Redis` 默认情况下，`maxIdle` 值为 `8`，`maxTotal` 值为 `8`，`maxWaitMillis` 值为 `-1`。
+- 负值表示没有限制。
+
+:::
+
+### RedisTemplate 与 Lettuce
+
+```java
+@Test
+void testRedis(){
+   ValueOperations<String, String> operations = redisTemplate.opsForValue();
+
+   operations.set("hello","world");
+
+   String hello = operations.get("hello");
+   System.out.println(hello);
+}
+```
+
+## Jedis
+
+### 引入 Jedis 依赖
+
+```xml
+<dependency>
+   <groupId>org.springframework.boot</groupId>
+   <artifactId>spring-boot-starter-data-redis</artifactId>
+</dependency>
+
+<!--        导入jedis-->
+<dependency>
+   <groupId>redis.clients</groupId>
+   <artifactId>jedis</artifactId>
+</dependency>
+```
+
+### 配置 Jedis
+
+```yaml
+spring:
+  redis:
+     host: 127.0.0.1
+     port: 6379
+     # password: 123456 # 有密码时配置
+     client-type: jedis
+     jedis:
+       pool:
+       max-active: 10
+```
