@@ -1824,6 +1824,8 @@ public interface IUserDao {
 
 ## MyBatis Plus
 
+> [MyBatis Plus](https://baomidou.com/pages/24112f/)
+
 ### 引入 MyBatis Plus 依赖
 
 ```xml

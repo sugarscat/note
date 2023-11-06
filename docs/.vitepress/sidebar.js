@@ -15,6 +15,7 @@ export default  [
                 {text: 'Ubuntu 安装开发环境', link: '/code/Ubuntu安装开发环境.md'},
                 {text: 'VS Code 基本使用', link: '/code/vs-code.md'},
                 {text: 'Vue 官方文档', link: 'https://cn.vuejs.org/guide/introduction.html'},
+                {text: 'Vuex 官方文档', link: 'https://vuex.vuejs.org/zh/'},
                 {text: '企业级开发', link: '/code/企业级开发.md'},
                 {text: 'SpringBoot', link: '/code/SpringBoot.md'},
                 {text: '机器学习', link: '/code/MachineLearning.md'},
