@@ -177,7 +177,7 @@ Spring 的 @Bean 注解用于告诉方法，产生一个 Bean 对象，然后这
     - `proxyBeanMethods`：代理 `bean` 的方法；
     - `Full(proxyBeanMethods = true)`：保证每个 `@Bean` 方法被调用多少次返回的组件都是单实例的；
     - `Lite(proxyBeanMethods = false)`：每个 `@Bean` 方法被调用多少次返回的组件都是新创建的；
-    - 组件依赖必须使用 `Full` 模式默认。其他默认是否 `Lite` 模式。
+    - 组件依赖必须使用 `Full` 模式默认，其他默认是否 `Lite` 模式。
 
    ```java
    @Configuration(proxyBeanMethods = false) // 告诉 SpringBoot 这是一个配置类 == 配置文件
@@ -218,7 +218,7 @@ Spring 的 @Bean 注解用于告诉方法，产生一个 Bean 对象，然后这
          // 2、查看容器里面的组件
          String[] names = run.getBeanDefinitionNames();
          for (String name : names) {
-         System.out.println(name);
+          System.out.println(name);
          }
          // 3、从容器中获取组件
          Pet tom01 = run.getBean("tom", Pet.class);
@@ -262,6 +262,48 @@ Spring 的 @Bean 注解用于告诉方法，产生一个 Bean 对象，然后这
    ```
 
    :::
+
+### @Service
+
+此注注解属于业务逻辑层，`service`或者`manager`层，默认按照名称进行装配，如果名称可以通过`name`属性指定，如果没有`name`属性，注解写在字段上时，默认去字段名进行查找，如果注解写在`setter`方法上，默认按照方法属性名称进行装配，当找不到匹配的`bean`时，才按照类型进行装配，如果`name`名称一旦指定就会按照名称进行装配。
+
+```java
+package com.example.demo.service;
+
+import com.example.demo.entity.User;
+import com.example.demo.repository.UserRepository;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class UserService {
+    
+    @Autowired
+    UserRepository userRepository;
+
+    public boolean isExist(String username){
+        User user =  getByusername(username);
+        return null!=user;
+    }
+
+    public User getByusername(String username) {
+        return userRepository.findByUsername(username);
+    }
+
+    public User get(String username,String password){
+        return userRepository.getByUsernameAndPassword(username, password);
+    }
+
+    public void add(User user) {
+        userRepository.save(user);
+    }
+
+}
+```
+
+- `Service`层叫服务层，被称为服务，可以理解就是对一个或多个`DAO`进行的再次封装，封装成一个服务，所以这里也就不会是一个原子操作了，需要事物控制。
+- `service`层主要负责业务模块的应用逻辑应用设计，同样是首先设计接口，再设计其实现类，接着再Spring的配置文件中配置其实现的关联。
 
 ### @Conditional 条件装配
 
@@ -622,7 +664,7 @@ person:
 
 #### @Autowired
 
-是一种注解，可以对成员变量、方法和构造函数进行标注，来完成自动装配的工作，@Autowired标注可以放在成员变量上，也可以放在成员变量的 set 方法上，也可以放在任意方法上表示，自动执行当前方法，如果方法有参数，会在IOC容器中自动寻找同类型参数为其传值。
+是一种注解，可以对成员变量、方法和构造函数进行标注，来完成自动装配的工作，`@Autowired`标注可以放在成员变量上，也可以放在成员变量的 `set` 方法上，也可以放在任意方法上表示，自动执行当前方法，如果方法有参数，会在`IOC`容器中自动寻找同类型参数为其传值。
 
 ```java
 @RestController
@@ -1723,11 +1765,60 @@ spring:
 
 ### 使用 MyBatis 注解
 
+| 注解            | 说明                                   |
+| --------------- | -------------------------------------- |
+| @Insert         | 实现新增                               |
+| @Delete         | 实现删除                               |
+| @Update         | 实现更新                               |
+| @Select         | 实现查询                               |
+| @Result         | 实现结果集封装                         |
+| @Results        | 可以与@Result 一起使用，封装多个结果集 |
+| @ResultMap      | 实现引用@Results 定义的封装            |
+| @One            | 实现一对一结果集封装                   |
+| @Many           | 实现一对多结果集封装                   |
+| @SelectProvider | 实现动态 SQL 映射                      |
+| @CacheNamespace | 实现注解二级缓存的使用                 |
+
 ```java
 @Mapper
 public interface UserMapper {
     @Select("select * from t_user where id = #{id}")
     User findById(Integer id);
+}
+```
+
+### @Result 中的属性
+
+| 属性     | 介绍                                                |
+| -------- | --------------------------------------------------- |
+| id       | 是否是主键字段                                      |
+| column   | 数据库的列名                                        |
+| property | 需要装配的属性名                                    |
+| one      | 需要使用的@One 注解（@Result（one=@One）（）））    |
+| many     | 需要使用的@Many 注解（@Result（many=@many）（））） |
+
+```java
+public interface IUserDao {
+   @Select("select * from user")
+   @Results(id="userMap",value={
+         @Result(id = true,column = "id",property = "userId"),
+         @Result(column = "id",property = "userId"),
+         @Result(column = "username",property = "userName"),
+         @Result(column = "sex",property = "userSex"),
+         @Result(column = "birthday",property = "userBirthday")
+
+   })
+   List<User> findAll();
+
+   /**
+     * 根据id查询用户
+     * @param userId
+     * @return
+     */
+    @Select("select * from user where id=#{id}")
+    //@ResultMap(value={"userMap"})
+    @ResultMap("userMap")
+    User findById(Integer userId);
 }
 ```
 
@@ -1822,7 +1913,7 @@ public interface UserMapper extends BaseMapper<User> {}
 
 ## CRUD 功能
 
-`CRUD` 其实是数据库基本操作中的 `Create` (创建)、`~~Read~~` `Retrieve` (读取)、`Update` (更新)、`Delete` (删除)。
+`CRUD` 其实是数据库基本操作中的 `Create` (创建)、~~`Read`~~ `Retrieve` (读取)、`Update` (更新)、`Delete` (删除)。
 
 ## Redis
 
