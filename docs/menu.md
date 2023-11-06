@@ -16,6 +16,8 @@
 
 [Vue 官方文档](https://cn.vuejs.org/guide/introduction.html)
 
+[Vuex 官方文档](https://vuex.vuejs.org/zh/)
+
 [企业级开发](./code/企业级开发.md)
 
 [SpringBoot](./code/SpringBoot.md)
