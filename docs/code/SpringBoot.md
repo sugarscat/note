@@ -1839,8 +1839,6 @@ public class UserServiceImpl implements UserService {
 }
 ```
 
-
-
 ## MyBatis Plus
 
 > [MyBatis Plus](https://baomidou.com/pages/24112f/)
