@@ -1822,6 +1822,25 @@ public interface IUserDao {
 }
 ```
 
+```java
+@Slf4j
+@Service
+public class UserServiceImpl implements UserService {
+
+    @Autowired
+    UserMapper userMapper;
+
+    @Override
+    public boolean login(Integer userId) {
+        User user = userMapper.findById(userId);
+        log.info("{}", user);
+        return false;
+    }
+}
+```
+
+
+
 ## MyBatis Plus
 
 > [MyBatis Plus](https://baomidou.com/pages/24112f/)
@@ -1855,9 +1874,41 @@ spring:
 
 只需要我们的 `Mapper` 继承 `BaseMapper` 就可以拥有 `crud` 能力。
 
+#### 基本示例
+
 ```java
 @Mapper
 public interface UserMapper extends BaseMapper<User> {}
+```
+
+```java
+@Slf4j
+@Service
+public class UserServiceImpl implements UserService {
+
+    @Autowired
+    UserMapper userMapper;
+
+    @Override
+    public boolean login(String username, String password) {
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("name", username);
+        queryWrapper.eq("password", password);
+        List<User> users = userMapper.selectList(queryWrapper);
+        log.info("{}", users);
+        return false;
+    }
+}
+```
+
+#### 分页示例
+
+```java
+public View getView() {
+        Page<SystemLog> logPage = new Page<>(0, 10);
+        List<SystemLog> logs = logMapper.selectPage(logPage, null).getRecords();
+        return new View(SystemLog);
+    }
 ```
 
 ### 注解与配置
