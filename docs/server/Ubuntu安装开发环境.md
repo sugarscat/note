@@ -67,20 +67,20 @@ nohup java -jar 包名.jar  --server.port=8080 > 包名.log &
 
 ## 二、安装 Python
 
-### 1. 下载
+### 1.下载
 
 ```sh
 # 以3.8.1版本为例
 wget https://www.python.org/ftp/python/3.8.10/Python-3.8.10.tgz
 ```
 
-### 2. 解压
+### 2.解压
 
 ```sh
 tar -zxvf Python-3.8.10.tgz
 ```
 
-### 3. 编译
+### 3.编译
 
 ```sh
 # 下载编译环境
@@ -99,4 +99,3 @@ sudo ln -s /usr/local/pyhton3.8/bin/pyhton3.8 /usr/bin/python
 # 若提示/usr/bin/python已存在， 删除即可
 sudo rm /usr/bin/python
 ```
-

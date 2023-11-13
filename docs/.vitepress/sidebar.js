@@ -11,8 +11,6 @@ export default  [
                 {text: 'MySQL', link: '/code/MySQL.md'},
                 {text: 'Java 连接MySQL数据库', link: '/code/MySQL-connector-java.md'},
                 {text: 'Linux 命令', link: '/code/Linux-command.md'},
-                {text: 'Nginx', link: '/code/Nginx.md'},
-                {text: 'Ubuntu 安装开发环境', link: '/code/Ubuntu安装开发环境.md'},
                 {text: 'VS Code 基本使用', link: '/code/vs-code.md'},
                 {text: 'Vue 官方文档', link: 'https://cn.vuejs.org/guide/introduction.html'},
                 {text: 'Vuex 官方文档', link: 'https://vuex.vuejs.org/zh/'},
@@ -26,6 +24,8 @@ export default  [
             collapsible: true,
             collapsed: true,
             items: [
+                {text: 'Nginx', link: '/server/Nginx.md'},
+                {text: 'Ubuntu 安装开发环境', link: '/server/Ubuntu安装开发环境.md'},
                 {text: 'ACME 申请证书', link: '/server/acme.md'},
 
             ]

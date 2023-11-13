@@ -8,10 +8,6 @@
 
 [Linux 命令](./code/Linux-command.md)
 
-[Nginx](./code/Nginx.md)
-
-[Ubuntu 安装开发环境](./code/Ubuntu安装开发环境.md)
-
 [VS Code 基本使用](./code/vs-code.md)
 
 [Vue 官方文档](https://cn.vuejs.org/guide/introduction.html)
@@ -25,6 +21,10 @@
 [机器学习](./code/MachineLearning.md)
 
 ## 服务器
+
+[Nginx](./server/Nginx.md)
+
+[Ubuntu 安装开发环境](./server/Ubuntu安装开发环境.md)
 
 [ACME 申请证书](/server/acme.md)
 
