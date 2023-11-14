@@ -15,6 +15,8 @@ export default  [
                 {text: 'Vue 官方文档', link: 'https://cn.vuejs.org/guide/introduction.html'},
                 {text: 'Vuex 官方文档', link: 'https://vuex.vuejs.org/zh/'},
                 {text: '企业级开发', link: '/code/企业级开发.md'},
+                {text: 'Spring 基础', link: '/code/Spring基础.md'},
+                {text: 'SpringMVC', link: '/code/SpringMVC.md'},
                 {text: 'SpringBoot', link: '/code/SpringBoot.md'},
                 {text: '机器学习', link: '/code/MachineLearning.md'},
             ]
