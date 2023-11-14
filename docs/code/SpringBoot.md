@@ -263,6 +263,10 @@ Spring 的 @Bean 注解用于告诉方法，产生一个 Bean 对象，然后这
 
    :::
 
+#### @Autowired
+
+是一种注解，可以对成员变量、方法和构造函数进行标注，来完成自动装配的工作，`@Autowired`标注可以放在成员变量上，也可以放在成员变量的 `set` 方法上，也可以放在任意方法上表示，自动执行当前方法，如果方法有参数，会在`IOC`容器中自动寻找同类型参数为其传值。
+
 ### @Service
 
 此注注解属于业务逻辑层，`service`或者`manager`层，默认按照名称进行装配，如果名称可以通过`name`属性指定，如果没有`name`属性，注解写在字段上时，默认去字段名进行查找，如果注解写在`setter`方法上，默认按照方法属性名称进行装配，当找不到匹配的`bean`时，才按照类型进行装配，如果`name`名称一旦指定就会按照名称进行装配。
@@ -626,7 +630,7 @@ public class Pet {
 }
 ```
 
---> `application.xml`
+`application.yaml`
 
 ```yaml
 person:
@@ -661,24 +665,6 @@ person:
 单引号会转义：`/n` 不会被视为换行，视为字符串。
 
 > 将 `/n` 转义成字符串。
-
-#### @Autowired
-
-是一种注解，可以对成员变量、方法和构造函数进行标注，来完成自动装配的工作，`@Autowired`标注可以放在成员变量上，也可以放在成员变量的 `set` 方法上，也可以放在任意方法上表示，自动执行当前方法，如果方法有参数，会在`IOC`容器中自动寻找同类型参数为其传值。
-
-```java
-@RestController
-public class PersonController {
-    @Autowired
-    Person person;
-    // 自动绑定 application.xml 中的值
-    
-    @RequestMapping("/person")
-    public Person person() {
-        return person;
-    }
-}
-```
 
 #### 配置提示
 
