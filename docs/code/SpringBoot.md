@@ -263,7 +263,7 @@ Spring 的 @Bean 注解用于告诉方法，产生一个 Bean 对象，然后这
 
    :::
 
-#### @Autowired
+### @Autowired
 
 是一种注解，可以对成员变量、方法和构造函数进行标注，来完成自动装配的工作，`@Autowired`标注可以放在成员变量上，也可以放在成员变量的 `set` 方法上，也可以放在任意方法上表示，自动执行当前方法，如果方法有参数，会在`IOC`容器中自动寻找同类型参数为其传值。
 
@@ -478,12 +478,16 @@ public CharacterEncodingFilter characterEncodingFilter() {}
 
 ## 开发小技巧
 
-### Lombok 简化JavaBean开发
+### Lombok 简化 JavaBean 开发
 
-```properties
+导包：
+
+```xml
 <dependency>
    <groupId>org.projectlombok</groupId>
    <artifactId>lombok</artifactId>
+   <version>RELEASE</version>
+   <scope>compile</scope>
 </dependency>
 ```
 
@@ -509,7 +513,53 @@ public class User {
 }
 ```
 
-### 简化日志开发
+### @Slf4j 简化日志开发
+
+导包：
+
+```xml
+<dependency>
+    <groupId>org.slf4j</groupId>
+    <artifactId>slf4j-api</artifactId>
+    <version>2.0.7</version>
+</dependency>
+<dependency>
+    <groupId>org.slf4j</groupId>
+    <artifactId>slf4j-simple</artifactId>
+    <version>2.0.7</version>
+</dependency>
+```
+
+配置文件：
+
+```properties
+### 设置###
+log4j.rootLogger = info,stdout,D,E
+
+### 输出信息到控制抬 ###
+log4j.appender.stdout = org.apache.log4j.ConsoleAppender
+log4j.appender.stdout.Target = System.out
+log4j.appender.stdout.layout = org.apache.log4j.PatternLayout
+log4j.appender.stdout.layout.ConversionPattern = [%-5p] %d{yyyy-MM-dd HH:mm:ss,SSS} method:%l%n%m%n
+
+### 输出DEBUG 级别以上的日志到=logs/error.log ###
+log4j.appender.D = org.apache.log4j.DailyRollingFileAppender
+log4j.appender.D.File = logs/log.log
+log4j.appender.D.Append = true
+log4j.appender.D.Threshold = DEBUG 
+log4j.appender.D.layout = org.apache.log4j.PatternLayout
+log4j.appender.D.layout.ConversionPattern = %-d{yyyy-MM-dd HH:mm:ss}  [ %t:%r ] - [ %p ]  %m%n
+
+### 输出ERROR 级别以上的日志到=logs/error.log ###
+log4j.appender.E = org.apache.log4j.DailyRollingFileAppender
+log4j.appender.E.File =logs/error.log 
+log4j.appender.E.Append = true
+log4j.appender.E.Threshold = ERROR 
+log4j.appender.E.layout = org.apache.log4j.PatternLayout
+log4j.appender.E.layout.ConversionPattern = %-d{yyyy-MM-dd HH:mm:ss}  [ %t:%r ] - [ %p ]  %m%n
+```
+
+示例：
 
 ```java
 @Slf4j  // 简化日志开发
@@ -519,6 +569,30 @@ public class HelloController {
     public String handle01(@RequestParam("name") String name){
         log.info("请求进来了....");  // 简化日志开发
         return "Hello, Spring Boot 2!"+"你好："+name;
+    }
+}
+```
+
+### junit 测试
+
+导包：
+
+```xml
+<dependency>
+    <groupId>junit</groupId>
+    <artifactId>junit</artifactId>
+    <version>4.13.1</version>
+</dependency>
+```
+
+示例：
+
+```java
+public class ApplicationContextTest {
+
+    @Test
+    public void test() {
+        // 代码块
     }
 }
 ```
@@ -1576,7 +1650,7 @@ public class MyRegistConfig {
 }
 ```
 
-## 数据访问
+## 数据访问 ↓↓↓
 
 ### 导入 JDBC 场景
 

@@ -94,3 +94,17 @@ a {
     background: var(--color-neutral9); /* 设置滑块颜色 */
     
 }
+
+.VPNavBar .container .content-body {
+    -webkit-backdrop-filter: saturate(50%) blur(8px) !important;
+    backdrop-filter: saturate(50%) blur(8px) !important;
+    background: rgba(255,255,255,.7) !important;
+}
+
+.dark .VPNavBar .container .content-body {
+    background: #1e1e20c4 !important;
+}
+
+.VPNavBar .container .content .curtain::before {
+    display: none;
+}
