@@ -530,12 +530,12 @@ public class User {
 </dependency>
 ```
 
-配置文件：
+配置文件 `log4j.properties`：
 
 ```properties
 ### 设置###
 log4j.rootLogger = info,stdout,D,E
-
+log4j.appender.YourAppender.Encoding = UTF-8
 ### 输出信息到控制抬 ###
 log4j.appender.stdout = org.apache.log4j.ConsoleAppender
 log4j.appender.stdout.Target = System.out
