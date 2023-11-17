@@ -60,7 +60,7 @@ class MysqlTest {
 }
 ```
 
-## 使用 Druid 数据源
+## Druid
 
 > [Druid](https://github.com/alibaba/druid)
 
