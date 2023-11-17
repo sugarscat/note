@@ -18,6 +18,7 @@ export default  [
                 {text: 'Spring 基础', link: '/code/Spring基础.md'},
                 {text: 'SpringMVC', link: '/code/SpringMVC.md'},
                 {text: 'SpringBoot', link: '/code/SpringBoot.md'},
+                {text: 'SpringBoot 数据访问', link: '/code/SpringBoot数据访问.md'},
                 {text: 'SpringBoot-vue', link: '/code/SpringBoot-Vue.md'},
                 {text: '机器学习', link: '/code/MachineLearning.md'},
             ]
