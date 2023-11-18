@@ -316,11 +316,16 @@ public class UserServiceImpl implements UserService {
 #### 分页示例
 
 ```java
-public View getView() {
-        Page<SystemLog> logPage = new Page<>(0, 10);
-        List<SystemLog> logs = logMapper.selectPage(logPage, null).getRecords();
-        return new View(SystemLog);
-    }
+public Map<String, Object> getAllEmailAccounts(Integer pageNum, Integer pageSize) {
+    Map<String, Object> data =  new HashMap<>();
+    pageNum = (pageNum-1) * pageSize;
+    Page<EmailAccount> acountPage = new Page<>(pageNum, pageSize);
+    Page<EmailAccount> emailAccountPage = emailAccountMapper
+            .selectPage(acountPage, null);
+    data.put("total", emailAccountPage.getTotal());
+    data.put("email", emailAccountPage.getRecords());
+    return data;
+}
 ```
 
 ### 注解与配置
