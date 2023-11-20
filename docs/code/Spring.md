@@ -427,6 +427,10 @@ public void myCarTest() {
 
 `AOP` 全称为 `Aspect Oriented Programming`，即面向切面的编程。这种编程方式可以为某些方法提供行为增强，亦或者是行为监控能力。通过对切片统一编程可以在相比于不使用 `AOP` 的情况下减少了重复代码的开发量，同时使得代码功能更加明确。
 
+## AOP 原理
+
+- 将复杂的需求分解出不同方面，将散布在系统中
+
 ## 入门案例
 
 1. 导入依赖
@@ -639,7 +643,7 @@ public void myCarTest() {
 | `<aop:after-running>` | 配置返回通知，在目标方法执行之后调用通知                     |
 | `<aop:after-throw>`   | 配置异常通知，在方法抛出异常后实施增强，可以应用于处理异常记录日志等功能 |
 
-## 常用注解 ↓↓↓
+## 常用注解 ←→
 
 ### @Component
 
@@ -691,7 +695,7 @@ public void myCarTest() {
 
 根据类型注入 `bean`，假如有多个同类型的  `bean` 对象，再根据名称去匹配 `bean` 对象。
 
-;;;tip 扩展
+:::tip 扩展
 
 `@Qualifier` 注解会改变 `Autowired` 注入策略，去 IOC 容器中获取 `bean` 对象，使用它时的配置名称必须在  IOC 容器中有所配置。
 
