@@ -427,9 +427,141 @@ public void myCarTest() {
 
 `AOP` 全称为 `Aspect Oriented Programming`，即面向切面的编程。这种编程方式可以为某些方法提供行为增强，亦或者是行为监控能力。通过对切片统一编程可以在相比于不使用 `AOP` 的情况下减少了重复代码的开发量，同时使得代码功能更加明确。
 
-## AOP 原理
+## AOP底层
 
-- 将复杂的需求分解出不同方面，将散布在系统中
+> 使用动态代理
+
+1. 第一种情况是有接口的情况，使用JDK动态代理
+
+   创建接口实现类代理对象，增强类的方法。
+
+
+2. 第二种情况是没有接口的情况，使用CGLIB动态代理
+
+   创建子类的代理对象，增强类的方法。
+
+## JDK 动态代理
+
+### 使用 JDK 动态代理
+
+> 使用 Proxy 类里面的方法创建代理对象
+
+- 调用 `newProxyInstance` 方法。
+- 该方法有三个参数：
+- 第一个：类加载器。
+- 第二个：增强方法所在的类，这个类实现的接口，支持多个接口。
+- 第三个：实现这个接口 `InvocationHandler`，创建代理对象，写增强方法。
+
+### 编写 JDK 动态代理代码
+
+1. 创建接口，定义方法
+
+   ```java
+   package cn.sugarscat.example.mapper;
+   public interface UserMapper {
+       public int add(int a, int b);
+       public String update(String id);
+   }
+   ```
+
+2. 创建接口实现类，实现方法
+
+   ```java
+   package cn.sugarscat.example.mapper;
+   
+   public class UserMapperImpl implements UserMapper {
+       @Override
+       public int add(int a, int b) {
+           System.out.println("add方法执行了...");
+           return a + b;
+       }
+   
+       @Override
+       public String update(String id) {
+           System.out.println("update方法执行了");
+           return "id:" + id;
+       }
+   }
+   ```
+
+3. 使用 `Proxy` 类创建接口代理对象
+
+   ```java
+   package cn.sugarscat.example.mapper;
+   
+   import java.lang.reflect.InvocationHandler;
+   import java.lang.reflect.Method;
+   import java.lang.reflect.Proxy;
+   import java.util.Arrays;
+   
+   public class JDKProxy {
+       public static void main(String[] args) {
+           // 创建接口实现类代理对象
+           Class[] interfaces = {UserMapper.class};
+   
+           // 这里可以通过IOC控制反转得到对象，但是我这里直接new了
+           UserMapperImpl userMapperImpl = new UserMapperImpl();
+   
+           // 这里要进行AOP了，就是在不进行修改源码的情况，为代码增加逻辑
+   
+           UserMapper userMapper = (UserMapper)Proxy.newProxyInstance(JDKProxy.class.getClassLoader(), interfaces, new UserMapperProxy(userMapperImpl));
+           int result = userMapper.add(1,2);
+           String res = userMapper.update("EDDD-DSSS");
+           System.out.println("result:" + result);
+       }
+   }
+   
+   
+   // 创建代理对象代码
+   class UserMapperProxy implements InvocationHandler {
+       // 1. 把创建的是谁的代理对象，把谁传进来
+       // 有参数的构造
+   
+       private Object object;
+       public UserMapperProxy(Object object) {
+           this.object = object;
+       }
+   
+       // 写增强的逻辑
+       @Override
+       public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+           // 方法之前
+           System.out.println("方法执行之前： " + method.getName() + "传递的参数" + Arrays.toString(args));
+   
+           // 被增强的方法执行
+           Object res = method.invoke(object, args);
+   
+           // 方法之后
+           System.out.println("方法执行之后.."+object);
+   
+           // 返回res，增强的方法
+           return res;
+       }
+   }
+   ```
+
+## AOP术语
+
+1. 连接点
+
+   在一个类中，哪些方法可以被增强,这些方法就叫连接点；
+
+2. 切入点
+
+   实际真正被增强的方法,被称为切入点；
+
+3. 通知(增强)
+   - 实际增强的代码逻辑部分，就是通知；
+   - 通知有多种类型；
+   - 前置通知：被增强的方法前执行；
+   - 后置通知：被增强的方法后执行；
+   - 环绕通知：被增强的方法前后都执行；
+   - 异常通知：被增强的方法出现异常会执行；
+   - 最终通知：类似于finally,永远会执行；
+
+4. 切面
+
+   是动作上的操作，把通知应用到切入点的过程，就叫切面；
 
 ## 入门案例
 
@@ -629,7 +761,7 @@ public void myCarTest() {
    }
    ```
 
-## 配置 AOP 的 XML 元素
+## AOP 的 XML 元素
 
 | 元素                  | 描述                                                         |
 | --------------------- | ------------------------------------------------------------ |
@@ -642,6 +774,100 @@ public void myCarTest() {
 | `<aop:around>`        | 配置环绕通知，在目标方法执行前实施增强，可以应用于日志、事务管理等功能 |
 | `<aop:after-running>` | 配置返回通知，在目标方法执行之后调用通知                     |
 | `<aop:after-throw>`   | 配置异常通知，在方法抛出异常后实施增强，可以应用于处理异常记录日志等功能 |
+
+## 注解案例
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+                             http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!--开启组件扫描-->
+    <context:component-scan base-package="com.demo"/>
+    <!--寻找有@Aspect注解的类,并生成代理对象-->
+    <aop:aspectj-autoproxy/>
+
+</beans>
+```
+
+```java
+@Component
+public class User {
+    public void add(){
+        System.out.println("被增强的类执行了add ...");
+    }
+}
+```
+
+:::tip 提示
+
+```java
+/**
+ * 第一个 * 表示：任意返回类型
+ * 第二个 * 表示：任意方法名
+ * .. 表示：任意参数列表
+ */
+@Before("execution(* com.demo.domain.User.*(..))")
+```
+
+:::
+
+```java
+//增强类,用来增强User类
+@Component
+@Aspect   //生成代理对象
+public class UserProxy {
+
+    // 前置通知
+    // 加上注解和切入点表达式
+    @Before("execution(* com.demo.domain.User.add(..))")
+    public void before(){
+        System.out.println("前置执行 ..");
+    }
+
+    // 后置通知
+    @After("execution(* com.demo.domain.User.add(..))")
+    public void after(){
+        System.out.println("后置执行 ..");
+    }
+
+    // 环绕通知
+    @Around("execution(* com.demo.domain.User.add(..))")
+    public void around(ProceedingJoinPoint point) throws Throwable {
+        System.out.println("环绕前通知 ..");
+        //表示执行被增强的方法
+        point.proceed();
+        System.out.println("环绕后通知 ..");
+    }
+
+    // 异常通知
+    @AfterThrowing("execution(* com.demo.domain.User.add(..))")
+    public void afterThrowing(){
+        System.out.println("异常通知 ..");
+    }
+
+    // 最终通知
+    @AfterReturning("execution(* com.demo.domain.User.add(..))")
+    public void afterReturning(){
+        System.out.println("最终通知 ..");
+    }
+}
+```
+
+```java
+//测试类
+@Test
+public void test(){
+   ApplicationContext context = new ClassPathXmlApplicationContext("bean.xml");
+    User user = context.getBean("user", User.class);
+    user.add();
+}
+```
 
 ## 常用注解 ←→
 
@@ -697,7 +923,7 @@ public void myCarTest() {
 
 :::tip 扩展
 
-`@Qualifier` 注解会改变 `Autowired` 注入策略，去 IOC 容器中获取 `bean` 对象，使用它时的配置名称必须在  IOC 容器中有所配置。
+`@Qualifier` 注解会改变 `Autowired` 注入策略，去 IOC 容器中获取 `bean` 对象，使用它的配置名称时，必须在  IOC 容器中有所配置。
 
 ```java
 @Qualifier("serviceHello")
