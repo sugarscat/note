@@ -777,7 +777,7 @@ person:
 
 ## SpringMVC 配置
 
-[SpringMVC](./SpringMVC.md)
+[SpringMVC](./Spring.md#springmvc-↓↓↓)
 
 ## 静态资源访问
 
