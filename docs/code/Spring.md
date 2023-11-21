@@ -431,12 +431,12 @@ public void myCarTest() {
 
 > 使用动态代理
 
-1. 第一种情况是有接口的情况，使用JDK动态代理
+1. 第一种情况是有接口的情况，使用 JDK 动态代理
 
    创建接口实现类代理对象，增强类的方法。
 
 
-2. 第二种情况是没有接口的情况，使用CGLIB动态代理
+2. 第二种情况是没有接口的情况，使用 CGLIB 动态代理
 
    创建子类的代理对象，增强类的方法。
 
@@ -448,9 +448,9 @@ public void myCarTest() {
 
 - 调用 `newProxyInstance` 方法。
 - 该方法有三个参数：
-- 第一个：类加载器。
-- 第二个：增强方法所在的类，这个类实现的接口，支持多个接口。
-- 第三个：实现这个接口 `InvocationHandler`，创建代理对象，写增强方法。
+  - 第一个：类加载器。
+  - 第二个：增强方法所在的类，这个类实现的接口，支持多个接口。
+  - 第三个：实现这个接口 `InvocationHandler`，创建代理对象，写增强方法。
 
 ### 编写 JDK 动态代理代码
 
@@ -544,26 +544,27 @@ public void myCarTest() {
 
 1. 连接点
 
-   在一个类中，哪些方法可以被增强,这些方法就叫连接点；
+   在一个类中，哪些方法可以被增强，这些方法就叫连接点；
 
 2. 切入点
 
-   实际真正被增强的方法,被称为切入点；
+   实际真正被增强的方法，被称为切入点；
 
-3. 通知(增强)
-   - 实际增强的代码逻辑部分，就是通知；
-   - 通知有多种类型；
+3. 通知（增强）
+
+   >  实际增强的代码逻辑部分，就是通知。
+
    - 前置通知：被增强的方法前执行；
    - 后置通知：被增强的方法后执行；
    - 环绕通知：被增强的方法前后都执行；
    - 异常通知：被增强的方法出现异常会执行；
-   - 最终通知：类似于finally,永远会执行；
+   - 最终通知：类似于 `finally`，永远会执行；
 
 4. 切面
 
    是动作上的操作，把通知应用到切入点的过程，就叫切面；
 
-## 入门案例
+## XML 案例
 
 1. 导入依赖
 
@@ -777,6 +778,8 @@ public void myCarTest() {
 
 ## 注解案例
 
+### 配置
+
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
@@ -804,6 +807,8 @@ public class User {
 }
 ```
 
+### @Before/@After/@Around/@AfterThrowing/@AfterReturning
+
 :::tip 提示
 
 ```java
@@ -813,14 +818,17 @@ public class User {
  * .. 表示：任意参数列表
  */
 @Before("execution(* com.demo.domain.User.*(..))")
+// 同时 * 也可以匹配任意字符
+@After("execution(* com.demo.domain.User.save*(..))")
+// 匹配以 save 开头的方法
 ```
 
 :::
 
 ```java
-//增强类,用来增强User类
+// 增强类,用来增强User类
 @Component
-@Aspect   //生成代理对象
+@Aspect   // 生成代理对象
 public class UserProxy {
 
     // 前置通知
@@ -867,6 +875,16 @@ public void test(){
     User user = context.getBean("user", User.class);
     user.add();
 }
+```
+
+### @Pointcut
+
+```java
+// 公共注解
+@Pointcut("execution(* org.example.dao.UserDao.*(..)")
+public void doAspect(){}
+// 定义通知（前置通知）
+@Before("doAspect()")
 ```
 
 ## SpringMVC ↓↓↓
