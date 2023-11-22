@@ -881,7 +881,7 @@ public void test(){
 
 ```java
 // 公共注解
-@Pointcut("execution(* org.example.dao.UserDao.*(..)")
+@Pointcut("execution(* org.example.dao.UserDao.*(..))")
 public void doAspect(){}
 // 定义通知（前置通知）
 @Before("doAspect()")
@@ -939,7 +939,7 @@ public void doAspect(){}
 
 ### @Controller
 
-组合注解（组合了@Component注解），应用在MVC层（控制层），`DispatcherServle` t会自动扫描注解了此注解的类，然后将 `web` 请求映射到注解了 `@RequestMapping` 的方法上。
+组合注解（组合了 `@Component` 注解），应用在 `MVC` 层（控制层），`DispatcherServle` t会自动扫描注解了此注解的类，然后将 `web` 请求映射到注解了 `@RequestMapping` 的方法上。
 
 ### @RequestMapping
 
