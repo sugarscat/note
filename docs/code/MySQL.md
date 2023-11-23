@@ -705,6 +705,12 @@ COMMIT;
    SET PASSWORD FOR myuser = 'mypass';
    ```
 
+### 7. 刷新权限
+
+```mysql
+flush privileges；
+```
+
 ---
 
 ## 十、 存储过程
