@@ -1,6 +1,6 @@
 # Nginx
 
-## 一、安装
+## 安装
 
 ::: tip 提示
  以下教程以 Ubuntu 为例，使用编译安装，也可使用以下命令安装。
@@ -34,7 +34,7 @@ sudo systemctl restart nginx
 
 :::
 
-### 1. 安装依赖包
+### 安装依赖包
 
 ```sh
 sudo apt update
@@ -47,7 +47,7 @@ sudo apt-get install openssl
 sudo apt-get install libssl-dev
 ```
 
-### 2. 下载 Nginx
+### 下载 Nginx
 
 ```sh
 # 这里我在 /usr/local 目录下，新建了 nginx 目录
@@ -60,7 +60,7 @@ wget http://nginx.org/download/nginx-1.18.0.tar.gz
 tar -xvf nginx-1.18.0.tar.gz 
 ```
 
-### 3. 编译安装
+### 编译安装
 
 ```sh
 # 进入nginx目录
@@ -78,7 +78,7 @@ make
 make install
 ```
 
-## 二、常用命令
+## 常用命令
 
 ::: tip 提示
  以下命令需要进入 nginx 的安装目录中的 sbin 目录。
@@ -89,7 +89,7 @@ make install
 
 :::
 
-### 1. 启动 Ngnix
+### 启动 Ngnix
 
 `````sh
 ./nginx
@@ -101,7 +101,7 @@ make install
 /usr/local/nginx/sbin/nginx -c /usr/local/nginx/conf/nginx.conf
 ```
 
-### 2. 关闭 Ngnix
+### 关闭 Ngnix
 
 ```sh
 ./nginx -s stop
@@ -110,7 +110,7 @@ ps -ef | grep nginx # 查找进程
 kill -9 xxxx(pid)
 ```
 
-### 3. 重新加载 nginx
+### 重新加载 nginx
 
 > 重载 conf 配置
 
@@ -118,13 +118,13 @@ kill -9 xxxx(pid)
 ./nginx -s reload
 ```
 
-### 4. 查看版本号
+### 查看版本号
 
 ```sh
 ./nginx -v
 ```
 
-## 三、卸载 nginx
+## 卸载 nginx
 
 ::: tip 提示
 应先关闭所有有关 Nginx 的进程
@@ -163,7 +163,7 @@ kill -9 xxxx(pid)
    apt-get --purge remove nginx-core
    ```
 
-## 四、设置开机自启
+## 设置开机自启
 
 1. 创建 nginx.service
 
@@ -214,11 +214,11 @@ kill -9 xxxx(pid)
    systemctl enable nginx
    ```
 
-## 五、Nginx 配置文件
+## Nginx 配置文件
 
 > nginx.conf
 
-### 1. 概述
+### 概述
 
 > 默认在Linux上安装的Nginx，配置文件在安装的nginx目录下的conf目录下，名字叫做 nginx.conf
 
@@ -230,7 +230,7 @@ kill -9 xxxx(pid)
 
    - http 块
 
-### 2. 配置文件结构
+### 配置文件结构
 
 - 全局块在最上层
   - 其次是 events 块
@@ -242,7 +242,7 @@ kill -9 xxxx(pid)
         - localtion 块
         - localtion 块
 
-### 3.  配置文件概览
+### 配置文件概览
 
 ```conf
 
@@ -338,33 +338,33 @@ server {
 }
 ```
 
-### 4. 块的概述
+### 块的概述
 
-#### 1.  全局块
+#### 全局块
 
    就是配置文件从头开始到events块之间的内容，主要设置的是影响nginx服务器整体运行的配置指令，比如worker_process, 值越大，可以支持的并发处理量也越多，但是还是和服务器的硬件相关
 
-#### 3. events 块
+#### events 块
 
    events 块涉及的指令主要影响 Nginx 服务器与用户的网络连接，常用的设置包括是否开启对多 work process下的网络连接进行序列化，是否允许同时接收多个网络连接，选取哪种事件驱动模型来处理连接请求，每个 word process 可以同时支持的最大连接数等。
 
    > 这部分的配置对 Nginx 的性能影响较大，在实际中应该灵活配置。
 
-#### 3. http 块
+#### http 块
 
    包括 http 全局块，以及多个 server 块。
 
-##### 3.1 http 全局块
+##### http 全局块
 
    http 全局块配置的指令包括文件引入、 MIME-TYPE 定义、日志自定义、连接超时时间、单链接请求数上限等。
 
-##### 3.2 server 块
+##### server 块
 
 - 这块和虚拟主机有密切关系，虚拟主机从用户角度看，和一台独立的硬件主机是完全一样的，该技术的产生是为了节省互联网服务器硬件成本。
 - 每个 http 块可以包括多个 server 块，而每个 server 块就相当于一个虚拟主机
 - 而每个 server 块也分为全局 server 块，以及可以同时包含多个 location 块。
 
-###### 3.2.1 server 全局块
+###### server 全局块
 
 最常见的配置是本虚拟机主机的监听配置和本虚拟主机的名称或 IP 配置。
 
@@ -375,7 +375,7 @@ listen  80;
 server_name  localhost;
 ```
 
-###### 3.2.2 location 块
+###### location 块
 
 - 一个 server 块可以配置多个 location 块。
 - 主要作用是根据请求地址路径的匹配，匹配成功进行特定的处理
@@ -439,13 +439,13 @@ location / {
 - rewrite … permanent 永久性重定向，请求日志中的状态码为301
 - rewrite … redirect 临时重定向，请求日志中的状态码为302
 
-## 六、代理
+## 代理
 
-### 1. 正向代理
+### 正向代理
 
 正向代理代理的是客户端，需要在客户端配置，访问的还是真实的服务器地址。
 
-### 2. 反向代理
+### 反向代理
 
 反向代理代理的是服务器端，客户端不需要任何配置，客户端只需要将请求发送给反向代理服务器即可，代理服务器将请求分发给真实的服务器，获取数据后将数据转发给客户端。隐藏了真实服务器。
 
@@ -466,17 +466,54 @@ server {
 }
 ```
 
-> server_name作用及访问流程
+> `server_name` 作用及访问流程
 >
-> 客户端通过域名访问服务器时会将域名与被解析的 ip 一同放在请求中。当请求到了nginx 中时。nginx 会先去匹配 ip，如果 listen中没有找到对应的 ip，就会通过域名进行匹配，匹配成功以后，再匹配端口。当这三步完成，就会找到对应的 server 的 location对应的资源。
+> 客户端通过域名访问服务器时会将域名与被解析的 `ip` 一同放在请求中。当请求到了 `nginx` 中时。`nginx` 会先去匹配 `ip`，如果 `listen` 中没有找到对应的 `ip` ，就会通过域名进行匹配，匹配成功以后，再匹配端口。当这三步完成，就会找到对应的 `server` 的 `location` 对应的资源。
 
-## 七、负载均衡
+### 前端跨域解决
 
-### 1. 概述
+```conf
+server {
+    listen       8080;
+    server_name  10.8.9.94;
 
-简单来说就是使用分布式的场景，将原先的一台服务器做成一个集群，然后将请求分发到各个服务器上。使用 Nginx 进行反向代理，然后访问 Nginx，由 Nginx 将请求分发到不同的服务器上，以实现负载均衡。
+    location ^~ /api {
+        proxy_pass   http://192.1.2.3:9000;
+        add_header Access-Control-Allow-Methods *;
+        add_header Access-Control-Max-Age 3600;
+        add_header Access-Control-Allow-Credentials true;
+        add_header Access-Control-Allow-Origin $http_origin;
+        add_header Access-Control-Allow-Headers $http_access_control_request_headers;
+        if ($request_method = OPTIONS ) {
+            return 200;
+        }
+    }
 
-### 2. 实现
+    location / {
+        root   xiangmu/dist;
+        index  index.html index.htm;
+        add_header 'Access-Control-Allow-Origin' '*';
+        try_files $uri $uri/ /index.html;
+    }
+
+    #error_page  404              /404.html;
+
+    # redirect server error pages to the static page /50x.html
+    #
+    error_page   500 502 503 504  /50x.html;
+    location = /50x.html {
+        root   html;
+    }
+}
+```
+
+## 负载均衡
+
+### 概述
+
+简单来说就是使用分布式的场景，将原先的一台服务器做成一个集群，然后将请求分发到各个服务器上。使用 `Nginx` 进行反向代理，然后访问 `Nginx`，由 `Nginx` 将请求分发到不同的服务器上，以实现负载均衡。
+
+### 实现
 
 如：分别在 8081 和 8082 端口开启两个相同的服务，由 Ngnix 进行负载均衡
 
@@ -500,15 +537,15 @@ upstream myserver{
     }
 ```
 
-### 3. 规则
+### 规则
 
-#### 1. 轮询(默认)
+#### 轮询(默认)
 
-每个请求按时间顺序逐一分配到不同的后端服务器，如果后端服务器 down 掉，能自动剔除。
+每个请求按时间顺序逐一分配到不同的后端服务器，如果后端服务器 `down` 掉，能自动剔除。
 
-#### 2. weight 权重
+#### weight 权重
 
-weight 代表权重默认为 1,权重越高被分配的客户端越多。
+`weight` 代表权重默认为 `1`，权重越高被分配的客户端越多。
 
 如：
 
@@ -524,9 +561,9 @@ server {
 }
 ```
 
-#### 3. ip_hash
+#### ip_hash
 
-每个请求按访问 ip 的 hash 结果分配，这样每个访客固定访问一个后端服务器，可以解决 session 问题。
+每个请求按访问 `ip` 的 `hash` 结果分配，这样每个访客固定访问一个后端服务器，可以解决 `session` 问题。
 
 如：
 
@@ -545,7 +582,7 @@ server {
 }
 ```
 
-#### 4. fair
+#### fair
 
 按后端服务器的响应时间来分配请求，响应时间短的优先分配。
 
