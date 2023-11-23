@@ -923,7 +923,392 @@ public void doAspect(){}
 - `ModelAndView`：封装了模型数据和视图信息，作为 `Handler` 的处理结果，返回给 `DispatcherServlet`
 - `ViewResolver`：视图解析器，`DispatcherServlet`通过它把逻辑视图解析为物理视图，最终把渲染的结果响应给客户端
 
-## 常用注解 ↓↓↓
+## 简单示例
+
+`maven` 配置
+
+```xml
+<!-- Spring-web 依赖-->
+<dependency>
+  <groupId>org.springframework</groupId>
+  <artifactId>spring-web</artifactId>
+  <version>5.2.25.RELEASE</version>
+</dependency>
+
+<!-- springmvc -->
+<dependency>
+  <groupId>org.springframework</groupId>
+  <artifactId>spring-webmvc</artifactId>
+  <version>5.2.8.RELEASE</version>
+</dependency>
+```
+
+在 `web.xml `配置 `Spring MVC` 的 `DispatcherServlet`
+
+```xml
+<!DOCTYPE web-app PUBLIC
+        "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+        "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+  <display-name>Archetype Created Web Application</display-name>
+  <!-- 配置核心控制器 -->
+  <servlet>
+    <servlet-name>dispatcherServlet</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <!-- springmvc配置文件加载路径
+         1）默认情况下，读取WEB-INF下面的文件
+         2）可以改为加载类路径下（resources目录），加上classpath:
+     -->
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>classpath:SpringMVC.xml</param-value>
+    </init-param>
+    <!--
+       DispatcherServlet对象创建时间问题
+          1）默认情况下，第一次访问该Servlet的创建对象，意味着在这个时间才去加载springMVC.xml
+          2）可以改变为在项目启动时候就创建该Servlet，提高用户访问体验。
+              <load-on-startup>1</load-on-startup>
+                    数值越大，对象创建优先级越低！ （数值越低，越先创建）
+    -->
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>dispatcherServlet</servlet-name>
+    <!--/ 匹配所有的请求；（不包括.jsp）-->
+    <!--/* 匹配所有的请求；（包括.jsp）-->
+    <!--*.do拦截以do结尾的请求-->
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
+</web-app>
+```
+
+`SpringMVC.xml`
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       https://www.springframework.org/schema/context/spring-context.xsd">
+    <!-- 配置自动扫包 -->
+    <context:component-scan base-package="cn.sugarscat.springmvc.controller"/>
+
+    <!-- 视图解析器 -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <!--给逻辑视图加上前缀和后缀 -->
+        <!--前缀-->
+        <property name="prefix" value="/"/>
+        <!--后缀-->
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+</beans>
+```
+
+`Controller`
+
+```java
+@Controller
+public class HelloHandler {
+    /**
+     * 当客户端访问index请求时
+     * 直接自动关联到这个方法
+     * 执行这个方法后，会返回结果
+     * @return
+     */
+    @RequestMapping("/index")
+    public String index(){
+        System.out.println("接收到了请求");
+        //返回逻辑视图 逻辑视图相当于视图的别名 通过这个找到物理视图，也就是真正的视图
+        //这里返回的只是页面的名称，不是完整的页面访问路径
+        return "index";
+    }
+}
+```
+
+## 注解解析
+
+### @RequestMapping
+
+`Spring MVC` 通过 `@RequestMapping` 注解把 `URL` 请求和业务方法进行映射，在控制器的类定义处以及方法定义处都可以添加 `@RequestMapping` ，在类定义处添加相当于多了一层访问路径。
+
+@RequestMapping("/index") = @RequestMapping(value = "/index")
+
+> method ：指定请求的method类型，包括GET、POST、PUT、DELETE等
+
+### @PostMapping 等
+
+@PostMapping("/index") = @RequestMapping(value = "/index"， method = RequestMethod.POST)
+
+## 参数绑定
+
+### URL 风格参数绑定
+
+`params` 是对 `URL` 请求参数进行限制，不满足条件的 `URL` 无法访问该方法，需要在业务方法中获取 `URL` 的参数值。
+
+1. 在业务方法定义时声明参数列表；
+2. 给参数列表添加 `@RequestParam` 注解进行绑定；
+
+```java
+@RequestMapping("/index", method = RequestMethod.GET)
+public String index(@RequestParam("num") Integer id) {
+    System.out.println("id=" + id);
+    return "index";
+}
+```
+
+### RESTful 风格的URL参数获取
+
+- 传统的URL：localhost:8080/hello/index?id=1&name=tom
+- RESTful URL:localhost:8080/hello/index/1/tom
+
+```java
+@RequestMapping("/restful/{id}/{name}")
+public String restful(@PathVariable("id") Integer num, @PathVariable("name") String name){
+    System.out.println(num+"-"+name);
+    return "index";
+}
+```
+
+### 映射 Cookie
+
+```java
+@RequestMapping("/cookie")
+public String getCookie(@CookieValue("JSESSIONID") String sessionId){
+    System.out.println(sessionId);
+    return "index";
+}
+```
+
+### 使用 POJO 绑定参数
+
+`Spring MVC` 会根据请求参数名和POJO属性名进行匹配，自动为该对象填充属性值，并且支持属性级联。
+
+```java
+@PostMapping("/user")
+public Result addUser(User user) {
+    return Result.error();
+}
+```
+
+### JSP 页面的转发和重定向
+
+Spring MVC 默认是通过转发的形式响应 `JSP`，可以手动进行修改。
+
+#### 重定向
+
+设置重定向的时候不能写逻辑视图，必须写明资源的物理路径，比如 `rediect:/index.jsp`
+
+```java
+@RequestMapping("/restful/{id}/{name}")
+public String restful(@PathVariable("id") Integer num, @PathVariable("name") String name){
+    System.out.println(num+"-"+name);
+    return "rediect:/index.jsp";
+}
+```
+
+#### 转发
+
+```java
+@RequestMapping("/restful/{id}/{name}")
+public String restful(@PathVariable("id") Integer num, @PathVariable("name") String name){
+    System.out.println(num+"-"+name);
+    return "forward:/index.jsp";
+}
+```
+
+## 拦截器
+
+### 过滤器、监听器、拦截器的对比
+
+- `Servlet`：处理`Reequest`请求和`Response`响应
+- 过滤器(`Filter`)：对`Request`请求起到过滤作用，作用在`Servlet`之前，如果配置为`/*`可以为所有的资源(`servlet`、`js/css`静态资源等)进行过滤处理
+- 监听器(`Listener`)：实现了`javax.servlet.ServletContextListener`接口的服务器端组件，它随`Web`应用的启动而启动，只初始化一次，然后一直监视，随`Web`应用的停止而销毁
+  - 作用一：做初始化工作，`web`应用中`spring`容器启动`ContextLoaderListener`
+  - 作用二：监听`web`中的特定事件，比如`HttpSession`，`ServletRequest`的创建和销毁；变量的创建、销毁和修改等可以在某些动作 前后增加处理，实现监控，比如说统计在线人数，利用`HttpSessionListener`等
+- 拦截器(`Interceptor`)：是`Spring MVC`、`Struts`等表现层框架自己的，不会拦截`jsp/html/css/image`等的访问，只会拦截访问的控制器方法(`Handler`)
+  - `servlet`、`filter`、`listener`是配置在`web.xml`中，`interceptor`是配置在表现层框架自己的配置文件中
+  - 在`Handler`业务逻辑执行之前拦截一次
+  - 在`Handler`逻辑执行完但是还没有跳转页面之前拦截一次
+  - 在跳转页面后拦截一次
+
+### 拦截器基本概念
+
+`Spring MVC`中的拦截器（`Interceptor`）类似于`Servlet`中的过滤器（`Filter`），它主要用于拦截用户请求并作相应的处理。例如通过拦截器可以进行权限验证、记录请求信息的日志、判断用户是否登录等。
+
+要使用`Spring MVC`中的拦截器，就需要对拦截器类进行定义和配置。通常拦截器类可以通过两种方式来定义。
+
+- 通过实现`HandlerInterceptor`接口
+- 继承`HandlerInterceptor`接口的实现类（如：`HandlerInterceptorAdapter`）来定义。
+
+### 拦截器的实现
+
+通过实现`HandlerInterceptor`接口
+
+```java
+public class MyInterceptor implements HandlerInterceptor {
+    /**
+     * 在目标Handler(方法)执行前执行
+     * 返回true:执行Handler方法
+     * 返回false:阻止目标Handler方法执行
+     * @param request
+     * @param response
+     * @param handler
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        System.out.println("目标Handler执行前执行MyInterceptor---->preHandle方法...");
+        return true;
+    }
+
+    /**
+     * 在目标Handler(方法)执行后，视图生成前执行
+     * @param request
+     * @param response
+     * @param handler
+     * @param modelAndView
+     * @throws Exception
+     */
+    @Override
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
+        System.out.println("目标Handler执行后，视图执行前执行MyInterceptor---->postHandle方法...");
+    }
+
+    /**
+     * 在目标方法执行后，视图生成后执行
+     * @param request
+     * @param response
+     * @param handler
+     * @param ex
+     * @throws Exception
+     */
+    @Override
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+        System.out.println("目标Handler执行后，视图执行后执行MyInterceptor---->afterCompletion方法...");
+    }
+}
+```
+
+拦截器配置1
+
+```xml
+<mvc:interceptors>
+    <!-- 拦截器配置 -->
+    <!--
+        使用bean定义一个Interceptor
+        直接定义在mvc:interceptors根下面的Interceptor将拦截所有的请求
+        -->
+    <bean class="com.example.interceptor.MyInterceptor"></bean>
+</mvc:interceptors>
+```
+
+拦截器配置方式2
+
+```xml
+<!-- 拦截器配置2 -->
+<mvc:interceptors>
+    <!--定义在mvc:interceptor下面,可以自定义需要拦截的请求
+        如果有多个拦截器满足拦截处理的要求，则依据配置的先后顺序来执行
+        -->
+    <mvc:interceptor>
+        <!--通过mvc:mapping配置需要拦截的资源。支持通配符，可以配置多个 -->
+        <mvc:mapping path="/**"/> <!-- /**表示拦截所有的请求-->
+        <!--通过mvc:exclude-mapping配置不需要拦截的资源。支持通配符，可以配置多个 -->
+        <mvc:exclude-mapping path="/hello/*"/> <!-- /hello/*表示放行hello路径下的请求 -->
+        <bean class="com.example.interceptor.MyInterceptor"></bean>
+    </mvc:interceptor>
+</mvc:interceptors>
+```
+
+### 多个拦截器的实现
+
+`Spring MVC` 框架支持多个拦截器的配置，从而构成拦截器链，对客户端进行多次拦截操作
+
+过滤器配置
+
+```xml
+<mvc:interceptors>
+    <mvc:interceptor>
+        <mvc:mapping path="/**"/>
+        <bean class="com.example.interceptor.MyInterceptor"></bean>
+    </mvc:interceptor>
+    <mvc:interceptor>
+        <mvc:mapping path="/**"/>
+        <bean class="com.example.interceptor.MyInterceptor2"></bean>
+    </mvc:interceptor>
+</mvc:interceptors>
+```
+
+自定义第二个过滤器
+
+```java
+public class MyInterceptor2 implements HandlerInterceptor {
+    /**
+     * 在目标Handler(方法)执行前执行
+     * 返回true:执行Handler方法
+     * 返回false:阻止目标Handler方法执行
+     * @param request
+     * @param response
+     * @param handler
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        System.out.println("2.目标Handler执行前执行MyInterceptor2---->preHandle方法...");
+        return true;
+    }
+
+    /**
+     * 在目标Handler(方法)执行后，视图生成前执行
+     * @param request
+     * @param response
+     * @param handler
+     * @param modelAndView
+     * @throws Exception
+     */
+    @Override
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
+        System.out.println("3.目标Handler执行后，视图执行前执行MyInterceptor2---->postHandle方法...");
+    }
+
+    /**
+     * 在目标方法执行后，视图生成后执行
+     * @param request
+     * @param response
+     * @param handler
+     * @param ex
+     * @throws Exception
+     */
+    @Override
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+        System.out.println("5.目标Handler执行后，视图执行后执行MyInterceptor2---->afterCompletion方法...");
+    }
+}
+```
+
+`Handler`
+
+```java
+@RequestMapping("/hello")
+@Controller
+public class HelloContro  
+    @RequestMapping("/packageType")
+    @ResponseBody
+    public String packageType(@RequestParam(value = "id", required = true) Integer id) {
+        System.out.println("拦截的方法...");
+        return "id=" + id;
+    }
+}
+```
+
+## Spring 常用注解 ↓↓↓
 
 ### @Component
 
