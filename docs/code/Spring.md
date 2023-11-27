@@ -1038,7 +1038,7 @@ public class HelloHandler {
 
 @RequestMapping("/index") = @RequestMapping(value = "/index")
 
-> method ：指定请求的method类型，包括GET、POST、PUT、DELETE等
+> method ：指定请求的 method 类型，包括GET、POST、PUT、DELETE等
 
 ### @PostMapping 等
 
@@ -1064,7 +1064,7 @@ public String index(@RequestParam("num") Integer id) {
 ### RESTful 风格的URL参数获取
 
 - 传统的URL：localhost:8080/hello/index?id=1&name=tom
-- RESTful URL:localhost:8080/hello/index/1/tom
+- RESTful URL：localhost:8080/hello/index/1/tom
 
 ```java
 @RequestMapping("/restful/{id}/{name}")
@@ -1086,7 +1086,7 @@ public String getCookie(@CookieValue("JSESSIONID") String sessionId){
 
 ### 使用 POJO 绑定参数
 
-`Spring MVC` 会根据请求参数名和POJO属性名进行匹配，自动为该对象填充属性值，并且支持属性级联。
+`Spring MVC` 会根据请求参数名和 `POJO` 属性名进行匹配，自动为该对象填充属性值，并且支持属性级联。
 
 ```java
 @PostMapping("/user")
@@ -1097,7 +1097,7 @@ public Result addUser(User user) {
 
 ### JSP 页面的转发和重定向
 
-Spring MVC 默认是通过转发的形式响应 `JSP`，可以手动进行修改。
+`Spring MVC` 默认是通过转发的形式响应 `JSP`，可以手动进行修改。
 
 #### 重定向
 
@@ -1147,7 +1147,7 @@ public String restful(@PathVariable("id") Integer num, @PathVariable("name") Str
 
 ### 拦截器的实现
 
-通过实现`HandlerInterceptor`接口
+通过实现 `HandlerInterceptor` 接口
 
 ```java
 public class MyInterceptor implements HandlerInterceptor {
@@ -1382,7 +1382,7 @@ public class HelloContro
 
 ### @ComponentScan
 
-自动扫描指定包下所有使用`@Service、@Component、@Controller、@Repository`的类并注册（类上）。
+自动扫描指定包下所有使用 `@Service`、``@Component`、`@Controller`、`@Repository` 的类并注册（类上）。
 
 ### @Aspect
 
@@ -1394,7 +1394,7 @@ public class HelloContro
 
 `@Around`： 在方法执行之前与之后执行（方法上）。
 
-`@PointCut`： 声明切点 在java配置类中使用@EnableAspectJAutoProxy注解开启Spring对AspectJ代理的支持（类上）。
+`@PointCut`： 声明切点 在java配置类中使用 `@EnableAspectJAutoProxy` 注解开启 `Spring` 对 `AspectJ` 代理的支持（类上）。
 
 ### @Scope
 
@@ -1432,17 +1432,17 @@ public class HelloContro
 
 ### @Enable*注解说明
 
-> 这些注解主要用来开启对 xxx 的支持。 @EnableAspectJAutoProxy 开启对 `AspectJ` 自动代理的支持。
+> 这些注解主要用来开启对 xxx 的支持。 `@EnableAspectJAutoProxy` 开启对 `AspectJ` 自动代理的支持。
 
 `@EnableAsync`： 开启异步方法的支持。
 
 `@EnableScheduling`： 开启计划任务的支持。
 
-`@EnableWebMvc` ：开启Web MVC的配置支持。
+`@EnableWebMvc` ：开启 `Web MVC` 的配置支持。
 
-`@EnableConfigurationProperties` ：开启对@ConfigurationProperties注解配置Bean的支持。
+`@EnableConfigurationProperties` ：开启对 `@ConfigurationProperties` 注解配置 `Bean` 的支持。
 
-`@EnableJpaRepositories`：开启对SpringData JPA Repository的支持。
+`@EnableJpaRepositories`：开启对 `SpringData JPA Repository` 的支持。
 
 `@EnableTransactionManagement`：开启注解式事务的支持。
 
