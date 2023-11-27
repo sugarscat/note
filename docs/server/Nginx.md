@@ -13,10 +13,10 @@ apt-get install nginx
 
 目录结构：
 
-- /usr/sbin/nginx：主程序
-- /etc/nginx：存放配置文件
-- /usr/share/nginx 或 /var/www : 存放静态文件
-- /var/log/nginx：存放日志
+- `/usr/sbin/nginx`：主程序
+- `/etc/nginx`：存放配置文件
+- `/usr/share/nginx` 或 `/var/www`: 存放静态文件
+- `/var/log/nginx`：存放日志
 
 相关命令：
 
@@ -216,31 +216,31 @@ kill -9 xxxx(pid)
 
 ## Nginx 配置文件
 
-> nginx.conf
+> `nginx.conf`
 
 ### 概述
 
-> 默认在Linux上安装的Nginx，配置文件在安装的nginx目录下的conf目录下，名字叫做 nginx.conf
+> 默认在 `Linux` 上安装的 `Nginx`，配置文件在安装的 `nginx` 目录下的 `conf` 目录下，名字叫做 `nginx.conf`
 
-1. nginx.conf主要由三部分组成
+`nginx.conf` 主要由三部分组成
 
-   - 全局块
+- 全局块
 
-   - events 块
+- `events` 块
 
-   - http 块
+- `http` 块
 
 ### 配置文件结构
 
 - 全局块在最上层
-  - 其次是 events 块
-    - 最后是 http 块
-      - server 块
-        - localtion 块
-        - localtion 块
-      - server 块
-        - localtion 块
-        - localtion 块
+  - 其次是 `events` 块
+    - 最后是 `http` 块
+      - `server` 块
+        - `localtion` 块
+        - `localtion` 块
+      - `server` 块
+        - `localtion` 块
+        - `localtion` 块
 
 ### 配置文件概览
 
@@ -342,31 +342,31 @@ server {
 
 #### 全局块
 
-   就是配置文件从头开始到events块之间的内容，主要设置的是影响nginx服务器整体运行的配置指令，比如worker_process, 值越大，可以支持的并发处理量也越多，但是还是和服务器的硬件相关
+   就是配置文件从头开始到`events`块之间的内容，主要设置的是影响`nginx`服务器整体运行的配置指令，比如`worker_process`，值越大，可以支持的并发处理量也越多，但是还是和服务器的硬件相关
 
 #### events 块
 
-   events 块涉及的指令主要影响 Nginx 服务器与用户的网络连接，常用的设置包括是否开启对多 work process下的网络连接进行序列化，是否允许同时接收多个网络连接，选取哪种事件驱动模型来处理连接请求，每个 word process 可以同时支持的最大连接数等。
+   `events` 块涉及的指令主要影响 `Nginx` 服务器与用户的网络连接，常用的设置包括是否开启对多 `work_process`下的网络连接进行序列化，是否允许同时接收多个网络连接，选取哪种事件驱动模型来处理连接请求，每个 `word_process` 可以同时支持的最大连接数等。
 
-   > 这部分的配置对 Nginx 的性能影响较大，在实际中应该灵活配置。
+   > 这部分的配置对 `Nginx` 的性能影响较大，在实际中应该灵活配置。
 
 #### http 块
 
-   包括 http 全局块，以及多个 server 块。
+   包括 `http` 全局块，以及多个 `server` 块。
 
 ##### http 全局块
 
-   http 全局块配置的指令包括文件引入、 MIME-TYPE 定义、日志自定义、连接超时时间、单链接请求数上限等。
+   `http` 全局块配置的指令包括文件引入、 MIME-TYPE 定义、日志自定义、连接超时时间、单链接请求数上限等。
 
 ##### server 块
 
 - 这块和虚拟主机有密切关系，虚拟主机从用户角度看，和一台独立的硬件主机是完全一样的，该技术的产生是为了节省互联网服务器硬件成本。
-- 每个 http 块可以包括多个 server 块，而每个 server 块就相当于一个虚拟主机
-- 而每个 server 块也分为全局 server 块，以及可以同时包含多个 location 块。
+- 每个 `http` 块可以包括多个 `server` 块，而每个 `server` 块就相当于一个虚拟主机
+- 而每个 `server` 块也分为全局 `server` 块，以及可以同时包含多个 `location` 块。
 
 ###### server 全局块
 
-最常见的配置是本虚拟机主机的监听配置和本虚拟主机的名称或 IP 配置。
+最常见的配置是本虚拟机主机的监听配置和本虚拟主机的名称或 `IP` 配置。
 
 ```conf
 # 监听 80 端口，只要有请求访问了 80 端口，此 server 块就处理请求
@@ -377,67 +377,74 @@ server_name  localhost;
 
 ###### location 块
 
-- 一个 server 块可以配置多个 location 块。
+- 一个 `server` 块可以配置多个 `location` 块。
 - 主要作用是根据请求地址路径的匹配，匹配成功进行特定的处理
-- 这块的主要作用是基于 Nginx 服务器接收到的请求字符串（例如 server_name/uri-string），对虚拟主机名称（也可以是 IP 别名）之外的字符串（例如 前面的 /uri-string）进行匹配，对特定的请求进行处理。地址定向、数据缓存和应答控制等功能，还有许多第三方模块的配置也在这里进行。
+- 这块的主要作用是基于 `Nginx` 服务器接收到的请求字符串（例如 `server_name/uri-string`），对虚拟主机名称（也可以是 `IP` 别名）之外的字符串（例如 前面的 `/uri-string`）进行匹配，对特定的请求进行处理。地址定向、数据缓存和应答控制等功能，还有许多第三方模块的配置也在这里进行。
 
 ```conf
 # 如果请求路径是 / 就是用这个 location 块进行处理
 location / {
-            root   html;
-            index  index.html index.htm;
-        }
+    root   html;
+    index  index.html index.htm;
+}
 ```
 
-1. location 语法：
+### location 配置
 
- ```
- location [=|~|~*|^~] /uri/ { … }
- ```
+1. `location` 语法：
 
-- =     严格匹配。如果请求匹配这个location，那么将停止搜索并立即处理此请求
-- ~     区分大小写匹配(可用正则表达式)
-- ~*    不区分大小写匹配(可用正则表达式)
-- !~    区分大小写不匹配
-- !~*   不区分大小写不匹配
-- ^~    如果把这个前缀用于一个常规字符串,那么告诉nginx 如果路径匹配那么不测试正则表达式
+   ```conf
+   location [=|~|~*|^~] /uri/ { … }
+   ```
 
-2. alias 与 root 的区别
+   - `=`：严格匹配。如果请求匹配这个location，那么将停止搜索并立即处理此请求
+   - `~`： 区分大小写匹配(可用正则表达式)
+   - `~*`：不区分大小写匹配(可用正则表达式)
+   - `!~`：区分大小写不匹配
+   - `!~*`：不区分大小写不匹配
+   - `^~`：如果把这个前缀用于一个常规字符串,那么告诉 `nginx` 如果路径匹配那么不测试正则表达式
 
-- root   实际访问文件路径会拼接URL中的路径
-- alias  实际访问文件路径不会拼接URL中的路径
+2. `alias `与 `root `的区别
 
- 示例如下：
+   - `root`  实际访问文件路径会拼接`URL`中的路径
 
- ```conf
- location ^~ /test/ {  
-     alias /usr/local/nginx/html/static/;  
- }
- ```
+   - `alias`  实际访问文件路径不会拼接`URL`中的路径
 
-- 请求：/test/test1.html
-- 实际访问：/usr/local/nginx/html/static/test1.html 文件
+   - 示例如下：
 
- ```conf
- location ^~ /test/ {  
-     root /usr/local/nginx/html/;  
- }
- ```
+     ```conf
+     location ^~ /test/ {  
+         alias /usr/local/nginx/html/static/;  
+     }
+     ```
 
-- 请求：/test/test1.html
-- 实际访问：/usr/local/nginx/html/test/test1.html 文件
+     请求：/test/test1.html
 
-3. last 和 break 关键字的区别
+     实际访问：/usr/local/nginx/html/static/test1.html 文件
 
-- last 和 break 当出现在location 之外时，两者的作用是一致的没有任何差异
-- last 和 break 当出现在location 内部时：
-- last    使用了last 指令，rewrite 后会跳出location 作用域，重新开始再走一次刚才的行为
-- break  使用了break 指令，rewrite后不会跳出location 作用域，它的生命也在这个location中终结
+     ```conf
+     location ^~ /test/ {  
+         root /usr/local/nginx/html/;  
+     }
+     ```
 
-4. permanent 和 redirect 关键字的区别
+     请求：/test/test1.html
 
-- rewrite … permanent 永久性重定向，请求日志中的状态码为301
-- rewrite … redirect 临时重定向，请求日志中的状态码为302
+     实际访问：/usr/local/nginx/html/test/test1.html 文件
+
+3. `last` 和 `break` 关键字的区别
+
+   `last` 和 `break` 当出现在location 之外时：两者的作用是一致的没有任何差异
+
+   `last` 和 `break `当出现在 `location `内部时：
+
+   - `last ` 使用了`last `指令，`rewrite `后会跳出`location`作用域，重新开始再走一次刚才的行为
+
+   - `break`使用了`break`指令，`rewrite`后不会跳出`location`作用域，它的生命也在这个`location`中终结
+
+4. `permanent `和 `redirect`关键字的区别
+   - `rewrite … permanent` 永久性重定向，请求日志中的状态码为`301`
+   - `rewrite … redirect` 临时重定向，请求日志中的状态码为`302`
 
 ## 代理
 
@@ -490,7 +497,7 @@ server {
     }
 
     location / {
-        root   xiangmu/dist;
+        root   web/dist;
         index  index.html index.htm;
         add_header 'Access-Control-Allow-Origin' '*';
         try_files $uri $uri/ /index.html;
