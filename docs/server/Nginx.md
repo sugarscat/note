@@ -342,7 +342,7 @@ server {
 
 #### 全局块
 
-   就是配置文件从头开始到`events`块之间的内容，主要设置的是影响`nginx`服务器整体运行的配置指令，比如`worker_process`，值越大，可以支持的并发处理量也越多，但是还是和服务器的硬件相关
+   就是配置文件从头开始到`events`块之间的内容，主要设置的是影响`nginx`服务器整体运行的配置指令，比如`worker_process`，值越大，可以支持的并发处理量也越多，但是还是和服务器的硬件相关。
 
 #### events 块
 
@@ -361,7 +361,7 @@ server {
 ##### server 块
 
 - 这块和虚拟主机有密切关系，虚拟主机从用户角度看，和一台独立的硬件主机是完全一样的，该技术的产生是为了节省互联网服务器硬件成本。
-- 每个 `http` 块可以包括多个 `server` 块，而每个 `server` 块就相当于一个虚拟主机
+- 每个 `http` 块可以包括多个 `server` 块，而每个 `server` 块就相当于一个虚拟主机。
 - 而每个 `server` 块也分为全局 `server` 块，以及可以同时包含多个 `location` 块。
 
 ###### server 全局块
@@ -397,7 +397,7 @@ location / {
    location [=|~|~*|^~] /uri/ { … }
    ```
 
-   - `=`：严格匹配。如果请求匹配这个location，那么将停止搜索并立即处理此请求
+   - `=`：严格匹配。如果请求匹配这个 `location`，那么将停止搜索并立即处理此请求
    - `~`： 区分大小写匹配(可用正则表达式)
    - `~*`：不区分大小写匹配(可用正则表达式)
    - `!~`：区分大小写不匹配
@@ -460,16 +460,16 @@ location / {
 
 ```conf
 server {
-# 监听端口80 即当访问服务器的端口是 80 时，进入这个 server 块处理
-        listen       80;
-# server_name 当配置了 listen 时不起作用        
-        server_name  localhost;
+    # 监听端口80 即当访问服务器的端口是 80 时，进入这个 server 块处理
+    listen 80;
+    # server_name 当配置了 listen 时不起作用        
+    server_name  localhost;
 
-# location后面代表访问路径，当是 / 请求时 代理到 8080 的端口
-        location / {
-# 使用 proxy_pass（固定写法）后面跟要代理服务器地址            
-            proxy_pass http://ip:8080;
-        }
+    # location后面代表访问路径，当是 / 请求时 代理到 8080 的端口
+    location / {
+    # 使用 proxy_pass（固定写法）后面跟要代理服务器地址            
+        proxy_pass http://ip:8080;
+    }
 }
 ```
 
@@ -533,15 +533,15 @@ upstream myserver{
 }
 
 # server配置
-    server {
-      # 监听80端口
-        listen 80;   
-     #location块
-        location / {
-# 反向代理到上面的两台服务器 写上自定义的名称
-        proxy_pass http://myserver;
-        }
+server {
+  	# 监听80端口
+    listen 80;   
+ 	# location块
+    location / {
+	# 反向代理到上面的两台服务器 写上自定义的名称
+    proxy_pass http://myserver;
     }
+}
 ```
 
 ### 规则
@@ -558,8 +558,8 @@ upstream myserver{
 
 ```conf
 upstream myserver { 
- server ip:8081 weight=1 ;
- server ip:8082 weight=2 ;
+    server ip:8081 weight=1 ;
+    server ip:8082 weight=2 ;
 }
 server {  
     listen       80;  
@@ -577,15 +577,15 @@ server {
 ```conf
 #配置负载均衡的服务器和端口
 upstream myserver { 
- server ip:8081;
- server ip:8082;
+    server ip:8081;
+    server ip:8082;
     ip_hash;
 }
 server {  
-    listen       80;  
+    listen 80;  
     location / {
-    proxy_pass http://myserver; 
-   }
+    	proxy_pass http://myserver; 
+   	}
 }
 ```
 
@@ -598,14 +598,14 @@ server {
 ```conf
 #配置负载均衡的服务器和端口
 upstream myserver {   
- server ip:8081;
- server ip:8082;
+    server ip:8081;
+    server ip:8082;
     fair;
 }
 server {  
     listen       80;   
     location / {
-    proxy_pass http://myserver; 
+    	proxy_pass http://myserver; 
     }    
 }
 ```
