@@ -1310,51 +1310,51 @@ public class HelloContro
 
 ## Spring 常用注解 ↓↓↓
 
-### @Component
+## @Component
 
 表示一个带注释的类是一个“组件”，成为 `Spring` 管理的 `Bean` 。当使用基于注解的配置和类路径扫描时，这些类被视为自动检测的候选对象。同时 `@Component` 还是一个元注解。
 
-### @Service
+## @Service
 
 组合注解（组合了 `@Component` 注解），应用在 `service` 层（业务逻辑层）。
 
-### @Repository
+## @Repository
 
 组合注解（组合了 `@Component` 注解），应用在 `dao` 层（数据访问层）。
 
-### @Controller
+## @Controller
 
 组合注解（组合了 `@Component` 注解），应用在 `MVC` 层（控制层），`DispatcherServle` t会自动扫描注解了此注解的类，然后将 `web` 请求映射到注解了 `@RequestMapping` 的方法上。
 
-### @RequestMapping
+## @RequestMapping
 
 用于映射 `Web` 请求，包括访问路径和参数。（类或方法上）
 
-### @ResponseBody
+## @ResponseBody
 
 支持将返回值放在 `response` 内，而不是一个页面，通常用户返回 `json` 数据。（返回值旁或方法上）
 
-### @RequestBody
+## @RequestBody
 
 允许 `request` 的参数在 `request` 体中，而不是在直接连接在地址后面。（放在参数前）
 
-### @PathVariable
+## @PathVariable
 
 用于接收路径参数，比如 `@RequestMapping(“/hello/{name}”)` 申明的路径，将注解放在参数中前，即可获取该值，通常作为 `Restful` 的接口实现方法。
 
-### @RestController
+## @RestController
 
 该注解为一个组合注解，相当于 `@Controller` 和 `@ResponseBody` 的组合，注解在类上，该 `Controller` 的所有方法都默认加上了 `@ResponseBody` 。
 
-### @ExceptionHandler
+## @ExceptionHandler
 
 用于全局处理控制器里的异常。
 
-### @ModelAttribute
+## @ModelAttribute
 
 本来的作用是绑定键值对到 `Model` 里，在 `@ControllerAdvice` 中是让全局的 `@RequestMapping` 都能获得在此处设置的键值对。
 
-### @Autowired
+## @Autowired
 
 `Spring` 提供的工具（由 `Spring` 的依赖注入工具（`BeanPostProcessor`、`BeanFactoryPostProcessor`）自动注入）。
 
@@ -1372,19 +1372,19 @@ public class HelloContro
 
 :::
 
-### @Configuration
+## @Configuration
 
 声明当前类是一个配置类（相当于一个 `Spring` 配置的 `xml` 文件）（类上）。
 
-### @Bean
+## @Bean
 
 注解在方法上，声明当前方法的返回值为一个 `Bean`。返回的 `Bean` 对应的类中可以定义 `init()` 方法和 `destroy()` 方法，然后在 `@Bean(initMethod=”init”,destroyMethod=”destroy”)` 定义，在构造之后执行 `init` ，在销毁之前执行`destroy`。（方法上）
 
-### @ComponentScan
+## @ComponentScan
 
 自动扫描指定包下所有使用 `@Service`、``@Component`、`@Controller`、`@Repository` 的类并注册（类上）。
 
-### @Aspect
+## @Aspect
 
 声明一个切面（类上） 使用 `@After、@Before、@Around` 定义建言（`advice`），可直接将拦截规则（切点）作为参数。
 
@@ -1396,41 +1396,41 @@ public class HelloContro
 
 `@PointCut`： 声明切点 在java配置类中使用 `@EnableAspectJAutoProxy` 注解开启 `Spring` 对 `AspectJ` 代理的支持（类上）。
 
-### @Scope
+## @Scope
 
 定义我们采用什么模式去创建Bean（方法上，得有@Bean） 其设置类型包括：
 
 > `Singleton` （单例,一个 `Spring` 容器中只有一个 `bean` 实例，默认模式）, `Prototype`（每次调用新建一个 `bean`）, `Request `（`web`项目中，给每个`http request`新建一个`bean`）, `Session`（`web`项目中，给每个`http session`新建一个`bean`）, `GlobalSession`（给每一个 `global http session`新建一个`bean`实例）。
 
-### @PostConstruct
+## @PostConstruct
 
 标注在方法上，该方法在构造函数执行完成之后执行。
 
-### @PreDestory
+## @PreDestory
 
 标注在方法上，该方法在对象销毁之前执行。
 
-### @Value
+## @Value
 
 经常与 `Sping EL` 表达式语言一起使用，注入普通字符，系统属性，表达式运算结果，其他 `Bean` 的属性，文件内容，网址请求内容，配置文件属性值等。
 
-### @EnableAsync
+## @EnableAsync
 
 配置类中，通过此注解开启对异步任务的支持，叙事性 `AsyncConfigurer` 接口。（类上）
 
-### @Async
+## @Async
 
 在实际执行的 `bean`方法使用该注解来申明其是一个异步任务（方法上或类上所有的方法都将异步，需要 `@EnableAsync` 开启异步任务）
 
-### @EnableScheduling
+## @EnableScheduling
 
 在配置类上使用，开启计划任务的支持。（类上）
 
-### @Scheduled
+## @Scheduled
 
 来申明这是一个任务，包括 `cron,fixDelay,fixRate` 等类型。（方法上，需先开启计划任务的支持）
 
-### @Enable*注解说明
+## @Enable*注解说明
 
 > 这些注解主要用来开启对 xxx 的支持。 `@EnableAspectJAutoProxy` 开启对 `AspectJ` 自动代理的支持。
 
