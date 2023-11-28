@@ -13,7 +13,6 @@ export default  [
                 {text: 'Linux 命令', link: '/code/Linux-command.md'},
                 {text: 'VS Code 基本使用', link: '/code/vs-code.md'},
                 {text: 'Vue 官方文档', link: 'https://cn.vuejs.org/guide/introduction.html'},
-                {text: 'Vuex 官方文档', link: 'https://vuex.vuejs.org/zh/'},
                 {text: '企业级开发', link: '/code/企业级开发.md'},
                 {text: 'Spring', link: '/code/Spring.md'},
                 {text: 'SpringBoot', link: '/code/SpringBoot.md'},
