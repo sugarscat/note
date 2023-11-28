@@ -51,6 +51,7 @@
 
 .VPPluginSearch-search-list {
     width: calc(100% - 2px);
+    padding: calc(1rem - 5px);
 }
 
 .VPNavBar .container .content-body {
