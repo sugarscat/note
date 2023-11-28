@@ -1,7 +1,7 @@
 # Vue
 
 > [Vue 官方文档](https://cn.vuejs.org/guide/introduction.html)
->
+
 > 笔记来自 [黑马教程](https://www.itheima.com/)
 
 ## 选项式 vs  组合式
@@ -41,17 +41,17 @@ const addCount = ()=> count.value++
 
 ![image.png](../image/vue//01.png)
 
-## create-vue搭建项目
+## create-vue 搭建项目
 
 ### create-vue
 
-> create-vue是Vue官方新的脚手架工具，底层切换到了 vite （下一代前端工具链），为开发提供极速响应
+> `create-vue` 是 `Vue` 官方新的脚手架工具，底层切换到了 `vite` （下一代前端工具链），为开发提供极速响应
 
 ![image.png](../image/vue//2.png)
 
-### 使用create-vue创建项目
+### 使用 create-vue 创建项目
 
-> 前置条件 - 已安装`16.0`或更高版本的`Node.js`
+> 前置条件 - 已安装 `16.0` 或更高版本的 `Node.js`
 
 执行如下命令，这一指令将会安装并执行 `create-vue`
 
@@ -65,7 +65,7 @@ npm init vue@latest
 
 ![image.png](../image/vue//4.png)
 
-## 组合式API - setup选项
+## setup 选项
 
 ### setup 选项的写法和执行时机
 
@@ -86,7 +86,7 @@ npm init vue@latest
 
 执行时机
 
-> 在beforeCreate钩子之前执行
+> 在 `beforeCreate` 钩子之前执行
 
 ![image.png](../image/vue//5.png)
 
@@ -457,14 +457,14 @@ export default defineConfig({
 })
 ```
 
-## Pinia
+## Pinia 状态管理
 
 ### 什么是 Pinia
 
 `Pinia` 是 `Vue` 的专属的最新状态管理库 ，是 `Vuex` 状态管理工具的替代品
 ![image.png](../image/vue//Pinia\31.png)
 
-### 添加Pinia到Vue项目
+### 添加 Pinia 到 Vue 项目
 
 后面在实际开发项目的时候，`Pinia` 可以在项目创建时自动添加，现在我们初次学习，从零开始：
 
@@ -473,7 +473,7 @@ export default defineConfig({
   ```bash
   npm init vite@latest
   ```
-  
+
 2. 按照官方文档安装 `pinia` 到项目中
 
 ### Pinia 基础使用
