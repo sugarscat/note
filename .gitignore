@@ -3,6 +3,6 @@
 '.temp'
 '.cache'
 /node_modules/
-/docs/.vitepress/dist/
-/docs/.vitepress/temp/
-/docs/.vitepress/cache/
+.vitepress/dist/
+.vitepress/temp/
+.vitepress/cache/
