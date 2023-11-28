@@ -10,7 +10,7 @@
 
 [VS Code 基本使用](./code/vs-code.md)
 
-[Vue 官方文档](https://cn.vuejs.org/guide/introduction.html)
+[Vue](./code/Vue.md)
 
 [企业级开发](./code/企业级开发.md)
 
