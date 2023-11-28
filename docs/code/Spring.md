@@ -1324,7 +1324,7 @@ public class HelloContro
 
 ## @Controller
 
-组合注解（组合了 `@Component` 注解），应用在 `MVC` 层（控制层），`DispatcherServle` t会自动扫描注解了此注解的类，然后将 `web` 请求映射到注解了 `@RequestMapping` 的方法上。
+组合注解（组合了 `@Component` 注解），应用在 `MVC` 层（控制层），`DispatcherServlet` 会自动扫描注解了此注解的类，然后将 `web` 请求映射到注解了 `@RequestMapping` 的方法上。
 
 ## @RequestMapping
 
@@ -1382,7 +1382,7 @@ public class HelloContro
 
 ## @ComponentScan
 
-自动扫描指定包下所有使用 `@Service`、``@Component`、`@Controller`、`@Repository` 的类并注册（类上）。
+自动扫描指定包下所有使用 `@Service`、`@Component`、`@Controller`、`@Repository` 的类并注册（类上）。
 
 ## @Aspect
 
@@ -1428,7 +1428,7 @@ public class HelloContro
 
 ## @Scheduled
 
-来申明这是一个任务，包括 `cron,fixDelay,fixRate` 等类型。（方法上，需先开启计划任务的支持）
+来申明这是一个任务，包括 `cron`，`fixDelay`，`fixRate` 等类型。（方法上，需先开启计划任务的支持）
 
 ## @Enable*注解说明
 
