@@ -4,8 +4,11 @@ import sidebar from './sidebar'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "Note",
-  description: "心灵记忆过往，镜头捕捉瞬间。",
+  base: '/note',
+  lang: 'zh-CN',
+  title: 'Note',
+  description: '心灵记忆过往，镜头捕捉瞬间。',
+  lastUpdated: true,
   themeConfig: {
     nav: navbar,
     logo: '/favicon.ico',
