@@ -7,7 +7,7 @@
 ## 开发
 
 ```shell
-  npm install
-  npm run docs:dev
-  npm run docs:build
+  pnpm install
+  pnpm run docs:dev
+  pnpm run docs:build
 ```

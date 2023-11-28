@@ -1,12 +1,12 @@
 {
   "devDependencies": {
     "flexsearch": "^0.7.31",
-    "vitepress": "^1.0.0-alpha.65",
-    "vitepress-plugin-search": "^1.0.4-alpha.20"
+    "vitepress": "1.0.0-rc.31",
+    "vitepress-plugin-search": "1.0.4-alpha.20"
   },
   "scripts": {
-    "docs:dev": "vitepress dev docs",
-    "docs:build": "vitepress build docs",
-    "docs:serve": "vitepress serve docs"
+    "docs:dev": "vitepress dev",
+    "docs:build": "vitepress build",
+    "docs:preview": "vitepress preview"
   }
 }
