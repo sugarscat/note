@@ -244,7 +244,7 @@ kill -9 xxxx(pid)
 
 ### 配置文件概览
 
-```conf
+txt
 
 # 全局快 ---------------------------------------------------------------------
 #user  nobody;
@@ -368,7 +368,7 @@ server {
 
 最常见的配置是本虚拟机主机的监听配置和本虚拟主机的名称或 `IP` 配置。
 
-```conf
+txt
 # 监听 80 端口，只要有请求访问了 80 端口，此 server 块就处理请求
 listen  80;
 # 这个 server 块代表的虚拟主机的名字
@@ -381,7 +381,7 @@ server_name  localhost;
 - 主要作用是根据请求地址路径的匹配，匹配成功进行特定的处理
 - 这块的主要作用是基于 `Nginx` 服务器接收到的请求字符串（例如 `server_name/uri-string`），对虚拟主机名称（也可以是 `IP` 别名）之外的字符串（例如 前面的 `/uri-string`）进行匹配，对特定的请求进行处理。地址定向、数据缓存和应答控制等功能，还有许多第三方模块的配置也在这里进行。
 
-```conf
+txt
 # 如果请求路径是 / 就是用这个 location 块进行处理
 location / {
     root   html;
@@ -393,7 +393,7 @@ location / {
 
 1. `location` 语法：
 
-   ```conf
+   txt
    location [=|~|~*|^~] /uri/ { … }
    ```
 
@@ -412,7 +412,7 @@ location / {
 
    - 示例如下：
 
-     ```conf
+     txt
      location ^~ /test/ {  
          alias /usr/local/nginx/html/static/;  
      }
@@ -422,7 +422,7 @@ location / {
 
      实际访问：/usr/local/nginx/html/static/test1.html 文件
 
-     ```conf
+     txt
      location ^~ /test/ {  
          root /usr/local/nginx/html/;  
      }
@@ -458,7 +458,7 @@ location / {
 
 如：80 端口代理到 8080 端口
 
-```conf
+txt
 server {
     # 监听端口80 即当访问服务器的端口是 80 时，进入这个 server 块处理
     listen 80;
@@ -479,7 +479,7 @@ server {
 
 ### 前端跨域解决
 
-```conf
+txt
 server {
     listen       8080;
     server_name  10.8.9.94;
@@ -524,7 +524,7 @@ server {
 
 如：分别在 8081 和 8082 端口开启两个相同的服务，由 Ngnix 进行负载均衡
 
-```conf
+txt
 # 在http块中的全局块中配置
 # upstream 固定写法 后面的 myserver 可以自定义
 upstream myserver{
@@ -556,7 +556,7 @@ server {
 
 如：
 
-```conf
+txt
 upstream myserver { 
     server ip:8081 weight=1 ;
     server ip:8082 weight=2 ;
@@ -574,7 +574,7 @@ server {
 
 如：
 
-```conf
+txt
 #配置负载均衡的服务器和端口
 upstream myserver { 
     server ip:8081;
@@ -595,7 +595,7 @@ server {
 
 如：
 
-```conf
+txt
 #配置负载均衡的服务器和端口
 upstream myserver {   
     server ip:8081;

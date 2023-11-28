@@ -1,5 +1,5 @@
 import { SearchPlugin } from "vitepress-plugin-search";
-import { defineConfig } from 'vite';
+import { defineConfig } from 'vitepress';
 
 var options = {
     previewLength: 62,
