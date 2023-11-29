@@ -925,6 +925,8 @@ public void doAspect(){}
 
 ## 简单示例
 
+### 导入依赖
+
 `maven` 配置
 
 ```xml
@@ -941,7 +943,28 @@ public void doAspect(){}
   <artifactId>spring-webmvc</artifactId>
   <version>5.2.8.RELEASE</version>
 </dependency>
+
+<!-- servlet -->
+<dependency>
+  <groupId>javax.servlet</groupId>
+  <artifactId>javax.servlet-api</artifactId>
+  <version>3.1.0</version>
+  <scope>provided</scope>
+</dependency>
+<dependency>
+  <groupId>javax.servlet.jsp</groupId>
+  <artifactId>jsp-api</artifactId>
+  <version>2.2</version>
+  <scope>provided</scope>
+</dependency>
+<dependency>
+  <groupId>javax.servlet</groupId>
+  <artifactId>jstl</artifactId>
+  <version>1.2</version>
+</dependency>
 ```
+
+### 配置 DispatcherServlet
 
 在 `web.xml `配置 `Spring MVC` 的 `DispatcherServlet`
 
@@ -983,6 +1006,8 @@ public void doAspect(){}
 </web-app>
 ```
 
+### 配置 SpringMVC
+
 `SpringMVC.xml`
 
 ```xml
@@ -1009,16 +1034,23 @@ public void doAspect(){}
 </beans>
 ```
 
+### 示例代码
+
 `Controller`
 
 ```java
+package cn.sugarscat.springmvc.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
 @Controller
-public class HelloHandler {
+public class HelloController {
     /**
      * 当客户端访问index请求时
      * 直接自动关联到这个方法
      * 执行这个方法后，会返回结果
-     * @return
+     * @return String
      */
     @RequestMapping("/index")
     public String index(){
@@ -1118,6 +1150,128 @@ public String restful(@PathVariable("id") Integer num, @PathVariable("name") Str
 public String restful(@PathVariable("id") Integer num, @PathVariable("name") String name){
     System.out.println(num+"-"+name);
     return "forward:/index.jsp";
+}
+```
+
+## 文件上传
+
+### 导入依赖
+
+```xml
+<dependency>
+  <groupId>commons-io</groupId>
+  <artifactId>commons-io</artifactId>
+  <version>2.12.0</version>
+</dependency>
+<dependency>
+  <groupId>commons-fileupload</groupId>
+  <artifactId>commons-fileupload</artifactId>
+  <version>1.5</version>
+</dependency>
+```
+
+### 配置解析器
+
+`SpringMVC.xml`
+
+```xml
+<!--文件上传解析器-->
+<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+    <!-- 限制文件上传总大小，不设置默认没有限制，单位为字节 200*1024*1024即200M -->
+    <property name="maxUploadSize" value="209715200" />
+    <!-- 设置每个上传文件的大小上限 1024*1024*2 2M -->
+    <property name="maxUploadSizePerFile" value="2019152"/>
+    <!-- 处理文件名中文乱码 -->
+    <property name="defaultEncoding" value="UTF-8" />
+    <!-- resolveLazily属性启用是为了推迟文件解析，以便捕获文件大小异常 -->
+    <property name="resolveLazily" value="true" />
+</bean>
+```
+
+### 示例代码
+
+```java
+package cn.sugarscat.springmvc.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+@Controller
+@RequestMapping("file")
+public class FileUploadController {
+
+    /**
+     * 文件是以二进制流传输的
+     * @param img img
+     * @return String
+     */
+    @PostMapping("/upload")
+    @ResponseBody
+    public String upload(@RequestParam("img") MultipartFile img, HttpServletRequest request){
+        if (img.getSize()>0){
+            String path = request.getSession().getServletContext().getRealPath("file");
+            String filename = img.getOriginalFilename();
+            File descFile= null;
+            if (filename != null) {
+                descFile = new File(path, filename);
+            }
+            try {
+                if (descFile != null) {
+                    img.transferTo(descFile); // 保存文件
+                    System.out.println(descFile.getAbsolutePath()); // 打印文件保存目录
+                }
+                request.setAttribute("src", "/file/"+filename);
+            } catch (IOException e) {
+                e.fillInStackTrace();
+            }
+        }
+        System.out.println(request.getAttribute("src"));
+        return "upload";
+    }
+
+    /**
+     * 多文件上传
+     * @param imgs imgs
+     * @param request HttpServletRequest
+     * @return String
+     */
+    @PostMapping("/uploads")
+    @ResponseBody
+    public String uploads(@RequestParam("imgs") MultipartFile[] imgs, HttpServletRequest request){
+        List<String> pathList=new ArrayList<>();
+        for (MultipartFile img:imgs){
+            if (img.getSize()>0){
+                String path = request.getSession().getServletContext().getRealPath("file");
+                String filename = img.getOriginalFilename();
+                File descFile= null;
+                if (filename != null) {
+                    descFile = new File(path, filename);
+                }
+                try {
+                    if (descFile != null) {
+                        img.transferTo(descFile); // 保存文件
+                    }
+                    pathList.add("/file/"+filename);
+                } catch (IOException e) {
+                    e.fillInStackTrace();
+                }
+            }
+        }
+        request.setAttribute("pathList", pathList);
+        return "uploads";
+
+    }
+
 }
 ```
 
@@ -1298,7 +1452,7 @@ public class MyInterceptor2 implements HandlerInterceptor {
 ```java
 @RequestMapping("/hello")
 @Controller
-public class HelloContro  
+public class HelloController{ 
     @RequestMapping("/packageType")
     @ResponseBody
     public String packageType(@RequestParam(value = "id", required = true) Integer id) {
@@ -1307,6 +1461,12 @@ public class HelloContro
     }
 }
 ```
+
+## SSM 整合
+
+> Spring + SpringMVC + Mybatis
+
+
 
 ## Spring 常用注解 ↓↓↓
 
