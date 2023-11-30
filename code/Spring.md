@@ -1462,6 +1462,56 @@ public class HelloController{
 }
 ```
 
+## 异常处理
+
+### 方法一
+
+`GlobalException.java`
+
+```java
+package cn.sugarscat.springmvc.exception;
+
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.http.HttpServletRequest;
+
+@ControllerAdvice
+public class GlobalException {
+
+    @ExceptionHandler({ArithmeticException.class, NullPointerException.class, IllegalAccessException.class})
+//    @ResponseBody
+    public String globalException(Exception exception, HttpServletRequest request) {
+        System.out.println("全局异常捕获"+exception.getMessage());
+        request.setAttribute("error", "全局异常捕获"+exception.getMessage());
+        return "error";
+    }
+}
+```
+
+`applicationContext.xml`
+
+```xml
+<context:component-scan base-package="cn.sugarscat.springmvc.exception"/>
+```
+
+### 方法二
+
+`applicationContext.xml`
+
+```xml
+<!--    异常处理-->
+<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+    <property name="exceptionMappings">
+        <props>
+            <!-- 页面 -->
+            <prop key="java.lang.Exception">error</prop> 
+        </props>
+    </property>
+</bean>
+```
+
 ## SSM 整合
 
 > Spring + SpringMVC + Mybatis
