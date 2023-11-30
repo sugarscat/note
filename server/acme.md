@@ -1,6 +1,6 @@
 # ACME申请证书
 
-## 1. ACME安装
+## ACME安装
 
 ```sh
 curl  https://get.acme.sh | sh
@@ -16,13 +16,13 @@ curl  https://get.acme.sh | sh
 
 :::
 
-## 2.方便使用
+## 方便使用
 
 ```sh
 alias acme.sh=~/.acme.sh/acme.sh
 ```
 
-## 3.更改默认证书
+## 更改默认证书
 
 ```sh
 acme.sh --set-default-ca --server letsencrypt
@@ -34,7 +34,9 @@ acme 被 ZeroSSL 收购，其默认的证书方式为 ZeroSSL，但此证书生�
 您可以自定义生成什么证书，修改 "--server" 后的 "letsencrypt" 即可。
 :::
 
-## 4.生成证书 (DNS 验证方式)
+## 生成证书 
+
+### DNS 验证方式
 
 ```sh
 export Ali_Key=""

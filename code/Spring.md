@@ -1447,7 +1447,7 @@ public class MyInterceptor2 implements HandlerInterceptor {
 }
 ```
 
-`Handler`
+`Controller`
 
 ```java
 @RequestMapping("/hello")
@@ -1466,7 +1466,437 @@ public class HelloController{
 
 > Spring + SpringMVC + Mybatis
 
+### 导入依赖
 
+`pom.xml`
+
+```xml
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.example</groupId>
+  <artifactId>SpringMVC</artifactId>
+  <packaging>war</packaging>
+  <version>1.0-SNAPSHOT</version>
+  <name>SpringMVC Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- Spring-web 依赖-->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-web</artifactId>
+      <version>5.2.25.RELEASE</version>
+    </dependency>
+
+    <!-- springmvc -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-webmvc</artifactId>
+      <version>5.2.8.RELEASE</version>
+    </dependency>
+
+    <!--spring AOP和aspectj框架整合的模块-->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-aspects</artifactId>
+      <version>5.2.25.RELEASE</version>
+    </dependency>
+
+    <!--spring 支持jdbc 编程模块-->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-jdbc</artifactId>
+      <version>5.2.14.RELEASE</version>
+    </dependency>
+
+    <!--    lombok-->
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.18.28</version>
+      <scope>compile</scope>
+    </dependency>
+
+<!--    日志-->
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>2.0.7</version>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-simple</artifactId>
+      <version>2.0.7</version>
+    </dependency>
+
+    <!-- spring-json依赖 -->
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>2.15.1</version>
+    </dependency>
+
+    <!--文件上传-->
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+      <version>2.12.0</version>
+    </dependency>
+    <dependency>
+      <groupId>commons-fileupload</groupId>
+      <artifactId>commons-fileupload</artifactId>
+      <version>1.5</version>
+    </dependency>
+
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>3.1.0</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>javax.servlet.jsp</groupId>
+      <artifactId>jsp-api</artifactId>
+      <version>2.2</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>jstl</artifactId>
+      <version>1.2</version>
+    </dependency>
+
+    <!-- mysql jdbc驱动包 -->
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>8.0.33</version>
+      <scope>runtime</scope>
+    </dependency>
+    <!--Druid数据库连接池 -->
+    <dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>druid</artifactId>
+      <version>1.2.20</version>
+    </dependency>
+    <!-- mybatis框架包 -->
+    <dependency>
+      <groupId>org.mybatis</groupId>
+      <artifactId>mybatis</artifactId>
+      <version>3.5.13</version>
+    </dependency>
+    <!-- mybatis和spring整合依赖包 -->
+    <dependency>
+      <groupId>org.mybatis</groupId>
+      <artifactId>mybatis-spring</artifactId>
+      <version>2.1.1</version>
+    </dependency>
+
+<!-- log4j日志包 -->
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-slf4j-impl</artifactId>
+      <version>2.13.3</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-web</artifactId>
+      <version>2.13.3</version>
+    </dependency>
+
+  </dependencies>
+  <build>
+    <finalName>SpringMVC</finalName>
+  </build>
+</project>
+```
+
+### 一些配置
+
+`log4j.properties`
+
+```properties
+log4j.rootLogger = info,stdout,D,E
+log4j.appender.YourAppender.Encoding = UTF-8
+
+log4j.appender.stdout = org.apache.log4j.ConsoleAppender
+log4j.appender.stdout.Target = System.out
+log4j.appender.stdout.layout = org.apache.log4j.PatternLayout
+log4j.appender.stdout.layout.ConversionPattern = [%-5p] %d{yyyy-MM-dd HH:mm:ss,SSS} method:%l%n%m%n
+
+log4j.appender.D = org.apache.log4j.DailyRollingFileAppender
+log4j.appender.D.File = logs/log.log
+log4j.appender.D.Append = true
+log4j.appender.D.Threshold = DEBUG
+log4j.appender.D.layout = org.apache.log4j.PatternLayout
+log4j.appender.D.layout.ConversionPattern = %-d{yyyy-MM-dd HH:mm:ss}  [ %t:%r ] - [ %p ]  %m%n
+
+log4j.appender.E = org.apache.log4j.DailyRollingFileAppender
+log4j.appender.E.File =logs/error.log
+log4j.appender.E.Append = true
+log4j.appender.E.Threshold = ERROR
+log4j.appender.E.layout = org.apache.log4j.PatternLayout
+log4j.appender.E.layout.ConversionPattern = %-d{yyyy-MM-dd HH:mm:ss}  [ %t:%r ] - [ %p ]  %m%n
+```
+
+`application.properties`
+
+```properties
+jdbc.username=root
+jdbc.password=123456
+jdbc.url=jdbc:mysql://127.0.0.1:3306/my_test?useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+jdbc.driverClassName=com.mysql.cj.jdbc.Driver
+jdbc.initialSize=5
+```
+
+`applicationContext.xml`
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       https://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!-- 配置自动扫包 -->
+    <context:component-scan base-package="cn.sugarscat.springmvc.controller"/>
+
+    <!-- 扫描 service 层组件 -->
+    <context:component-scan base-package="cn.sugarscat.springmvc.service"/>
+
+<!--    springMVC start-->
+    <!-- springmvc 注解支持 -->
+    <mvc:annotation-driven/>
+
+    <!-- 不拦截静态资源 -->
+    <mvc:default-servlet-handler/>
+
+    <!-- 视图解析器 -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <!--给逻辑视图加上前缀和后缀 -->
+        <!--前缀-->
+        <property name="prefix" value="/"/>
+        <!--后缀-->
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+    <mvc:interceptors>
+        <!-- 拦截器配置 -->
+        <!--
+            使用bean定义一个Interceptor
+            直接定义在mvc:interceptors根下面的Interceptor将拦截所有的请求
+            -->
+        <bean class="cn.sugarscat.springmvc.interceptor.LoginInterceptor"/>
+    </mvc:interceptors>
+
+    <!--文件上传解析器-->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- 限制文件上传总大小，不设置默认没有限制，单位为字节 200*1024*1024即200M -->
+        <property name="maxUploadSize" value="209715200" />
+        <!-- 设置每个上传文件的大小上限 1024*1024*2 2M -->
+        <property name="maxUploadSizePerFile" value="2019152"/>
+        <!-- 处理文件名中文乱码 -->
+        <property name="defaultEncoding" value="UTF-8" />
+        <!-- resolveLazily属性启用是为了推迟文件解析，以便捕获文件大小异常 -->
+        <property name="resolveLazily" value="true" />
+    </bean>
+<!--    springMVC end-->
+
+    <!-- 读取外部配置文件 -->
+    <context:property-placeholder location="classpath:application.properties"/>
+
+    <!-- 将 Druid 数据源交给 Spring IOC 容器来管理-->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="driverClassName" value="${jdbc.driverClassName}"/>
+        <property name="initialSize" value="${jdbc.initialSize}"/>
+    </bean>
+
+    <!-- SqlSessionFactory 会话工厂交给 spring 容器管理-->
+    <bean name="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!--注入数据源-->
+        <property name="dataSource" ref="dataSource"/>
+        <!--配置 Mapper 映射文件的位置-->
+<!--        <property name="mapperLocations" value="classpath:mapper/*Mapper.xml"/>-->
+    </bean>
+
+    <!-- 配置Mapper接口的扫描器 -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!-- 配置 mapper 接口所在的包 -->
+        <property name="basePackage" value="cn.sugarscat.springmvc.mapper"/>
+        <!-- 注入会话工厂 -->
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+    </bean>
+
+    <!--配置jdbc的事务管理器-->
+    <bean name="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <!--注入数据源-->
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!-- 启用注解事务 -->
+    <tx:annotation-driven transaction-manager="txManager"/>
+</beans>
+```
+
+### 代码示例
+
+`User.java`
+
+```java
+package cn.sugarscat.springmvc.pojo;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class User {
+    private Integer uid;
+    private String uname;
+    private String pwd;
+    private Integer sex;
+    private Integer age;
+}
+```
+
+`UserMapper.java`
+
+```java
+package cn.sugarscat.springmvc.mapper;
+
+import cn.sugarscat.springmvc.pojo.User;
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
+
+import java.util.List;
+
+@Mapper
+public interface UserMapper {
+    //查询全部用户
+    @Select("select * from user")
+    List<User> selectAll();
+
+    //根据id查询用户
+    @Select("select *  from user where uid = #{uid}")
+    User selectByPrimaryKey(Integer uid);
+
+    //根据id删除用户
+    @Delete("delete from user where uid = #{uid}")
+    void deleteByPrimaryKey(Integer uid);
+}
+```
+
+`UserService.java`
+
+```java
+package cn.sugarscat.springmvc.service;
+
+import cn.sugarscat.springmvc.pojo.User;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public interface UserService {
+
+    /*查询所有用户*/
+    List<User> queryAllUser();
+
+    /*根据用户id查询用户*/
+    User queryUserByUid(Integer uid);
+}
+```
+
+`UserServiceImpl.java`
+
+```java
+package cn.sugarscat.springmvc.service.impl;
+
+import cn.sugarscat.springmvc.mapper.UserMapper;
+import cn.sugarscat.springmvc.pojo.User;
+import cn.sugarscat.springmvc.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service("userService")
+public class UserServiceImpl implements UserService {
+
+    @Autowired
+    private UserMapper userMapper;
+
+    @Override
+    public List<User> queryAllUser() {
+        return userMapper.selectAll();
+    }
+
+    @Override
+    public User queryUserByUid(Integer uid) {
+        return userMapper.selectByPrimaryKey(uid);
+    }
+}
+```
+
+`UserController.java`
+
+```java
+package cn.sugarscat.springmvc.controller;
+
+import cn.sugarscat.springmvc.pojo.User;
+import cn.sugarscat.springmvc.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+
+@RestController
+public class UserController {
+
+    @Autowired
+    private UserService userService;
+
+    /**
+     * 查询所有用户
+     * @return List<User>
+     */
+    @GetMapping("/user/all")
+    public List<User> queryAllUser() {
+        return userService.queryAllUser();
+    }
+
+    /**
+     * 根据用户 id 查询用户
+     * @param uid Integer
+     * @return User
+     */
+    @GetMapping("/user/{uid}")
+    public User queryUserByUid(@PathVariable("uid") Integer uid) {
+        return userService.queryUserByUid(uid);
+    }
+}
+```
 
 ## Spring 常用注解 ↓↓↓
 
