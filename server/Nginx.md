@@ -244,77 +244,70 @@ kill -9 xxxx(pid)
 
 ### 配置文件概览
 
-txt
+```txt
 
 # 全局快 ---------------------------------------------------------------------
 #user  nobody;
 worker_processes  1;
-
 #error_log  logs/error.log;
 #error_log  logs/error.log  notice;
 #error_log  logs/error.log  info;
-
 #pid        logs/nginx.pid;
 ------------------------------------------------------------------------------
-
 # events 块 ------------------------------------------------------------------
 events {
     worker_connections  1024;
 }
 ------------------------------------------------------------------------------
-
 # http 块 --------------------------------------------------------------------
 http {
-
     include       mime.types;
     default_type  application/octet-stream;
-
+    
     #log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
     #                  '$status $body_bytes_sent "$http_referer" '
     #                  '"$http_user_agent" "$http_x_forwarded_for"';
-
+    
     #access_log  logs/access.log  main;
-
+    
     sendfile        on;
     #tcp_nopush     on;
-
+    
     #keepalive_timeout  0;
     keepalive_timeout  65;
-
+    
     #gzip  on;        
-------------------------------------------------------------------------------    
-
+------------------------------------------------------------------------------
 # server 块 ------------------------------------------------------------------
 server {
      # server 全局块 ---------------------------
         listen       80;
         server_name  localhost;
-
         #charset koi8-r;
-
+    
         #access_log  logs/host.access.log  main;
-
+    
      # location 块 -----------------------------
         location / {
             root   html;
             index  index.html index.htm;
         }
-
+    
         #error_page  404              /404.html;
-
+    
         # redirect server error pages to the static page /50x.html
         #
         error_page   500 502 503 504  /50x.html;
         location = /50x.html {
             root   html;
         }
-
+    
         # proxy the PHP scripts to Apache listening on 127.0.0.1:80
         #
         #location ~ \.php$ {
         #    proxy_pass   http://127.0.0.1;
         #}
-
+    
         # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
         #
         #location ~ \.php$ {
@@ -324,7 +317,7 @@ server {
         #    fastcgi_param  SCRIPT_FILENAME  /scripts$fastcgi_script_name;
         #    include        fastcgi_params;
         #}
-
+    
         # deny access to .htaccess files, if Apache's document root
         # concurs with nginx's one
         #
@@ -332,9 +325,7 @@ server {
         #    deny  all;
         #}
 }
-
 # 可以配置多个server块 
-
 }
 ```
 
@@ -368,7 +359,7 @@ server {
 
 最常见的配置是本虚拟机主机的监听配置和本虚拟主机的名称或 `IP` 配置。
 
-txt
+```txt
 # 监听 80 端口，只要有请求访问了 80 端口，此 server 块就处理请求
 listen  80;
 # 这个 server 块代表的虚拟主机的名字
@@ -381,7 +372,7 @@ server_name  localhost;
 - 主要作用是根据请求地址路径的匹配，匹配成功进行特定的处理
 - 这块的主要作用是基于 `Nginx` 服务器接收到的请求字符串（例如 `server_name/uri-string`），对虚拟主机名称（也可以是 `IP` 别名）之外的字符串（例如 前面的 `/uri-string`）进行匹配，对特定的请求进行处理。地址定向、数据缓存和应答控制等功能，还有许多第三方模块的配置也在这里进行。
 
-txt
+```txt
 # 如果请求路径是 / 就是用这个 location 块进行处理
 location / {
     root   html;
@@ -393,7 +384,7 @@ location / {
 
 1. `location` 语法：
 
-   txt
+   ```txt
    location [=|~|~*|^~] /uri/ { … }
    ```
 
@@ -412,17 +403,17 @@ location / {
 
    - 示例如下：
 
-     txt
+     ```txt
      location ^~ /test/ {  
          alias /usr/local/nginx/html/static/;  
      }
      ```
-
+  
      请求：/test/test1.html
-
+  
      实际访问：/usr/local/nginx/html/static/test1.html 文件
-
-     txt
+  
+     ```txt
      location ^~ /test/ {  
          root /usr/local/nginx/html/;  
      }
@@ -458,13 +449,12 @@ location / {
 
 如：80 端口代理到 8080 端口
 
-txt
+```txt
 server {
     # 监听端口80 即当访问服务器的端口是 80 时，进入这个 server 块处理
     listen 80;
     # server_name 当配置了 listen 时不起作用        
     server_name  localhost;
-
     # location后面代表访问路径，当是 / 请求时 代理到 8080 的端口
     location / {
     # 使用 proxy_pass（固定写法）后面跟要代理服务器地址            
@@ -479,11 +469,10 @@ server {
 
 ### 前端跨域解决
 
-txt
+```txt
 server {
     listen       8080;
     server_name  10.8.9.94;
-
     location ^~ /api {
         proxy_pass   http://192.1.2.3:9000;
         add_header Access-Control-Allow-Methods *;
@@ -495,16 +484,13 @@ server {
             return 200;
         }
     }
-
     location / {
         root   web/dist;
         index  index.html index.htm;
         add_header 'Access-Control-Allow-Origin' '*';
         try_files $uri $uri/ /index.html;
     }
-
     #error_page  404              /404.html;
-
     # redirect server error pages to the static page /50x.html
     #
     error_page   500 502 503 504  /50x.html;
@@ -524,14 +510,13 @@ server {
 
 如：分别在 8081 和 8082 端口开启两个相同的服务，由 Ngnix 进行负载均衡
 
-txt
+```txt
 # 在http块中的全局块中配置
 # upstream 固定写法 后面的 myserver 可以自定义
 upstream myserver{
     server ip:8081;
     server ip:8082;
 }
-
 # server配置
 server {
   	# 监听80端口
@@ -556,7 +541,7 @@ server {
 
 如：
 
-txt
+```txt
 upstream myserver { 
     server ip:8081 weight=1 ;
     server ip:8082 weight=2 ;
@@ -574,7 +559,7 @@ server {
 
 如：
 
-txt
+```txt
 #配置负载均衡的服务器和端口
 upstream myserver { 
     server ip:8081;
@@ -595,7 +580,7 @@ server {
 
 如：
 
-txt
+```txt
 #配置负载均衡的服务器和端口
 upstream myserver {   
     server ip:8081;
