@@ -51,7 +51,7 @@ acme.sh --issue --dns dns_ali -d 域名
 
 :::
 
-## 5. 证书默认存放位置
+## 证书存放位置
 
 ```txt
 /root/.acme.sh/域名_ecc/域名.cer
