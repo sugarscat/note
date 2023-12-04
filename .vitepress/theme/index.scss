@@ -88,6 +88,11 @@
     color: var(--vp-custom-block-details-text);
 }
 
+.icon {
+    width: 25px;
+    height: 25px;
+}
+
 .VPSidebarItem {
     h2.text,
     h3.text,
@@ -123,5 +128,21 @@
                 height: 20px;
             }
         }
+    }
+}
+
+.prev-next .pager-link {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    span.title {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    &.next {
+        align-items: flex-end;
     }
 }

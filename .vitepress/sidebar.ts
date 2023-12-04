@@ -19,7 +19,10 @@ import {
     keyboardIcon,
     machineLearningIcon,
     hmosIcon,
-    springBootIcon
+    springBootIcon,
+    dockerIcon,
+    versionControlIcon,
+    gitIcon
 } from './icons.ts'
 
 export default  [
@@ -71,6 +74,7 @@ export default  [
             items: [
                 {text: linuxIcon + 'Linux 命令', link: '/server/Linux-command.md'},
                 {text: nginxIcon + 'Nginx', link: '/server/Nginx.md'},
+                {text: dockerIcon + 'Docker', link: '/server/Docker.md'},
                 {text: powershellIcon + 'ACME 申请证书', link: '/server/acme.md'},
             ]
         },{
@@ -82,6 +86,14 @@ export default  [
 
             ]
         },{
+            text: versionControlIcon + '版本控制',
+            collapsible: true,
+            collapsed: true,
+            items: [
+                {text: gitIcon + 'Git', link: '/version_control/Git.md'},
+
+            ]
+        },{
             text: designIcon + '设计',
             collapsible: true,
             collapsed: true,
@@ -89,8 +101,7 @@ export default  [
                 {text: blenderIcon + 'Blender 建模', link: '/design/Blender.md'},
 
             ]
-        },
-        {
+        },{
             text: toolIcon + '工具',
             collapsible: true,
             collapsed: true,
