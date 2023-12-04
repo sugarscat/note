@@ -7,6 +7,12 @@ export default defineConfig({
   base: '/note',
   lang: 'zh-CN',
   title: 'Note',
+  head: [
+    [
+      'link',
+      { rel: 'icon', href: './favicon.ico' }
+    ],
+  ],
   description: '心灵记忆过往，镜头捕捉瞬间。',
   lastUpdated: true,
   themeConfig: {
