@@ -462,5 +462,5 @@ spring:
      client-type: jedis
      jedis:
        pool:
-       	 max-active: 10
+         max-active: 10
 ```

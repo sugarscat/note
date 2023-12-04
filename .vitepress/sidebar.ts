@@ -1,51 +1,102 @@
+import {
+    menuIcon,
+    pcIcon,
+    rearEndIcon,
+    springIcon,
+    deployIcon,
+    sqlIcon,
+    mySQLIcon,
+    frontEndIcon,
+    vueIcon,
+    toolIcon,
+    designIcon,
+    nginxIcon,
+    blenderIcon,
+    powershellIcon,
+    linuxIcon,
+    docsIcon,
+    vscodeIcon,
+    keyboardIcon,
+    machineLearningIcon,
+    hmosIcon,
+    springBootIcon
+} from './icons.ts'
+
 export default  [
         {
-            text: '目录',
+            text: menuIcon + '目录',
             link: '/menu.md'
-        },
-        {
-            text: '编程',
+        },{
+            text: pcIcon + '编程',
             collapsible: true,
-            collapsed: false,
+            collapsed: true,
             items: [
-                {text: 'MySQL', link: '/code/MySQL.md'},
-                {text: 'Java 连接MySQL数据库', link: '/code/MySQL-connector-java.md'},
-                {text: 'Linux 命令', link: '/code/Linux-command.md'},
-                {text: 'VS Code 基本使用', link: '/code/vs-code.md'},
-                {text: 'Vue', link: '/code/Vue.md'},
-                {text: '企业级开发', link: '/code/企业级开发.md'},
-                {text: 'Spring', link: '/code/Spring.md'},
-                {text: 'SpringBoot', link: '/code/SpringBoot.md'},
-                {text: 'SpringBoot 数据访问', link: '/code/SpringBoot数据访问.md'},
-                {text: '机器学习', link: '/code/MachineLearning.md'},
+                // {text: docsIcon + '软件设计师', link: '/code/软件设计师.md'},
+                {text: machineLearningIcon + '机器学习', link: '/code/MachineLearning.md'},
             ]
         },
         {
-            text: '服务器',
+            text: rearEndIcon + '后端',
             collapsible: true,
-            collapsed: false,
+            collapsed: true,
             items: [
-                {text: 'Nginx', link: '/server/Nginx.md'},
-                {text: 'Ubuntu 安装开发环境', link: '/server/Ubuntu安装开发环境.md'},
-                {text: 'ACME 申请证书', link: '/server/acme.md'},
+                {text: docsIcon + '企业级开发', link: '/backend/企业级开发.md'},
+                {
+                    text: springIcon + 'Spring',
+                    collapsible: true,
+                    collapsed: true,
+                    items: [
+                        {text: springIcon + 'Spring', link: '/backend/Spring.md'},
+                        {text: springBootIcon + 'SpringBoot', link: '/backend/SpringBoot.md'},
+                        {text: springBootIcon + 'SpringBoot 数据访问', link: '/backend/SpringBoot数据访问.md'},
+                    ]
+                }, {
+
+                }
+            ]
+        },
+        {
+            text: frontEndIcon + '前端',
+            collapsible: true,
+            collapsed: true,
+            items: [
+                {text: vueIcon + 'Vue', link: '/frontend/Vue.md'},
+                {text: hmosIcon + 'HarmonyOS', link: '/frontend/HarmonyOS.md'},
+            ]
+        },
+        {
+            text: deployIcon + '部署',
+            collapsible: true,
+            collapsed: true,
+            items: [
+                {text: linuxIcon + 'Linux 命令', link: '/server/Linux-command.md'},
+                {text: nginxIcon + 'Nginx', link: '/server/Nginx.md'},
+                {text: powershellIcon + 'ACME 申请证书', link: '/server/acme.md'},
+            ]
+        },{
+            text: sqlIcon + '数据库',
+            collapsible: true,
+            collapsed: true,
+            items: [
+                {text: mySQLIcon + 'MySQL', link: '/sql/MySQL.md'},
+
+            ]
+        },{
+            text: designIcon + '设计',
+            collapsible: true,
+            collapsed: true,
+            items: [
+                {text: blenderIcon + 'Blender 建模', link: '/design/Blender.md'},
 
             ]
         },
         {
-            text: '设计',
+            text: toolIcon + '工具',
             collapsible: true,
-            collapsed: false,
+            collapsed: true,
             items: [
-                {text: 'Blender 建模', link: '/design/Blender.md'},
-
-            ]
-        },
-        {
-            text: '工具',
-            collapsible: true,
-            collapsed: false,
-            items: [
-                {text: '腹灵F12 68键 RGB', link: '/tools/F12.md'},
+                {text: vscodeIcon + 'VS Code 基本使用', link: '/tools/vs-code.md'},
+                {text: keyboardIcon + '腹灵F12 68键 RGB', link: '/tools/F12.md'},
 
             ]
         },

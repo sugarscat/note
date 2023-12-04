@@ -87,3 +87,41 @@
     background-color: var(--vp-custom-block-tip-bg);
     color: var(--vp-custom-block-details-text);
 }
+
+.VPSidebarItem {
+    h2.text,
+    h3.text,
+    p.text {
+        display: flex;
+        gap: 5px;
+        align-items: center;
+
+        svg {
+            width: 25px;
+            height: 25px;
+        }
+    }
+
+    &.level-1 {
+        .text {
+            margin-left: 8px;
+
+            svg {
+                width: 20px;
+                height: 20px;
+            }
+        }
+    }
+
+    &.level-2 {
+        .text {
+            gap: 3px;
+            margin-left: 16px;
+
+            svg {
+                width: 18px;
+                height: 8px;
+            }
+        }
+    }
+}

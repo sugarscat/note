@@ -1,5 +1,5 @@
 import DefaultTheme from "vitepress/theme";
-import './custom.scss'
+import './index.scss'
 import { EnhanceAppContext } from 'vitepress';
 import vImageViewer from 'vitepress-plugin-image-viewer/lib/vImageViewer.vue';
 import 'vitepress-plugin-back-to-top/dist/style.css';

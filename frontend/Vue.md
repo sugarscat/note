@@ -1,7 +1,7 @@
 # Vue
 
 > [Vue 官方文档](https://cn.vuejs.org/guide/introduction.html)
-
+>
 > 笔记来自 [黑马教程](https://www.itheima.com/)
 
 ## 选项式 vs  组合式
@@ -468,18 +468,18 @@ export default defineConfig({
 
 后面在实际开发项目的时候，`Pinia` 可以在项目创建时自动添加，现在我们初次学习，从零开始：
 
-1. 使用 Vite 创建一个空的 Vue3项目
+1.使用 Vite 创建一个空的 Vue3项目
 
   ```bash
   npm init vite@latest
   ```
 
-2. 按照官方文档安装 `pinia` 到项目中
+2.按照官方文档安装 `pinia` 到项目中
 
 ### Pinia 基础使用
 
-1. 定义 `store`
-2. 组件使用 `store`
+1.定义 `store`
+2.组件使用 `store`
 
 ![image.png](../image/vue//Pinia\32.png)
 

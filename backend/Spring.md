@@ -435,7 +435,6 @@ public void myCarTest() {
 
    创建接口实现类代理对象，增强类的方法。
 
-
 2. 第二种情况是没有接口的情况，使用 CGLIB 动态代理
 
    创建子类的代理对象，增强类的方法。
@@ -966,7 +965,7 @@ public void doAspect(){}
 
 ### 配置 DispatcherServlet
 
-在 `web.xml `配置 `Spring MVC` 的 `DispatcherServlet`
+在 `web.xml`配置 `Spring MVC` 的 `DispatcherServlet`
 
 ```xml
 <!DOCTYPE web-app PUBLIC
@@ -1064,7 +1063,7 @@ public class HelloController {
 
 ## 注解解析
 
-### @RequestMapping
+### @RequestMapping 注解
 
 `Spring MVC` 通过 `@RequestMapping` 注解把 `URL` 请求和业务方法进行映射，在控制器的类定义处以及方法定义处都可以添加 `@RequestMapping` ，在类定义处添加相当于多了一层访问路径。
 
@@ -1155,7 +1154,7 @@ public String restful(@PathVariable("id") Integer num, @PathVariable("name") Str
 
 ## 文件上传
 
-### 导入依赖
+### 导入文件上传依赖
 
 ```xml
 <dependency>
@@ -1188,7 +1187,7 @@ public String restful(@PathVariable("id") Integer num, @PathVariable("name") Str
 </bean>
 ```
 
-### 示例代码
+### 文件上传示例代码
 
 ```java
 package cn.sugarscat.springmvc.controller;
@@ -1516,7 +1515,7 @@ public class GlobalException {
 
 > Spring + SpringMVC + Mybatis
 
-### 导入依赖
+### 导入SSM依赖
 
 `pom.xml`
 
@@ -2057,7 +2056,7 @@ public class UserController {
 
 定义我们采用什么模式去创建Bean（方法上，得有@Bean） 其设置类型包括：
 
-> `Singleton` （单例,一个 `Spring` 容器中只有一个 `bean` 实例，默认模式）, `Prototype`（每次调用新建一个 `bean`）, `Request `（`web`项目中，给每个`http request`新建一个`bean`）, `Session`（`web`项目中，给每个`http session`新建一个`bean`）, `GlobalSession`（给每一个 `global http session`新建一个`bean`实例）。
+> `Singleton` （单例,一个 `Spring` 容器中只有一个 `bean` 实例，默认模式）, `Prototype`（每次调用新建一个 `bean`）, `Request`（`web`项目中，给每个`http request`新建一个`bean`）, `Session`（`web`项目中，给每个`http session`新建一个`bean`）, `GlobalSession`（给每一个 `global http session`新建一个`bean`实例）。
 
 ### @PostConstruct
 

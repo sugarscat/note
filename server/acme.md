@@ -34,7 +34,7 @@ acme 被 ZeroSSL 收购，其默认的证书方式为 ZeroSSL，但此证书生�
 您可以自定义生成什么证书，修改 "--server" 后的 "letsencrypt" 即可。
 :::
 
-## 生成证书 
+## 生成证书
 
 ### DNS 验证方式
 
