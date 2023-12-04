@@ -1480,7 +1480,7 @@ import javax.servlet.http.HttpServletRequest;
 @ControllerAdvice
 public class GlobalException {
 
-    @ExceptionHandler({ArithmeticException.class, NullPointerException.class, IllegalAccessException.class})
+    @ExceptionHandler({Exception.class})
 //    @ResponseBody
     public String globalException(Exception exception, HttpServletRequest request) {
         System.out.println("全局异常捕获"+exception.getMessage());
