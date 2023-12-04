@@ -18,7 +18,8 @@ import {
     vscodeIcon,
     keyboardIcon,
     machineLearningIcon,
-    hmosIcon
+    hmosIcon,
+    springBootIcon
 } from './icons.ts'
 
 export default  [
@@ -45,9 +46,9 @@ export default  [
                     collapsible: true,
                     collapsed: true,
                     items: [
-                        {text: 'Spring', link: '/backend/Spring.md'},
-                        {text: 'SpringBoot', link: '/backend/SpringBoot.md'},
-                        {text: 'SpringBoot 数据访问', link: '/backend/SpringBoot数据访问.md'},
+                        {text: springIcon + 'Spring', link: '/backend/Spring.md'},
+                        {text: springBootIcon + 'SpringBoot', link: '/backend/SpringBoot.md'},
+                        {text: springBootIcon + 'SpringBoot 数据访问', link: '/backend/SpringBoot数据访问.md'},
                     ]
                 }, {
 
