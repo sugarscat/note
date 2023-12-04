@@ -6,7 +6,7 @@ export default  [
         {
             text: '编程',
             collapsible: true,
-            collapsed: true,
+            collapsed: false,
             items: [
                 {text: 'MySQL', link: '/code/MySQL.md'},
                 {text: 'Java 连接MySQL数据库', link: '/code/MySQL-connector-java.md'},
@@ -23,7 +23,7 @@ export default  [
         {
             text: '服务器',
             collapsible: true,
-            collapsed: true,
+            collapsed: false,
             items: [
                 {text: 'Nginx', link: '/server/Nginx.md'},
                 {text: 'Ubuntu 安装开发环境', link: '/server/Ubuntu安装开发环境.md'},
@@ -34,7 +34,7 @@ export default  [
         {
             text: '设计',
             collapsible: true,
-            collapsed: true,
+            collapsed: false,
             items: [
                 {text: 'Blender 建模', link: '/design/Blender.md'},
 
@@ -43,7 +43,7 @@ export default  [
         {
             text: '工具',
             collapsible: true,
-            collapsed: true,
+            collapsed: false,
             items: [
                 {text: '腹灵F12 68键 RGB', link: '/tools/F12.md'},
 
