@@ -1,13 +1,16 @@
 {
   "type": "module",
   "devDependencies": {
-    "flexsearch": "^0.7.31",
-    "vitepress": "1.0.0-rc.31",
-    "vitepress-plugin-search": "1.0.4-alpha.20"
+    "vitepress": "1.0.0-rc.31"
   },
   "scripts": {
     "docs:dev": "vitepress dev",
     "docs:build": "vitepress build",
     "docs:preview": "vitepress preview"
+  },
+  "dependencies": {
+    "sass": "^1.69.5",
+    "vitepress-plugin-back-to-top": "^1.0.1",
+    "vitepress-plugin-image-viewer": "^1.1.2"
   }
 }

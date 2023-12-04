@@ -707,7 +707,7 @@ COMMIT;
 
 ### 7. 刷新权限
 
-```mysql
+```sql
 flush privileges；
 ```
 
