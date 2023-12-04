@@ -1783,6 +1783,13 @@ jdbc.initialSize=5
         <property name="dataSource" ref="dataSource"/>
         <!--配置 Mapper 映射文件的位置-->
 <!--        <property name="mapperLocations" value="classpath:mapper/*Mapper.xml"/>-->
+        <property name="configuration">
+            <bean class="org.apache.ibatis.session.Configuration">
+<!--                开启驼峰规则-->
+                <property name="mapUnderscoreToCamelCase" value="true"/>
+                <property name="cacheEnabled" value="true"/>
+            </bean>
+        </property>
     </bean>
 
     <!-- 配置Mapper接口的扫描器 -->
@@ -1801,6 +1808,16 @@ jdbc.initialSize=5
 
     <!-- 启用注解事务 -->
     <tx:annotation-driven transaction-manager="txManager"/>
+
+<!--    异常处理-->
+<!--    <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">-->
+<!--        <property name="exceptionMappings">-->
+<!--            <props>-->
+<!--                <prop key="java.lang.Exception">error</prop>-->
+<!--            </props>-->
+<!--        </property>-->
+<!--    </bean>-->
+    <context:component-scan base-package="cn.sugarscat.springmvc.exception"/>
 </beans>
 ```
 
