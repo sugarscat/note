@@ -25,7 +25,7 @@ tar zxvf jdk-19_linux-x64_bin.tar.gz -C /usr/local/java/
 
 2. 添加
 
-   ```config
+   ```shell
    export JAVA_HOME=/usr/local/java/jdk-19.0.2
    export JRE_HOME=${JAVA_HOME}/jre  
    export CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib  

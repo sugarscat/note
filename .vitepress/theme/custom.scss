@@ -1,0 +1,89 @@
+:root {
+    --color-blue-soft: #daedfe;
+
+    --color-neutral4: #eceef0;
+    --color-neutral9: #889096;
+    --color-neutral8: #c1c8cd;
+    --color-neutral9: #889096;
+}
+  
+.dark {
+    --color-neutral4: #26292b;
+    --color-neutral8: #4c5155;
+    --color-neutral9: #697177;
+}
+
+/* a:hover {
+    filter: blur(1px) !important;
+    opacity: 0.8 !important;
+} */
+
+.VPFooter {
+    z-index: -1 !important;
+}
+
+/* 修改滚动条的颜色 */
+.VPLocalNavOutlineDropdown .items,
+#localsearch-list,
+.VPSidebar{
+    &::-webkit-scrollbar {
+        width: 5px; /* 设置滚动条宽度 */
+        height: 5px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: var(--color-neutral4); /* 设置轨道颜色 */
+    
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: var(--color-neutral8); /* 设置滑块颜色 */
+        
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+        background: var(--color-neutral9); /* 设置滑块颜色 */
+        
+    }
+}
+
+.VPLocalNavOutlineDropdown .items {
+    /* display: flex; */
+    background-color: var(--vp-c-bg-soft);
+
+    &::-webkit-scrollbar-track,
+    &::-webkit-scrollbar-thumb {
+        border-radius: 3px;
+    }
+
+    &::-webkit-scrollbar-track {
+        margin: 10px;
+    }
+}
+
+#localsearch-list {
+    padding: calc(1rem - 10px);
+}
+
+.VPLocalNav,
+.VPNavBar .container .content-body {
+    -webkit-backdrop-filter: saturate(50%) blur(8px) !important;
+    backdrop-filter: saturate(50%) blur(8px) !important;
+    background: rgba(255,255,255,.7) !important;
+}
+
+.dark {
+    .VPLocalNav,
+    .VPNavBar .container .content-body {
+        background: #1b1b1f79 !important;
+    }
+}
+
+.VPNavBar .container .content .curtain::before {
+    display: none;
+}
+
+.VPPluginSearch-search-item:hover {
+    background-color: var(--vp-custom-block-tip-bg);
+    color: var(--vp-custom-block-details-text);
+}
