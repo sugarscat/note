@@ -51,7 +51,11 @@ export default  [
                     items: [
                         {text: springIcon + 'Spring', link: '/backend/Spring.md'},
                         {text: springBootIcon + 'SpringBoot', link: '/backend/SpringBoot.md'},
-                        {text: springBootIcon + 'SpringBoot 数据访问', link: '/backend/SpringBoot数据访问.md'},
+                        {
+                            text: springBootIcon + 'SpringBoot 数据访问', 
+                            link: '/backend/SpringBoot数据访问.md'
+                        },
+                        {text: springIcon + '微服务', link: '/backend/微服务.md'},
                     ]
                 }, {
 
