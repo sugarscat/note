@@ -34,7 +34,7 @@ export default  [
             collapsible: true,
             collapsed: true,
             items: [
-                // {text: docsIcon + '软件设计师', link: '/code/软件设计师.md'},
+                {text: docsIcon + '软件设计师', link: '/code/软件设计师.md'},
                 {text: machineLearningIcon + '机器学习', link: '/code/MachineLearning.md'},
             ]
         },
