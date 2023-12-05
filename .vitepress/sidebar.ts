@@ -34,7 +34,7 @@ export default  [
             collapsible: true,
             collapsed: true,
             items: [
-                // {text: docsIcon + '软件设计师', link: '/code/软件设计师.md'},
+                {text: docsIcon + '软件设计师', link: '/code/软件设计师.md'},
                 {text: machineLearningIcon + '机器学习', link: '/code/MachineLearning.md'},
             ]
         },
@@ -51,7 +51,11 @@ export default  [
                     items: [
                         {text: springIcon + 'Spring', link: '/backend/Spring.md'},
                         {text: springBootIcon + 'SpringBoot', link: '/backend/SpringBoot.md'},
-                        {text: springBootIcon + 'SpringBoot 数据访问', link: '/backend/SpringBoot数据访问.md'},
+                        {
+                            text: springBootIcon + 'SpringBoot 数据访问', 
+                            link: '/backend/SpringBoot数据访问.md'
+                        },
+                        {text: springIcon + '微服务', link: '/backend/微服务.md'},
                     ]
                 }, {
 
