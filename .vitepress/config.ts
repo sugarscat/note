@@ -10,7 +10,7 @@ export default defineConfig({
   head: [
     [
       'link',
-      { rel: 'icon', href: './favicon.ico' }
+      { rel: 'icon', href: '/note/favicon.ico' }
     ],
   ],
   description: '心灵记忆过往，镜头捕捉瞬间。',
