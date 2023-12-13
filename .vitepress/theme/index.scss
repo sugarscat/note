@@ -156,3 +156,10 @@
 code {
     font-family: "JetBrainsMono", sans-serif;
 }
+
+.go-to-top {
+    background-color: var(--color-neutral4) !important;
+    &:hover {
+        background-color: var(--color-neutral8) !important;
+    }
+}
