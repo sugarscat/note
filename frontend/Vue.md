@@ -49,7 +49,7 @@ const addCount = ()=> count.value++
 
 > `create-vue` 是 `Vue` 官方新的脚手架工具，底层切换到了 `vite` （下一代前端工具链），为开发提供极速响应
 
-![image.png](../image/vue//2.png)
+![image.png](../assets/image/vue//2.png)
 
 ### 使用 create-vue 创建项目
 
@@ -61,11 +61,11 @@ const addCount = ()=> count.value++
 pnpm create vue@latest
 ```
 
-![image.png](../image/vue//3.png)
+![image.png](../assets/image/vue//3.png)
 
 ## 熟悉项目和关键文件
 
-![image.png](../image/vue//4.png)
+![image.png](../assets/image/vue//4.png)
 
 ## setup 选项
 
@@ -90,7 +90,7 @@ pnpm create vue@latest
 
 > 在 `beforeCreate` 钩子之前执行
 
-![image.png](../image/vue//5.png)
+![image.png](../assets/image/vue//5.png)
 
 ### setup 中写代码的特点
 
@@ -448,7 +448,7 @@ onMounted(()=>{
 > 默认情况下在 `<script setup>` 语法糖下组件内部的属性和方法是不开放给父组件访问的，可以通过 `defineExpose` 编译宏指定哪些属性和方法容许访问
 > 说明：指定 `testMessage` 属性可以被访问到
 
-![image.png](../image/vue//10.png)
+![image.png](../assets/image/vue//10.png)
 
 ## provide 和 inject
 
@@ -464,19 +464,19 @@ onMounted(()=>{
 
 2. 底层组件通过 `inject` 函数提供数据
 
-![image.png](../image/vue//12.png)
+![image.png](../assets/image/vue//12.png)
 
 ### 跨层传递响应式数据
 
 > 在调用 `provide` 函数时，第二个参数设置为 `ref` 对象
 
-![image.png](../image/vue//13.png)
+![image.png](../assets/image/vue//13.png)
 
 ### 跨层传递方法
 
 > 顶层组件可以向底层组件传递方法，底层组件调用方法修改顶层组件的数据
 
-![image.png](../image/vue//14.png)
+![image.png](../assets/image/vue//14.png)
 
 ## defineOptions
 
@@ -498,7 +498,7 @@ onMounted(()=>{
 
 所以在 `Vue 3.3` 中新引入了 `defineOptions` 宏。顾名思义，主要是用来定义 `Options API` 的选项。可以用 `defineOptions` 定义任意的选项， `props`，`emits`，`expose`，`slots` 除外（因为这些可以使用 `defineXXX` 来做到）
 
-![image-20230704082955748](../image/vue//image-20230704082955748.png)
+![image-20230704082955748](../assets/image/vue//image-20230704082955748.png)
 
 ## defineModel
 
@@ -510,13 +510,13 @@ onMounted(()=>{
 <Child :modelValue="isVisible" @update:modelValue="isVisible=$event"/>
 ```
 
-![image-20230704083027349](../image/vue//image-20230704083027349.png)
+![image-20230704083027349](../assets/image/vue//image-20230704083027349.png)
 
 我们需要先定义 `props`，再定义 `emits` 。其中有许多重复的代码。如果需要修改此值，还需要手动调用 `emit` 函数。
 
 于是乎 `defineModel` 诞生了。
 
-![image-20230704083056549](../image/vue//image-20230704083056549.png)
+![image-20230704083056549](../assets/image/vue//image-20230704083056549.png)
 
 生效需要配置 `vite.config.js`
 
@@ -548,7 +548,7 @@ export default defineConfig({
 ### 什么是 Pinia
 
 `Pinia` 是 `Vue` 的专属的最新状态管理库 ，是 `Vuex` 状态管理工具的替代品
-![image.png](../image/vue//Pinia\31.png)
+![image.png](../assets/image/vue//Pinia\31.png)
 
 ### 添加 Pinia 到 Vue 项目
 
@@ -632,7 +632,7 @@ const getList = async ()=>{
 ```
 
 需求：在 `Pinia` 中获取频道列表数据并把数据渲染 `App` 组件的模板中
-![image.png](../image/vue//Pinia\35.png)
+![image.png](../assets/image/vue//Pinia\35.png)
 
 ### storeToRefs 工具函数
 
@@ -649,7 +649,7 @@ const { count, doubleCount } = storeToRefs(counterStore)
 ### Pinia的调试
 
 `Vue` 官方的 `dev-tools` 调试工具对 `Pinia` 直接支持，可以直接进行调试
-![image.png](../image/vue//Pinia\37.png)
+![image.png](../assets/image/vue//Pinia\37.png)
 
 ### Pinia持久化插件
 
