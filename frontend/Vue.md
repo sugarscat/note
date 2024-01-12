@@ -2,7 +2,13 @@
 
 > [Vue 官方文档](https://cn.vuejs.org/guide/introduction.html)
 >
-> 笔记来自 [黑马教程](https://www.itheima.com/)
+> 笔记来自 [黑马程序员](https://www.itheima.com/)
+
+:::warning 提示 :warning:
+
+本教程使用 [Pnpm](https://pnpm.io/zh/) 进行包管理，请提前下载。
+
+:::
 
 ## 选项式 vs  组合式
 
@@ -37,10 +43,6 @@ const addCount = ()=> count.value++
 
 - 分散式维护变成集中式维护。
 
-## Vue3 的优势
-
-![image.png](../image/vue//01.png)
-
 ## create-vue 搭建项目
 
 ### create-vue
@@ -56,7 +58,7 @@ const addCount = ()=> count.value++
 执行如下命令，这一指令将会安装并执行 `create-vue`
 
 ```bash
-npm init vue@latest
+pnpm create vue@latest
 ```
 
 ![image.png](../image/vue//3.png)
@@ -298,7 +300,15 @@ const filterList = computed(item=>item > 2)
 
 ### 选项式对比组合式
 
-![image.png](../image/vue//6.png)
+|      选项式API       |    组合式API    |
+| :------------------: | :-------------: |
+| beforeCreate/created |      setup      |
+|     beforeMount      |  onBeforeMount  |
+|       mounted        |    onMounted    |
+|     beforeUpdate     | onBeforeUpdate  |
+|       updated        |    onUpdated    |
+|    beforeUnmount     | onBeforeUnmount |
+|      unmounted       |   onUnmounted   |
 
 ### 生命周期函数基本使用
 
@@ -306,7 +316,7 @@ const filterList = computed(item=>item > 2)
 > 2. 执行生命周期函数，传入回调
 
 ```vue
-<scirpt setup>
+<script setup>
 import { onMounted } from 'vue'
 onMounted(()=>{
   // 自定义逻辑
@@ -319,7 +329,7 @@ onMounted(()=>{
 > 生命周期函数执行多次的时候，会按照顺序依次执行
 
 ```vue
-<scirpt setup>
+<script setup>
 import { onMounted } from 'vue'
 onMounted(()=>{
   // 自定义逻辑
@@ -339,7 +349,34 @@ onMounted(()=>{
 >
 > - 子组件内部通过 `props` 选项接收数据
 
-![image.png](../image/vue//7.png)
+父组件
+
+```vue
+<script setup>
+  //引入子组件
+  import sonComVue from'./son-com.vue'
+</script>
+
+<template>
+  <!--1.绑定属性 message -->
+  <sonComVue message="this is app message"/>
+</template>
+```
+
+子组件
+
+```vue
+<script setup>
+  //2.通过defineProps“编译器宏”接收子组件传递的数据
+  const props = defineProps{
+      message: String
+  }) 
+</script>
+
+<template>
+  {{ message }}
+</template>
+```
 
 ### 子传父
 
@@ -347,7 +384,39 @@ onMounted(()=>{
 >
 > - 子组件内部通过 `emit` 方法触发事件
 
-![image.png](../image/vue//8.png)
+父组件
+
+```vue
+<script setup>
+  // 引入子组件
+  import sonComVue from './son-com.vue"
+  const getMessage = (msg) =>{
+    console.log(msg)
+  }
+</script>
+
+<template>
+  <!-- 1．绑定自定义事件 -->
+  <sonComVue @get-message="getMessage" />
+</template>
+```
+
+子组件
+
+```vue
+<script setup>
+  // 2.通过defineEmits编译器宏生成emit方法
+  const emit = defineEmits(['get-message'])
+  const sendMsg = () => {
+      // 3.触发自定义事件并传递参数 
+      emit('get-message'，'this is son msg')
+  }
+</script>
+
+<template>
+  <button @click="sendMsg">sendMsg</button>
+</template>
+```
 
 ## 模版引用
 
@@ -361,7 +430,18 @@ onMounted(()=>{
 
 2. 通过 `ref` 标识绑定 `ref` 对象到标签
 
-![image.png](../image/vue//9.png)
+```vue
+<script setup>
+  import { ref } from'vue
+  // 1． 调用ref函数得到ref对象
+  const h1Ref = ref(null)
+</script>
+
+<template>
+  <!-- 2． 通过ref标识绑定ref对象 -->
+  <h1 ref="h1Ref">我是dom标签h1</h1>
+</template>
+```
 
 ### defineExpose
 
@@ -424,6 +504,12 @@ onMounted(()=>{
 
 在 `Vue3` 中，自定义组件上使用 `v-model`, 相当于传递一个 `modelValue` 属性，同时触发 `update:modelValue` 事件
 
+```vue
+<Child v-model="isVisible"/>
+// 相当于 
+<Child :modelValue="isVisible" @update:modelValue="isVisible=$event"/>
+```
+
 ![image-20230704083027349](../image/vue//image-20230704083027349.png)
 
 我们需要先定义 `props`，再定义 `emits` 。其中有许多重复的代码。如果需要修改此值，还需要手动调用 `emit` 函数。
@@ -468,26 +554,65 @@ export default defineConfig({
 
 后面在实际开发项目的时候，`Pinia` 可以在项目创建时自动添加，现在我们初次学习，从零开始：
 
-1.使用 Vite 创建一个空的 Vue3项目
+1. 使用 Vite 创建一个空的 Vue3项目
 
   ```bash
-  npm init vite@latest
+  pnpm add vite@latest
   ```
 
-2.按照官方文档安装 `pinia` 到项目中
+2. 按照官方文档安装 `pinia` 到项目中
 
 ### Pinia 基础使用
 
-1.定义 `store`
-2.组件使用 `store`
+1. 定义 `store`
+2. 组件使用 `store`
 
-![image.png](../image/vue//Pinia\32.png)
+定义 `Store` (`state` + `action`)
+
+```js
+import { ref, computed } from 'vue'
+import { defineStore } from 'pinia'
+
+export const useCounterStore = defineStore('counter', () => {
+  const count = ref(0)
+  const doubleCount = computed(() => count.value * 2)
+  function increment() {
+    count.value++
+  }
+
+  return { count, doubleCount, increment }
+})
+```
+
+组件使用 `Store`
+
+```vue
+<script setup>
+  // 1.导入useCounterStore方法
+  import { useCounterStore } from '@/stores/counter'
+  // 2.执行方法得到counterStore对象
+  const counterStore = useCounterStore()
+</script>
+
+<template>
+  <button @click="counterStore.increment">
+    {{ counterStore.count }}
+  </button>
+</template>
+```
 
 ### getters 实现
 
 `Pinia` 中的 `getters` 直接使用 `computed` 函数 进行模拟，组件中需要使用需要把 `getters` `return` 出去
 
-![image.png](../image/vue//Pinia\33.png)
+```js
+// 数据（state)
+const count = ref(0)
+
+// getter
+
+const doubleCount = computed(() => count.value * 2)
+```
 
 ### action 异步实现
 
@@ -499,7 +624,12 @@ export default defineConfig({
 
 - 请求参数：无
 
-![image.png](../image/vue//Pinia\34.png)
+```js
+// 异步action
+const getList = async ()=>{
+    const res = await axios.request<接口数据类型>({})
+}
+```
 
 需求：在 `Pinia` 中获取频道列表数据并把数据渲染 `App` 组件的模板中
 ![image.png](../image/vue//Pinia\35.png)
@@ -507,7 +637,14 @@ export default defineConfig({
 ### storeToRefs 工具函数
 
 使用 `storeToRefs` 函数可以辅助保持数据（`state` + `getter`）的响应式解构
-![image.png](../image/vue//Pinia\36.png)
+
+```js
+// 响应式丢失视图不再更新
+const { count, doubleCount } = counterStore
+
+// 保持数据响应式
+const { count, doubleCount } = storeToRefs(counterStore)
+```
 
 ### Pinia的调试
 
@@ -521,7 +658,7 @@ export default defineConfig({
 1. 安装插件 `pinia-plugin-persistedstate`
 
    ```sh
-   npm i pinia-plugin-persistedstate
+   pnpm add pinia-plugin-persistedstate
    ```
 
 2. 使用 `main.js`

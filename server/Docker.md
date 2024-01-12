@@ -33,6 +33,7 @@ systemctl enable docker
 ```
 
 ::: details 其他
+
 - <h3>查看 docker 概要信息</h3>
 
 ```shell
@@ -46,6 +47,7 @@ docker --help
 # 或 查看某个具体命令的帮助文档
 docker [命令] --help
 ```
+
 :::
 
 ## 镜像命令
