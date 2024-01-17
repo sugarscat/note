@@ -34,13 +34,13 @@ systemctl enable docker
 
 ::: details 其他
 
-- <h3>查看 docker 概要信息</h3>
+- 查看 docker 概要信息
 
 ```shell
 docker info
 ```
 
-- <h3>查看 docker 帮助文档</h3>
+- 查看 docker 帮助文档
 
 ```shell
 docker --help
