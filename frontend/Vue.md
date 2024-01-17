@@ -49,8 +49,6 @@ const addCount = ()=> count.value++
 
 > `create-vue` 是 `Vue` 官方新的脚手架工具，底层切换到了 `vite` （下一代前端工具链），为开发提供极速响应
 
-![image.png](../assets/image/vue//2.png)
-
 ### 使用 create-vue 创建项目
 
 > 前置条件 - 已安装 `16.0` 或更高版本的 `Node.js`
@@ -61,11 +59,11 @@ const addCount = ()=> count.value++
 pnpm create vue@latest
 ```
 
-![image.png](../assets/image/vue//3.png)
+![create-vue](../assets/image/vue/create-vue.webp)
 
 ## 熟悉项目和关键文件
 
-![image.png](../assets/image/vue//4.png)
+![Catalog introduction](../assets/image/vue/catalog_introduction.webp)
 
 ## setup 选项
 
@@ -90,7 +88,7 @@ pnpm create vue@latest
 
 > 在 `beforeCreate` 钩子之前执行
 
-![image.png](../assets/image/vue//5.png)
+![life cycle](../assets/image/vue/life_cycle.webp)
 
 ### setup 中写代码的特点
 
@@ -448,7 +446,15 @@ onMounted(()=>{
 > 默认情况下在 `<script setup>` 语法糖下组件内部的属性和方法是不开放给父组件访问的，可以通过 `defineExpose` 编译宏指定哪些属性和方法容许访问
 > 说明：指定 `testMessage` 属性可以被访问到
 
-![image.png](../assets/image/vue//10.png)
+```vue
+<script setup>
+import{ref}from'vue'
+const testMessage = ref('this is test msg')
+defineExpose({
+    testMessage
+})
+</script>
+```
 
 ## provide 和 inject
 
@@ -464,41 +470,79 @@ onMounted(()=>{
 
 2. 底层组件通过 `inject` 函数提供数据
 
-![image.png](../assets/image/vue//12.png)
+顶层组件
+
+```js
+provide('key'，顶层组件中的数据)
+```
+
+底层组件
+
+```js
+const message = inject('key')
+```
+
+:::tip 提示
+
+`key` 需要相同。
+
+:::
 
 ### 跨层传递响应式数据
 
-> 在调用 `provide` 函数时，第二个参数设置为 `ref` 对象
+顶层组件
 
-![image.png](../assets/image/vue//13.png)
+```js
+provide('key'，ref对象)
+```
+
+底层组件
+
+```js
+const message = inject('key')
+```
+
+> 在调用 `provide` 函数时，第二个参数设置为 `ref` 对象
 
 ### 跨层传递方法
 
 > 顶层组件可以向底层组件传递方法，底层组件调用方法修改顶层组件的数据
 
-![image.png](../assets/image/vue//14.png)
+顶层组件
+
+```js
+const setCount = () => {
+    count.value++
+}
+
+provide('setCount-key', setCount)
+```
+
+底层组件
+
+```js
+const setCount = inject('setCount-key')
+```
 
 ## defineOptions
 
 背景说明：
 
-有 `<script setup>` 之前，如果要定义 `props`，`emits` 可以轻而易举地添加一个与 `setup` 平级的属性。
+​	有 `<script setup>` 之前，如果要定义 `props`，`emits` 可以轻而易举地添加一个与 `setup` 平级的属性。但是用了 `<script setup>` 后，就没法这么干了 `setup` 属性已经没有了，自然无法添加与其平级的属性。
 
-但是用了 `<script setup>` 后，就没法这么干了 `setup` 属性已经没有了，自然无法添加与其平级的属性。
+​	为了解决这一问题，引入了 `defineProps` 与 `defineEmits` 这两个宏。但这只解决了 `props` 与 `emits` 这两个属性。如果我们要定义组件的 `name` 或其他自定义的属性，还是得回到最原始的用法——再添加一个普通的 `<script>` 标签。这样就会存在两个 `<script>` 标签。让人无法接受。
 
----
+​	所以在 `Vue 3.3` 中新引入了 `defineOptions` 宏。顾名思义，主要是用来定义 `Options API` 的选项。可以用 `defineOptions` 定义任意的选项， `props`，`emits`，`expose`，`slots` 除外（因为这些可以使用 `defineXXX` 来做到）
 
-为了解决这一问题，引入了 `defineProps` 与 `defineEmits` 这两个宏。但这只解决了 `props` 与 `emits` 这两个属性。
-
-如果我们要定义组件的 `name` 或其他自定义的属性，还是得回到最原始的用法——再添加一个普通的 `<script>` 标签。
-
-这样就会存在两个 `<script>` 标签。让人无法接受。
-
----
-
-所以在 `Vue 3.3` 中新引入了 `defineOptions` 宏。顾名思义，主要是用来定义 `Options API` 的选项。可以用 `defineOptions` 定义任意的选项， `props`，`emits`，`expose`，`slots` 除外（因为这些可以使用 `defineXXX` 来做到）
-
-![image-20230704082955748](../assets/image/vue//image-20230704082955748.png)
+```vue
+<scriptt setup>
+defineoptions({
+    name: 'Foo',
+    inheritAttrs: false,
+    // ..．更多自定义属性
+})
+</script>
+```
 
 ## defineModel
 
@@ -510,13 +554,16 @@ onMounted(()=>{
 <Child :modelValue="isVisible" @update:modelValue="isVisible=$event"/>
 ```
 
-![image-20230704083027349](../assets/image/vue//image-20230704083027349.png)
-
 我们需要先定义 `props`，再定义 `emits` 。其中有许多重复的代码。如果需要修改此值，还需要手动调用 `emit` 函数。
 
 于是乎 `defineModel` 诞生了。
 
-![image-20230704083056549](../assets/image/vue//image-20230704083056549.png)
+```vue
+<script setup>
+    const modelValue = defineModel()
+    modelValue.value++
+</script>
+```
 
 生效需要配置 `vite.config.js`
 
@@ -548,7 +595,7 @@ export default defineConfig({
 ### 什么是 Pinia
 
 `Pinia` 是 `Vue` 的专属的最新状态管理库 ，是 `Vuex` 状态管理工具的替代品
-![image.png](../assets/image/vue//Pinia\31.png)
+![Pinia_Position](../assets/image/vue/Pinia/Pinia_position.webp)
 
 ### 添加 Pinia 到 Vue 项目
 
@@ -632,7 +679,6 @@ const getList = async ()=>{
 ```
 
 需求：在 `Pinia` 中获取频道列表数据并把数据渲染 `App` 组件的模板中
-![image.png](../assets/image/vue//Pinia\35.png)
 
 ### storeToRefs 工具函数
 
@@ -649,7 +695,7 @@ const { count, doubleCount } = storeToRefs(counterStore)
 ### Pinia的调试
 
 `Vue` 官方的 `dev-tools` 调试工具对 `Pinia` 直接支持，可以直接进行调试
-![image.png](../assets/image/vue//Pinia\37.png)
+![Debugging_tools](../assets/image/vue/Pinia/Debugging_tools.webp)
 
 ### Pinia持久化插件
 
