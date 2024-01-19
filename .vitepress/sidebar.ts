@@ -22,7 +22,8 @@ import {
     springBootIcon,
     dockerIcon,
     versionControlIcon,
-    gitIcon
+    gitIcon,
+    spiderIcon
 } from './icons.ts'
 
 export default  [
@@ -34,8 +35,9 @@ export default  [
             collapsible: true,
             collapsed: true,
             items: [
-                {text: docsIcon + '软件设计师', link: '/code/软件设计师.md'},
+                {text: docsIcon + '软件设计师', link: '/code/SoftwareDesigner.md'},
                 {text: machineLearningIcon + '机器学习', link: '/code/MachineLearning.md'},
+                {text: spiderIcon + '爬虫', link: '/code/WebCrawling.md'},
             ]
         },
         {
@@ -49,13 +51,13 @@ export default  [
                     collapsible: true,
                     collapsed: true,
                     items: [
-                        {text: springIcon + 'Spring', link: '/backend/Spring.md'},
-                        {text: springBootIcon + 'SpringBoot', link: '/backend/SpringBoot.md'},
+                        {text: springIcon + 'Spring', link: '/backend/spring/Spring.md'},
+                        {text: springBootIcon + 'SpringBoot', link: '/backend/spring/SpringBoot.md'},
                         {
                             text: springBootIcon + 'SpringBoot 数据访问', 
-                            link: '/backend/SpringBoot数据访问.md'
+                            link: '/backend/spring/SpringBootDatasource.md'
                         },
-                        {text: springIcon + '微服务', link: '/backend/微服务.md'},
+                        {text: springBootIcon + '微服务', link: '/backend/spring/Microservices.md'},
                     ]
                 }, {
 
