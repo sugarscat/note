@@ -315,8 +315,8 @@ public class UserService {
 
 ```java
 @Configuration(proxyBeanMethods = false) //告诉SpringBoot这是一个配置类 == 配置文件
-// @ConditionalOnBean(name = "tom")：有 tom 就加
-@ConditionalOnMissingBean(name = "tom")：无 tom 就加
+// @ConditionalOnBean(name = "tom") // 有 tom 就加
+@ConditionalOnMissingBean(name = "tom") // 无 tom 就加
 public class MyConfig {}
 ```
 
