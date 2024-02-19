@@ -2,9 +2,6 @@
 
 ## 安装
 
-::: tip 提示
- 以下教程以 Ubuntu 为例，使用编译安装，也可使用以下命令安装。
-
 ```sh
 # 切换至root用户
 sudo su root
@@ -31,188 +28,6 @@ sudo systemctl stop nginx
 # 重启
 sudo systemctl restart nginx
 ```
-
-:::
-
-### 安装依赖包
-
-```sh
-sudo apt update
- 
-sudo apt-get install libpcre3-dev
-sudo apt-get install ruby
-sudo apt-get install zlib1g-dev
-
-sudo apt-get install openssl 
-sudo apt-get install libssl-dev
-```
-
-### 下载 Nginx
-
-```sh
-# 这里我在 /usr/local 目录下，新建了 nginx 目录
-cd /usr/local
-mkdir nginx
-cd nginx
-# 下载
-wget http://nginx.org/download/nginx-1.18.0.tar.gz
-# 解压
-tar -xvf nginx-1.18.0.tar.gz 
-```
-
-### 编译安装
-
-```sh
-# 进入nginx目录
-cd /usr/local/nginx/nginx-1.18.0
-
-# 执行命令（二选一）
-./configure --prefix=/usr/local/nginx
-# 使用 ssl
-./configure --prefix=/usr/local/nginx --with-http_stub_status_module --with-http_ssl_module
-
-# 执行make命令
-make
-
-# 执行make install命令
-make install
-```
-
-## 常用命令
-
-::: tip 提示
- 以下命令需要进入 nginx 的安装目录中的 sbin 目录。
-
- ```sh
- cd /usr/local/nginx/sbin # 依据自己安装目录
- ```
-
-:::
-
-### 启动 Ngnix
-
-`````sh
-./nginx
-`````
-
-如果你依照上面的方法编译安装，并且没有修改目录可以直接使用以下命令：
-
-```sh
-/usr/local/nginx/sbin/nginx -c /usr/local/nginx/conf/nginx.conf
-```
-
-### 关闭 Ngnix
-
-```sh
-./nginx -s stop
-# 或者直接杀掉进程
-ps -ef | grep nginx # 查找进程
-kill -9 xxxx(pid)
-```
-
-### 重新加载 nginx
-
-> 重载 conf 配置
-
-```sh
-./nginx -s reload
-```
-
-### 查看版本号
-
-```sh
-./nginx -v
-```
-
-## 卸载 nginx
-
-::: tip 提示
-应先关闭所有有关 Nginx 的进程
-:::
-
-1. 查看相关依赖
-
-   ```sh
-   dpkg --get-selections|grep nginx
-   ```
-
-2. 删除 nginx 相关软件
-
-   ```sh
-   sudo apt-get --purge remove nginx nginx-common nginx-core
-   ```
-
-3. 删除 nginx，-purge 包括配置文件
-
-   ```sh
-   apt-get --purge remove nginx
-   ```
-
-4. 移除全部不使用的软件包
-
-   ```sh
-   apt-get autoremove
-   ```
-
-5. 列出与 nginx 相关的软件并删除
-
-   ```sh
-   dpkg --get-selections | grep nginx
-   apt-get --purge remove nginx
-   apt-get --purge remove nginx-common
-   apt-get --purge remove nginx-core
-   ```
-
-## 设置开机自启
-
-1. 创建 nginx.service
-
-   ```sh
-   vi nginx.service
-   ```
-
-2. 开始编辑
-
-   ```sh
-   [Unit]
-   Description=nginx service
-   After=network.target 
-      
-   [Service] 
-   Type=forking 
-   ExecStart=/usr/local/nginx/sbin/nginx
-   ExecReload=/usr/local/nginx/sbin/nginx -s reload
-   ExecStop=/usr/local/nginx/sbin/nginx -s quit
-   PrivateTmp=true 
-      
-   [Install] 
-   WantedBy=multi-user.target
-   ```
-
-3. 将nginx.service移动到/usr/lib/systemd/system/目录下
-
-   ```sh
-   cp ./nginx.service /usr/lib/systemd/system/
-   ```
-
-4. 重启配置服务
-
-   ```sh
-   systemctl daemon-reload
-   ```
-
-5. 查看 nginx 服务状态
-
-    ```sh
-    systemctl start nginx
-    systemctl status nginx
-    ```
-
-6. 配置 nginx 开机自启
-
-   ```sh
-   systemctl enable nginx
-   ```
 
 ## Nginx 配置文件
 
@@ -244,90 +59,141 @@ kill -9 xxxx(pid)
 
 ### 配置文件概览
 
-```txt
+```nginx
+#运行用户
+#user somebody;
 
-# 全局快 ---------------------------------------------------------------------
-#user  nobody;
+#启动进程,通常设置成和cpu的数量相等
 worker_processes  1;
-#error_log  logs/error.log;
-#error_log  logs/error.log  notice;
-#error_log  logs/error.log  info;
-#pid        logs/nginx.pid;
-------------------------------------------------------------------------------
-# events 块 ------------------------------------------------------------------
+
+#全局错误日志
+error_log  D:/Tools/nginx-1.10.1/logs/error.log;
+error_log  D:/Tools/nginx-1.10.1/logs/notice.log  notice;
+error_log  D:/Tools/nginx-1.10.1/logs/info.log  info;
+
+#PID文件，记录当前启动的nginx的进程ID
+pid        D:/Tools/nginx-1.10.1/logs/nginx.pid;
+
+#工作模式及连接数上限
 events {
-    worker_connections  1024;
+    worker_connections 1024;    #单个后台worker process进程的最大并发链接数
 }
-------------------------------------------------------------------------------
-# http 块 --------------------------------------------------------------------
+
+#设定http服务器，利用它的反向代理功能提供负载均衡支持
 http {
-    include       mime.types;
+    #设定mime类型(邮件支持类型),类型由mime.types文件定义
+    include       D:/Tools/nginx-1.10.1/conf/mime.types;
     default_type  application/octet-stream;
-    
-    #log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
-    #                  '$status $body_bytes_sent "$http_referer" '
-    #                  '"$http_user_agent" "$http_x_forwarded_for"';
-    
-    #access_log  logs/access.log  main;
-    
+
+    #设定日志
+    log_format  main  '[$remote_addr] - [$remote_user] [$time_local] "$request" '
+                      '$status $body_bytes_sent "$http_referer" '
+                      '"$http_user_agent" "$http_x_forwarded_for"';
+
+    access_log    D:/Tools/nginx-1.10.1/logs/access.log main;
+    rewrite_log     on;
+
+    #sendfile 指令指定 nginx 是否调用 sendfile 函数（zero copy 方式）来输出文件，对于普通应用，
+    #必须设为 on,如果用来进行下载等应用磁盘IO重负载应用，可设置为 off，以平衡磁盘与网络I/O处理速度，降低系统的uptime.
     sendfile        on;
     #tcp_nopush     on;
-    
-    #keepalive_timeout  0;
-    keepalive_timeout  65;
-    
-    #gzip  on;        
-------------------------------------------------------------------------------
-# server 块 ------------------------------------------------------------------
-server {
-     # server 全局块 ---------------------------
+
+    #连接超时时间
+    keepalive_timeout  120;
+    tcp_nodelay        on;
+
+    #gzip压缩开关
+    #gzip  on;
+
+    #设定实际的服务器列表
+    upstream zp_server1{
+        server 127.0.0.1:8089;
+    }
+
+    #HTTP服务器
+    server {
+        #监听80端口，80端口是知名端口号，用于HTTP协议
         listen       80;
-        server_name  localhost;
-        #charset koi8-r;
-    
-        #access_log  logs/host.access.log  main;
-    
-     # location 块 -----------------------------
+
+        #定义使用www.xx.com访问
+        server_name  www.helloworld.com;
+
+        #首页
+        index index.html
+
+        #指向webapp的目录
+        root D:\01_Workspace\Project\github\zp\SpringNotes\spring-security\spring-shiro\src\main\webapp;
+
+        #编码格式
+        charset utf-8;
+
+        #代理配置参数
+        proxy_connect_timeout 180;
+        proxy_send_timeout 180;
+        proxy_read_timeout 180;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarder-For $remote_addr;
+
+        #反向代理的路径（和upstream绑定），location 后面设置映射的路径
         location / {
-            root   html;
-            index  index.html index.htm;
+            proxy_pass http://zp_server1;
         }
-    
-        #error_page  404              /404.html;
-    
-        # redirect server error pages to the static page /50x.html
-        #
-        error_page   500 502 503 504  /50x.html;
-        location = /50x.html {
-            root   html;
+
+        #静态文件，nginx自己处理
+        location ~ ^/(images|javascript|js|css|flash|media|static)/ {
+            root D:\01_Workspace\Project\github\zp\SpringNotes\spring-security\spring-shiro\src\main\webapp\views;
+            #过期30天，静态文件不怎么更新，过期可以设大一点，如果频繁更新，则可以设置得小一点。
+            expires 30d;
         }
-    
-        # proxy the PHP scripts to Apache listening on 127.0.0.1:80
-        #
-        #location ~ \.php$ {
-        #    proxy_pass   http://127.0.0.1;
+
+        #设定查看Nginx状态的地址
+        location /NginxStatus {
+            stub_status           on;
+            access_log            on;
+            auth_basic            "NginxStatus";
+            auth_basic_user_file  conf/htpasswd;
+        }
+
+        #禁止访问 .htxxx 文件
+        location ~ /\.ht {
+            deny all;
+        }
+
+        #错误处理页面（可选择性配置）
+        #error_page   404              /404.html;
+        #error_page   500 502 503 504  /50x.html;
+        #location = /50x.html {
+        #    root   html;
         #}
-    
-        # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
-        #
-        #location ~ \.php$ {
-        #    root           html;
-        #    fastcgi_pass   127.0.0.1:9000;
-        #    fastcgi_index  index.php;
-        #    fastcgi_param  SCRIPT_FILENAME  /scripts$fastcgi_script_name;
-        #    include        fastcgi_params;
-        #}
-    
-        # deny access to .htaccess files, if Apache's document root
-        # concurs with nginx's one
-        #
-        #location ~ /\.ht {
-        #    deny  all;
-        #}
-}
-# 可以配置多个server块 
+    }
 }
 ```
+
+内置全局变量：
+
+| 变量 | 描述 |
+| ---- | ---- |
+|`$args`|这个变量等于请求行中的参数，同`$query_string`。|
+|`$content_length`| 请求头中的 `Content-length` 字段。 |
+|`$content_type`| 请求头中的 `Content-Type` 字段。 |
+|`$document_root`| 当前请求在 `root` 指令中指定的值。 |
+|`$host`| 请求主机头字段，否则为服务器名称。|
+|`$http_user_agent`| 客户端 `agent` 信息 |
+|`$http_cookie`| 客户端 `cookie` 信息 |
+|`$limit_rate`| 这个变量可以限制连接速率。|
+|`$request_method`| 客户端请求的动作，通常为 `GET` 或 `POST`。 |
+|`$remote_addr`| 客户端的 `IP` 地址。 |
+|`$remote_port`| 客户端的端口。|
+|`$remote_user`| 已经经过 `Auth Basic Module` 验证的用户名。 |
+|`$request_filename`| 当前请求的文件路径，由 `root` 或 `alias` 指令与 `URI` 请求生成。 |
+|`$scheme`| `HTTP` 方法（如 `http`，`https`）。 |
+|`$server_protocol`| 请求使用的协议，通常是 `HTTP/1.0` 或 `HTTP/1.1`。 |
+|`$server_addr`| 服务器地址，在完成一次系统调用后可以确定这个值。|
+|`$server_name`| 服务器名称。|
+|`$server_port`| 请求到达服务器的端口号。|
+|`$request_uri`| 包含请求参数的原始 `URI`，不包含主机名，如：`/foo/bar.php?arg=baz`。 |
+|`$uri`| 不带请求参数的当前 `URI`，`$uri` 不包含主机名，如 `/foo/bar.html`。 |
+|`$document_uri`| 与$uri相同。|
 
 ### 块的概述
 
@@ -359,7 +225,7 @@ server {
 
 最常见的配置是本虚拟机主机的监听配置和本虚拟主机的名称或 `IP` 配置。
 
-```txt
+```nginx
 # 监听 80 端口，只要有请求访问了 80 端口，此 server 块就处理请求
 listen  80;
 # 这个 server 块代表的虚拟主机的名字
@@ -372,7 +238,7 @@ server_name  localhost;
 - 主要作用是根据请求地址路径的匹配，匹配成功进行特定的处理
 - 这块的主要作用是基于 `Nginx` 服务器接收到的请求字符串（例如 `server_name/uri-string`），对虚拟主机名称（也可以是 `IP` 别名）之外的字符串（例如 前面的 `/uri-string`）进行匹配，对特定的请求进行处理。地址定向、数据缓存和应答控制等功能，还有许多第三方模块的配置也在这里进行。
 
-```txt
+```nginx
 # 如果请求路径是 / 就是用这个 location 块进行处理
 location / {
     root   html;
@@ -384,7 +250,7 @@ location / {
 
 1. `location` 语法：
 
-   ```txt
+   ```nginx
    location [=|~|~*|^~] /uri/ { … }
    ```
 
@@ -403,17 +269,17 @@ location / {
 
    - 示例如下：
 
-     ```txt
+     ```nginx
      location ^~ /test/ {  
          alias /usr/local/nginx/html/static/;  
      }
      ```
-  
+   
      请求：/test/test1.html
-  
+   
      实际访问：/usr/local/nginx/html/static/test1.html 文件
-  
-     ```txt
+   
+     ```nginx
      location ^~ /test/ {  
          root /usr/local/nginx/html/;  
      }
@@ -449,7 +315,7 @@ location / {
 
 如：80 端口代理到 8080 端口
 
-```txt
+```nginx
 server {
     # 监听端口80 即当访问服务器的端口是 80 时，进入这个 server 块处理
     listen 80;
@@ -469,7 +335,7 @@ server {
 
 ### 前端跨域解决
 
-```txt
+```nginx
 server {
     listen       8080;
     server_name  10.8.9.94;
@@ -510,7 +376,7 @@ server {
 
 如：分别在 8081 和 8082 端口开启两个相同的服务，由 Ngnix 进行负载均衡
 
-```txt
+```nginx
 # 在http块中的全局块中配置
 # upstream 固定写法 后面的 myserver 可以自定义
 upstream myserver{
@@ -541,7 +407,7 @@ server {
 
 如：
 
-```txt
+```nginx
 upstream myserver { 
     server ip:8081 weight=1 ;
     server ip:8082 weight=2 ;
@@ -559,7 +425,7 @@ server {
 
 如：
 
-```txt
+```nginx
 #配置负载均衡的服务器和端口
 upstream myserver { 
     server ip:8081;
@@ -580,7 +446,7 @@ server {
 
 如：
 
-```txt
+```nginx
 #配置负载均衡的服务器和端口
 upstream myserver {   
     server ip:8081;
@@ -592,5 +458,36 @@ server {
     location / {
     	proxy_pass http://myserver; 
     }    
+}
+```
+
+## 防盗链
+
+```nginx
+location ~* \.(gif|jpg|swf)$ {
+    valid_referers none blocked start.igrow.cn sta.igrow.cn;
+    if ($invalid_referer) {
+        rewrite ^/ http://$host/logo.png;
+    }
+}
+```
+
+## 根据文件类型设置过期时间
+
+```nginx
+location ~* \.(js|css|jpg|jpeg|gif|png|swf)$ {
+    if (-f $request_filename) {
+        expires 1h;
+        break;
+    }
+}
+```
+
+## 禁止访问某个目录
+
+```nginx
+location ~* \.(txt|doc)${
+    root /data/www/wwwroot/linuxtone/test;
+    deny all;
 }
 ```
