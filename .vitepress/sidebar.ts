@@ -23,7 +23,9 @@ import {
     dockerIcon,
     versionControlIcon,
     gitIcon,
-    spiderIcon
+    spiderIcon,
+    regularExpressionIcon,
+    starIcon
 } from './icons.ts'
 
 export default  [
@@ -35,7 +37,8 @@ export default  [
             collapsible: true,
             collapsed: true,
             items: [
-                {text: docsIcon + '软件设计师', link: '/code/SoftwareDesigner.md'},
+                {text: regularExpressionIcon + '正则表达式', link: '/code/RegularExpression.md'},
+                {text: starIcon + '软件设计师', link: '/code/SoftwareDesigner.md'},
                 {text: machineLearningIcon + '机器学习', link: '/code/MachineLearning.md'},
                 {text: spiderIcon + '爬虫', link: '/code/WebCrawling.md'},
             ]
