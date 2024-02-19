@@ -6,3 +6,8 @@
 .vitepress/dist/
 .vitepress/temp/
 .vitepress/cache/
+
+
+.vscode/*
+!.vscode/extensions.json
+!.vscode/launch.json
