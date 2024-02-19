@@ -7,6 +7,7 @@ export default defineConfig({
   base: '/note',
   lang: 'zh-CN',
   title: 'Note',
+  
   head: [
     [
       'link',
