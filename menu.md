@@ -6,6 +6,8 @@
 
 [机器学习](./code/MachineLearning.md)
 
+[语言代码表](./code/LanguageCode.md)
+
 ## 后端
 
 [企业级开发](./backend/企业级开发.md)

@@ -25,8 +25,9 @@ import {
     gitIcon,
     spiderIcon,
     regularExpressionIcon,
-    starIcon
-} from './icons.ts'
+    starIcon,
+    earthIcon
+} from './icons'
 
 export default  [
         {
@@ -41,6 +42,7 @@ export default  [
                 {text: starIcon + '软件设计师', link: '/code/SoftwareDesigner.md'},
                 {text: machineLearningIcon + '机器学习', link: '/code/MachineLearning.md'},
                 {text: spiderIcon + '爬虫', link: '/code/WebCrawling.md'},
+                {text: earthIcon + '语言代码表', link: '/code/LanguageCode.md'}
             ]
         },
         {
