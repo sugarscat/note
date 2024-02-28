@@ -1,3 +1,4 @@
+.idea
 /.idea/'node_modules'
 '.temp'
 '.cache'
@@ -10,7 +11,3 @@
 .vscode/*
 !.vscode/extensions.json
 !.vscode/launch.json
-
-pnpm-lock.yaml
-yarn.lock
-package-lock.json
