@@ -366,7 +366,7 @@ onMounted(()=>{
 ```vue
 <script setup>
   //2.通过defineProps“编译器宏”接收子组件传递的数据
-  const props = defineProps{
+  const props = defineProps({
       message: String
   }) 
 </script>
