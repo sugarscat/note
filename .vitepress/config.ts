@@ -4,14 +4,14 @@ import sidebar from './sidebar'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  base: '/note',
-  lang: 'zh-CN',
+  base: '/',
+  lang: 'zh-cn',
   title: 'Note',
   
   head: [
     [
       'link',
-      { rel: 'icon', href: '/note/favicon.ico' }
+      { rel: 'icon', href: '/favicon.ico' }
     ],
   ],
   description: '心灵记忆过往，镜头捕捉瞬间。',
