@@ -7,7 +7,13 @@
 ## 开发
 
 ```shell
-  pnpm install
-  pnpm run docs:dev
-  pnpm run docs:build
+pnpm install
+```
+
+```shell
+pnpm run docs:dev
+```
+
+```shell
+pnpm run docs:build
 ```
