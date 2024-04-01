@@ -65,17 +65,35 @@
     }
 }
 
+.VPNav {
+    .divider {
+        display: none;
+    }
+
+    .container {
+        background-color: transparent;
+
+        .content {
+            background-color: transparent;
+
+            .content-body {
+                background-color: transparent !important;
+            }
+        }
+    }
+}
+
 .VPLocalNav,
-.VPNavBar .container .content-body {
+.VPNavBar .wrapper {
     -webkit-backdrop-filter: saturate(50%) blur(8px) !important;
     backdrop-filter: saturate(50%) blur(8px) !important;
-    background: rgba(255,255,255,.7) !important;
+    background: rgba(255,255,255,.5) !important;
 }
 
 .dark {
     .VPLocalNav,
-    .VPNavBar .container .content-body {
-        background: #1b1b1f79 !important;
+    .VPNavBar .wrapper {
+        background: rgba(27, 27, 31, 0.5) !important;
     }
 
     #VPContent {
