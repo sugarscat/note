@@ -4,7 +4,6 @@
     --color-neutral4: #eceef0;
     --color-neutral9: #889096;
     --color-neutral8: #c1c8cd;
-    --color-neutral9: #889096;
 }
   
 .dark {
@@ -18,13 +17,16 @@
     opacity: 0.8 !important;
 } */
 
+#VPContent {
+    //background-image: url(/svg/grid.svg) !important;
+}
+
 .VPFooter {
     z-index: -1 !important;
 }
 
 /* 修改滚动条的颜色 */
 .VPLocalNavOutlineDropdown .items,
-#localsearch-list,
 .VPSidebar{
     &::-webkit-scrollbar {
         width: 5px; /* 设置滚动条宽度 */
@@ -61,10 +63,6 @@
     }
 }
 
-#localsearch-list {
-    padding: calc(1rem - 10px);
-}
-
 .VPLocalNav,
 .VPNavBar .container .content-body {
     -webkit-backdrop-filter: saturate(50%) blur(8px) !important;
@@ -72,10 +70,28 @@
     background: rgba(255,255,255,.7) !important;
 }
 
+.content-bg {
+    .frame {
+        fill: rgba(0, 0, 0, .2);
+    }
+    .grid {
+        fill: rgba(0, 0, 0, .075);
+    }
+}
+
 .dark {
     .VPLocalNav,
     .VPNavBar .container .content-body {
         background: #1b1b1f79 !important;
+    }
+
+    .content-bg {
+        .frame {
+            fill: rgba(255, 255, 255, .2);
+        }
+        .grid {
+            fill: rgba(255, 255, 255, .075);
+        }
     }
 }
 
@@ -182,7 +198,7 @@ code {
   
   @keyframes gradient {
     0% {
-      background-position: 0% 50%;
+      background-position: 0 50%;
     }
   
     50% {
@@ -190,6 +206,6 @@ code {
     }
   
     100% {
-      background-position: 0% 50%;
+      background-position: 0 50%;
     }
   }
