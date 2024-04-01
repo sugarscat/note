@@ -1,6 +1,6 @@
 export default {
-  appId: 'CULZXWV8L0',
-  apiKey: 'c21e0e64e5c1c01d151dd1eb3602f79c',
+  appId: 'JGK3P0AW03',
+  apiKey: '77aa53e4ca5e3d4036f8abb04ed3357c',
   indexName: 'note',
   placeholder: '请输入关键词',
   translations: {
