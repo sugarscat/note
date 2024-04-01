@@ -10,6 +10,8 @@
     --color-neutral4: #26292b;
     --color-neutral8: #4c5155;
     --color-neutral9: #697177;
+
+    //--vp-c-divider: var(--color-neutral8) !important;
 }
 
 /* a:hover {
@@ -18,7 +20,7 @@
 } */
 
 #VPContent {
-    //background-image: url(/svg/grid.svg) !important;
+    background-image: url(/svg/grid_black.svg) !important;
 }
 
 .VPFooter {
@@ -70,28 +72,14 @@
     background: rgba(255,255,255,.7) !important;
 }
 
-.content-bg {
-    .frame {
-        fill: rgba(0, 0, 0, .2);
-    }
-    .grid {
-        fill: rgba(0, 0, 0, .075);
-    }
-}
-
 .dark {
     .VPLocalNav,
     .VPNavBar .container .content-body {
         background: #1b1b1f79 !important;
     }
 
-    .content-bg {
-        .frame {
-            fill: rgba(255, 255, 255, .2);
-        }
-        .grid {
-            fill: rgba(255, 255, 255, .075);
-        }
+    #VPContent {
+        background-image: url(/svg/grid.svg) !important;
     }
 }
 
