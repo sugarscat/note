@@ -7,7 +7,7 @@ import mdItCustomAttrs  from 'markdown-it-custom-attrs'
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   base: '/',
-  lang: 'zh-cn',
+  // lang: 'zh-CN',
   title: 'Note',
 
   head: [
@@ -69,9 +69,5 @@ export default defineConfig({
     sidebarMenuLabel: '菜单',
     returnToTopLabel: '返回顶部',
     darkModeSwitchLabel: '切换主题',
-    // footer: {
-    //     message: 'MIT Licensed',
-    //     copyright: '<a href="https://beian.miit.gov.cn/" target="_blank"></a>'
-    // }
   }
 })
