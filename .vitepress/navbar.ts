@@ -4,7 +4,7 @@ export default [
         link: '/',
     },
     {
-        text: '目录',
-        link: '/menu.md',
+        text: '阅读',
+        link: '/welcome.md',
     }
 ]
