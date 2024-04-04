@@ -1,4 +1,8 @@
 import {
+    folderIcon
+} from "./icon";
+
+import {
     menuIcon,
     pcIcon,
     rearEndIcon,
@@ -31,8 +35,8 @@ import {
 
 export default  [
         {
-            text: menuIcon + '目录',
-            link: '/menu.md'
+            text: menuIcon + '欢迎',
+            link: '/welcome.md'
         },{
             text: pcIcon + '编程',
             collapsible: true,
