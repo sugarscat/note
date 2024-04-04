@@ -75,7 +75,7 @@ export default  [
             collapsed: true,
             items: [
                 {text: vueIcon + 'Vue', link: '/frontend/Vue.md'},
-                {text: hmosIcon + 'HarmonyOS', link: '/frontend/HarmonyOS.md'},
+                {text: hmosIcon + 'ArkTS', link: '/frontend/ArkTS.md'},
             ]
         },
         {
