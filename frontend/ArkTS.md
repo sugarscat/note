@@ -18,8 +18,8 @@
 
    ```ts
    let x:[string, number]; 
-   x = ['hello'，10]; // OK
-   x=[10,hello’]; // Error
+   x = ['hello', 10]; // OK
+   x=[10, 'hello']; // Error
    ```
 
 6. 枚举：
