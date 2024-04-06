@@ -1,5 +1,6 @@
 import {
-    folderIcon
+    iconFolder,
+    iconPit
 } from "./icon";
 
 import {
@@ -37,6 +38,13 @@ export default  [
         {
             text: menuIcon + '欢迎',
             link: '/welcome.md'
+        },{
+            text: iconPit + '踩坑日记',
+            collapsible: true,
+            collapsed: true,
+            items: [
+                {text: gitIcon + 'SSH公钥', link: '/pit/git_ssh.md'}
+            ]
         },{
             text: pcIcon + '编程',
             collapsible: true,
