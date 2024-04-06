@@ -1,5 +1,7 @@
-import folderIcon from './svg/folder'
+import iconFolder from './svg/folder'
+import iconPit from './svg/pit'
 
 export {
-  folderIcon,
+  iconFolder,
+  iconPit
 }

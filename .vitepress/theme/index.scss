@@ -19,6 +19,10 @@
     opacity: 0.8 !important;
 } */
 
+html {
+    scroll-behavior: smooth;
+}
+
 #VPContent {
     background-image: url(/svg/grid_black.svg) !important;
 }

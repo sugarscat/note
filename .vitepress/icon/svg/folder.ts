@@ -1,5 +1,5 @@
 // 文件夹
-const folderIcon: string = `
+const iconFolder: string = `
 <svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" 
      width="24" height="24">
   <path d="M918.673 883H104.327C82.578 883 65 867.368 65 848.027V276.973C65 257.632 82.578 
@@ -15,4 +15,4 @@ const folderIcon: string = `
   </path>
 </svg>`;
 
-export default folderIcon;
+export default iconFolder;
