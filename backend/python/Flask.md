@@ -1,5 +1,7 @@
 # Flask
 
+> 来源：[易百教程](https://www.yiibai.com/flask)
+
 ## 应用程序
 
 ```python
@@ -120,4 +122,77 @@ if __name__ == '__main__':
     app.run()
 ```
 
-在第二条规则中，使用了尾部斜线(`/`)，变成了一个规范的URL。 访问 `/python` 或 `/python/` 返回相同的输出。 但是，在第一条规则的情况下， 访问 `/flask/`会导致`404 Not Found`页面。
+在第二条规则中，使用了尾部斜线(`/`)，变成了一个规范的URL。 访问 `/python` 或 `/python/` 返回相同的输出。 但是，在第一条规则的情况下， 访问 `/flask/`会导致 `404 Not Found` 页面。
+
+## URL 构建
+
+`url_for()` 函数接受函数的名称作为第一个参数，并接受一个或多个关键字参数，每个参数对应于URL的变量部分。
+
+```python
+from flask import Flask, redirect, url_for
+app = Flask(__name__)
+
+@app.route('/admin')
+def hello_admin():
+    return 'Hello Admin'
+
+@app.route('/guest/<guest>')
+def hello_guest(guest):
+    return 'Hello %s as Guest' % guest
+
+@app.route('/user/<name>')
+def user(name):
+    if name =='admin':
+        return redirect(url_for('hello_admin'))
+    else:
+        return redirect(url_for('hello_guest',guest = name))
+
+if __name__ == '__main__':
+    app.run(debug = True)
+```
+
+- `redirect()` 重定向函数
+
+`User()` 函数检查收到的参数是否与’admin’匹配。 如果匹配，则使用 `url_for()` 将应用程序重定向到 `hello_admin()`函数，否则将该接收的参数作为 `guest` 参数传递给 `hello_guest()` 函数。
+
+## HTTP方法
+
+| 方法     | 描述                                                         |
+| -------- | ------------------------------------------------------------ |
+| `GET`    | 将数据以未加密的形式发送到服务器，这最常用的方法             |
+| `HEAD`   | 与GET相同，但没有响应主体                                    |
+| `POST`   | 用于将HTML表单数据发送到服务器。通过POST方法接收的数据不会被服务器缓存 |
+| `PUT`    | 用上传的内容替换目标资源的所有当前表示                       |
+| `DELETE` | 删除由URL给出的所有目标资源的所有表示                        |
+
+默认情况下，Flask 路由响应 GET 请求。 但是，可以通过为 `route()` 装饰器提供方法参数来更改此首选项。
+
+下面是 `POST`：
+
+```python
+from flask import Flask, redirect, url_for, request
+app = Flask(__name__)
+
+@app.route('/success/<name>')
+def success(name):
+    return 'welcome %s' % name
+
+@app.route('/login',methods = ['POST', 'GET'])
+def login():
+    if request.method == 'POST':
+        user = request.form['name']
+        return redirect(url_for('success',name = user))
+    else:
+        user = request.args.get('name')
+        return redirect(url_for('success',name = user))
+
+if __name__ == '__main__':
+    app.run(debug = True)
+```
+
+GET 方法获得 `name` 参数的值：
+
+```python
+user = request.args.get('name')
+```
+

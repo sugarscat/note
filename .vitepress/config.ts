@@ -17,11 +17,11 @@ export default defineConfig({
     ],
     [
       "link",
-      { rel: "stylesheet", href: "https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" },
+      { rel: "stylesheet", href: "/assets/css/fancybox.css" },
     ],
     [
       "script",
-      { src: "https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js" }
+      { src: "/assets/js/fancybox.umd.js" }
     ],
   ],
   description: '心灵记忆过往，镜头捕捉瞬间。',
