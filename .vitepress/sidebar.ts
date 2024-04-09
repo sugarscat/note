@@ -1,4 +1,5 @@
 import {
+  iconFlask,
   iconFolder,
   iconPit
 } from "./icon";
@@ -76,7 +77,7 @@ export default  [
           {text: springBootIcon + '微服务', link: '/backend/spring/Microservices.md'},
         ]
       },
-      {text: docsIcon + 'Flask教程', link: '/backend/python/Flask.md'},
+      {text: iconFlask + 'Flask教程', link: '/backend/python/Flask.md'},
     ]
   },
   {
