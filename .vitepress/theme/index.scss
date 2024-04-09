@@ -24,7 +24,7 @@ html {
 }
 
 #VPContent {
-    background-image: url(/svg/grid_black.svg) !important;
+    background-image: url(/assets/svg/grid_black.svg) !important;
 }
 
 .VPFooter {
@@ -101,7 +101,7 @@ html {
     }
 
     #VPContent {
-        background-image: url(/svg/grid.svg) !important;
+        background-image: url(/assets/svg/grid.svg) !important;
     }
 }
 
@@ -176,7 +176,7 @@ html {
 /*front*/
 @font-face {
     font-family: JetBrainsMono;
-    src: url("/font/JetBrainsMono-Medium.woff2")
+    src: url("/assets/font/JetBrainsMono-Medium.woff2")
 }
 
 code {
