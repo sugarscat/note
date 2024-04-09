@@ -196,3 +196,204 @@ GET 方法获得 `name` 参数的值：
 user = request.args.get('name')
 ```
 
+##  模板
+
+> 时代潮流是前后端分离，故在此不记录此笔记。
+
+## 静态文件
+
+> 同上
+
+## 请求对象
+
+`form` - 它是包含表单参数及其值的键和值对的字典对象。
+
+`args` - 解析问号(`?`)后的URL部分查询字符串的内容。
+
+`cookies` - 保存Cookie名称和值的字典对象。
+
+`file` - 与上传文件有关的数据。
+
+`method` - 当前请求方法。
+
+## 表单处理
+
+```python
+rom flask import Flask, render_template, request
+app = Flask(__name__)
+
+@app.route('/')
+def student():
+    return render_template('student.html')
+
+@app.route('/result',methods = ['POST', 'GET'])
+def result():
+    if request.method == 'POST':
+        # 表单数据
+        result = request.form
+        return render_template("result.html",result = result)
+
+if __name__ == '__main__':
+    app.run(debug = True)
+```
+
+## Cookies 处理
+
+Request对象包含一个 `cookie` 的属性。 它是所有cookie变量及其对应值的字典对象，客户端已发送。 除此之外，cookie还会存储其到期时间，路径和站点的域名。
+
+在Flask中，cookies设置在响应对象上。 使用 `make_response()` 函数从视图函数的返回值中获取响应对象。 之后，使用响应对象的 `set_cookie()` 函数来存储cookie。
+
+重读cookie很容易。 可以使用 `request.cookies` 属性的 `get()` 方法来读取cookie。
+
+### 设置 Cookie
+
+```python
+@app.route('/setcookie', methods = ['POST', 'GET'])
+def setcookie():
+   if request.method == 'POST':
+        user = request.form['name']
+
+        resp = make_response(render_template('readcookie.html'))
+        resp.set_cookie('userID', user)
+
+        return resp
+```
+
+### 获取 Cookie
+
+```python
+@app.route('/getcookie')
+def getcookie():
+    name = request.cookies.get('userID')
+    return '<h1>welcome '+name+'</h1>'
+```
+
+## Sessions 会话
+
+会话对象也是一个包含会话变量和关联值的键值对的字典对象。
+
+设置 `'username'` 会话变量
+
+```python
+Session['username'] = 'admin'
+```
+
+要删除会话变量：`pop()` 方法。
+
+```python
+session.pop('username', None)
+```
+
+## 重定向和错误
+
+### 重定向
+
+Flask类有重定向 `redirect()` 函数。调用时，它会返回一个响应对象，并将用户重定向到具有指定状态码的另一个目标位置。
+
+```python
+Flask.redirect(location, statuscode, response)
+```
+
+### 错误
+
+Flask 类具有带有错误代码的 `abort()` 函数。
+
+```python
+Flask.abort(code)
+```
+
+`code`参数使用以下值之一 -
+
+- 400 - 对于错误的请求
+- 401 - 用于未经身份验证
+- 403 - 禁止
+- 404 - 未找到
+- 406 - 不可接受
+- 415 - 用于不支持的媒体类型
+- 429 - 请求过多
+
+## 消息闪现
+
+在Flask Web应用程序中生成这样的信息消息很容易。 Flask框架的闪现系统使得可以在一个视图中创建一个消息并将其呈现在名为 `next` 的视图函数中。
+
+Flask模块包含 `flash()` 方法。 它将消息传递给下一个请求，该请求通常是一个模板。
+
+```python
+flash(message, category)
+Python
+```
+
+在这里：
+
+- *message* - 参数是要刷新的实际消息。
+- *category* - 参数是可选的。 它可以是’错误’，’信息’或’警告’。
+
+要从会话中删除消息，模板调用 `get_flashed_messages()` 函数。
+
+```python
+get_flashed_messages(with_categories, category_filter)
+```
+
+两个参数都是可选的。 如果收到的消息具有类别，则第一个参数是元组。 第二个参数对于仅显示特定消息很有用。
+
+以下闪现模板中收到消息。
+
+```html
+{% with messages = get_flashed_messages() %}
+   {% if messages %}
+      {% for message in messages %}
+         {{ message }}
+      {% endfor %}
+   {% endif %}
+{% endwith %}
+```
+
+## 文件上传
+
+在Flask中处理文件上传非常简单。 它需要一个enctype属性设置为`'multipart/form-data'`的HTML表单，将该文提交到指定URL。 URL处理程序从 `request.files[]` 对象中提取文件并将其保存到所需的位置。
+
+每个上传的文件首先保存在服务器上的临时位置，然后再保存到最终位置。 目标文件的名称可以是硬编码的，也可以从`request.files [file]` 对象的 `filename` 属性中获取。 但是，建议使用 `secure_filename()` 函数获取它的安全版本。
+
+可以在Flask对象的配置设置中定义默认上传文件夹的路径和上传文件的最大大小。
+
+| 变量                           | 说明                                      |
+| ------------------------------ | ----------------------------------------- |
+| app.config[‘UPLOAD_FOLDER’]    | 定义上传文件夹的路径                      |
+| app.config[‘MAX_CONTENT_PATH’] | 指定要上传的文件的最大大小 - 以字节为单位 |
+
+```python
+from flask import Flask, render_template, request
+from werkzeug import secure_filename
+app = Flask(__name__)
+
+@app.route('/upload', methods=['GET', 'POST'])
+def upload_file():
+    if request.method == 'POST':
+        f = request.files['file']
+        print(request.files)
+        f.save(secure_filename(f.filename))
+        return 'file uploaded successfully'
+    else:
+        return render_template('upload.html')
+
+
+if __name__ == '__main__':
+    app.run(debug = True)
+```
+
+## Docker 部署
+
+```dockerfile
+FROM python:3.11
+#设置工作目录
+WORKDIR /app
+#复制requirements.txt
+COPY requirements.txt requirements.txt
+#安装依赖包
+RUN pip install -r requirements.txt
+#复制当前目录下的内容到docker中
+COPY . .
+#启动命令
+ENTRYPOINT [ "python", "-m" , "flask",  "--app","app.py", "run", "--host=0.0.0.0","--port=5000"]
+```
+
