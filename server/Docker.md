@@ -58,17 +58,17 @@ docker [命令] --help
 docker images [选项] [镜像名称[:版本标签]]
 ```
 
-- 列出本地所有的镜像
+#### 列出本地所有的镜像
 
-  ```shell
-  docker images
-  ```
-  
-  该命令等同于：
-  
-  ```shell
-  docker image ls
-  ```
+```shell
+docker images
+```
+
+该命令等同于：
+
+```shell
+docker image ls
+```
 
 - `-a`：列出本地所有的镜像（含历史镜像），包括中间层镜像
 
@@ -93,7 +93,7 @@ docker images [选项] [镜像名称[:版本标签]]
   ```shell
   docker images --quiet
   ```
-  
+
 - `--digests` 列出镜像的摘要信息
 
   ```shell
@@ -289,3 +289,65 @@ docker commit [选项参数] [容器] [仓库[:版本号]]
 - `-c`（`--change`的简写）：在提交过程中执行额外的 Dockerfile 指令。
 - `-m`（`--message`的简写）：提交的描述信息。
 - `-p`（`--pause`的简写）：在提交之前暂停容器的运行。
+
+### `exec` 进入某个容器终端
+
+#### 语法
+
+```
+docker exec [OPTIONS] CONTAINER COMMAND [ARG...]
+```
+
+`OPTIONS` 说明：
+
+- `-d` : 分离模式: 在后台运行
+- `-i `: 即使没有附加也保持STDIN 打开
+- `-t `: 分配一个伪终端
+
+#### 示例
+
+```sh
+docker exec -it [容器id/容器名] /bin/bash 
+```
+
+### `build` 构建镜像
+
+#### 语法
+
+```
+docker build [OPTIONS] PATH | URL | -
+```
+
+`OPTIONS` 说明：
+
+- `--build-arg=[]` : 设置镜像创建时的变量；
+- `--cpu-shares` : 设置 `CPU` 使用权重；
+- `--cpu-period` : 限制 `CPU CFS` 周期；
+- `--cpu-quota` : 限制 `CPU CFS` 配额；
+- `--cpuset-cpus` : 指定使用的 `CPU id` ；
+- `--cpuset-mems` : 指定使用的内存 id；
+- `--disable-content-trust` : 忽略校验，默认开启；
+- `-f` : 指定要使用的 `Dockerfile` 路径；
+- `--force-rm` : 设置镜像过程中删除中间容器；
+- `--isolation` : 使用容器隔离技术；
+- `--label=[]` : 设置镜像使用的元数据；
+- `-m` : 设置内存最大值；
+- `--memory-swap` : 设置 `Swap` 的最大值为内存 `+swap`，`"-1"` 表示不限 `swap`；
+- `--no-cache` : 创建镜像的过程不使用缓存；
+- `--pull` : 尝试去更新镜像的新版本；
+- `--quiet`, ` -q` : 安静模式，成功后只输出镜像 `ID`；
+- `--rm` : 设置镜像成功后删除中间容器；
+- `--shm-size` : 设置 `/dev/shm` 的大小，默认值是 `64M`；
+- `--ulimit` : `Ulimit` 配置。
+- `--squash` : 将 `Dockerfile` 中所有的操作压缩为一层。
+- `--tag`, `-t` : 镜像的名字及标签，通常 `name:tag` 或者 `name` 格式；可以在一次构建中为一个镜像设置多个标签。
+- `--network` : 默认 `default`。在构建期间设置RUN指令的网络模式
+
+#### 实例
+
+使用当前目录的 `Dockerfile` 创建镜像，标签为 `ubuntu:latest`。
+
+```sh
+docker build -t ubuntu:latest . 
+```
+
