@@ -2,17 +2,19 @@
 
 ## 初始化
 
-- 在当前目录中初始化一个新的 Git 仓库。
+### 在当前目录中初始化一个新的 Git 仓库
 
-  ```shell
-  git init
-  ```
-  
-- 在指定的目录中初始化一个新的 Git 仓库。
+```shell
+git init
+```
 
-  ```shell
-  git init <directory>
-  ```
+### 在指定的目录中初始化一个新的 Git 仓库
+
+```shell
+git init <directory>
+```
+
+### 参数
 
 - 初始化一个空的 Git 仓库，用于远程仓库或者共享仓库。
 
@@ -34,17 +36,19 @@
 
 ## 克隆
 
-- 将指定的 Git 仓库复制到当前目录下的一个新目录中。
+### 将指定的 Git 仓库复制到当前目录下的一个新目录中
 
-  ```shell
-  git clone <repository>
-  ```
-  
-- 将指定的 Git 仓库复制到指定的目录中。
+```shell
+git clone <repository>
+```
 
-  ```shell
-  git clone <repository> <directory>
-  ```
+### 将指定的 Git 仓库复制到指定的目录中
+
+```shell
+git clone <repository> <directory>
+```
+
+### 参数
 
 - 仅复制 Git 仓库的指定深度的历史记录，这可以减少克隆所需的时间和空间。
 
@@ -79,14 +83,14 @@
   ```shell
   git clone --single-branch -b <branch> <repository>
   ```
-  
+
   例如：
 
   ```shell
   # 只克隆 Git 仓库 main 分支的提交历史。
   git clone --single-branch -b main <repository>
   ```
-  
+
 - 递归克隆 Git 仓库中所有的子模块（submodule）。
 
   ```shell
@@ -95,63 +99,65 @@
 
 ## 仓库管理
 
-- 添加一个新的远程仓库
+### 添加一个新的远程仓库
 
-  ```shell
-  # `remote_name` 表示远程仓库的名称，`remote_url` 表示远程仓库的 URL
-  git remote add [remote_name] [remote_url]
-  ```
-  
-- 查看远程仓库的详细信息，包括名称和 URL
+```shell
+# `remote_name` 表示远程仓库的名称，`remote_url` 表示远程仓库的 URL
+git remote add [remote_name] [remote_url]
+```
 
-  ```shell
-  git remote -v
-  ```
+### 查看远程仓库的详细信息，包括名称和 URL
 
-- 将一个远程仓库重命名为另一个名称
+```shell
+git remote -v
+```
 
-  ```shell
-  git remote rename [old_name] [new_name]
-  ```
+### 将一个远程仓库重命名为另一个名称
 
-- 删除一个远程仓库
+```shell
+git remote rename [old_name] [new_name]
+```
 
-  ```shell
-  git remote remove [remote_name]
-  ```
+### 删除一个远程仓库
 
-- 显示一个远程仓库的详细信息，包括分支的跟踪关系
+```shell
+git remote remove [remote_name]
+```
 
-  ```shell
-  git remote show [remote_name]
-  ```
+### 显示一个远程仓库的详细信息，包括分支的跟踪关系
 
-- 从远程仓库中获取最新的提交信息，但不会自动合并到本地分支中
+```shell
+git remote show [remote_name]
+```
 
-  ```shell
-  git remote update
-  ```
+### 从远程仓库中获取最新的提交信息，但不会自动合并到本地分支中
 
-- 删除本地不存在的远程分支
+```shell
+git remote update
+```
 
-  ```shell
-  git remote prune [remote_name]
-  ```
+### 删除本地不存在的远程分支
 
-- 修改远程仓库的 URL
+```shell
+git remote prune [remote_name]
+```
 
-  ```shell
-  git remote set-url [remote_name] [new_url]
-  ```
+### 修改远程仓库的 URL
+
+```shell
+git remote set-url [remote_name] [new_url]
+```
 
 ## 查看文件状态
 
-- 查看工作区和暂存区的文件状态。
+### 查看工作区和暂存区的文件状态
 
-  ```shell
-  git status
-  ```
-  
+```shell
+git status
+```
+
+### 参数
+
 - 以短格式显示文件状态。
 
   ```shell
@@ -208,27 +214,29 @@
 
 ## 添加暂存
 
-- 将指定文件添加到暂存区。
+### 将指定文件添加到暂存区
 
-  ```shell
-  git add <file>
-  ```
+```shell
+git add <file>
+```
 
-  例如：
+例如：
 
-  ```shell
-  # 将 index.html 添加到暂存区
-  git add index.html
-  ```
+```shell
+# 将 index.html 添加到暂存区
+git add index.html
+```
 
-- 将所有修改过或新增的文件添加到 Git 暂存区，包括被删除的文件。
+### 将所有修改过或新增的文件添加到 Git 暂存区，包括被删除的文件
 
-  这个命令会递归地扫描当前目录及其所有子目录中的文件，将它们全部添加到暂存区。
+这个命令会递归地扫描当前目录及其所有子目录中的文件，将它们全部添加到暂存区。
 
-  ```shell
-  git add .
-  ```
-  
+```shell
+git add .
+```
+
+### 参数
+
 - 将所有修改过、新增或删除的文件添加到暂存区。
 
   ```shell
@@ -261,40 +269,42 @@
 
 :::
 
-- 全局配置
+### 全局配置
 
-  ```shell
-  # 配置全局用户名
-  git config --global user.name "Your Name"
-  # 配置全局邮箱
-  git config --global user.email "your_email@example.com"
-  ```
+```shell
+# 配置全局用户名
+git config --global user.name "Your Name"
+# 配置全局邮箱
+git config --global user.email "your_email@example.com"
+```
 
-- 局部配置
+### 局部配置
 
-  ```shell
-  # 配置局部用户名
-  git config user.name "Your Name"
-  # 配置局部邮箱
-  git config user.email "your_email@example.com"
-  ```
+```shell
+# 配置局部用户名
+git config user.name "Your Name"
+# 配置局部邮箱
+git config user.email "your_email@example.com"
+```
 
-  > 注意：项目提交时，用户名与邮箱会以局部配置优先。
+> 注意：项目提交时，用户名与邮箱会以局部配置优先。
 
 ## 提交
 
-- 打开默认编辑器来输入本次提交的信息。
+### 打开默认编辑器来输入本次提交的信息
 
-  ```shell
-  git commit
-  ```
+```shell
+git commit
+```
 
-- 在提交时添加提交信息，而不需要打开默认编辑器。
+### 在提交时添加提交信息，而不需要打开默认编辑器。
 
-  ```shell
-  git commit -m "<message>"
-  ```
-  
+```shell
+git commit -m "<message>"
+```
+
+### 参数
+
 - 将所有已经跟踪的文件的变更提交到本地仓库中，跳过使用 `git add` 添加文件到暂存区的步骤。
 
   ```shell
@@ -339,25 +349,31 @@
 
 ## 提取
 
-- 从默认远程存储库获取所有分支的最新提交，并将它们下载到本地存储库中。这个命令不会将这些提交合并到本地分支中。
+### 获取所有分支的最新提交
 
-  ```shell
-  git fetch
-  ```
-  
-- 常用
+从默认远程存储库获取所有分支的最新提交，并将它们下载到本地存储库中。这个命令不会将这些提交合并到本地分支中。
 
-  从指定的远程存储库获取所有分支的最新提交，并将它们下载到本地存储库中。
+```shell
+git fetch
+```
 
-  ```shell
-  git fetch <remote>
-  ```
+### 指定的远程存储库获取所有分支的最新提交
 
-- 从指定的远程存储库获取指定分支的最新提交，并将它们下载到本地存储库中。
+从指定的远程存储库获取所有分支的最新提交，并将它们下载到本地存储库中。
 
-  ```shell
-  git fetch <remote> <branch>
-  ```
+```shell
+git fetch <remote>
+```
+
+### 指定的远程存储库获取指定分支的最新提交
+
+从指定的远程存储库获取指定分支的最新提交，并将它们下载到本地存储库中。
+
+```shell
+git fetch <remote> <branch>
+```
+
+### 参数
 
 - 从所有远程存储库获取所有分支的最新提交，并将它们下载到本地存储库中。
 
@@ -391,24 +407,28 @@
 
 ## 拉取
 
-- 默认情况下，会从与当前分支相对应的远程分支中拉取最新的代码，并将其合并到本地分支中
+### 拉取最新的代码
 
-  ```shell
-  git pull
-  ```
-  
-- 指定要从哪个远程仓库拉取最新的代码
+默认情况下，会从与当前分支相对应的远程分支中拉取最新的代码，并将其合并到本地分支中
 
-  ```shell
-  git pull <remote>
-  ```
+```shell
+git pull
+```
 
-- 指定要从哪个远程分支拉取最新的代码
+### 指定远程仓库拉取最新的代码
 
-  ```shell
-  git pull <remote> <branch>
-  ```
-  
+```shell
+git pull <remote>
+```
+
+### 指定远程分支拉取最新的代码
+
+```shell
+git pull <remote> <branch>
+```
+
+### 参数
+
 - 拉取最新的代码时使用 `rebase` 而不是 `merge` 。
 
   `rebase` 会将本地的提交“重新应用”到远程分支之上，从而使提交历史更加线性。
@@ -417,7 +437,7 @@
   git pull --rebase
   ```
 
-- 拉取最新的代码时不使用`rebase`，而是使用`merge`。这是默认行为。
+- 拉取最新的代码时不使用 `rebase`，而是使用`merge`。这是默认行为。
 
   ```shell
   git pull --no-rebase
@@ -443,129 +463,147 @@
 
 ## 推送
 
-- 推送当前分支的所有本地提交到远程仓库。
+### 推送当前分支的所有本地提交到远程仓库
 
-  如果当前分支还不存在于远程仓库中，Git 会自动创建一个同名的分支。
+如果当前分支还不存在于远程仓库中，Git 会自动创建一个同名的分支。
 
-  ```shell
-  git push
-  ```
+```shell
+git push
+```
 
-- 推送当前分支的所有本地提交到指定的远程仓库。
+### 推送当前分支的所有本地提交到指定的远程仓库
 
-  ```shell
-  git push <remote>
-  ```
+```shell
+git push <remote>
+```
 
-- 推送指定分支的所有本地提交到指定的远程仓库，例如：git push origin master。
+### 推送指定分支的所有本地提交到指定的远程仓库
 
-  ```shell
-  git push <remote> <branch>
-  ```
+例如：git push origin master。
 
-- 将本地分支和远程分支关联，并将当前分支的所有本地提交推送到远程仓库。
+```shell
+git push <remote> <branch>
+```
 
-  这个命令通常在第一次将本地分支推送到远程仓库时使用。
+### 将本地分支和远程分支关联，并将当前分支的所有本地提交推送到远程仓库
 
-  ```shell
-  git push -u <remote> <branch>
-  ```
+这个命令通常在第一次将本地分支推送到远程仓库时使用。
 
-- 推送所有本地分支到指定的远程仓库。
+```shell
+git push -u <remote> <branch>
+```
 
-  ```shell
-  git push --all <remote>
-  ```
+### 推送所有本地分支到指定的远程仓库
 
-- 推送所有标签到指定的远程仓库。
+```shell
+git push --all <remote>
+```
 
-  ```shell
-  git push --tags <remote>
-  ```
+### 推送所有标签到指定的远程仓库
 
-- 慎用
+```shell
+git push --tags <remote>
+```
 
-  强制推送指定分支的所有本地提交到远程仓库。
+### 强制推送指定分支的所有本地提交到远程仓库
 
-  注意，强制推送会覆盖远程分支上的所有提交，（同事背刺命令）慎用。
+注意，强制推送会覆盖远程分支上的所有提交，（同事背刺命令）慎用。
 
-  ```shell
-  git push --force <remote> <branch> 
-  # 简写 
-  git push -f <remote> <branch> 
-  ```
+```shell
+git push --force <remote> <branch> 
+# 简写 
+git push -f <remote> <branch> 
+```
 
 ## 分支
 
-- 查看当前所在分支
+### 查看当前所在分支
 
-  ```shell
-  git branch
-  ```
-  
-- 创建新分支
+```shell
+git branch
+```
 
-  ```shell
-  git branch <branch_name>
-  ```
+### 创建新分支
 
-- 删除指定分支
+```shell
+git branch <branch_name>
+```
 
-  ```shell
-  git branch -d <branch_name>
-  ```
+### 删除指定分支
 
-- 强制删除指定分支
+```shell
+git branch -d <branch_name>
+```
 
-  ```shell
-  git branch -D <branch_name>
-  ```
+### 强制删除指定分支
 
-- 重命名分支
+```shell
+git branch -D <branch_name>
+```
 
-  ```shell
-  git branch -m <old_branch_name> <new_branch_name>
-  ```
+### 重命名分支
+
+```shell
+git branch -m <old_branch_name> <new_branch_name>
+```
 
 ## 检出
 
-- 切换到指定的分支
+### 切换到指定的分支
 
-  ```shell
-  git checkout <branch_name>
-  ```
-  
-- 创建并切换到一个新的分支
+```shell
+git checkout <branch_name>
+```
 
-  ```shell
-  git checkout -b <new_branch_name>
-  ```
+### 创建并切换到一个新的分支
+
+```shell
+git checkout -b <new_branch_name>
+```
 
 ## 分支的修改与合并
 
-- 将当前分支的更改在 `<branch>` 分支上进行重演
+### 重演
 
-  ```shell
-  git rebase <branch>
-  ```
+将当前分支的更改在 `<branch>` 分支上进行重演
+
+```shell
+git rebase <branch>
+```
+
+### 参数
 
 - 以交互模式进行变基，可以对 commit 进行合并、编辑、删除等操作。
 
-  ```shell
+  ```sh
   git rebase -i <commit>
   ```
-  
+
 - 处理完冲突之后，继续进行 rebase。
 
-  ```shell
+  ```sh
   git rebase --continue
   ```
 
 - 取消一个正在进行的 rebase 操作。
 
-  ```shell
+  ```sh
   git rebase --abort
   ```
+
+## 回滚
+
+1. `git log`：首先使用该命令查看所有提交历史，找到需要回退到的特定版本的提交哈希值（commit hash）。
+
+2. `git reset –hard [哈希值]`：使用上一步找到的提交哈希值替换 `[哈希值]`，执行该命令将 `HEAD` 指向指定版本，并且清除暂存区和工作目录的改动。
+
+3. `git push -f origin [分支] `：如果你正在使用远程仓库，并且需要将回退的更改强制推送到远程仓库，请使用该命令。将 `[分支]` 替换为你的分支名称。
+
+:::warning 注意
+
+回归版本将会删除所有较新的提交历史，需要谨慎操作，确保备份了重要数据。如果你不确定自己的操作，请先进行代码备份。
+
+:::
 
 ## 删除某个提交信息
 
