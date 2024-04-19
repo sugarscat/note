@@ -4,6 +4,8 @@
     --color-neutral4: #eceef0;
     --color-neutral9: #889096;
     --color-neutral8: #c1c8cd;
+
+    --vp-c-brand-1: #ce6e6e
 }
   
 .dark {
@@ -11,6 +13,7 @@
     --color-neutral8: #4c5155;
     --color-neutral9: #697177;
 
+    --vp-c-brand-1: #ce6e6e !important;
     //--vp-c-divider: var(--color-neutral8) !important;
 }
 
@@ -24,7 +27,7 @@ html {
 }
 
 #VPContent {
-    background-image: url(/assets/svg/grid_black.svg) !important;
+    //background-image: url(/assets/svg/grid_black.svg) !important;
 }
 
 .VPFooter {
@@ -101,7 +104,7 @@ html {
     }
 
     #VPContent {
-        background-image: url(/assets/svg/grid.svg) !important;
+        //background-image: url(/assets/svg/grid.svg) !important;
     }
 }
 
