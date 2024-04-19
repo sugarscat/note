@@ -292,9 +292,7 @@ docker commit [选项参数] [容器] [仓库[:版本号]]
 
 ### `exec` 进入某个容器终端
 
-#### 语法
-
-```
+```sh
 docker exec [OPTIONS] CONTAINER COMMAND [ARG...]
 ```
 
@@ -312,9 +310,7 @@ docker exec -it [容器id/容器名] /bin/bash
 
 ### `build` 构建镜像
 
-#### 语法
-
-```
+```sh
 docker build [OPTIONS] PATH | URL | -
 ```
 
@@ -343,7 +339,7 @@ docker build [OPTIONS] PATH | URL | -
 - `--tag`, `-t` : 镜像的名字及标签，通常 `name:tag` 或者 `name` 格式；可以在一次构建中为一个镜像设置多个标签。
 - `--network` : 默认 `default`。在构建期间设置RUN指令的网络模式
 
-#### 实例
+#### 示例
 
 使用当前目录的 `Dockerfile` 创建镜像，标签为 `ubuntu:latest`。
 
