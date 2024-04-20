@@ -1,7 +1,7 @@
 import {
   iconFlask,
   iconFolder,
-  iconPit
+  iconPit, iconPython
 } from "./icon";
 
 import {
@@ -32,7 +32,7 @@ import {
   spiderIcon,
   regularExpressionIcon,
   starIcon,
-  earthIcon
+  earthIcon, javaIcon
 } from './icons'
 
 export default  [
@@ -64,20 +64,34 @@ export default  [
     collapsed: true,
     items: [
       {
-        text: springIcon + 'Spring',
+        text: javaIcon + 'Java',
         collapsible: true,
         collapsed: true,
         items: [
-          {text: springIcon + 'Spring', link: '/backend/spring/Spring.md'},
-          {text: springBootIcon + 'SpringBoot', link: '/backend/spring/SpringBoot.md'},
           {
-            text: springBootIcon + 'SpringBoot 数据访问',
-            link: '/backend/spring/SpringBootDatasource.md'
+            text: springIcon + 'Spring',
+            collapsible: true,
+            collapsed: true,
+            items: [
+              {text: springIcon + 'Spring', link: '/backend/java/spring/Spring.md'},
+              {text: springBootIcon + 'SpringBoot', link: '/backend/java/spring/SpringBoot.md'},
+              {
+                text: springBootIcon + 'SpringBoot 数据访问',
+                link: '/backend/java/spring/SpringBootDatasource.md'
+              },
+              {text: springBootIcon + '微服务', link: '/backend/java/spring/Microservices.md'},
+            ]
           },
-          {text: springBootIcon + '微服务', link: '/backend/spring/Microservices.md'},
         ]
       },
-      {text: iconFlask + 'Flask教程', link: '/backend/python/Flask.md'},
+      {
+        text: iconPython + 'Python',
+        collapsible: true,
+        collapsed: true,
+        items: [
+          {text: iconFlask + 'Flask教程', link: '/backend/python/Flask.md'},
+        ]
+      },
     ]
   },
   {

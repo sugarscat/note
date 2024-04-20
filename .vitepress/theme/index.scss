@@ -5,7 +5,9 @@
     --color-neutral9: #889096;
     --color-neutral8: #c1c8cd;
 
-    --vp-c-brand-1: #ce6e6e
+    --vp-c-brand-1: #ce6e6e;
+    --vp-c-brand-2: #ce7e7e;
+    --vp-c-brand-3: #ce8e8e;
 }
   
 .dark {
@@ -14,6 +16,8 @@
     --color-neutral9: #697177;
 
     --vp-c-brand-1: #ce6e6e !important;
+    --vp-c-brand-2: #ce5e5e;
+    --vp-c-brand-3: #ce4e4e;
     //--vp-c-divider: var(--color-neutral8) !important;
 }
 
@@ -98,11 +102,15 @@ html {
 }
 
 .VPSidebarItem {
+    --gap: 3px;
+
     h2.text,
     h3.text,
+    h4.text,
+    h5.text,
     p.text {
         display: flex;
-        gap: 5px;
+        gap: var(--gap);
         align-items: center;
 
         svg {
@@ -116,16 +124,16 @@ html {
             margin-left: 8px;
 
             svg {
-                width: 20px;
-                height: 20px;
+                width: 22px;
+                height: 22px;
             }
         }
     }
 
     &.level-2 {
         .text {
-            gap: 3px;
-            margin-left: 16px;
+            gap: var(--gap);
+            margin-left: 14px;
 
             svg {
                 width: 20px;
