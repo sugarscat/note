@@ -1026,9 +1026,9 @@ spring:
 
   启用 `@MatrixVariable`:
 
-  ![@MatrixVariable](../../assets/image/SpringBoot/MatrixVariable1.png)
+  ![@MatrixVariable](../../../assets/image/SpringBoot/MatrixVariable1.png)
 
-  ![@MatrixVariable](../../assets/image/SpringBoot/MatrixVariable2.png)
+  ![@MatrixVariable](../../../assets/image/SpringBoot/MatrixVariable2.png)
 
 - `@CookieValue`：可让处理方法入参绑定某个 `Cookie` 值。
 
@@ -1126,7 +1126,7 @@ request.getAttribute();
 
 2. `Map`、`Model`类型的参数，会返回 `mavContainer.getModel()` ---> `BindingAwareModelMap` 是 `Model` ，也是 `Map` （来自源码）。
 
-   ![map_model.png](../../assets/image/SpringBoot/map_model.png)
+   ![map_model.png](../../../assets/image/SpringBoot/map_model.png)
 
 #### 自定义参数
 
@@ -1542,7 +1542,7 @@ public class AdminWebConfig implements WebMvcConfigurer {
 
 9. 页面成功渲染完成以后，也会倒序触发 `afterCompletion`。
 
-   ![img](../../assets/image/SpringBoot/handler.png)
+   ![img](../../../assets/image/SpringBoot/handler.png)
 
 ## 文件上传
 
@@ -1608,7 +1608,7 @@ public String upload(@RequestParam("email") String email,
 
 - `error/` 下的 `4xx`，`5xx` 页面会被自动解析，可用于自定义错误页，有错误异常时会精确匹配错误状态码页面，没有就找 4xx.html，如果都没有就触发白页。
 
-  ![error](../../assets/image/SpringBoot/error.png)
+  ![error](../../../assets/image/SpringBoot/error.png)
 
 ### 自定义错误规则
 

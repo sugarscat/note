@@ -5,7 +5,9 @@
     --color-neutral9: #889096;
     --color-neutral8: #c1c8cd;
 
-    --vp-c-brand-1: #ce6e6e
+    --vp-c-brand-1: #ce6e6e;
+    --vp-c-brand-2: #ce7e7e;
+    --vp-c-brand-3: #ce8e8e;
 }
   
 .dark {
@@ -14,6 +16,8 @@
     --color-neutral9: #697177;
 
     --vp-c-brand-1: #ce6e6e !important;
+    --vp-c-brand-2: #ce5e5e;
+    --vp-c-brand-3: #ce4e4e;
     //--vp-c-divider: var(--color-neutral8) !important;
 }
 
@@ -37,39 +41,14 @@ html {
 /* 修改滚动条的颜色 */
 .VPLocalNavOutlineDropdown .items,
 .VPSidebar{
-    &::-webkit-scrollbar {
-        width: 5px; /* 设置滚动条宽度 */
-        height: 5px;
-    }
-
-    &::-webkit-scrollbar-track {
-        background: var(--color-neutral4); /* 设置轨道颜色 */
-    
-    }
-
-    &::-webkit-scrollbar-thumb {
-        background: var(--color-neutral8); /* 设置滑块颜色 */
-        
-    }
-
-    &::-webkit-scrollbar-thumb:hover {
-        background: var(--color-neutral9); /* 设置滑块颜色 */
-        
-    }
+    scrollbar-width: thin;
 }
 
 .VPLocalNavOutlineDropdown .items {
     /* display: flex; */
     background-color: var(--vp-c-bg-soft);
 
-    &::-webkit-scrollbar-track,
-    &::-webkit-scrollbar-thumb {
-        border-radius: 3px;
-    }
-
-    &::-webkit-scrollbar-track {
-        margin: 10px;
-    }
+    scrollbar-width: thin;
 }
 
 .VPNav {
@@ -92,15 +71,15 @@ html {
 
 .VPLocalNav,
 .VPNavBar.has-sidebar .wrapper {
-    -webkit-backdrop-filter: saturate(50%) blur(8px) !important;
-    backdrop-filter: saturate(50%) blur(8px) !important;
-    background: rgba(255,255,255,.5) !important;
+    backdrop-filter: saturate(180%) blur(20px) !important;
+    -webkit-backdrop-filter: saturate(180%) blur(20px) !important;
+    background: rgba(255,255,255,.6) !important;
 }
 
 .dark {
     .VPLocalNav,
     .VPNavBar.has-sidebar .wrapper {
-        background: rgba(27, 27, 31, 0.5) !important;
+        background: rgba(27, 27, 31, 0.6) !important;
     }
 
     #VPContent {
@@ -123,11 +102,15 @@ html {
 }
 
 .VPSidebarItem {
+    --gap: 3px;
+
     h2.text,
     h3.text,
+    h4.text,
+    h5.text,
     p.text {
         display: flex;
-        gap: 5px;
+        gap: var(--gap);
         align-items: center;
 
         svg {
@@ -141,16 +124,16 @@ html {
             margin-left: 8px;
 
             svg {
-                width: 20px;
-                height: 20px;
+                width: 22px;
+                height: 22px;
             }
         }
     }
 
     &.level-2 {
         .text {
-            gap: 3px;
-            margin-left: 16px;
+            gap: var(--gap);
+            margin-left: 14px;
 
             svg {
                 width: 20px;
