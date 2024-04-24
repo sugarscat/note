@@ -6,7 +6,7 @@
     "configurations": [
         {
             "command": "pnpm docs:dev",
-            "name": "启动服务",
+            "name": "pnpm docs:dev",
             "request": "launch",
             "type": "node-terminal"
 
