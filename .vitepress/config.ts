@@ -8,7 +8,7 @@ import markdownItKatex from 'markdown-it-katex'
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   base: '/',
-  lang: 'zh-CN',
+  lang: "zh-CN",
   title: 'Note',
 
   head: [
