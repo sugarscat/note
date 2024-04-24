@@ -27,7 +27,7 @@
     ".table-of-contents"
   ],
   "custom_settings": {
-    "attributesForFaceting": ["lang", "tags"]
+    "attributesForFaceting": ["tags"]
   },
   "js_render": true
 }
