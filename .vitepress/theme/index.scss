@@ -179,29 +179,38 @@ code {
 .name .clip,
 .discoloration {
     background: -webkit-linear-gradient(
-      315deg,
-      rgb(210, 86, 53) 10%,
-      #647eff 50%,
-      rgb(238, 224, 112) 90%
+        315deg,
+        rgb(210, 86, 53) 10%,
+        #647eff 50%,
+        rgb(238, 224, 112) 90%
     );
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-  
+
     background-size: 400% 400%;
     animation: gradient 5s ease infinite;
-  }
-  
-  @keyframes gradient {
+    }
+
+    @keyframes gradient {
     0% {
-      background-position: 0 50%;
+        background-position: 0 50%;
     }
-  
+
     50% {
-      background-position: 100% 50%;
+        background-position: 100% 50%;
     }
-  
+
     100% {
-      background-position: 0 50%;
+        background-position: 0 50%;
     }
-  }
+}
+
+
+.katex-display {
+    text-align: start !important;
+
+    .katex {
+        text-align: start !important;
+    }
+}

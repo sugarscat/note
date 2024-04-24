@@ -3,11 +3,12 @@ import navbar from './navbar'
 import sidebar from './sidebar'
 import algolia from "./algolia";
 import mdItCustomAttrs  from 'markdown-it-custom-attrs'
+import markdownItKatex from 'markdown-it-katex'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   base: '/',
-  // lang: 'zh-CN',
+  lang: 'zh-CN',
   title: 'Note',
 
   head: [
@@ -18,6 +19,10 @@ export default defineConfig({
     [
       "link",
       { rel: "stylesheet", href: "/assets/css/fancybox.css" },
+    ],
+    [
+      "link",
+      { rel: "stylesheet", href: "/assets/css/katex.min.css" },
     ],
     [
       "script",
@@ -33,6 +38,7 @@ export default defineConfig({
       md.use(mdItCustomAttrs, 'image', {
         'data-fancybox': "gallery"
       })
+      md.use(markdownItKatex)
     }
   },
 
