@@ -1,7 +1,9 @@
 import {
   iconFlask,
   iconFolder,
-  iconPit, iconPython
+  iconPit, 
+  iconPython,
+  iconAscii
 } from "./icon";
 
 import {
@@ -52,6 +54,7 @@ export default  [
     collapsed: true,
     items: [
       {text: regularExpressionIcon + '正则表达式', link: '/code/RegularExpression.md'},
+      {text: iconAscii + 'ASCII码对照表', link: '/code/ASCII.md'},
       {text: starIcon + '软件设计师', link: '/code/SoftwareDesigner.md'},
       {text: machineLearningIcon + '机器学习', link: '/code/MachineLearning.md'},
       {text: spiderIcon + '爬虫', link: '/code/WebCrawling.md'},
