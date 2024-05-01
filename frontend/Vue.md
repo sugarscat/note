@@ -4,7 +4,7 @@
 >
 > 笔记来自 [黑马程序员](https://www.itheima.com/)
 
-:::warning 提示 :warning:
+:::warning 提示 ⚠️
 
 本教程使用 [Pnpm](https://pnpm.io/zh/) 进行包管理，请提前下载。
 
@@ -40,7 +40,6 @@ const addCount = ()=> count.value++
 特点：
 
 - 代码量变少；
-
 - 分散式维护变成集中式维护。
 
 ## create-vue 搭建项目
@@ -75,10 +74,10 @@ pnpm create vue@latest
 <script>
   export default {
     setup(){
-      
+    
     },
     beforeCreate(){
-      
+    
     }
   }
 </script>
@@ -175,15 +174,11 @@ pnpm create vue@latest
 ### reactive 对比 ref
 
 1. 都是用来生成响应式数据
-
 2. 不同点
 
    - `reactive` 不能处理简单类型的数据
-
    - `ref` 参数类型支持更好，但是必须通过 `.value` 做访问修改
-
    - `ref` 函数内部的实现依赖于 `reactive` 函数
-
 3. 在实际工作中的推荐
 
    - 推荐使用 `ref` 函数，减少记忆负担。
@@ -298,15 +293,15 @@ const filterList = computed(item=>item > 2)
 
 ### 选项式对比组合式
 
-|      选项式API       |    组合式API    |
+|      选项式API      |    组合式API    |
 | :------------------: | :-------------: |
 | beforeCreate/created |      setup      |
-|     beforeMount      |  onBeforeMount  |
-|       mounted        |    onMounted    |
-|     beforeUpdate     | onBeforeUpdate  |
-|       updated        |    onUpdated    |
-|    beforeUnmount     | onBeforeUnmount |
-|      unmounted       |   onUnmounted   |
+|     beforeMount     |  onBeforeMount  |
+|       mounted       |    onMounted    |
+|     beforeUpdate     | onBeforeUpdate |
+|       updated       |    onUpdated    |
+|    beforeUnmount    | onBeforeUnmount |
+|      unmounted      |   onUnmounted   |
 
 ### 生命周期函数基本使用
 
@@ -344,7 +339,6 @@ onMounted(()=>{
 ### 父传子
 
 > - 父组件中给子组件绑定属性
->
 > - 子组件内部通过 `props` 选项接收数据
 
 父组件
@@ -379,7 +373,6 @@ onMounted(()=>{
 ### 子传父
 
 > - 父组件中给子组件标签通过 `@` 绑定事件
->
 > - 子组件内部通过 `emit` 方法触发事件
 
 父组件
@@ -425,12 +418,11 @@ onMounted(()=>{
 实现步骤：
 
 1. 调用 `ref` 函数生成一个 `ref` 对象
-
 2. 通过 `ref` 标识绑定 `ref` 对象到标签
 
 ```vue
 <script setup>
-  import { ref } from'vue
+  import { ref } from 'vue'
   // 1． 调用ref函数得到ref对象
   const h1Ref = ref(null)
 </script>
@@ -448,7 +440,7 @@ onMounted(()=>{
 
 ```vue
 <script setup>
-import{ref}from'vue'
+import {ref} from 'vue'
 const testMessage = ref('this is test msg')
 defineExpose({
     testMessage
@@ -467,7 +459,6 @@ defineExpose({
 实现步骤：
 
 1. 顶层组件通过 `provide` 函数提供数据
-
 2. 底层组件通过 `inject` 函数提供数据
 
 顶层组件
@@ -528,11 +519,11 @@ const setCount = inject('setCount-key')
 
 背景说明：
 
-​	有 `<script setup>` 之前，如果要定义 `props`，`emits` 可以轻而易举地添加一个与 `setup` 平级的属性。但是用了 `<script setup>` 后，就没法这么干了 `setup` 属性已经没有了，自然无法添加与其平级的属性。
+    有`<script setup>` 之前，如果要定义 `props`，`emits` 可以轻而易举地添加一个与 `setup` 平级的属性。但是用了 `<script setup>` 后，就没法这么干了 `setup` 属性已经没有了，自然无法添加与其平级的属性。
 
-​	为了解决这一问题，引入了 `defineProps` 与 `defineEmits` 这两个宏。但这只解决了 `props` 与 `emits` 这两个属性。如果我们要定义组件的 `name` 或其他自定义的属性，还是得回到最原始的用法——再添加一个普通的 `<script>` 标签。这样就会存在两个 `<script>` 标签。让人无法接受。
+    为了解决这一问题，引入了`defineProps` 与 `defineEmits` 这两个宏。但这只解决了 `props` 与 `emits` 这两个属性。如果我们要定义组件的 `name` 或其他自定义的属性，还是得回到最原始的用法——再添加一个普通的 `<script>` 标签。这样就会存在两个 `<script>` 标签。让人无法接受。
 
-​	所以在 `Vue 3.3` 中新引入了 `defineOptions` 宏。顾名思义，主要是用来定义 `Options API` 的选项。可以用 `defineOptions` 定义任意的选项， `props`，`emits`，`expose`，`slots` 除外（因为这些可以使用 `defineXXX` 来做到）
+    所以在`Vue 3.3` 中新引入了 `defineOptions` 宏。顾名思义，主要是用来定义 `Options API` 的选项。可以用 `defineOptions` 定义任意的选项， `props`，`emits`，`expose`，`slots` 除外（因为这些可以使用 `defineXXX` 来做到）
 
 ```vue
 <scriptt setup>
@@ -603,9 +594,9 @@ export default defineConfig({
 
 1. 使用 Vite 创建一个空的 Vue3项目
 
-  ```bash
+```bash
   pnpm add vite@latest
-  ```
+```
 
 2. 按照官方文档安装 `pinia` 到项目中
 
@@ -665,10 +656,8 @@ const doubleCount = computed(() => count.value * 2)
 
 方式：异步 `action` 函数的写法和组件中获取异步数据的写法完全一致
 
-- 接口地址：<http://geek.itheima.net/v1_0/channels>
-
+- 接口地址：[http://geek.itheima.net/v1_0/channels](http://geek.itheima.net/v1_0/channels)
 - 请求方式：`get`
-
 - 请求参数：无
 
 ```js
@@ -699,14 +688,13 @@ const { count, doubleCount } = storeToRefs(counterStore)
 
 ### Pinia持久化插件
 
-> 官方文档：<https://prazdevs.github.io/pinia-plugin-persistedstate/zh/>
+> 官方文档：[https://prazdevs.github.io/pinia-plugin-persistedstate/zh/](https://prazdevs.github.io/pinia-plugin-persistedstate/zh/)
 
 1. 安装插件 `pinia-plugin-persistedstate`
 
    ```sh
    pnpm add pinia-plugin-persistedstate
    ```
-
 2. 使用 `main.js`
 
    ```js
@@ -714,13 +702,12 @@ const { count, doubleCount } = storeToRefs(counterStore)
    // ...
    app.use(createPinia().use(persist))
    ```
-
 3. 配置 `store/counter.js`
 
    ```js
    import { defineStore } from 'pinia'
    import { computed, ref } from 'vue'
-   
+
    export const useCounterStore = defineStore('counter', () => {
      // ...
      return {
@@ -732,5 +719,4 @@ const { count, doubleCount } = storeToRefs(counterStore)
      persist: true
    })
    ```
-
 4. 其他配置，看官网文档即可

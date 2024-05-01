@@ -3,7 +3,8 @@ import {
   iconFolder,
   iconPit, 
   iconPython,
-  iconAscii
+  iconAscii,
+  iconDataStructure
 } from "./icon";
 
 import {
@@ -58,7 +59,7 @@ export default  [
       {text: starIcon + '软件设计师', link: '/code/SoftwareDesigner.md'},
       {text: machineLearningIcon + '机器学习', link: '/code/MachineLearning.md'},
       {text: spiderIcon + '爬虫', link: '/code/WebCrawling.md'},
-      {text: earthIcon + '语言代码表', link: '/code/LanguageCode.md'},
+      {text: iconDataStructure + '数据结构', link: '/code/DataStructure.md'},
     ]
   },
   {
@@ -102,6 +103,7 @@ export default  [
     collapsible: true,
     collapsed: true,
     items: [
+      {text: earthIcon + '语言代码表', link: '/frontend/LanguageCode.md'},
       {text: vueIcon + 'Vue', link: '/frontend/Vue.md'},
       {text: hmosIcon + 'ArkTS', link: '/frontend/ArkTS.md'},
     ]
