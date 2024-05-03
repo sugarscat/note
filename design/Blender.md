@@ -1,7 +1,7 @@
 # Blender
 
 ::: tip 快速入门
-推荐课程：[哔哩哔哩](https://www.bilibili.com/video/BV1kX4y1m7G5)
+推荐课程：[GenJi是真想教会你](https://www.bilibili.com/video/BV1kX4y1m7G5)
 :::
 
 ## 一、快捷键
