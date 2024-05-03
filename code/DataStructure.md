@@ -151,5 +151,184 @@ $$
 
 用**顺序存储**的方式实现线性表顺序存储。把逻辑上相邻的元素存储在物理位置上也相邻的存储单元中，元素之间的关系由存储单元的邻接关系来体现。
 
+#### 顺序表的实现
+
+##### 静态分配
+
+> 定义数组
+
+```c
+# define MaxSize 10	// 定义最大长度
+typedef struct {
+    ElemType data[MaxSize];  // 用静态的“数组”存放数据元素
+    int length;	 // 顺序表的当前长度
+} Sqlist;  // 顺序表的类型定义
+```
+
+##### 动态分配
+
+> 定义指针
+
+```c
+# define InitSize 10	// 顺序表的初始长度
+typedef struct {
+    ElemType *data;  // 指示动态分配数组的指针
+    int MaxSize;  // 顺序表的最大容量
+    int length;  // 顺序表的当前长度
+} Sqlist;  // 顺序表的类型定义
+```
+
+```c
+L.data = (ElemType *)malloc(sizeof(ElemType) * InitSize);
+```
+
+`malloc` 函数返回一个指针，需要强制转型为你定义的数据元素类型指针，用于申请一整片连续的存储空间。其函数的参数，指明要分配多大的连续内存空间。
+
+顺序表存满时，可再用 `malloc` 动态拓展顺序表的最大容量。但需要将数据元素复制到新的存储区域，并用 `free` 函数释放原区域。
+
+#### 顺序表的特点
+
+1. 随机访问，即可以在 `O(1)` 时间内找到第 `i` 个元素。
+2. 存储密度高，每个节点只存储数据元素。
+3. 拓展容量不方便。（即便采用动态分配的方式实现，拓展长度的时间复杂度也比较高）
+4. 插入、删除操作不方便，需要移动大量元素。
+
+#### 基本操作
+
+> 基于静态分配
+
+:::tip 提示
+
+好的算法，应该具有“健壮性”能处理异常情况，并给使用者反馈。
+
+:::
+
+##### 插入
+
+`Listlnsert(&L,i,e)`：插入操作。在表 `L`中的第 `i`个位置上插入指定元素 `e`。
+
+```c
+#include <stdio.h>
+
+#define MaxSize 10  // 定义最大长度
+typedef struct {
+    int data[MaxSize];  // 用静态的“数组”存放数据元素
+    int length;  // 顺序表的当前长度
+} SqList;    // 顺序表的类型定义
+
+void InitList(SqList *L) {
+    L->length = 0;
+}
+
+void ListInsert(SqList *L, int i, int e) {
+    // 判断 i 是否合法
+    if (i < 1 || i > L->length + 1) {
+        printf("插入位置不合法\n");
+        return;
+    }
+
+    // 判断顺序表是否已满
+    if (L->length >= MaxSize) {
+        printf("顺序表已满，无法插入\n");
+        return;
+    }
+
+    for (int j = L->length; j >= i; --j) {
+        // 将第i个元素及之后的元素后移
+        L->data[j] = L->data[j-1];
+    }
+    L->data[i-1] = e;  // 在第i个位置插入元素e
+    L->length++;  // 顺序表长度加1
+}
+
+int main(void) {
+    SqList L;  // 声明一个顺序表
+    InitList(&L);  // 初始化顺序表
+    ListInsert(&L, 1, 1); // 插入几个元素
+    ListInsert(&L, 2, 2);
+
+    printf("顺序表的长度为：%d\n", L.length);
+
+    for (int i = 0; i < L.length; ++i) {
+        printf("%d ", L.data[i]);
+    }
+    return 0;
+}
+
+```
+
+时间复杂度
+
+- 最好时间复杂度 = 0(1)；
+- 最坏时间复杂度 = 0(n)；
+- 平均时间复杂度 = n / 2。
+
+##### 删除
+
+```c
+// 删除并返回被删除的元素
+int ListDelete(SqList *L, int i) {
+    // 判断 i 是否合法
+    if (i < 1 || i > L->length) {
+        printf("删除位置不合法\n");
+        return -1;
+    }
+
+    int e = L->data[i-1];  // 被删除的元素
+    for (int j = i; j <= L->length; ++j) {
+        // 将第i个元素及之后的元素前移
+        L->data[j-2] = L->data[j-1];
+    }
+    L->length--;  // 顺序
+    return e;
+}
+```
+
+时间复杂度
+
+- 最好时间复杂度 = 0(1)；
+- 最坏时间复杂度 = 0(n)；
+- 平均时间复杂度 = n-1 / 2。
+
+##### 按位查找
+
+````c
+int GetElem(SqList L, int i) {
+    // 判断 i 是否合法
+    if (i < 1 || i > L.length) {
+        printf("查找位置不合法\n");
+        return -1;
+    }
+    return L.data[i-1];  // 返回第 i 个元素
+}
+````
+
+时间复杂度 = 0(1)。
+
+##### 按值查找
+
+```c
+int LocateElem(SqList L, int e) {
+    for (int i = 0; i < L.length; ++i) {
+        if (L.data[i] == e) {
+            return i+1;  // 返回元素 e
+        }
+    }
+    return 0;  // 返回 0 表示未找到元素 e
+}
+```
+
+时间复杂度
+
+- 最好时间复杂度 = 0(1)；
+- 最坏时间复杂度 = 0(n)；
+- 平均时间复杂度 = n+1 / 2。
 
 ### 线性表的链式表示
+
+#### 单链表
+
+##### 定义
+
+
+##### 基本操作
