@@ -64,8 +64,17 @@ export default  [
         collapsible: true,
         collapsed: true,
         items: [
-          {text: '了解一下', link: '/code/MachineLearning/1-Introduction.md'},
-          {text: '快速入门', link: '/code/MachineLearning/2-GettingStarted.md'}
+          {text: '了解一下', link: '/code/MachineLearning/Introduction.md'},
+          {
+            text: '快速入门', 
+            collapsible: true,
+            collapsed: true,
+            items: [
+              {
+                text: '数据分析与可视化工具', 
+                link: '/code/MachineLearning/GettingStarted/DataAnalysis.md'},
+            ]
+          }
         ]
       },
     ]
