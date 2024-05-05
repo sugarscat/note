@@ -206,8 +206,6 @@ print(t5)
   [20 21 22 23]]]
 ```
 
-
-
 ```python
 t5 = t5.reshape((4,6))
 print(t5)
@@ -284,9 +282,6 @@ print(a[0][0][0])
 1
 ```
 
-
-
-
 ```python
 import numpy as np
 a = np.arange(1, 10)
@@ -307,9 +302,6 @@ print(a[-4:-1])
 [6 7 8]
 ```
 
-
-
-
 ```python
 import numpy as np
 a = np.arange(1, 10)
@@ -328,9 +320,6 @@ print(a[1::3])
 ----------------------
 [2 5 8]
 ```
-
-
-
 
 ```python
 import numpy as np
@@ -355,9 +344,6 @@ print(a[::-1])
  [4 5 6]
  [1 2 3]]
 ```
-
-
-
 
 ```python
 import numpy as np
@@ -390,9 +376,6 @@ print('----------------------')
  [16 17 18]]
 ----------------------
 ```
-
-
-
 
 ```python
 import numpy as np
@@ -457,8 +440,6 @@ print(t1)
  [2.800000e+01 1.440390e+05 1.574000e+03 5.900000e+01 0.000000e+00]]
 ```
 
-
-
 ```python
 import numpy as np
 us_file_path = "USvideos.csv"
@@ -498,7 +479,6 @@ print(t1)
  [     0      0   1574     59      0]]
 ```
 
-
 ### 数组的拼接/拆分
 
 ```python
@@ -519,8 +499,6 @@ print(b)
 [ 9 10 11 12 13 14 15 16]
 ```
 
-
-
 ```python
 # 把两个数组摞在一起成两行
 c = np.row_stack((a, b))
@@ -533,8 +511,6 @@ print(c)
 [[ 1  2  3  4  5  6  7  8]
  [ 9 10 11 12 13 14 15 16]]
 ```
-
-
 
 ```python
 # 把两个数组组合在一起成两列
@@ -554,8 +530,6 @@ print(d)
  [ 7 15]
  [ 8 16]]
 ```
-
-
 
 ```python
 # 垂直方向操作
@@ -577,8 +551,6 @@ print(b)
  [10 11 12]]
 ```
 
-
-
 ```python
 # 垂直方向完成组合操作，生成新数组
 c = np.vstack((a, b)) # vertical 垂直的
@@ -593,8 +565,6 @@ print(c)
  [ 7  8  9]
  [10 11 12]]
 ```
-
-
 
 ```python
 # 垂直方向完成拆分操作，生成两个数组
@@ -614,8 +584,6 @@ print(e)
  [10 11 12]]
 ```
 
-
-
 ```python
 x, y, z, w = np.vsplit(c, 4)
 print(x)
@@ -629,7 +597,6 @@ print(w)
 
 输出
 
-
 ```
 [[1 2 3]]
 ---------------------
@@ -639,8 +606,6 @@ print(w)
 ---------------------
 [[10 11 12]]
 ```
-
-
 
 ```python
 # 水平方向操作
@@ -662,8 +627,6 @@ print(b)
  [10 11 12]]
 ```
 
-
-
 ```python
 # 水平方向完成组合操作，生成新数组 
 c = np.hstack((a, b)) # horizontal,水平的
@@ -676,8 +639,6 @@ print(c)
 [[ 1  2  3  7  8  9]
  [ 4  5  6 10 11 12]]
 ```
-
-
 
 ```python
 # 水平方向完成拆分操作，生成两个数组
@@ -719,8 +680,6 @@ print(z)
  [11 12]]
 ```
 
-
-
 ```python
 # 多维数组组合与拆分的相关函数
 a = np.arange(1, 7).reshape(2, 3)
@@ -739,8 +698,6 @@ print(b)
 [[ 7  8  9]
  [10 11 12]]
 ```
-
-
 
 ```python
 # 通过axis作为关键字参数指定组合的方向，取值如下：
@@ -761,8 +718,6 @@ print(c)
 [[ 1  2  3  7  8  9]
  [ 4  5  6 10 11 12]]
 ```
-
-
 
 ```python
 # 通过axis作为关键字参数指定组合的方向，取值如下：
@@ -880,6 +835,7 @@ pip install -U scipy
 
 ### SciPy任务子模块
 
+
 | 关键词参数          | 可选值             |
 | ------------------- | ------------------ |
 | `scipy.cluster`     | 向量计算           |
@@ -949,7 +905,7 @@ print(a_temp)
 
 `scipy.linalg` 模块提供了标准的线性代数操作。
 
-####  计算方阵的行列式
+#### 计算方阵的行列式
 
 > `scipy.linalg.det()`
 
@@ -1047,5 +1003,898 @@ plt.plot(x, y_random, linewidth=1, color="orange")
 y_detrend = signal.detrend(y_random)
 # 绘制出该去除线性后的情况
 plt.plot(x, y_detrend, linewidth=1, color="red")
+plt.show()
 ```
+
+### 优化
+
+优化是寻找最小化或等式的数值解的问题。
+
+`scipy.optimize` 模块提供了函数最小化（标量或多维度）、曲线拟合和求根等常用算法。
+
+```python
+from scipy import optimize
+import numpy as np
+import matplotlib.pyplot as plt
+```
+
+#### 寻找标量函数的最小值
+
+```python
+# 定义函数
+def f(x):
+    return x**2 + 30*np.sin(x)
+
+# 设置自变量 x
+x = np.arange(-10, 10, 0.1)
+# 设置因变量 y
+y = f(x)
+
+# 绘制图像
+plt.plot(x, y) 
+plt.show() 
+```
+
+输出：
+
+![image-20240504215358056](assets/image-20240504215358056.png)
+
+找到这个函数的最小值的常用有效方式是从给定的初始点开始进行一个**梯度下降**。
+
+**BFGS算法**（较好方式）：
+
+```python
+from scipy import optimize
+
+optimize.fmin_bfgs(f, 0) #其中，f是函数，0是初始位置
+```
+
+输出：
+
+```txt
+Optimization terminated successfully.
+         Current function value: -27.686928
+         Iterations: 4
+         Function evaluations: 12
+         Gradient evaluations: 6
+```
+
+这个方法的一个可能问题是，如果这个函数有一些局部最低点，算法可能找到这些局部最低点而不是全局最低点，这取决于初始点，如：
+
+```python
+optimize.fmin_bfgs(f, 3)
+```
+
+输出：
+
+```txt
+Optimization terminated successfully.
+         Current function value: -9.190945
+         Iterations: 5
+         Function evaluations: 14
+         Gradient evaluations: 7
+```
+
+显然，`-9.190945` 是局部最低点，不是全局最低点。
+
+如果我们不知道全局最低点，并且使用其临近点来作为初始点，那么我们需要付出昂贵的代价来获得全局最优。要找到全局最优点，最简单的算法是暴力算法，算法中会评估给定网格内的每一个点：
+
+```python
+grid = (-10, 10, 0.1)
+# 用暴力方法找到给定范围内的每一个点
+xmin_global = optimize.brute(f, (grid,))
+print(xmin_global)  # [-1.47246094]
+```
+
+对于更大的网格，`scipy.optimize.brute()` 变得非常慢。 `scipy.optimize.anneal()` 提供了一个替代的算法，使用模拟退火算法。
+
+#### 找出局部最低点
+
+我们用 `scipy.optimize.fminbound` 将变量限制在 `(0,10)` 区间：
+
+```python
+xmin_local = optimize.fminbound(f, 0, 10)  
+print(xmin_local)  # 3.8374671194983834
+```
+
+### 插值
+
+在数学的数值分析领域中，插值（`interpolation`）是一种通过已知的、离散的数据点，在范围内推求新数据点的过程或方法。简单来说插值是一种在给定的点之间生成点的方法。
+
+在机器学习中我们经常处理数据缺失的数据，插值通常可用于替换这些值。这种填充值的方法称为插补。除了插补，插值经常用于我们需要平滑数据集中离散点的地方。
+
+`scipy.interpolate` 从实验数据中拟合出函数，进而插入新的点。
+
+#### 一维插值
+
+> 在一维插值中，点是针对单个曲线拟合的
+
+一维数据的插值运算可以通过方法 `interp1d()` 完成。该方法接收两个参数 `x` 点和 `y` 点。返回值是可调用函数，该函数可以用新的 `x` 调用并返回相应的 `y`，其中 `y = f(x)`。
+
+假想一个接近 `sine` 函数的实验数据：
+
+```python
+measured_time = np.linspace(0, 1, 10)
+noise = (np.random.random(10)*2 - 1) * 1e-1
+measures = np.sin(2 * np.pi * measured_time) + noise
+# 绘制图像
+# plt.figure(figsize=(6, 4))
+plt.plot(measured_time, measures, 'o', ms=6, label='measures')
+plt.show()
+```
+
+![image-20240505142022099](assets/image-20240505142022099.png)
+
+`scipy.interpolate.interp1d` 类可以建立一个线性插值函数：
+
+```python
+linear_interp = interp1d(measured_time, measures, kind="linear")  # 默认是 linear
+print(type(linear_interp))  # <class 'scipy.interpolate._interpolate.interp1d'>
+computed_time = np.linspace(0, 1, 50)
+linear_results = linear_interp(computed_time)   # 默认是 linear
+plt.plot(computed_time, linear_results, label='linear interp')
+plt.show()
+```
+
+![image-20240505142629131](assets/image-20240505142629131.png)
+
+通过提供可选的参数 `kind` 也可以选择进行立方插值：
+
+```python
+cubic_interp = interp1d(measured_time, measures, kind='cubic')
+cubic_results = cubic_interp(computed_time)
+
+plt.plot(computed_time, cubic_results, label='cubic interp')
+plt.show()
+```
+
+![image-20240505142816042](assets/image-20240505142816042.png)
+
+现在结果可以被整合为下面的 `Matplotlib` 图片:
+
+```python
+plt.plot(measured_time, measures, 'o', ms=6, label='measures')
+plt.plot(computed_time, linear_results, label='linear interp')
+plt.plot(computed_time, cubic_results, label='cubic interp')
+plt.show()
+```
+
+![image-20240505142954877](assets/image-20240505142954877.png)
+
+#### 单变量插值
+
+> 在样条插值中，点是针对使用多项式分段定义的函数拟合的。
+
+单变量插值使用 `UnivariateSpline()` 函数，该函数接受 `xs` 和 `ys` 并生成一个可调用函数，该函数可以用新的 `xs` 调用。
+
+分段函数：就是对于自变量 `x` 的不同的取值范围，有着不同的解析式的函数。
+
+为非线性点找到 `2.1、2.2...2.9` 的单变量样条插值：
+
+```python
+from scipy.interpolate import UnivariateSpline
+import numpy as np
+
+xs = np.arange(10)
+ys = xs**2 + np.sin(xs) + 1
+
+interp_func = UnivariateSpline(xs, ys)
+
+newarr = interp_func(np.arange(2.1, 3, 0.1))
+
+print(newarr)   # [5.62826474 6.03987348 6.47131994 6.92265019 7.3939103 7.88514634 8.39640439 8.92773053 9.47917082]
+```
+
+#### 径向基函数插值
+
+径向基函数是对应于固定参考点定义的函数。
+
+曲面插值里我们一般使用径向基函数插值。
+
+`Rbf()` 函数接受 `xs` 和 `ys` 作为参数，并生成一个可调用函数，该函数可以用新的 `xs` 调用。
+
+```python
+from scipy.interpolate import Rbf
+import numpy as np
+
+xs = np.arange(10)
+ys = xs**2 + np.sin(xs) + 1
+
+interp_func = Rbf(xs, ys)
+
+newarr = interp_func(np.arange(2.1, 3, 0.1))
+
+print(newarr)  # [6.25748981 6.62190817 7.00310702 7.40121814 7.8161443  8.24773402 8.69590519 9.16070828 9.64233874]
+```
+
+### 稀疏矩阵
+
+稀疏矩阵（`sparse matrix`）指的是在数值分析中绝大多数数值为零的矩阵。反之，如果大部分元素都非零，则这个矩阵是稠密的(`Dense`)。
+
+![image-20240505143827472](assets/image-20240505143827472.png)
+
+上图中左边就是一个稀疏矩阵，可以看到包含了很多 0 元素，右边是稠密的矩阵，大部分元素不是 0。
+
+![image-20240505144004948](assets/image-20240505144004948.png)
+
+上述稀疏矩阵仅包含 9 个非零元素，另外包含 26 个零元。其稀疏度为 74%，密度为 26%。
+
+SciPy 的 `scipy.sparse` 模块提供了处理稀疏矩阵的函数。
+
+主要使用以下两种类型的稀疏矩阵：
+
+- `CSC` - 压缩稀疏列（`Compressed Sparse Column`），按列压缩。
+- `CSR` - 压缩稀疏行（`Compressed Sparse Row`），按行压缩。
+
+#### CSR 矩阵
+
+通过向 `scipy.sparse.csr_matrix()` 函数传递数组来创建一个 `CSR` 矩阵。
+
+```python
+import numpy as np
+from scipy.sparse import csr_matrix
+
+arr = np.array([0, 0, 0, 0, 0, 1, 1, 0, 2])
+
+print(csr_matrix(arr))
+# (0, 5)	1
+# (0, 6)	1
+# (0, 8)	2
+```
+
+结果解析：
+
+- 第一行：在矩阵第一行（索引值 0 ）第六（索引值 5 ）个位置有一个数值 1。
+- 第二行：在矩阵第一行（索引值 0 ）第七（索引值 6 ）个位置有一个数值 1。
+- 第三行：在矩阵第一行（索引值 0 ）第九（索引值 8 ）个位置有一个数值 2。
+
+#### CSR 矩阵方法
+
+使用 `data` 属性查看存储的数据（不含 0 元素）：
+
+```python
+import numpy as np
+from scipy.sparse import csr_matrix
+
+arr = np.array([
+                [0, 0, 0], 
+                [0, 0, 1], 
+                [3, 0, 2]
+               ])
+
+print(csr_matrix(arr).data)  # [1 3 2]
+```
+
+使用 `count_nonzero()` 方法计算非 0 元素的总数：
+
+```python
+import numpy as np
+from scipy.sparse import csr_matrix
+
+arr = np.array([
+                [0, 0, 0], 
+                [0, 0, 1], 
+                [3, 0, 2]
+               ])
+
+print(csr_matrix(arr).count_nonzero())  # 3
+```
+
+使用 `eliminate_zeros()` 方法删除矩阵中 0 元素：
+
+```python
+import numpy as np
+from scipy.sparse import csr_matrix
+
+arr = np.array([
+                [0, 0, 0], 
+                [0, 0, 1], 
+                [3, 0, 2]
+               ])
+
+mat = csr_matrix(arr)
+mat.eliminate_zeros()
+
+print(mat)
+# (1, 2)	1
+# (2, 0)	3
+# (2, 2)	2
+```
+
+使用 `sum_duplicates()` 方法来删除重复项:
+
+```python
+import numpy as np
+from scipy.sparse import csr_matrix
+
+arr = np.array([
+                [0, 0, 0], 
+                [0, 0, 1], 
+                [3, 0, 2]
+               ])
+
+mat = csr_matrix(arr)
+mat.sum_duplicates()
+
+print(mat)
+# (1, 2)	1
+# (2, 0)	3
+# (2, 2)	2
+```
+
+`csr` 转换为 `csc` 使用 `tocsc()` 方法：
+
+```python
+import numpy as np
+from scipy.sparse import csr_matrix
+
+arr = np.array([
+                [0, 0, 0], 
+                [0, 0, 1], 
+                [3, 0, 2]
+               ])
+
+newarr = csr_matrix(arr).tocsc()
+
+print(newarr)
+# (2, 0)	3
+# (1, 2)	1
+# (2, 2)	2
+```
+
+## Pandas模块
+
+Pandas 是基于NumPy的一种工具，能帮助我们处理数值型的数组，还能处理字符串、时间序列、列表、字典等数据类型的数据。
+
+### Series 使用
+
+Series：本质上是由两个数组构成，一个数组构成对象的键(index)，一个数组构成对象的值(values)。可以理解为一个一维的数组，它的 index 名称可以自己改动。类似于定长的有序字典，有Index和 value。
+
+#### Series 创建
+
+空系列：
+
+```python
+import pandas as pd
+import numpy as np
+
+
+# 创建一个空的系列
+s = pd.Series()
+print(s)  # Series([], dtype: float64)
+```
+
+有值系列：
+
+```python
+import pandas as pd
+import numpy as np
+
+# 从ndarray创建一个Series
+data = np.array(['张三','李四','王五','赵柳'])
+print(data)
+
+print('---------------------')
+s = pd.Series(data)
+print(s)
+# ['张三' '李四' '王五' '赵柳']
+# ---------------------
+# 0    张三
+# 1    李四
+# 2    王五
+# 3    赵柳
+# dtype: object
+```
+
+指定 `index`
+
+```python
+import pandas as pd
+import numpy as np
+
+# 从ndarray创建一个Series
+data = np.array(['张三','李四','王五','赵柳'])
+print(data)
+
+print('---------------------')
+s = pd.Series(data,index=['100','101','102','103'])
+print(s)
+# ['张三' '李四' '王五' '赵柳']
+# ---------------------
+# 100    张三
+# 101    李四
+# 102    王五
+# 103    赵柳
+# dtype: object
+```
+
+从字典创建一个 Series
+
+```python
+data = {'100' : '张三', '101' : '李四', '102' : '王五'}
+s = pd.Series(data)
+print(s)
+# 100    张三
+# 101    李四
+# 102    王五
+# dtype: object
+```
+
+#### 访问数据
+
+访问Series中的数据：
+
+```python
+import pandas as pd
+# 使用索引检索元素
+s = pd.Series([1,2,3,4,5],index = ['a','b','c','d','e'])
+print(s)
+print('-----------------')
+print(s[0])
+# a    1
+# b    2
+# c    3
+# d    4
+# e    5
+# dtype: int64
+# -----------------
+# 1
+```
+
+```python
+import pandas as pd
+# 使用索引检索元素
+s = pd.Series([1,2,3,4,5],index = ['a','b','c','d','e'])
+print(s)
+print('-----------------')
+
+print(s[:3])
+
+# a    1
+# b    2
+# c    3
+# d    4
+# e    5
+# dtype: int64
+# -----------------
+# a    1
+# b    2
+# c    3
+# dtype: int64
+```
+
+```python
+# 使用索引检索元素
+s = pd.Series([1,2,3,4,5],index = ['a','b','c','d','e'])
+print(s)
+
+print('-----------------')
+print(s[-3:])
+
+# a    1
+# b    2
+# c    3
+# d    4
+# e    5
+# dtype: int64
+# -----------------
+# c    3
+# d    4
+# e    5
+# dtype: int64
+```
+
+```python
+# 使用标签检索数据
+s = pd.Series([1,2,3,4,5],index = ['a','b','c','d','e'])
+print(s)
+print('------------------')
+print(s['a'])
+print('------------------')
+print(s[['a','c','d']])
+
+# a    1
+# b    2
+# c    3
+# d    4
+# e    5
+# dtype: int64
+# ------------------
+# 1
+# ------------------
+# a    1
+# c    3
+# d    4
+# dtype: int64
+```
+
+#### Series常用属性
+
+| 属性        | 解释           |
+| ----------- | -------------- |
+| `s1.values` | 获取值         |
+| `s1.index`  | 获取索引       |
+| `s1.dtype`  | 获取数据类型   |
+| `s1.size`   | 包含了多少元素 |
+| `s1.ndim`   | 获取维度       |
+| `s1.shape`  | 获取形状       |
+
+```python
+import pandas as pd
+
+data = {'Name':['Tom', 'Jack', 'Steve', 'Ricky'],'Age':[28,34,29,42]}
+df = pd.DataFrame(data, index=['s1','s2','s3','s4'])
+df['score']=pd.Series([90, 80, 70, 60], index=['s1','s2','s3','s4'])
+print(df)
+print('--------------------')
+
+print(df.tail(3)) # df的后三行
+
+#      Name  Age  score
+# s1    Tom   28     90
+# s2   Jack   34     80
+# s3  Steve   29     70
+# s4  Ricky   42     60
+# --------------------
+#      Name  Age  score
+# s2   Jack   34     80
+# s3  Steve   29     70
+# s4  Ricky   42     60
+```
+
+#### 数据结构操作
+
+访问列：
+
+```python
+# DataFrame的单列数据为一个Series。
+
+import pandas as pd
+d = {'one' : pd.Series([1, 2, 3], index=['a', 'b', 'c']),
+     'two' : pd.Series([1, 2, 3, 4], index=['a', 'b', 'c', 'd']), 
+     'three' : pd.Series([1, 3, 4], index=['a', 'c', 'd'])}
+
+df = pd.DataFrame(d)
+print(df)
+print('-------------------')
+
+print(df[['one','two']])
+
+#     one  two  three
+# a  1.0    1    1.0
+# b  2.0    2    NaN
+# c  3.0    3    3.0
+# d  NaN    4    4.0
+# -------------------
+#   one	two
+# a	1.0	1
+# b	2.0	2
+# c	3.0	3
+# d	NaN	4
+```
+
+添加列：
+
+```python
+# DataFrame添加一列的方法非常简单，只需要新建一个列索引。并对该索引下的数据进行赋值操作即可。
+import pandas as pd
+d = {'one' : pd.Series([1, 2, 3], index=['a', 'b', 'c']),
+     'two' : pd.Series([1, 2, 3, 4], index=['a', 'b', 'c', 'd']), 
+     'three' : pd.Series([1, 3, 4], index=['a', 'c', 'd'])}
+
+df = pd.DataFrame(d)
+print(df)
+print('-------------------')
+df['four']=pd.Series([90, 80, 70, 60], index=['a', 'b', 'c', 'd'])
+print(df)
+
+#    one  two  three
+# a  1.0    1    1.0
+# b  2.0    2    NaN
+# c  3.0    3    3.0
+# d  NaN    4    4.0
+# -------------------
+#    one  two  three  four
+# a  1.0    1    1.0    90
+# b  2.0    2    NaN    80
+# c  3.0    3    3.0    70
+# d  NaN    4    4.0    60
+```
+
+#### 处理日期类型数据
+
+```python
+# pandas日期类型数据处理
+# pandas识别的日期字符串格式
+import pandas as pd
+dates = pd.Series(['2011', '2011-02', '2011-03-01', '2011/04/01', '2011/05/01 01:01:01', '01 Jun 2011'])
+print(dates)
+
+# 0                   2011
+# 1                2011-02
+# 2             2011-03-01
+# 3             2011/04/01
+# 4    2011/05/01 01:01:01
+# 5            01 Jun 2011
+# dtype: object
+```
+
+规范化日期：
+
+```python
+# to_datetime() 转换日期数据类型
+dates = pd.to_datetime(dates)
+print(dates)
+print('---------------------')
+
+# 获取时间的某个日历字段的数值
+print(dates.dt.year)
+
+# 0   2011-01-01 00:00:00
+# 1   2011-02-01 00:00:00
+# 2   2011-03-01 00:00:00
+# 3   2011-04-01 00:00:00
+# 4   2011-05-01 01:01:01
+# 5   2011-06-01 00:00:00
+# dtype: datetime64[ns]
+# ---------------------
+# 0    2011
+# 1    2011
+# 2    2011
+# 3    2011
+# 4    2011
+# 5    2011
+# dtype: int64
+```
+
+#### Series切片和索引
+
+创建数据，使用具体索引查找值：
+
+```python
+import pandas as pd
+t3 = {'age': 789, 'tel' : 123456789, 'id' : 202201}
+t3 = pd.Series(t3)
+print(t3)
+print('----------------')
+print(t3["age"])
+print('----------------')
+print(t3["tel"])
+print('----------------')
+print(t3[0])  # pandas自动的索引
+
+# age          789
+# tel    123456789
+# id        202201
+# dtype: int64
+# ----------------
+# 789
+# ----------------
+# 123456789
+# ----------------
+# 789
+```
+
+```python
+import pandas as pd
+t3 = {'age': 789, 'tel' : 123456789, 'id' : 202201}
+t3 = pd.Series(t3)
+print(t3)
+
+print('--------------------')
+
+# 连续的行
+print(t3[:2])
+
+# age          789
+# tel    123456789
+# id        202201
+# dtype: int64
+# --------------------
+# age          789
+# tel    123456789
+# dtype: int64
+```
+
+```python
+# 取到不连续的行
+import pandas as pd
+t3 = {'age': 789, 'tel' : 123456789, 'id' : 202201}
+t3 = pd.Series(t3)
+print(t3)
+
+print('--------------------')
+# 取到不连续的行
+print(t3[[0,2]])
+print('--------------------')
+print(t3[t3>10000])
+
+# age          789
+# tel    123456789
+# id        202201
+# dtype: int64
+# --------------------
+# age       789
+# id     202201
+# dtype: int64
+# --------------------
+# tel    123456789
+# id        202201
+# dtype: int64
+```
+
+### DataFrame 使用
+
+#### DataFrame 创建
+
+创建一个空的`DataFrame`：
+
+```python
+import pandas as pd
+
+# 创建一个空的DataFrame
+df = pd.DataFrame()
+print(df)
+
+# Empty DataFrame
+# Columns: []
+# Index: []
+```
+
+从列表创建 `DataFrame`：
+
+```python
+import pandas as pd
+
+data = [1,2,3,4,5,6]
+dfS = pd.Series(data)
+df = pd.DataFrame(data)
+
+print(dfS)
+print('--------------------')
+print(df)
+
+# 0    1
+# 1    2
+# 2    3
+# 3    4
+# 4    5
+# 5    6
+# dtype: int64
+# --------------------
+#    0
+# 0  1
+# 1  2
+# 2  3
+# 3  4
+# 4  5
+# 5  6
+```
+
+```python
+import pandas as pd
+
+data = [['Alex',10],['Bob',12],['Clarke',13]]
+df = pd.DataFrame(data,columns=['Name','Age'])
+print(df)
+
+# 	   Name   Age
+# 0    Alex  10.0
+# 1     Bob  12.0
+# 2  Clarke  13.0
+```
+
+从字典来创建 `DataFrame`：
+
+```python
+import pandas as pd
+
+data = {'Name':['Tom', 'Jack', 'Steve', 'Ricky'],'Age':[28,34,29,42]}
+df = pd.DataFrame(data, index=['s1','s2','s3','s4'])
+print(df)
+
+#      Name  Age
+# s1    Tom   28
+# s2   Jack   34
+# s3  Steve   29
+# s4  Ricky   42
+```
+
+#### DataFrame 常用属性
+
+| 编号 | 属性或方法 | 描述                                |
+| ---- | ---------- | ----------------------------------- |
+| 1    | `axes`     | 返回 行/列 标签（index）列表。      |
+| 2    | `columns`  | 返回列标签                          |
+| 3    | `index`    | 返回行标签                          |
+| 4    | `dtype`    | 返回对象的数据类型(`dtype`)。       |
+| 5    | `empty`    | 判断dateframe是否为空，则返回`True`。        |
+| 6    | `ndim`     | 返回底层数据的维数，默认定义：`1`。 |
+| 7    | `size`     | 返回基础数据中的元素数。            |
+| 8    | `values`   | 将系列作为`ndarray`返回。           |
+| 9    | `head(n)`  | 返回前`n`行。                       |
+| 10   | `tail(n)`  | 返回最后`n`行。                     |
+
+```python
+# 实例代码：
+
+import pandas as pd
+
+data = {'Name':['Tom', 'Jack', 'Steve', 'Ricky'],'Age':[28,34,29,42]}
+df = pd.DataFrame(data, index=['s1','s2','s3','s4'])
+
+df['score']=pd.Series([90, 80, 70, 60], index=['s1','s2','s3','s4'])
+print(df)
+print('--------------------')
+print(df.axes)     #返回 行/列 标签（index）列表
+
+#      Name  Age  score
+# s1    Tom   28     90
+# s2   Jack   34     80
+# s3  Steve   29     70
+# s4  Ricky   42     60
+# --------------------
+# [Index(['s1', 's2', 's3', 's4'], dtype='object'), Index(['Name', 'Age', 'score'], dtype='object')]
+```
+
+#### 数据结构操作
+
+访问列：
+
+```python
+# DataFrame的单列数据为一个Series。
+
+import pandas as pd
+d = {'one' : pd.Series([1, 2, 3], index=['a', 'b', 'c']),
+     'two' : pd.Series([1, 2, 3, 4], index=['a', 'b', 'c', 'd']), 
+     'three' : pd.Series([1, 3, 4], index=['a', 'c', 'd'])}
+
+df = pd.DataFrame(d)
+print(df)
+print('-------------------')
+
+print(df[['one','two']])
+
+#    one  two  three
+# a  1.0    1    1.0
+# b  2.0    2    NaN
+# c  3.0    3    3.0
+# d  NaN    4    4.0
+# -------------------
+#    one  two
+# a  1.0    1
+# b  2.0    2
+# c  3.0    3
+# d  NaN    4
+```
+
+添加列：
+
+```python
+# DataFrame添加一列的方法非常简单，只需要新建一个列索引。并对该索引下的数据进行赋值操作即可。
+import pandas as pd
+d = {'one' : pd.Series([1, 2, 3], index=['a', 'b', 'c']),
+     'two' : pd.Series([1, 2, 3, 4], index=['a', 'b', 'c', 'd']), 
+     'three' : pd.Series([1, 3, 4], index=['a', 'c', 'd'])}
+
+df = pd.DataFrame(d)
+print(df)
+print('-------------------')
+df['four'] = pd.Series([90, 80, 70, 60], index=['a', 'b', 'c', 'd'])
+print(df)
+
+#    one  two  three
+# a  1.0    1    1.0
+# b  2.0    2    NaN
+# c  3.0    3    3.0
+# d  NaN    4    4.0
+# -------------------
+#    one  two  three  four
+# a  1.0    1    1.0    90
+# b  2.0    2    NaN    80
+# c  3.0    3    3.0    70
+# d  NaN    4    4.0    60
+```
+
+## Matplotlib库介绍与应用
 
