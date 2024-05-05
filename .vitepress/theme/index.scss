@@ -30,10 +30,6 @@ html {
     scroll-behavior: smooth;
 }
 
-#VPContent {
-    //background-image: url(/assets/svg/grid_black.svg) !important;
-}
-
 .VPFooter {
     z-index: -1 !important;
 }
@@ -52,9 +48,9 @@ html {
 }
 
 .VPNav {
-    .divider {
-        display: none;
-    }
+    // .divider {
+    //     display: none;
+    // }
 
     .container {
         background-color: transparent;
@@ -71,19 +67,15 @@ html {
 
 .VPLocalNav,
 .VPNavBar.has-sidebar .wrapper {
-    backdrop-filter: saturate(180%) blur(20px) !important;
-    -webkit-backdrop-filter: saturate(180%) blur(20px) !important;
-    background: rgba(255,255,255,.6) !important;
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    backdrop-filter: saturate(180%) blur(20px);
+    background: rgba(251,251,253,.7) !important;
 }
 
 .dark {
     .VPLocalNav,
     .VPNavBar.has-sidebar .wrapper {
         background: rgba(27, 27, 31, 0.6) !important;
-    }
-
-    #VPContent {
-        //background-image: url(/assets/svg/grid.svg) !important;
     }
 }
 
@@ -203,5 +195,43 @@ code {
 
     100% {
         background-position: 0 50%;
+    }
+}
+
+.DocSearch-Modal {
+    -webkit-animation-name: slideInUp;
+    animation-name: slideInUp;
+    -webkit-animation-duration: 0.25s;
+    animation-duration: 0.25s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    -webkit-animation-timing-function: ease-in-out;
+    animation-timing-function: ease-in-out;
+}
+
+@-webkit-keyframes slideInUp {
+    from {
+        -webkit-transform: translateY(50px);
+        transform: translateY(50px);
+        opacity: 0;
+    }
+
+    to {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+@keyframes slideInUp {
+    from {
+        -webkit-transform: translateY(50px);
+        transform: translateY(50px);
+        opacity: 0;
+    }
+
+    to {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+        opacity: 1;
     }
 }

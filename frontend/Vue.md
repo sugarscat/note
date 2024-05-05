@@ -74,10 +74,10 @@ pnpm create vue@latest
 <script>
   export default {
     setup(){
-    
+  
     },
     beforeCreate(){
-    
+  
     }
   }
 </script>
@@ -292,6 +292,7 @@ const filterList = computed(item=>item > 2)
 ## 生命周期函数
 
 ### 选项式对比组合式
+
 
 |      选项式API      |    组合式API    |
 | :------------------: | :-------------: |
@@ -519,14 +520,14 @@ const setCount = inject('setCount-key')
 
 背景说明：
 
-    有`<script setup>` 之前，如果要定义 `props`，`emits` 可以轻而易举地添加一个与 `setup` 平级的属性。但是用了 `<script setup>` 后，就没法这么干了 `setup` 属性已经没有了，自然无法添加与其平级的属性。
+有`<script setup>` 之前，如果要定义 `props`，`emits` 可以轻而易举地添加一个与 `setup` 平级的属性。但是用了 `<script setup>` 后，就没法这么干了 `setup` 属性已经没有了，自然无法添加与其平级的属性。
 
-    为了解决这一问题，引入了`defineProps` 与 `defineEmits` 这两个宏。但这只解决了 `props` 与 `emits` 这两个属性。如果我们要定义组件的 `name` 或其他自定义的属性，还是得回到最原始的用法——再添加一个普通的 `<script>` 标签。这样就会存在两个 `<script>` 标签。让人无法接受。
+为了解决这一问题，引入了`defineProps` 与 `defineEmits` 这两个宏。但这只解决了 `props` 与 `emits` 这两个属性。如果我们要定义组件的 `name` 或其他自定义的属性，还是得回到最原始的用法——再添加一个普通的 `<script>` 标签。这样就会存在两个 `<script>` 标签。让人无法接受。
 
-    所以在`Vue 3.3` 中新引入了 `defineOptions` 宏。顾名思义，主要是用来定义 `Options API` 的选项。可以用 `defineOptions` 定义任意的选项， `props`，`emits`，`expose`，`slots` 除外（因为这些可以使用 `defineXXX` 来做到）
+所以在`Vue 3.3` 中新引入了 `defineOptions` 宏。顾名思义，主要是用来定义 `Options API` 的选项。可以用 `defineOptions` 定义任意的选项， `props`，`emits`，`expose`，`slots` 除外（因为这些可以使用 `defineXXX` 来做到）
 
 ```vue
-<scriptt setup>
+<script setup>
 defineoptions({
     name: 'Foo',
     inheritAttrs: false,

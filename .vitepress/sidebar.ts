@@ -56,10 +56,27 @@ export default  [
     items: [
       {text: regularExpressionIcon + '正则表达式', link: '/code/RegularExpression.md'},
       {text: iconAscii + 'ASCII码对照表', link: '/code/ASCII.md'},
-      {text: starIcon + '软件设计师', link: '/code/SoftwareDesigner.md'},
-      {text: machineLearningIcon + '机器学习', link: '/code/MachineLearning.md'},
       {text: spiderIcon + '爬虫', link: '/code/WebCrawling.md'},
       {text: iconDataStructure + '数据结构', link: '/code/DataStructure.md'},
+      {text: starIcon + '软件设计师', link: '/code/SoftwareDesigner.md'},
+      {
+        text: machineLearningIcon + '机器学习', 
+        collapsible: true,
+        collapsed: true,
+        items: [
+          {text: '了解一下', link: '/code/MachineLearning/Introduction.md'},
+          {
+            text: '快速入门', 
+            collapsible: true,
+            collapsed: true,
+            items: [
+              {
+                text: '数据分析与可视化工具', 
+                link: '/code/MachineLearning/GettingStarted/DataAnalysis.md'},
+            ]
+          }
+        ]
+      },
     ]
   },
   {
