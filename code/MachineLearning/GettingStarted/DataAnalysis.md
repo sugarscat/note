@@ -3061,16 +3061,16 @@ seaborn.jointplot(x,
 
 参数的意义：
 
-- `x,y,hue`:数据字段变量名(如上表，`date,name,age,sex`为数据字段变量名)
-- `data`: `DataFrame`
+- `x,y,hue`：数据字段变量名(如上表，`date,name,age,sex`为数据字段变量名)
+- `data`： `DataFrame`
 - `kind`：`{"scatter"| "reg"| "resid"| "kde"| "hex"}` 作用：指定要绘制的类型
 - `color`： `matplotlib color`
-- `height` :：数字，指定图的大小（图是正方形的）
-- `ratio`:数字 ，指定主轴（`x,y`轴）与边缘轴（正方形四边除`x,y`轴外的其它轴)）高度的比率
+- `height`：数字，指定图的大小（图是正方形的）
+- `ratio`：数字 ，指定主轴（`x,y`轴）与边缘轴（正方形四边除`x,y`轴外的其它轴)）高度的比率
 - `space`：数字，指定主轴与边缘轴之间的空间
 - `dropna`：bool，如果为 `True`，则删除 `x` 和 `y` 中缺少的观测值。
 
-```
+```python
 import numpy as np
 import pandas as pd
 import seaborn as sns
@@ -3124,9 +3124,10 @@ seaborn.pairplot(
 - `va`：`data` 中的子集，否则使用 `data` 中的每一列
 - `x_vars / y_vars`：可以具体细分，谁与谁比较
 - `kind`：`{'scatter', 'reg'}`，散点图或者回归图
-- `diag_kind`：`{'auto', 'hist', 'kde'}`。单变量图（自己与自己比较）的绘图，对角线子图的图样。默认情况取决于是否使用“hue”。
+- `diag_kind`：`{'auto', 'hist', 'kde'}`。单变量图（自己与自己比较）的绘图，对角线子图的图样。默认情况取决于是否使用 `hue`。
 
 `pairplot` 的示例使用鸢尾花数据集。
+
 **鸢尾花数据集**：
 
 数据集最初由Edgar Anderson 测量得到，而后在著名的统计学家和生物学家R.A Fisher于1936年发表的文章「The use of multiple measurements in taxonomic problems」中被使用，用其作为线性判别分析（Linear Discriminant Analysis）的一个例子，证明分类的统计方法，从此而被众人所知，尤其是在机器学习这个领域。
@@ -3210,3 +3211,1687 @@ sns.pairplot(iris, vars=["sepal_length", "petal_length"])
 ```
 
 ![image-20240506112141002](assets/image-20240506112141002.png)
+
+## OpenCV库介绍和应用
+
+### 基本操作
+
+#### 下载 opencv
+
+```sh
+pip install opencv-python
+```
+
+#### 导入cv库
+
+```python
+# 导入opencv
+import cv2 
+
+# 查看opencv的版本
+print(cv2.__version__)
+# 4.9.0
+```
+
+#### 读取图片并展示
+
+```python
+# 通过imread函数，读取图片；
+# imread函数有两个参数，第一个参数是图片路径，第二个参数表示读取图片的形式：
+# cv2.IMREAD_COLOR（默认）：加载彩色图片，可以直接写1。
+# cv2.IMREAD_GRAYSCALE：以灰度模式加载图片，可以直接写0。
+# cv2.IMREAD_UNCHANGED：通道数包括alpha（透明度），可以直接写-1
+
+img = cv2.imread('./work/fox.jpg', 1)
+print(img)
+print(img.shape)
+#image表示显示窗口名称
+
+# opencv显示图片（本地）
+# cv2.imshow('image',img)  # 本地环境就会正常显示
+
+# OpenCV默认采用BGR模式读入图片，如果正常显示图片，往往需要将其转为RGB模式
+# img_result = img[:,:,::-1] # 转换方式1  注意： img[...,::-1]=img[:,:,::-1]
+img_result1 = cv2.cvtColor(img, cv2.COLOR_BGR2RGB) # 转换方式2
+plt.imshow(img_result1)
+plt.show()
+```
+
+#### 保存图片
+
+```python
+import cv2
+img = cv2.imread('./work/fox.jpg',0)
+
+# cv2.imwrite表示保存图像，
+# 第一个参数是保存的图像的路径，第二个参数是要保存的图像。
+cv2.imwrite('./data/fox_deal.png',img) 
+```
+
+#### 图片的有损保存
+
+```python
+import cv2
+img = cv2.imread('./work/fox.jpg',1)
+# cv2.imwrite的参数 
+# cv2.CV_IMWRITE_JPEG_QUALITY  设置图片格式为.jpeg或者.jpg的图片质量，其值为0---100（数值越大质量越高），默认95
+# cv2.CV_IMWRITE_WEBP_QUALITY  设置图片的格式为.webp格式的图片质量，值为0--100
+# cv2.CV_IMWRITE_PNG_COMPRESSION  设置.png格式的压缩比，其值为0--9（数值越大，压缩比越大），默认为3
+plt.imshow(img)
+cv2.imwrite('./data/fox_copy.jpg',img,[cv2.IMWRITE_JPEG_QUALITY,0])
+img2 = cv2.imread('./data/fox_copy.jpg',1)
+plt.imshow(img2)
+```
+
+#### 图片缩放
+
+```python
+import cv2
+original = cv2.imread('./work/tiger.jpg', 1)
+imgInfo = original.shape
+
+# 读出的图片信息是多维矩阵
+# 我们可以把这个矩阵信息打印出来
+print(imgInfo)
+img_result = original[:,:,::-1] 
+plt.imshow(img_result)
+
+height = imgInfo[0]
+width = imgInfo[1]
+channel = imgInfo[2]
+dstHeight = int(height*0.5)
+dstWidth = int(width*0.5)
+
+# 缩放到原来的二分之一，输出尺寸格式为（宽，高）
+tiger_resized_1 = cv2.resize(original,(dstWidth,dstHeight))
+# tiger_resized_1 = cv2.resize(original,(dstHeight,dstWidth))
+img_result = tiger_resized_1[:,:,::-1] 
+plt.imshow(img_result)
+# 保存
+cv2.imwrite('./data/tiger_resized_1.jpg',tiger_resized_1)
+```
+
+
+#### 图片剪切
+
+```
+import cv2
+img_original = cv2.imread('./work/tiger.jpg',1)
+
+# 获得图片的形状
+imgInfo = img_original.shape
+print(imgInfo)
+
+# 截取原图的一部分
+# 参数1 是高度的范围，参数2是宽度的范围
+img_cropped = img_original[500:1000,400:800]
+
+plt.imshow(img_cropped)
+```
+
+#### 图片平移
+
+平移是对象位置的转换。 如果我们知道（`x, y`）方向的偏移，让它为（`Δx, Δy`），你可以创建变换矩阵M，如下所示：
+
+`[1001Δ𝑥Δ𝑦] [10Δ𝑥01Δ𝑦] `
+
+图像的坐标原点在：图像的左上角。
+
+可以将其设置为 `np.float32` 类型的 `Numpy` 数组，并将其传递给 `cv.warpAffine()`函数.
+
+```python
+# 图片平移
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+tiger_original = cv2.imread('./work/tiger.jpg',1)
+imgInfo = tiger_original.shape
+
+height = imgInfo[0]
+width = imgInfo[1]
+
+M = np.float32([[1,0,-50],[0,1,200]])# 2*3的变换矩阵
+# tiger_translation = cv2.warpAffine(tiger_original,M,(height,width))
+tiger_translation = cv2.warpAffine(tiger_original,M,(width,height))
+print(tiger_translation.shape)
+# 移位 矩阵
+plt.imshow(tiger_translation)
+```
+
+#### 镜像翻转
+
+```python
+import cv2
+import matplotlib.pyplot as plt
+bird_original = cv2.imread("./work/bird.jpg")
+plt.imshow(bird_original)
+# 水平镜像
+bird_flip_Horizontally = cv2.flip(bird_original,1)
+plt.imshow(bird_flip_Horizontally)
+
+#垂直镜像
+bird_flip_Vertically=cv2.flip(bird_original,0)
+plt.imshow(bird_flip_Vertically)
+
+#水平垂直镜像
+bird_flip_Horizontally_Vertically=cv2.flip(bird_original,-1)
+plt.imshow(bird_flip_Horizontally_Vertically)
+```
+
+#### 仿射变换
+
+1. `OpenCV` 中，主要是先通过 `cv2.getAffineTransform` 函数得到图像的变换矩阵 `M`。
+2. 然后再通过**仿射**变换函数warpAffine得到变换后的图像。
+
+> `cv2.warpAffine(src, M, dsize,dst=None,flags=None,borderMode=None,borderValue=None)` **cv2.warpAffine:**
+>
+> - `src`：输入的图像
+> - `M`：`2 X 3` 的变换矩阵
+> - `dsize`：输出的图像的size大小
+> - `dst`：输出的图像
+> - `flags`：输出图像的插值方法
+> - `borderMode`：图像边界的处理方式
+> - `borderValue`：当图像边界处理方式为 `BORDER_CONSTANT` 时的填充值
+
+```python
+import numpy as np
+import cv2
+
+#对图像进行变换（三点得到一个变换矩阵）
+# 我们知道三点确定一个平面，我们也可以通过确定三个点的关系来得到转换矩阵
+# 然后再通过warpAffine来进行变换
+tree_original=cv2.imread("./work/tree.jpg")
+plt.imshow(tree_original)
+
+imgInfo = tree_original.shape
+print("tree_original's shape :", imgInfo)
+
+height = imgInfo[0]
+width = imgInfo[1]
+
+# 原图上的三个点的位置
+matSrc = np.float32([[0,0],[0,600],[400,0]])
+
+# 变换后这三个点的位置
+matDst = np.float32([[50,50],[300,height-300],[width-200,100]])
+
+# 得到仿射变换矩阵M
+matAffine = cv2.getAffineTransform(matSrc,matDst)
+
+# 进行仿射变换
+tree_affine = cv2.warpAffine(tree_original,matAffine,(width+200,height))
+plt.imshow(tree_affine)
+```
+
+#### 图片旋转
+
+`OpenCV` 中对图像的旋转主要是先通过 `getRotationMatrix2D` 函数得到图像的旋转矩阵 `M`，然后再通过仿射变换函数`warpAffine` 得到旋转后的图像。
+
+> `cv2.getRotationMatrix2D(center, angle, scale)`
+
+参数说明：
+
+**cv2.getRotationMatrix2D:**
+
+- `center`：表示旋转的中心点
+- `angle`：表示旋转的角度degrees
+- `scale`：图像缩放因子
+
+```python
+import cv2
+import numpy as np
+img_original = cv2.imread('./work/back.jpg',1)
+plt.imshow(img_original)
+imgInfo = img_original.shape
+height = imgInfo[0]
+width = imgInfo[1]
+print(imgInfo)
+
+matRotate = cv2.getRotationMatrix2D((height*0.5,width*0.5),45,0.5)# 缩放因子为0.5
+img_rotation = cv2.warpAffine(img_original,matRotate,(width,height),borderValue=(0,0,255))
+plt.imshow(img_rotation)
+```
+
+### 直方图
+
+#### 直方图获取
+
+`cv2.calcHist()` 可以帮助我们统计像素并得到直方图，格式:
+
+`calcHist(images, channels, mask, histSize, ranges, hist=None, accumulate=None)`
+
+参数:
+
+- `images`：输入图像
+- `channels`： 颜色通道
+- `mask`：掩模
+- `histSize`： `bin` 的数目, 用中括号括起来
+- `ranges`：像素范围 `[0, 256]`
+
+:::tip 提示
+
+以下处理基于这张图片
+
+![flower](assets/flower.jpg)
+
+:::
+
+#### 灰度直方图
+
+```python
+import cv2
+from matplotlib import pyplot as plt
+
+# matplotlib绘图样式
+#方式一：参数可以是一个 URL 或者 路径，自定义一个style
+#方式二：matplotlib预置了一系列样式风格，可直接使用；用plt.style.available可以查出:可用的样式列表
+plt.style.use("fivethirtyeight") 
+
+# 读取图片, 并转换成灰度图
+img = cv2.imread("flower.jpg", 0)
+
+# 获取直方图
+hist = cv2.calcHist([img], [0], None, [256], [0, 256])  # 可以查看一下这个方法如何使用
+# print(hist)
+print(hist.shape[0])
+
+# 直方图展示
+plt.figure(figsize=(12, 6))
+plt.plot(hist)
+plt.title("hist of image")
+plt.show()
+```
+
+![image-20240506131919983](assets/image-20240506131919983.png)
+
+#### 彩色直方图
+
+```python
+import cv2
+from matplotlib import pyplot as plt
+
+plt.style.use("fivethirtyeight")
+plt.figure(figsize=(12, 6))
+
+# 读取图片
+img = cv2.imread("flower.jpg")
+print(img.shape)
+# 颜色通道
+color = ["b", "g", "r"]
+
+# 获取直方图
+for i, c in enumerate(color):
+    hist = cv2.calcHist([img], [i], None, [256], [0, 256])
+    plt.plot(hist, color=c)
+
+# 直方图展示
+plt.legend(["B Channel", "G Channel", "R Channel"])
+plt.title("RGB hist of image")
+
+plt.show()
+```
+
+![image-20240506132404414](assets/image-20240506132404414.png)
+
+#### 直方图均衡化
+
+> Histogram Equalization
+
+直方图均衡化，是一种增强图片对比度的方法。将一副图像的直方图分布变成近似均匀分布。
+
+`cv2.equalizeHist(src, dst=None)`
+
+```python
+import cv2
+from matplotlib import pyplot as plt
+
+plt.style.use("fivethirtyeight")
+
+# 读取图片, 并转换成灰度图
+img = cv2.imread("flower.jpg", 0)
+
+# 均衡化
+img_equ = cv2.equalizeHist(img)
+
+# 直方图
+# subplots 一次性创建并返回所有的子图和其 axe 对象
+fig, ax = plt.subplots(2, 2, figsize=(16, 16)) 
+# subplots(nrows=1, ncols=1, sharex=False, sharey=False, squeeze=True, subplot_kw=None, gridspec_kw=None, **fig_kw)
+# fig和ax是两个subplots()的返回对象，名称可以自定义
+#实际的含义是什么呢？
+# fig-------即figure，画窗
+# ax-------即axex，画窗中创建的笛卡尔坐标区
+ax[0, 0].imshow(img)
+ax[0, 0].set_title("before")
+ax[0, 1].imshow(img_equ)
+ax[0, 1].set_title("after") 
+
+# Axes.hist()函数用于绘制直方图,和cv2.calcHist()方法类似
+# matplotlib.pyplot.hist(x
+# X：是用来绘制图形的数据，即x轴的数据（不能是3维数据，因此，需要将其拉成一维）
+# bins：当bin为整数时，则等于柱子的个数
+ax[1, 0].hist(img.ravel(), 256)  #将其拉成一维
+ax[1, 1].hist(img_equ.ravel(), 256) # 将其拉成一维
+ 
+plt.show()
+```
+
+![image-20240506132927368](assets/image-20240506132927368.png)
+
+#### Axes.imshow
+
+`Axes.imshow(X, cmap=None)`
+
+> X：此参数是图像的数据。
+
+`cmap`：此参数是颜色图实例或注册的颜色图名称。
+- `cmap`，接受一个值（每个值代表一种配色方案），并将该值对应的颜色图分配给当前图窗
+- 形象化理解：若将当前图窗比作一幅画，则 `cmap` 就代表颜料盘的配色，用所提供的颜料盘自动给当前简笔画上色
+
+```python
+import cv2
+from matplotlib import pyplot as plt
+import numpy as np
+
+plt.style.use("fivethirtyeight")
+
+# 读取图片, 并转换成灰度图
+img = cv2.imread("flower.jpg")
+
+# 均衡化
+img_equ_0 = cv2.equalizeHist(img[:,:,0])
+img_equ_1 = cv2.equalizeHist(img[:,:,1])
+img_equ_2 = cv2.equalizeHist(img[:,:,2])
+img_equ_0=np.expand_dims(img_equ_0,axis=-1)
+img_equ_1=np.expand_dims(img_equ_1,axis=-1)
+img_equ_2=np.expand_dims(img_equ_2,axis=-1)
+
+# 注意通道的顺序RGB和BGR
+img_equ=np.concatenate([img_equ_2,img_equ_1,img_equ_0],axis=2)
+
+# 直方图
+fig, ax = plt.subplots(2, 2, figsize=(16, 16))
+ax[0, 0].imshow(img)
+ax[0, 0].set_title("before")
+ax[0, 1].imshow(img_equ)
+ax[0, 1].set_title("after")
+ax[1, 0].hist(img.ravel(), 256)
+ax[1, 1].hist(img_equ.ravel(), 256)
+
+plt.show()
+```
+
+![image-20240506133525871](assets/image-20240506133525871.png)
+
+### 模板匹配
+
+模板匹配和卷积的原理很像，模板在原图像上从原点开始滑动, 计算模板与图片被模板覆盖的地方的差别程度。
+
+`cv2.matchTemplate(image, templ, method, result=None)`
+
+参数：
+
+- `image>- templ`：输入模板；
+- `method`：方法；
+`-- TM_SQDIFF`：计算平方差, 计算出来的值越小, 越相关；
+`-- TM_CCORR`：计算相关性, 计算出来的值越大, 越相关；
+`-- TM_CCOEFF`：计算相关系数, 计算出来的值越大, 越相关；
+`-- TM_SQDIFF_NORMED`：计算归一化平方不同, 计算出来的值越接近 0, 越相关；
+`-- TM_CCORR_NORMED`：计算归一化相关性, 计算出来的值越接近 1, 越相关；
+`-- TM_CCOEFF_NORMED`：计算归一化系数, 计算出来的值越接近 1, 越相关。
+
+```python
+import cv2
+from matplotlib import pyplot as plt
+import numpy as np
+
+# 读取图片
+img = cv2.imread("flower.jpg", 1)
+
+# 读取模板
+template = cv2.imread("flower.png", 1)
+h, w, _ = template.shape
+
+# 模式
+methods = ['cv2.TM_SQDIFF', 'cv2.TM_SQDIFF_NORMED', 'cv2.TM_CCORR',
+            'cv2.TM_CCORR_NORMED', 'cv2.TM_CCOEFF', 'cv2.TM_CCOEFF_NORMED']
+
+# 循环
+for meth in methods:
+    img2 = img.copy()
+    img2[:, :, :] = img2[:, :, ::-1]
+
+    method = eval(meth)  #
+    print("method:", method)
+    # 匹配方法的真值
+    res = cv2.matchTemplate(img, template, method)
+
+    # 假设有一个矩阵a,现在需要求这个矩阵的最小值，最大值，并得到最大值，最小值的索引。
+    # 咋一看感觉很复杂，但使用这个cv2.minMaxLoc()函数就可全部解决。函数返回的四个值就是上述所要得到的。
+    min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(res)
+
+    # 如果是平方差匹配TM_SQDIFF或归一化平方差匹配TM_SQDIFF_NORMED，取最小值
+    if method in [cv2.TM_SQDIFF, cv2.TM_SQDIFF_NORMED]:
+        top_left = min_loc  # top_left 是最小值的所在位置
+    else:
+        top_left = max_loc  # top_left 是最大值的所在位置
+    bottom_right = (top_left[0] + w, top_left[1] + h)
+
+    # 画矩形
+    cv2.rectangle(img2, top_left, bottom_right, (0, 0, 255), 10)
+
+    # 展示
+    f, ax = plt.subplots(1, 2, figsize=(16, 8))
+    ax[0].imshow(img2)  # 左侧图像
+    ax[1].imshow(res)  # 右侧计算记过
+    plt.suptitle(meth)
+
+    plt.show()
+```
+
+## 机器学习工具库 Sklearn
+
+### 环境配置
+
+```
+pip install scikit-learn
+```
+
+### 导入模块
+
+```python
+# 进行数据分析和整合数据
+import pandas as pd
+import numpy as np
+import random as rnd
+
+# 用于数据可视化
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+# 使用机器学习算法进行建模
+from sklearn.linear_model import LogisticRegression
+from sklearn.svm import SVC, LinearSVC
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.naive_bayes import GaussianNB
+from sklearn.linear_model import Perceptron
+from sklearn.linear_model import SGDClassifier
+from sklearn.tree import DecisionTreeClassifier
+```
+
+### 加载数据
+
+`Kaggle`上默认把数据放在`input`文件夹下。
+
+```python
+# 使用Pandas分别加载训练数据和测试数据
+train_df = pd.read_csv('./data/train.csv')
+test_df = pd.read_csv('./data/test.csv')
+# 将训练集和测试集合并
+combine = [train_df, test_df]
+```
+
+> 已给的数据描述：
+> PassengerId/乘客ID
+> Survived/是否获救 ==> 0/否， 1/是
+> Pclass/船票等级 ==> 1/上等， 2/中等， 3/下等
+> Name/乘客姓名
+> Sex/乘客性别
+> Age/乘客年龄
+> SibSp/乘客的堂兄弟或堂妹或配偶的个数
+> Parch/父母与小孩个数
+> Ticket/船票号码
+> Fare/乘客的船票票价
+> Cabin/客舱号码
+> Embarked/登船港口 ==> C/Cherbourg, Q/Queenstown, S/Southampton
+
+:::tip 训练集
+
+泰坦尼克号幸存人员数据集示例（非真实情况）：
+
+[train.csv](assets/data/train.csv)
+
+[test.csv](assets/data/test.csv)
+
+:::
+
+### 描述性统计分析
+
+#### 了解数据集的总体情况
+
+> 推荐书目
+>
+> 1. [数据挖掘](https://book.douban.com/subject/11542972/)
+> 2. [深入浅出统计学](https://book.douban.com/subject/7056708/)
+
+```python
+type(train_df)
+# 显示训练集和测试集总体信息
+train_df.info()
+print("#"*40)
+test_df.info()
+# 打印训练集和测试集中所有特征列的名称
+print(train_df.columns.values)
+print("#"*40)
+print(test_df.columns.values)
+```
+
+#### 预览数据
+
+对于大数据集，我们很难去查看所有的数据记录，然而，我们可以查看其中的多个小样本来了解数据。这些样本可以直接告诉我们哪些特征是需要修正的。
+
+[13]:
+
+```python
+# 显示数据集前5行的记录
+print(train_df.head())
+
+#    PassengerId  Survived  Pclass  ...     Fare Cabin  Embarked
+# 0            1         0       3  ...   7.2500   NaN         S
+# 1            2         1       1  ...  71.2833   C85         C
+# 2            3         1       3  ...   7.9250   NaN         S
+# 3            4         1       1  ...  53.1000  C123         S
+# 4            5         0       3  ...   8.0500   NaN         S
+
+# 显示训练集最后5行的记录
+print(train_df.tail())
+
+#      PassengerId  Survived  Pclass  ...   Fare Cabin  Embarked
+# 886          887         0       2  ...  13.00   NaN         S
+# 887          888         1       1  ...  30.00   B42         S
+# 888          889         0       3  ...  23.45   NaN         S
+# 889          890         1       1  ...  30.00  C148         C
+# 890          891         0       3  ...   7.75   NaN         Q
+
+# [5 rows x 12 columns]
+```
+
+#### 了解数据的中心趋势和离散趋势
+
+```python
+# python中数据类型为float64和int64的特征信息
+print(train_df.describe())
+
+#        PassengerId    Survived      Pclass  ...       SibSp       Parch        Fare
+# count   891.000000  891.000000  891.000000  ...  891.000000  891.000000  891.000000
+# mean    446.000000    0.383838    2.308642  ...    0.523008    0.381594   32.204208
+# std     257.353842    0.486592    0.836071  ...    1.102743    0.806057   49.693429
+# min       1.000000    0.000000    1.000000  ...    0.000000    0.000000    0.000000
+# 25%     223.500000    0.000000    2.000000  ...    0.000000    0.000000    7.910400
+# 50%     446.000000    0.000000    3.000000  ...    0.000000    0.000000   14.454200
+# 75%     668.500000    1.000000    3.000000  ...    1.000000    0.000000   31.000000
+# max     891.000000    1.000000    3.000000  ...    8.000000    6.000000  512.329200
+
+# [8 rows x 7 columns]
+
+# 查看train_df不同特征的分位数，以确定不同特征的分布情况
+print(train_df['Survived'].quantile([.61, .62]))
+print(train_df['Parch'].quantile([.75, .8]))
+print(train_df['Age'].quantile([.1, .2, .3, .4, .5, .6, .7, .8, .9, .99]))
+print(train_df['Fare'].quantile([.1, .2, .3, .4, .5, .6, .7, .8, .9, .99]))
+
+# 0.61    0.0
+# 0.62    1.0
+# Name: Survived, dtype: float64
+# 0.75    0.0
+# 0.80    1.0
+# Name: Parch, dtype: float64
+# 0.10    14.00
+# 0.20    19.00
+# 0.30    22.00
+# 0.40    25.00
+# 0.50    28.00
+# 0.60    31.80
+# 0.70    36.00
+# 0.80    41.00
+# 0.90    50.00
+# 0.99    65.87
+# Name: Age, dtype: float64
+# 0.10      7.55000
+# 0.20      7.85420
+# 0.30      8.05000
+# 0.40     10.50000
+# 0.50     14.45420
+# 0.60     21.67920
+# 0.70     27.00000
+# 0.80     39.68750
+# 0.90     77.95830
+# 0.99    249.00622
+# Name: Fare, dtype: float64
+
+# python中数据类型为object的特征信息
+print(train_df.describe(include=['O']))
+
+#                            Name   Sex  Ticket    Cabin Embarked
+# count                       891   891     891      204      889
+# unique                      891     2     681      147        3
+# top     Braund, Mr. Owen Harris  male  347082  B96 B98        S
+# freq                          1   577       7        4      644
+```
+
+#### 特征间相关性的热图
+
+特征间相关性的热图可以帮助我们了解哪些变量可能更重要。
+
+:::warning 提示
+
+下列操作移除掉了所有是字符串的列。不移除会报错：`could not convert string to float: 'Braund, Mr. Owen Harris'`
+
+:::
+
+```python
+# 定义特征间相关性热图函数，查看变量之间的相关性大小
+def plot_correlation_map(df):
+    corr = df.corr()  # 查看的是train_df的特征间相关性
+    _, ax = plt.subplots(figsize=(10, 8))
+    cmap = sns.diverging_palette(220, 10, as_cmap=True)
+    _ = sns.heatmap(
+        corr,
+        cmap=cmap,
+        square=True,
+        cbar_kws={'shrink': .9},
+        ax=ax,
+        annot=True,
+        annot_kws={'fontsize': 12}
+    )
+
+
+plot_correlation_map(train_df)
+```
+
+![image-20240506145550940](assets/image-20240506145550940.png)
+
+### 提出假设
+
+根据目前我们已经完成的【描述性统计分析】部分提供给我们的信息，我们可以提出以下假设：
+
+- 相关性
+  了解所有特征与要预测的特征Survival/是否获救之间的关系。
+- 处理缺失值
+  1. 我们需要`Age`特征，它可能与`Survived`相关。
+  2. 我们需要`Fare`特征，它可能与`Survived`相关。
+  3. 我们需要`Embarked`特征，因为它可能与`Survived`或其他重要特征相关。
+- 数据修正
+  1. `Ticket`/船票号码特征有可能会被删掉，因为它有`22%`的比例为重复值，它可能和`Survival`之间不相关。
+  2. `Cabin`/客舱号码特征有可能会被删掉，因为它在训练集和测试集的缺失值都很多。
+  3. `PassengerId`特征有可能删除，有可能和`Survival`无关。
+  4. `Name`特征是一个不太能够标准化的特征，它可能和`Survival`没有直接关系，可能会被删掉。
+- 特征提取
+  1. 基于`Parch`和`SibSp`创造一个新特征`Family`，表示登船的家庭成员的数量。
+  2. 基于`Name`，提取出新特征`Title`。
+  3. `Age`离散化处理：基于`Age`，新建`Ageband`，将`Age`转变为分类特征。
+  4. `Fare`离散化处理：基于`Fare`，新建`FareBand`，将`Fare`转变成分类特征。
+- 猜想
+  1. 女性`(Sex=female)`有更大可能性获救。
+  2. 儿童`（Age<?）`有更大可能性获救。
+  3. 上等舱位乘客更有可能获救。
+  4. 船票价格高的乘客更有可能获救。
+
+【描述性统计分析】部分提供的信息，只是帮助我们对数据集的总体情况有一个初步的了解，但是对于最终建模和预测结果的帮助非常有限。
+
+### 关联性分析与数据可视化
+
+接下来，我们将通过关联性分析和数据可视化的方法开始验证以上相关假设。
+
+#### Survived与每个特征
+
+没有缺失值的特征
+
+Ticket是船票编号，PassengerId是乘客ID和Survived没有太大的关系，不纳入我们的考虑范围。
+
+Sex,Pclass,SibSp和Parch这四个特征没有缺失值，并且对于他们的探索不需要对数据进行处理，所以我们首先来探索这四个特征与Survived之间的关系。
+
+结论：
+
+- Pclass=1和Survived显著相关(>0.5) ==> 猜想#3 ==> Pclass特征将被保留。
+- Sex=female的存活率在74% ==> 猜想#1
+- SibSp和Parch特征中有些值和Survived无关 ==> 我们可能需要利用这两个特征构造出一个新特征 ==> 特征提取#1
+
+```python
+# Pclass与Survived
+print(
+    train_df[
+        ['Pclass', 'Survived']
+    ].groupby(
+        ['Pclass'],
+        as_index=False
+    ).mean().sort_values(
+        by='Survived',
+        ascending=False
+    )
+)
+
+print()
+# Sex与Survived
+print(
+    train_df[
+        ["Sex", "Survived"]
+    ].groupby(
+        ['Sex'],
+        as_index=False
+    ).mean().sort_values(
+        by='Survived',
+        ascending=False
+    )
+)
+print()
+# SibSp与Survived
+print(
+    train_df[
+        ["SibSp", "Survived"]
+    ].groupby(
+        ['SibSp'],
+        as_index=False
+    ).mean().sort_values(
+        by='Survived',
+        ascending=False
+    )
+)
+print()
+# Parch与Survived
+print(
+    train_df[
+        ["Parch", "Survived"]
+    ].groupby(
+        ['Parch'],
+        as_index=False
+    ).mean().sort_values(
+        by='Survived',
+        ascending=False
+    )
+)
+
+#    Pclass  Survived
+# 0       1  0.629630
+# 1       2  0.472826
+# 2       3  0.242363
+
+#       Sex  Survived
+# 0  female  0.742038
+# 1    male  0.188908
+
+#    SibSp  Survived
+# 1      1  0.535885
+# 2      2  0.464286
+# 0      0  0.345395
+# 3      3  0.250000
+# 4      4  0.166667
+# 5      5  0.000000
+# 6      8  0.000000
+
+#    Parch  Survived
+# 3      3  0.600000
+# 1      1  0.550847
+# 2      2  0.500000
+# 0      0  0.343658
+# 5      5  0.200000
+# 4      4  0.000000
+# 6      6  0.000000
+```
+#### 有缺失值的特征
+
+**Age 与 Survived**
+
+**直方图**对于分析连续型特征是非常有帮助的：
+
+1. 发现特征变化的特点或模式。
+   我们可以通过将Age特征的取值分割成多个等长度的连续区间，来观察Age的变化特点或模式。
+2. 可以使用自定义的宽度相等的条纹来说明样本的分布。
+   可以帮助我们回答需要自定义特定条纹宽度才能确定的问题。例如，针对这个数据集，我们可以自定义宽度来回答是否幼儿更容易获救这个问题。
+
+**备注**： Y轴表示乘客的人数
+
+**观察发现**：
+
+- 婴儿(Age<=4)的存活率较高
+- 老人(Age=80)都存活下来了
+- 大部分15-25岁的人没有存活
+- 大多数乘客的年龄在15-35岁
+
+**结论**：
+
+- 我们应该把Age特征放到训练模型中 ==> 猜想#2
+- 需要给Age进行缺失值填充处理 ==> 处理缺失值#1
+- 应该对Age进行分组处理 ==> 特征提取#3
+
+[23]:
+
+```python
+# Age与Survived
+g = sns.FacetGrid(train_df, col='Survived')
+g.map(plt.hist, 'Age', bins=20)  # 年龄每4岁进行分割
+plt.show()
+```
+
+![image-20240506150927421](assets/image-20240506150927421.png)
+
+**Fare与Survived**
+
+**观察发现**：
+
+- 票价更高的人更有可能生存（Fare>50区间尤其明显）
+
+**结论**：
+
+- 我们应该把Fare特征放到训练模型中 ==> 猜想#4
+
+```
+# Fare与Survived
+g = sns.FacetGrid(train_df, col='Survived')
+g.map(plt.hist, 'Fare', bins=30)
+plt.show()
+```
+
+![image-20240506151104990](assets/image-20240506151104990.png)
+
+#### Survived与多个特征
+
+数值型特征、定序特征与 `Survived` 之间的关系—— `Pclass`、`Age`&`Survived`
+
+我们可以通过一幅图来探索多个特征之间的相关性，但是不管是数值特征还是分类特征，它们的取值必须都是数值，不能是字符串。
+
+**观察发现**：
+
+- `Pclass=3`的乘客最多，但是大部分都是没有获救 ==> 猜想#3
+- `Pclass=2`和`Pclass=3`中的幼儿大部分都获救了==> 进一步验证了猜想#2
+- `Pclass=1`中的大部分乘客都获救了 ==> 证实猜想#3
+- `Pclass`因乘客的年龄分布而变化。
+
+**结论**: 考虑将`Pclass`放入模型训练。
+
+```python
+grid = sns.FacetGrid(train_df, col='Survived', row='Pclass',  aspect=1.6) # size=2.2,
+grid.map(plt.hist, 'Age', alpha=.5, bins=20)
+grid.add_legend()
+plt.show()
+```
+
+![image-20240506151502546](assets/image-20240506151502546.png)
+
+多个分类特征与`Survived`之间的关系——`Sex`、`Embarked`、`Pclass`&`Survived`
+
+接下来，我们来探索多个分类特征与`Survived`之间的关系。
+
+**观察发现**:
+
+- 女性乘客的获救的可能性高于男性 ==> 猜想#1
+- 只有`Embarked=C`时，男性获救的可能性高于女性。 ==> 这可能是因为`Embarked`与`Pclass`相关，进而`Pclass`与`Survived`相关，即`Embarked`与`Survived`之间不直接相关。
+- 与`Pclass=2`，`Embarked`为`C`和`Q`的情况相比，`Pclass=3`中，男性存活率更高。 ==> 处理缺失值#2
+- 登船港口的不同对`Pclass=3`和男乘客的存活率有影响。
+
+**结论**:
+
+- `Sex`放入模型训练。
+- 修正`Embarked`特征，并将其放入模型训练。
+
+```python
+grid = sns.FacetGrid(train_df, row='Embarked', aspect=1.6) # , size=2.2
+grid.map(sns.pointplot, 'Pclass', 'Survived', 'Sex', palette='deep')
+grid.add_legend()
+plt.show()
+```
+
+![image-20240506151736900](assets/image-20240506151736900.png)
+
+多个分类特征和数值特征与`Survived`之间的关系——`Sex`, `Fare`，`Embarked`&`Survived`
+
+**观察发现**:
+
+- 购买票价贵的乘客更有可能获救 ==> 特征提取#4
+- 登船港口不同与存活率有关 ==> 处理缺失值#2
+
+**结论**:后续需要对Fare进行离散化处理。
+
+```python
+grid = sns.FacetGrid(train_df, row='Embarked', col='Survived', aspect=1.6) #, size=2.2
+grid.map(sns.barplot, 'Sex', 'Fare', alpha=.5, errorbar=None)
+grid.add_legend()
+plt.show()
+```
+
+![image-20240506151922451](assets/image-20240506151922451.png)
+
+### 总结
+
+通过关联性分析和数据可视化的方式对数据进行分析，验证了我们最初提出的假设，这些结论将作为我们下一步工作流程的起点。
+
+### 数据预处理
+
+基于关联性分析和数据可视化为我们提供的信息，下一步，我们将对特征进行处理相应的处理，最终将每个特征符合放入逻辑回归中特征的要求。 **注意:**
+
+1. 我们要对训练集和测试集进行相同的处理，以保持数据一致性。
+   在这个参考代码中，我们将测试集和训练集同时进行处理，也可以先处理训练集，然后再处理测试集。
+2. 如果同学们对这个课件中的不同特征的处理方法有自己的看法，可以按照自己的想法处理。我们只是提供整体思路，希望同学们可以得到更好的预测结果。
+
+#### 删除特征
+
+基于最初的假设，我们将删掉 `Ticket` 和 `Cabin` 特征。
+
+```python
+train_df = train_df.drop(['Ticket', 'Cabin'], axis=1)
+# test_df = test_df.drop(['Ticket', 'Cabin'], axis=1)
+combine = [train_df, test_df]
+print(combine)
+```
+
+#### 填补缺失值
+
+通常遇到缺值的情况，我们会有几种常见的处理方式:
+
+1. 如果缺失值的样本占总数比例极高，我们可能就直接舍弃了，作为特征加入的话，可能反倒带入noise，影响最后的结果了。
+2. 如果缺失值的样本适中，而该属性非连续值特征属性(比如说类目属性)，那就把NaN作为一个新类别，加到类别特征中。
+3. 如果缺失值的样本适中，而该属性为连续值特征属性，有时候我们会考虑给定一个步长(比如这里的age，我们可以考虑每隔2/3岁为一个步长)，然后把它离散化，之后把NaN作为一个type加到属性类目中。
+4. 有些情况下，缺失的值个数并不是特别多，那我们也可以试着根据已有的值，拟合一下数据，补充上。
+
+#### 连续型数值特征
+
+**Age缺失**：
+
+针对这个数据集，第3和4中处理方式应该都是可行的。我们先尝试拟合补全缺失值，虽然这可能并不是一个很好的选择，因为没有太多背景信息来支持拟合，我们只好先试试看。同学们可以自行尝试使用第3种方法来实现对缺失值的处理，并带入模型对比不同方法对模型的影响。
+
+针对拟合补全`Age`缺失值的处理方法，我们提供两种思路。
+**思路1**：利用需要填补缺失值的特征和其他与之存在相关关系的特征这一特点来填补缺失值。
+
+在这个数据集中，我们已经发现`Age`,`Sex`和`Pclass`三个特征之间是相关的。因此，我们可以利用`Sex`和`Pclass`的组合特征来找到这个组合特征下`Age`上午中位数，用这个中位数来填补缺失值。即我们需要找到`Pclass=1`和`Sex=0`时`Age`的中位数，用这个中位数去填补`Pclass=1`和`Sex=0`时，有缺失值的`Age`。`Sex`和`Pclass`共有6中组合，因此，我们需要找到6个中位数去分别填补对应情况下`Age`的缺失值。
+
+```python
+for dataset in combine:
+    try:
+        dataset['Sex'] = dataset['Sex'].map({'female': 1, 'male': 0}).astype(int)
+    except Exception as e:
+        print(e)
+        continue
+
+# 循环Sex(0, 1)和Pclass(1, 2, 3)来猜测Age的值，共有6中组合
+for dataset in combine:
+    try:
+        for i in range(0, 2):
+            for j in range(0, 3):
+                guess_df = dataset[(dataset['Sex'] == i) & (dataset['Pclass'] == j + 1)]['Age'].dropna()
+
+                # age_mean = guess_df.mean()
+                # age_std = guess_df.std()
+                # age_guess = rnd.uniform(age_mean - age_std, age_mean + age_std)
+
+                age_guess = guess_df.median()
+
+                # 将age_guess的值近似为最近的整数
+                guess_ages[i, j] = int(age_guess / 0.5 + 0.5) * 0.5
+
+        for i in range(0, 2):
+            for j in range(0, 3):
+                dataset.loc[(dataset.Age.isnull()) & (dataset.Sex == i) & (dataset.Pclass == j + 1), 'Age'] = guess_ages[i, j]
+
+        dataset['Age'] = dataset['Age'].astype(int)
+    except Exception as e:
+        print(e)
+        continue
+
+print(train_df.head())
+```
+
+连续型数值特征常常需要被离散化或面元（`bin`）划分,使用`pandas`库中的`cut`函数实现。
+
+创建`AgeBand`
+
+```python
+# 创建AgeBand
+train_df['AgeBand'] = pd.cut(train_df['Age'], 5)
+train_df[['AgeBand', 'Survived']].groupby(['AgeBand'], as_index=False).mean().sort_values(by='AgeBand', ascending=True)
+```
+
+根据`AgeBand`提供的区间切分信息，对`Age`进行分组处理
+
+```python
+# 根据AgeBand提供的区间切分信息，对Age进行分组处理
+for dataset in combine:    
+    dataset.loc[ dataset['Age'] <= 16, 'Age'] = 0
+    dataset.loc[(dataset['Age'] > 16) & (dataset['Age'] <= 32), 'Age'] = 1
+    dataset.loc[(dataset['Age'] > 32) & (dataset['Age'] <= 48), 'Age'] = 2
+    dataset.loc[(dataset['Age'] > 48) & (dataset['Age'] <= 64), 'Age'] = 3
+    dataset.loc[ dataset['Age'] > 64, 'Age'] = 4
+print(train_df.head())
+```
+
+删掉`AgeBand`，更新`combine`：
+
+```python
+# 删掉AgeBand，更新combine
+train_df = train_df.drop(['AgeBand'], axis=1)
+combine = [train_df, test_df]
+print(train_df.head())
+```
+
+**思路2**：使用 `scikit-learn` 中的 `RandomForest` 来拟合 `Age` 的缺失值。
+注意：使用思路1方法处理完数据后，不能直接使用下面的代码会报错误，因为：
+
+1. `Parch` 和 `SibSp` 特征已经被删除。
+2. `Age` 特征已经被思路1的方法修改了，原始值已经被改变。
+
+```python
+# 使用RandomForestClassifier填补年龄的缺失值
+from sklearn.ensemble import RandomForestRegressor
+
+
+def set_missing_ages(df):
+    
+    # 把已有的数值型特征取出来丢进Random Forest Regressor中
+    age_df = df[['Age','Fare', 'Parch', 'SibSp', 'Pclass']]
+
+    # 乘客分成已知年龄和未知年龄两部分
+    known_age = age_df[age_df.Age.notnull()].values
+    unknown_age = age_df[age_df.Age.isnull()].values
+
+    # y即目标年龄
+    y = known_age[:, 0]
+
+    # X即特征属性值
+    X = known_age[:, 1:]
+
+    # fit到RandomForestRegressor之中
+    rfr = RandomForestRegressor(random_state=0, n_estimators=2000, n_jobs=-1)
+    rfr.fit(X, y)
+    
+    # 用得到的模型进行未知年龄结果预测
+    predictedAges = rfr.predict(unknown_age[:, 1::])
+    
+    # 用得到的预测结果填补原缺失数据
+    df.loc[ (df.Age.isnull()), 'Age' ] = predictedAges
+    
+    return df, rfr
+
+# 处理训练集Age特征
+train_df, rfr = set_missing_ages(train_df)
+print(train_df.head(10))
+```
+
+**Fare**
+
+对测试集中的`Fare`特征进行处理。
+
+**处理步骤**：
+
+1. 填补缺失值：使用`Fare`的**中位数**去填补缺失值。
+2. 离散化
+3. 保留两位小数，因为`Fare`代表货币。
+
+使用中位数测试集中的Fare的空值进行填充：
+
+```python
+# 使用中位数测试集中的Fare的空值进行填充
+test_df['Fare'].fillna(test_df['Fare'].dropna().median(), inplace=True)
+print(test_df.head())
+```
+
+创造FareBand特征
+
+```python
+# 创造FareBand特征
+train_df['FareBand'] = pd.qcut(train_df['Fare'], 4) # 分成4份
+train_df[['FareBand', 'Survived']].groupby(['FareBand'], as_index=False).mean().sort_values(by='FareBand', ascending=True)
+```
+
+基于FareBand将Fare转变为定序特征
+
+```python
+# 基于FareBand将Fare转变为定序特征
+for dataset in combine:
+    dataset.loc[ dataset['Fare'] <= 7.91, 'Fare'] = 0
+    dataset.loc[(dataset['Fare'] > 7.91) & (dataset['Fare'] <= 14.454), 'Fare'] = 1
+    dataset.loc[(dataset['Fare'] > 14.454) & (dataset['Fare'] <= 31), 'Fare']   = 2
+    dataset.loc[ dataset['Fare'] > 31, 'Fare'] = 3
+    dataset['Fare'] = dataset['Fare'].astype(int)
+
+# 删掉FareBand
+train_df = train_df.drop(['FareBand'], axis=1)
+combine = [train_df, test_df]
+    
+print(train_df.head())
+```
+
+#### 分类特征
+
+> `Embarked`
+
+训练集中 `Embarked` 特征有两个缺失值，我们现在用 `Embarked` 的**众数**去填补缺失值。
+
+查看非空Embarked特征的众数
+
+```python
+# 查看非空Embarked特征的众数
+freq_port = train_df.Embarked.dropna().mode()[0]
+print(freq_port)
+```
+
+将使用众数对Embarked的空值进行填充
+
+```python
+# 将使用众数对Embarked的空值进行填充
+for dataset in combine:
+    dataset['Embarked'] = dataset['Embarked'].fillna(freq_port)
+    
+train_df[['Embarked', 'Survived']].groupby(['Embarked'], as_index=False).mean().sort_values(by='Survived', ascending=False)
+```
+
+转变成数值特征
+
+```python
+# 转变成数值特征
+for dataset in combine:
+    dataset['Embarked'] = dataset['Embarked'].map( {'S': 0, 'C': 1, 'Q': 2} ).astype(int)
+
+print(train_df.head())
+```
+
+### 特征提取
+
+#### 从已有特征中提取新特征
+
+> `Name` 提取 `Title`
+
+我们想分析 `Name` 特征是否能够提取 `title` 信息，并验证 `title` 与 `Survived` 之间的相关性。
+
+**观察发现**： 
+
+当我们绘制称呼、年龄和 `Survived` 时，我们注意到以下几点：
+
+- 多数称呼与年龄段相对应，例如：称呼为 `master` 的人，平均年龄为5岁。
+- 称呼年龄段的存活率略有差别。
+- 称呼为`Mme`，`Lady`和`Sir`的人更有可能获救，称呼为`Don`，`Rev`和`Jonkheer`的人获救的可能性很低。
+
+**结论**： 保留Title特征，放入模型进行训练。
+
+通过正则表达式提取所有title字符串
+
+```python
+# 通过正则表达式提取所有title字符串
+# ([A-Za-z]+)\. 匹配符号“.”之前第一个单词
+for dataset in combine:
+    dataset['Title'] = dataset.Name.str.extract('([A-Za-z]+)\.', expand=False) # expand=False返回一个DataFrame
+# 交叉表查看提取出的title与sex关系
+pd.crosstab(train_df['Title'], train_df['Sex'])
+```
+
+交叉表查看提取出的title与Survived关系
+
+```python
+# 交叉表查看提取出的title与Survived关系
+pd.crosstab(train_df['Title'], train_df['Survived'])
+```
+
+将有相同title的文本进行替换，或者归为Rare类
+
+```python
+# 将有相同title的文本进行替换，或者归为Rare类
+# 对于当时外国称呼的说明，可以参考：https://zhidao.baidu.com/question/591037721.html
+for dataset in combine:
+    dataset['Title'] = dataset['Title'].replace(['Lady' ,'Capt', 'Col',\
+    'Don', 'Dr', 'Major', 'Rev', 'Sir', 'Jonkheer', 'Dona'], 'Rare')
+
+    dataset['Title'] = dataset['Title'].replace(['Mlle', 'Ms'], 'Miss')
+    dataset['Title'] = dataset['Title'].replace(['Mme','Countess'], 'Mrs') 
+    
+train_df[['Title', 'Survived']].groupby(['Title'], as_index=False).mean()
+```
+
+对应分类
+
+```python
+# 对应分类
+title_mapping = {"Mr": 1, "Miss": 2, "Mrs": 3, "Master": 4, "Rare": 5}
+for dataset in combine:
+    dataset['Title'] = dataset['Title'].map(title_mapping)
+    dataset['Title'] = dataset['Title'].fillna(0)
+
+print(train_df.head())
+```
+
+在训练集和测试集中都删除Name，把PassengerId从训练集中删除
+
+```python
+# 在训练集和测试集中都删除Name，把PassengerId从训练集中删除
+train_df = train_df.drop(['Name'], axis=1)
+test_df = test_df.drop(['Name'], axis=1)
+combine = [train_df, test_df]
+train_df.shape, test_df.shape
+```
+
+#### 特征组合创建新特征
+
+我们可以将`Parch`和`SibSp`组合获得新特征`FamilySize`，我们发现`FamilySize`中有两个取值`Survived`取值为零。进而创建新特征`IsAlone`，判断乘客是否是一个登船。
+
+组合`Parch`和`SibSp`特征创建`FamilySize`
+
+```python
+# 组合Parch和SibSp特征创建FamilySize
+for dataset in combine:
+    dataset['FamilySize'] = dataset['SibSp'] + dataset['Parch'] + 1
+
+train_df[['FamilySize', 'Survived']].groupby(['FamilySize'], as_index=False).mean().sort_values(by='Survived', ascending=False)
+```
+
+创建`IsAlone`特征
+
+```python
+# 创建IsAlone特征
+for dataset in combine:
+    dataset['IsAlone'] = 0
+    dataset.loc[dataset['FamilySize'] == 1, 'IsAlone'] = 1
+
+train_df[['IsAlone', 'Survived']].groupby(['IsAlone'], as_index=False).mean()
+```
+
+在`train_df`，`test_df`删掉`Parch`，`SibSp`和`FamilySize`
+
+```python
+# 在train_df，test_df删掉Parch,SibSp和FamilySize
+train_df = train_df.drop(['Parch', 'SibSp', 'FamilySize'], axis=1)
+test_df = test_df.drop(['Parch', 'SibSp', 'FamilySize'], axis=1)
+combine = [train_df, test_df]
+
+print(train_df.head())
+```
+
+#### 交叉特征
+
+交叉特征指的是将两个或更多的**类别属性**组合成一个新特征。值得注意的是，当数据量较大时，或者暴力进行特征交叉时，交叉后的新特征容易产生数据稀疏问题，同学们在未来应用这个方法的时，需要特别去处理数据稀疏问题。
+
+针对这个数据集，对Age特征按照区间定义了不同类别。在这个`Age`类别和`Pclass`类别的基础上,通过特征交叉的方法，建立新特征`Age*PClass`。
+
+如果同学们认为，在这个数据集中，还有其他分类特征的交叉能够对模型预测有帮助，也可以尝试。
+
+创建交叉特征 `Age*Class`
+
+```python
+# 创建交叉特征Age*Class
+for dataset in combine:
+    dataset['Age*Class'] = dataset.Age * dataset.Pclass
+
+train_df.loc[:, ['Age*Class', 'Age', 'Pclass']].head(10)
+```
+
+### 特征缩放
+
+[连续型数值特征](#连续型数值特征)对数据集中的两个连续数值特征填补缺失值并进行了分桶处理。实际上逻辑回归模型中可以放入连续数值特征，但是如果特征中各属性值之间数值差距太大，将对收敛速度有很大的影响。
+
+仔细观察`Age`和`Fare`两个特征分布，我们发现这两个特征的数值变化幅度很大。因此，如果我们想要将`Age`和`Fare`连续型数值特征不做分桶处理，直接带入到逻辑回归中，我们就需要先用`scikit-learn`中的`preprocessing`模块对这两个特征进行特征缩放，就是将一些变化幅度较大的特征化到`[-1,1]`区间之内。
+
+[sklearn.preprocessing.StandardScaler官方文档说明](http://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html)
+
+```python
+# 将一些变化幅度较大的特征化到[-1,1]之内，这样可以加速logistic regression的收敛
+import sklearn.preprocessing as preprocessing
+
+scaler = preprocessing.StandardScaler()
+age_scale_param = scaler.fit(train_df['Age'].values.reshape(-1, 1))
+train_df['Age_scaled'] = scaler.fit_transform(train_df['Age'].values.reshape(-1, 1), age_scale_param)
+fare_scale_param = scaler.fit(train_df['Fare'].values.reshape(-1, 1))
+train_df['Fare_scaled'] = scaler.fit_transform(train_df['Fare'].values.reshape(-1, 1), fare_scale_param)
+
+print(train_df)
+```
+
+输出：
+
+|      | PassengerId | Survived | Pclass |  Sex |  Age | Fare | Embarked | Title | IsAlone | Age*Class | Age_scaled | Fare_scaled |
+| ---: | ----------: | -------: | -----: | ---: | ---: | ---: | -------: | ----: | ------: | --------: | ---------: | ----------: |
+|    0 |           1 |        0 |      3 |    0 |    1 |    0 |        0 |     1 |       0 |         3 |  -0.392999 |   -1.346777 |
+|    1 |           2 |        1 |      1 |    1 |    2 |    3 |        1 |     3 |       0 |         2 |   0.827078 |    1.337738 |
+|    2 |           3 |        1 |      3 |    1 |    1 |    1 |        0 |     2 |       1 |         3 |  -0.392999 |   -0.451938 |
+|    3 |           4 |        1 |      1 |    1 |    2 |    3 |        0 |     3 |       0 |         2 |   0.827078 |    1.337738 |
+|    4 |           5 |        0 |      3 |    0 |    2 |    1 |        0 |     1 |       1 |         6 |   0.827078 |   -0.451938 |
+|  ... |         ... |      ... |    ... |  ... |  ... |  ... |      ... |   ... |     ... |       ... |        ... |         ... |
+|  886 |         887 |        0 |      2 |    0 |    1 |    1 |        0 |     5 |       1 |         2 |  -0.392999 |   -0.451938 |
+|  887 |         888 |        1 |      1 |    1 |    1 |    2 |        0 |     2 |       1 |         1 |  -0.392999 |    0.442900 |
+|  888 |         889 |        0 |      3 |    1 |    1 |    2 |        0 |     2 |       0 |         3 |  -0.392999 |    0.442900 |
+|  889 |         890 |        1 |      1 |    0 |    1 |    2 |        1 |     1 |       1 |         1 |  -0.392999 |    0.442900 |
+|  890 |         891 |        0 |      3 |    0 |    1 |    0 |        2 |     1 |       1 |         3 |  -0.392999 |   -1.346777 |
+
+### 特征因子化
+
+> `one-hot` 编码
+
+因为逻辑回归建模时，需要输入的特征都是数值型特征，我们通常会先对类目型的特征因子化/one-hot编码。
+
+对于连续特征，如年龄、薪水、阅读数、身高等特征，如果需要放入逻辑回归模型中，则最好先进行离散处理，也叫 one-hot 编码；离散化处理的方式有几种，
+
+#### 什么是one-hot编码
+
+一些属性是类别型而不是数值型，拿这个数据集中的`Embarked`来举例说明。`Embarked`由`{S,C,Q}`三个类别组成，最常用的方式是把每个类别属性转换成二元属性，即从`{0,1}`取一个值。因此基本上增加的属性等于相应数目的类别，并且对于你数据集中的每个实例，只有一个是`1`（其他的为`0`），这也就是**独热（`one-hot`)编码方式**。
+
+以`Embarked`为例，原本一个属性维度，因为其取值可以是`['S','C','Q']`，one-hot编码后将其平展开为`Embarked_C`，`Embarked_S`，`Embarked_Q`三个属性。
+
+- 原本`Embarked`取值为`S`的，在此处的`Embarked_S`下取值为1，在`Embarked_C’`，`Embarked_Q`下取值为0
+- 原本`Embarked`取值为`C`的，在此处的`Embarked_C`下取值为1，在`Embarked_S` ，`Embarked_Q`下取值为0
+- 原本`Embarked`取值为`Q`的，在此处的`Embarked_Q`下取值为1，在`Embarked_C`， `Embarked_S`下取值为0
+
+即`{1,0,0}`表示`Embarked`取值为S，`{0,1,0}`表示`Embarked`取值为C，`{0,0,1}`表示`Embarked`取值为Q。
+
+#### one-hot编码必要性
+
+如果你不了解这个编码的话，你可能会觉得分解会增加没必要的麻烦，因为独热编码大量地增加了数据集的维度。相反，你可能会尝试将类别属性转换成一个标量值，例如`Embarked`可能会用`{1,2,3`}表示`{S,C,Q}`。***这里存在两个问题***:
+
+1. 对于一个数学模型，这意味着某种意义上S和C比和Q更“相似”（因为`|1-3|` > `|1-2|`）。除非你的类别拥有排序的属性（比如铁路线上的站），这样可能会误导你的模型。
+2. 可能会导致统计指标（比如均值）无意义，更糟糕的情况是会误导你的模型。例如颜色属性可能会用{1,2,3}表示{红，绿，蓝},假如你的数据集包含相同数量的红色和蓝色的实例，但是没有绿色的，那么颜色的均值可能还是得到2，也就是绿色的意思。
+
+### 连续特征离散化
+
+实际上，针对这个数据集中的Age和Fare特征，我们已经在[连续型数值特征](#连续型数值特征)进行了等值分桶处理，将两个特征转变为分类特征。
+
+在这里，我们系统的说明一下对连续特征进行one-hot编码常用的三种方法：
+
+1. 等值分桶
+   等值分桶是指每个区间同样大小，比如年龄特征区间为0-80岁。我们可以设定为每隔4岁为一个桶，则年龄特征被切分为20个区间，26岁对应的独热编码对应的应该就是`{0,0,0,0,0,0,1,0…}`。
+2. 等频分桶
+   等频分桶是指每个区间里的人数分布基本持平。因此，需要先对样本进行一个分布的统计。仍然以年龄为例，我们首先要制作一个年龄分布的直方图，了解年龄特征的总体分布。一般这类特征都会大致符合正太分布。这就需要对中间较为集中的区间拆分出跟多的桶。比如年龄特征分布的两边边缘区域，我们设定为0-18一个区间，50-80一个区间；在特征分布的集中区域，我们设定为每2岁一个区间，即18-20一个区间，20-22一个区间，以此类推。最终达到使得每个桶的人数基本相等。 如 0-18一个区间，18-20一个区间，20-22一个区间，20-30 一个区间。
+3. 根据对业务的理解分桶
+   例如对于电商类，可能22岁以下的没有什么经济能力，22-40的经济能力差不多，这时候可以人工根据业务需求划分。
+
+**总结**：
+对于连续型数值特征，我们有两种处理方法，一种是离散化，如[连续型数值特征](#连续型数值特征)部分处理过程，另一种是[特征缩放](#特征缩放)将连续之缩放到符合模型要求的区间内。
+
+```python
+# 对train_df和test_df中需要进行one-hot编码的进行处理
+train_df = pd.get_dummies(train_df,columns=['Pclass', 'Sex', 'Embarked','Title','IsAlone','Age','Fare'])
+test_df = pd.get_dummies(test_df,columns=['Pclass', 'Sex', 'Embarked','Title','IsAlone','Age','Fare'])
+combine = [train_df, test_df]
+
+# 查看one-hot编码数据结果
+print(train_df.head())
+```
+
+输出：
+
+|      | PassengerId | Survived | Age*Class | Age_scaled | Fare_scaled | Pclass_1 | Pclass_2 | Pclass_3 | Sex_0 | Sex_1 |  ... | IsAlone_1 | Age_0 | Age_1 | Age_2 | Age_3 | Age_4 | Fare_0 | Fare_1 | Fare_2 | Fare_3 |
+| ---: | ----------: | -------: | --------: | ---------: | ----------: | -------: | -------: | -------: | ----: | ----: | ---: | --------: | ----: | ----: | ----: | ----: | ----: | -----: | -----: | -----: | -----: |
+|    0 |           1 |        0 |         3 |  -0.392999 |   -1.346777 |        0 |        0 |        1 |     1 |     0 |  ... |         0 |     0 |     1 |     0 |     0 |     0 |      1 |      0 |      0 |      0 |
+|    1 |           2 |        1 |         2 |   0.827078 |    1.337738 |        1 |        0 |        0 |     0 |     1 |  ... |         0 |     0 |     0 |     1 |     0 |     0 |      0 |      0 |      0 |      1 |
+|    2 |           3 |        1 |         3 |  -0.392999 |   -0.451938 |        0 |        0 |        1 |     0 |     1 |  ... |         1 |     0 |     1 |     0 |     0 |     0 |      0 |      1 |      0 |      0 |
+|    3 |           4 |        1 |         2 |   0.827078 |    1.337738 |        1 |        0 |        0 |     0 |     1 |  ... |         0 |     0 |     0 |     1 |     0 |     0 |      0 |      0 |      0 |      1 |
+|    4 |           5 |        0 |         6 |   0.827078 |   -0.451938 |        0 |        0 |        1 |     1 |     0 |  ... |         1 |     0 |     0 |     1 |     0 |     0 |      0 |      1 |      0 |      0 |
+
+### 逻辑回归
+
+>  我们终于可以建模了！
+
+```python
+# 准备放入模型中的最终训练数据和测试数据
+X_train = train_df.drop(["Survived","PassengerId","Age_scaled", "Fare_scaled"], axis=1)
+Y_train = train_df["Survived"]
+X_test  = test_df.drop("PassengerId", axis=1).copy()
+# X_train.shape, Y_train.shape, X_test.shape
+# ((891, 25), (891,), (418, 25))
+```
+
+```python
+# Logistic Regression
+logreg = LogisticRegression()
+logreg.fit(X_train, Y_train)
+Y_pred = logreg.predict(X_test)
+acc_log = round(logreg.score(X_train, Y_train) * 100, 2)
+# acc_log 81.71
+```
+
+```python
+# 输出预测结果
+lr_result = pd.DataFrame({"PassengerId": test_df["PassengerId"],"Survived": Y_pred})
+lr_result.to_csv('/root/output/logistic_regression_bagging_predictions.csv', index=False)
+```
+
+### 模型系数分析
+
+我们可以通过每个特征的相关系数的值来判断每个特征对于最终预测结果的影响程度。
+
+1. 相关系数绝对值大小：相关系数的绝对值越大，即越接近1，关系越强；相关系数的绝对值越小，即越接近0，关系越弱。
+2. 相关系数正负号：相关系数为正数，则正相关；相关系数为负数，则减负相关。
+
+```python
+coeff_df = pd.DataFrame(train_df.columns.delete(0))
+coeff_df.columns = ['Feature']
+coeff_df["Correlation"] = pd.Series(logreg.coef_[0]) # 获得特征的相关系数
+print(coeff_df)
+```
+
+输出：
+
+|      |     Feature | Correlation |
+| ---: | ----------: | ----------: |
+|    0 |    Survived |   -0.196464 |
+|    1 |   Age*Class |    1.054967 |
+|    2 |  Age_scaled |    0.025194 |
+|    3 | Fare_scaled |   -1.080114 |
+|    4 |    Pclass_1 |   -0.918372 |
+|    5 |    Pclass_2 |    0.918419 |
+|    6 |    Pclass_3 |   -0.356831 |
+
+```python
+# 根据相关系数的大小从高到底排序
+coeff_df.sort_values(by='Correlation', ascending=False) 
+```
+
+输出：
+
+|      |    Feature | Correlation |
+| ---: | ---------: | ----------: |
+|   12 |    Title_1 |    1.395398 |
+|    1 |  Age*Class |    1.054967 |
+|    5 |   Pclass_2 |    0.918419 |
+|   11 | Embarked_2 |    0.636696 |
+|    7 |      Sex_0 |    0.273314 |
+|   22 |      Age_3 |    0.261424 |
+|   17 |  IsAlone_0 |    0.235837 |
+
+- `Sex`：`female`会极大提高最后获救的概率，`male`会很大程度拉低这个概率。
+- `Pclass`：`1`等舱乘客最后获救的概率会上升，而乘客等级为`3`会极大地拉低这个概率。
+- `Age`：是一个负相关，意味着在我们的模型里，年龄越小，越有获救的优先权(还得回原数据看看这个是否合理）
+- `Embarked`：登船港口`S`会很拉低获救的概率，另外俩港口提高获救的概率。
+- `Fare`：船票价格低会拉高获救的概率，船票价格高的会拉低获救的概率（这个和我们对Fare分布的判断结果不太符合，需要对这个变量进一步进行细化处理）。
+- `Title`：`Mrs`和`Master`会提高获救的概率，`Mr`，`Miss`和`Rare`会拉低获救的概率。
+- `IsAlone`：独自一人登船的人会拉低获救的概率，有家人同行的人会提高获救的概率。
+- `Age*Class`：是一个不错的特征，它的相关系数的绝对值没有很低。
+
+### 逻辑回归优化
+
+#### 交叉验证
+
+交叉验证的基本思想是把在某种意义下将原始数据(`dataset`)进行分组，一部分做为训练集(`train set`),另一部分做为验证集(`validation set or test set`)，首先用训练集对分类器进行训练,再利用验证集来测试训练得到的模型(`model`)，以此来做为评价分类器的性能指标。
+
+也就是说，我们把题目中所给的训练集当成一个原始数据，将这个数据切分成训练集和测试集。利用切分出的训练集进行训练，切分出的测试集进行验证。
+
+#### 常见类型的交叉验证
+
+1. 重复随机子抽样验证
+   - 将数据集随机的划分为训练集和测试集。对每一个划分，用训练集训练分类器或模型，用测试集评估预测的精确度。进行多次划分，用均值来表示效能。
+   - 优点：与k倍交叉验证相比，这种方法的与k无关。
+   - 缺点：有些数据可能从未做过训练或测试数据；而有些数据不止一次选为训练或测试数据。
+
+2. K倍交叉验证（K>=2）
+   - 将样本数据集随机划分为K个子集（一般是均分），将一个子集数据作为测试集，其余的K-1组子集作为训练集；将K个子集轮流作为测试集，重复上述过程，这样得到了K个分类器或模型，并利用测试集得到了K个分类器或模型的分类准确率。用K个分类准确率的平均值作为分类器或模型的性能指标。10-倍交叉证实是比较常用的。 
+   - 优点：每一个样本数据都即被用作训练数据，也被用作测试数据。避免的过度学习和欠学习状态的发生，得到的结果比较具有说服力。
+
+3. 留一法交叉验证
+   - 假设样本数据集中有N个样本数据。将每个样本单独作为测试集，其余N-1个样本作为训练集，这样得到了N个分类器或模型，用这N个分类器或模型的分类准确率的平均数作为此分类器的性能指标。
+   - 优点：每一个分类器或模型都是用几乎所有的样本来训练模型，最接近样本，这样评估所得的结果比较可靠。实验没有随机因素，整个过程是可重复的。
+   - 缺点：计算成本高，当N非常大时，计算耗时。
+
+#### 训练集和测试集的选取
+
+1. 训练集中样本数量要足够多，一般至少大于总样本数的50%。
+2. 训练集和测试集必须从完整的数据集中均匀取样。均匀取样的目的是希望减少训练集、测试集与原数据集之间的偏差。当样本数量足够多时，通过随机取样，便可以实现均匀取样的效果。（随机取样，可重复性差）
+
+```python
+from sklearn import model_selection
+from sklearn import linear_model
+
+#简单看看打分情况
+clf = linear_model.LogisticRegression(C=1.0, penalty='l2', tol=1e-6)
+
+# 交叉验证的结果
+model_selection.cross_val_score(clf, X_train, Y_train, cv=5) # cv=5,5倍交叉验预测证准确率预估
+```
+
+我们已经进行了交叉验证，其实我们可以把交叉验证里预测错误的记录拿出来，通过人工审核，去帮助我们发现新的优化方向，继续探索。
+
+对于以下方法对应的参数不了解的，可以参考官方文档说明:
+[linear_model.LogisticRegression官方文档说明](http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html#sklearn.linear_model.LogisticRegression)
+[cross_validation.cross_val_score官方文档说明](http://scikit-learn.org/stable/modules/generated/sklearn.cross_validation.cross_val_score.html)
+[cross_validation.train_test_split官方文档说明](http://scikit-learn.org/stable/modules/generated/sklearn.cross_validation.train_test_split.html)
+
+```python
+train_df_cv = train_df.drop(["Age_scaled", "Fare_scaled"], axis=1)
+# 分割数据，按照 训练数据:cv数据 = 7:3的比例
+split_train, split_cv = model_selection.train_test_split(train_df_cv, test_size=0.3, random_state=0) # test_size测试集占数据的比例
+
+# 生成模型
+clf = linear_model.LogisticRegression()
+clf.fit(split_train.iloc[:,2:].values, split_train.iloc[:,1].values)
+
+# 对cross validation数据进行预测
+predictions = clf.predict(split_cv.iloc[:,2:].values)
+
+# 交叉验证没有预测对的记录
+bad_cases = train_df_cv.loc[train_df_cv['PassengerId'].isin(split_cv[predictions != split_cv.iloc[:,1].values]['PassengerId'].values)]
+print(bad_cases)
+```
+
+输出：
+
+|      | PassengerId | Survived | Age*Class | Pclass_1 | Pclass_2 |
+| ---: | ----------: | -------: | --------: | -------: | -------: |
+|   14 |          15 |        0 |         0 |        0 |        0 |
+|   18 |          19 |        0 |         3 |        0 |        0 |
+|   30 |          31 |        0 |         2 |        1 |        0 |
+|   40 |          41 |        0 |         6 |        0 |        0 |
+|   49 |          50 |        0 |         3 |        0 |        0 |
+|   55 |          56 |        1 |         2 |        1 |        0 |
+|   64 |          65 |        0 |         2 |        1 |        0 |
+|   65 |          66 |        1 |         3 |        0 |        0 |
+|   85 |          86 |        1 |         6 |        0 |        0 |
+
+观察这些预测错误的记录，提出新的优化方向，继续尝试挖掘，可能还可以想到更多可以细挖的部分。将新的特征和已有特征组合在一起，查看模型预测准确度是否有所提升，继续迭代下去。
+
+### 模型状态判断
+
+> 欠拟合or过拟合
+
+当我们不断地丰富特征时，模型对训练集拟合越来越好，有可能同时在丧失泛华能力，对测试集变现不佳，存在过拟合问题。而我们最终的目的是希望我们训练的出来的模型，不仅能对训练数据集有很好的预测效果，更希望它对测试数据集也有很好的预测效果。过拟合问题是机器学习建模过程中常见的问题。
+
+实际上，如果模型在测试集上表现不佳，除了过拟合问题，也有可能出现欠拟合问题，也就是说在训练集上，其实拟合的也不是那么好。
+
+#### 什么是欠拟合/过拟合
+
+- **过拟合**就像是你班那个学数学比较刻板的同学，老师讲过的题目，一字不漏全记下来了，于是老师再出一样的题目，分分钟精确出结果。但数学考试，因为总是碰到新题目，所以成绩不咋地。
+- **欠拟合**就像是连老师讲的练习题也记不住的同学，于是连老师出一样题目复习的周测都做不好，考试更是可想而知了。
+  配图来解决也许更直观。
+
+#### 如何处理过拟合
+
+对过拟合而言，通常以下策略对结果优化是有用的：
+
+1. 进行特征选择，挑出较好的特征的子集进行训练。
+2. 提供更多的数据，从而弥补原始数据的bias问题，学习到的模型也会更准确。
+
+#### 如何处理欠拟合
+
+通常需要增加更多的特征，使模型变得更复杂来提高准确度。
+
+#### 如何判断模型状态
+
+著名的 `learning curve` 可以帮我们判定我们的模型现在所处的状态。
+
+我们也可以把错误率替换成准确率（得分），得到另一种形式的`learning curve`（`sklearn` 里面是这么做的）。
+
+回到我们的问题，我们用`scikit-learn`里面的`learning_curve`来帮我们分辨我们模型的状态。
+举个例子，这里我们一起画一下我们最先得到的`baseline model`的`learning curve`。
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.model_selection import learning_curve
+
+# 用sklearn的learning_curve得到training_score和cv_score，使用matplotlib画出learning curve
+def plot_learning_curve(estimator, title, X, y, ylim=None, cv=None, n_jobs=1, 
+                        train_sizes=np.linspace(.05, 1., 20), verbose=0, plot=True): # train_sizes训练集占数据的比例
+    """
+    画出data在某模型上的learning curve.
+    参数解释
+    ----------
+    estimator : 你用的分类器。
+    title : 表格的标题。
+    X : 输入的feature，numpy类型
+    y : 输入的target vector
+    ylim : tuple格式的(ymin, ymax), 设定图像中纵坐标的最低点和最高点
+    cv : 做cross-validation的时候，数据分成的份数，其中一份作为cv集，其余n-1份作为training(默认为3份)
+    n_jobs : 并行的的任务数(默认1)
+    """
+    train_sizes, train_scores, test_scores = learning_curve(
+        estimator, X, y, cv=cv, n_jobs=n_jobs, train_sizes=train_sizes, verbose=verbose)
+
+    train_scores_mean = np.mean(train_scores, axis=1)
+    train_scores_std = np.std(train_scores, axis=1)
+    test_scores_mean = np.mean(test_scores, axis=1)
+    test_scores_std = np.std(test_scores, axis=1)
+
+    if plot:
+        plt.figure()
+        plt.title(title)
+        if ylim is not None:
+            plt.ylim(*ylim)
+        plt.xlabel(u"training_sample")
+        plt.ylabel(u"cv_sample")
+        plt.gca().invert_yaxis()
+        plt.grid()
+
+        plt.fill_between(train_sizes, train_scores_mean - train_scores_std, train_scores_mean + train_scores_std, 
+                         alpha=0.1, color="b")
+        plt.fill_between(train_sizes, test_scores_mean - test_scores_std, test_scores_mean + test_scores_std, 
+                         alpha=0.1, color="r")
+        plt.plot(train_sizes, train_scores_mean, 'o-', color="b", label=u"train_scores")
+        plt.plot(train_sizes, test_scores_mean, 'o-', color="r", label=u"cv_scores")
+
+        plt.legend(loc="best")
+
+        plt.draw()
+        plt.show()
+        plt.gca().invert_yaxis()
+
+    midpoint = ((train_scores_mean[-1] + train_scores_std[-1]) + (test_scores_mean[-1] - test_scores_std[-1])) / 2
+    diff = (train_scores_mean[-1] + train_scores_std[-1]) - (test_scores_mean[-1] - test_scores_std[-1])
+    return midpoint, diff
+
+plot_learning_curve(clf, u"learning curve", X_train, Y_train)
+```
+
+![img](assets/img.png)
+
+
+
+在实际数据上看，我们得到的`learning curve`没有理论推导的那么光滑哈，但是可以大致看出来，训练集和交叉验证集上的得分曲线走势还是符合预期的。
+
+目前的曲线看来，我们的`model`并不处于`overfitting`的状态（`overfitting`的表现一般是训练集上得分高，而交叉验证集上要低很多，中间的`gap`比较大）。因此我们可以再做些`feature engineering`的工作，添加一些新产出的特征或者组合特征到模型中。
+
+### 模型融合
+
+#### 什么是模型融合
+
+模型融合是机器学习/数据挖掘中经常使用到的一个利器，它通常可以在各种不同的机器学习任务中使结果获得提升。顾名思义，模型融合就是综合考虑不同模型的情况，并将它们的结果融合到一起。
+
+> 举个例子来说，你和你班某数学大神关系好，每次作业都『模仿』他的，于是绝大多数情况下，他做对了，你也对了。突然某一天大神脑子犯糊涂，手一抖，写错了一个数，于是…恩，你也只能跟着错了。
+> 我们再来看看另外一个场景，你和你班5个数学大神关系都很好，每次都把他们作业拿过来，对比一下，再『自己做』，那你想想，如果哪天某大神犯糊涂了，写错了，但另外四个写对了啊，那你肯定相信另外4人的是正确答案吧？
+
+最简单的模型融合大概就是这么个意思，比如分类问题，当我们手头上有一堆在同一份数据集上训练得到的分类器(比如`logistic regression`，`SVM`，`KNN`，`random forest`，神经网络)，那我们让他们都分别去做判定，然后对结果做投票统计，取票数最多的结果为最后结果。
+
+#### 模型融合的作用
+
+模型融合可以比较好地缓解，训练过程中产生的过拟合问题，从而对于结果的准确度提升有一定的帮助。
+
+### 总结
+
+在后面的项目作业中，希望大家可以按照这个步骤去处理和分析数据。当然，这个项目不能可能学习所有处理各类问题的技巧和方法，但是最基础最主要的内容都已经通过结构化和流程化的方式放在这里了，希望未来遇到自己无法处理的问题，能够合理使用搜索工具，找到解决方案。当然，在Titanic比赛的Kaggle主页，还介绍了一些其他的更高级的方法。感兴趣的同学可以进一步自行阅读和实践。
+有一些内容我们没有讲到，或者没有系统的讲完整的（如下），希望大家能够在实践中不断学习，并完善自己的知识体系。
+
+1. 变量选择
+2. 模型评估
+3. 模型选择
+4. 模型选择
