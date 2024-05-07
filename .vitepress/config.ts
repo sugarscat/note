@@ -18,11 +18,18 @@ export default defineConfig({
     ],
     [
       "link",
-      { rel: "stylesheet", href: "/assets/css/fancybox.css" },
+      { rel: "stylesheet", href: "/assets/libs/fancybox/fancybox.css" },
     ],
     [
       "link",
-      { rel: "stylesheet", href: "/assets/css/katex.min.css" },
+      { rel: "stylesheet", href: "/assets/libs/katex/katex.min.css" },
+    ],
+    [
+      "link",
+      { 
+        rel: "stylesheet", 
+        href: "https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css" 
+      },
     ],
     [
       "script",

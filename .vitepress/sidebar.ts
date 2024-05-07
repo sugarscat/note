@@ -72,7 +72,12 @@ export default  [
             items: [
               {
                 text: '数据分析与可视化工具', 
-                link: '/code/MachineLearning/GettingStarted/DataAnalysis.md'},
+                link: '/code/MachineLearning/GettingStarted/DataAnalysis.md'
+              },
+              {
+                text: '深度学习', 
+                link: '/code/MachineLearning/GettingStarted/DeepLearning.md'
+              },
             ]
           }
         ]
