@@ -4426,7 +4426,7 @@ pd.crosstab(train_df['Title'], train_df['Survived'])
 # 将有相同title的文本进行替换，或者归为Rare类
 # 对于当时外国称呼的说明，可以参考：https://zhidao.baidu.com/question/591037721.html
 for dataset in combine:
-    dataset['Title'] = dataset['Title'].replace(['Lady' ,'Capt', 'Col',\
+    dataset['Title'] = dataset['Title'].replace(['Lady' ,'Capt', 'Col',
     'Don', 'Dr', 'Major', 'Rev', 'Sir', 'Jonkheer', 'Dona'], 'Rare')
 
     dataset['Title'] = dataset['Title'].replace(['Mlle', 'Ms'], 'Miss')
@@ -4895,3 +4895,7 @@ plot_learning_curve(clf, u"learning curve", X_train, Y_train)
 2. 模型评估
 3. 模型选择
 4. 模型选择
+
+## Gensim自然语言处理库
+
+## NLTK自然语言处理
