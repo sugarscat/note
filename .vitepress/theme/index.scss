@@ -38,6 +38,10 @@ html {
 .VPLocalNavOutlineDropdown .items,
 .VPSidebar{
     scrollbar-width: thin;
+
+    .curtain {
+        background-color: transparent;
+    }
 }
 
 .VPLocalNavOutlineDropdown .items {
@@ -71,6 +75,20 @@ html {
     backdrop-filter: saturate(180%) blur(20px);
     background: rgba(251,251,253,.7) !important;
 }
+
+.VPNavBar {
+    .divider .divider-line {
+        height: 0;
+        border-bottom: 1px solid var(--vp-c-divider);
+    }
+
+    &.home {
+        .divider .divider-line {
+            height: 0;
+            border-bottom: 0 solid var(--vp-c-divider);
+        }
+    }
+} 
 
 .dark {
     .VPLocalNav,
