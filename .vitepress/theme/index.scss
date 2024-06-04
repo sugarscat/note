@@ -253,3 +253,9 @@ code {
         opacity: 1;
     }
 }
+
+.katex-display {
+    /* 设置溢出行为为自动添加滚动条 */
+    overflow: auto;
+    scrollbar-width: thin;
+}
