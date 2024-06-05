@@ -1,5 +1,35 @@
 # Git
 
+## 提交规范
+
+### 主要 type
+
+`feat`：增加新功能；
+
+`fix`：修复 `bug`；
+
+### 特殊 type
+
+`docs`：只改动了文档相关的内容；
+
+`style`：不影响代码含义的改动，例如去掉空格、改变缩进、增删分号；
+
+`build`：构造工具的或者外部依赖的改动，例如 `webpack`，`npm`；
+
+`refactor`：代码重构时使用；
+
+`revert`：执行 `git revert` 打印的 `message`；
+
+### 暂不使用 type
+
+`test`：添加测试或者修改现有测试；
+
+`perf`：提高性能的改动；
+
+`ci`：与 `CI` 相关的指令；
+
+`chore`：不修改 `src` 或者 `test` 的其余修改，例如构建过程或辅助工具的变动。
+
 ## 初始化
 
 ### 在当前目录中初始化一个新的 Git 仓库
@@ -36,7 +66,7 @@ git init <directory>
 
 ## 克隆
 
-### 将指定的 Git 仓库复制到当前目录下的一个新目录中
+### 将指定的 Git 仓库复制到当前目录下
 
 ```shell
 git clone <repository>
@@ -106,13 +136,13 @@ git clone <repository> <directory>
 git remote add [remote_name] [remote_url]
 ```
 
-### 查看远程仓库的详细信息，包括名称和 URL
+### 查看远程仓库的详细信息
 
 ```shell
 git remote -v
 ```
 
-### 将一个远程仓库重命名为另一个名称
+### 重命名一个远程仓库
 
 ```shell
 git remote rename [old_name] [new_name]
@@ -124,7 +154,7 @@ git remote rename [old_name] [new_name]
 git remote remove [remote_name]
 ```
 
-### 显示一个远程仓库的详细信息，包括分支的跟踪关系
+### 显示一个远程仓库的详细信息
 
 ```shell
 git remote show [remote_name]
@@ -297,7 +327,7 @@ git config user.email "your_email@example.com"
 git commit
 ```
 
-### 在提交时添加提交信息，而不需要打开默认编辑器。
+### 在提交时添加提交信息
 
 ```shell
 git commit -m "<message>"
@@ -357,7 +387,7 @@ git commit -m "<message>"
 git fetch
 ```
 
-### 指定的远程存储库获取所有分支的最新提交
+### 获取指定的远程存储库的所有分支的最新提交
 
 从指定的远程存储库获取所有分支的最新提交，并将它们下载到本地存储库中。
 
@@ -365,7 +395,7 @@ git fetch
 git fetch <remote>
 ```
 
-### 指定的远程存储库获取指定分支的最新提交
+### 获取指定的远程存储库的指定分支的最新提交
 
 从指定的远程存储库获取指定分支的最新提交，并将它们下载到本地存储库中。
 
@@ -415,13 +445,13 @@ git fetch <remote> <branch>
 git pull
 ```
 
-### 指定远程仓库拉取最新的代码
+### 拉取指定远程仓库的最新的代码
 
 ```shell
 git pull <remote>
 ```
 
-### 指定远程分支拉取最新的代码
+### 拉取指定远程分支的最新的代码
 
 ```shell
 git pull <remote> <branch>
