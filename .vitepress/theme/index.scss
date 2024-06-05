@@ -9,7 +9,11 @@
     --vp-c-brand-2: #ce7e7e;
     --vp-c-brand-3: #ce8e8e;
 }
-  
+
+* {
+    scrollbar-width: thin !important;
+}
+
 .dark {
     --color-neutral4: #26292b;
     --color-neutral8: #4c5155;
@@ -257,5 +261,4 @@ code {
 .katex-display {
     /* 设置溢出行为为自动添加滚动条 */
     overflow: auto;
-    scrollbar-width: thin;
 }
