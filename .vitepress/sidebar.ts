@@ -82,6 +82,8 @@ export default  [
           }
         ]
       },
+      {text:'C#教程', link: '/code/CSharp.md'},
+
     ]
   },
   {
@@ -171,7 +173,7 @@ export default  [
     items: [
       {text: vscodeIcon + 'VS Code 基本使用', link: '/tools/vs-code.md'},
       {text: keyboardIcon + '腹灵F12 68键 RGB', link: '/tools/F12.md'},
-
+      {text: keyboardIcon + '高漫数位板', link: '/tools/Gaomon.md'},
     ]
   },
 ]
