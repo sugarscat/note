@@ -164,7 +164,7 @@ export default  [
     collapsed: true,
     items: [
       {text: blenderIcon + 'Blender 建模', link: '/design/Blender.md'},
-
+      {text: '绘画', link: '/design/Painting.md'},
     ]
   },{
     text: toolIcon + '工具',
