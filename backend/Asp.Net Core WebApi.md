@@ -26,19 +26,3 @@
 
 ![image-20240628164319552](assets/image-20240628164319552.png)
 
-## 基础教程
-
-### 使用的API
-
-| API                          | 描述             | 请求正文 | 响应正文       |
-| ---------------------------- | ---------------- | -------- | -------------- |
-| `GET /api/todoitems`         | 获取所有待办事项 | None     | 待办事项的数组 |
-| `GET /api/todoitems/{id}`    | 按 ID 获取项     | None     | 待办事项       |
-| `POST /api/todoitems`        | 添加新项         | 待办事项 | 待办事项       |
-| `PUT /api/todoitems/{id}`    | 更新现有项       | 待办事项 | None           |
-| `DELETE /api/todoitems/{id}` | 删除项           | None     | None           |
-
-### 应用设计
-
-![image-20240628164848894](assets/image-20240628164848894.png)
-
