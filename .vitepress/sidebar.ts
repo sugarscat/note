@@ -129,6 +129,16 @@ export default  [
     items: [
       {text: earthIcon + '语言代码表', link: '/frontend/LanguageCode.md'},
       {text: vueIcon + 'Vue', link: '/frontend/Vue.md'},
+      {
+        text: 'React', 
+        collapsible: true,
+        collapsed: true,
+        items: [
+          {text: "基础入门", link: '/frontend/React/React.md'},
+          {text: "React 路由", link: '/frontend/React/ReactRouter.md'},
+          {text: "Redux 状态管理", link: '/frontend/React/Redux.md'},
+        ]
+      },
       {text: hmosIcon + 'ArkTS', link: '/frontend/ArkTS.md'},
     ]
   },
@@ -164,7 +174,7 @@ export default  [
     collapsed: true,
     items: [
       {text: blenderIcon + 'Blender 建模', link: '/design/Blender.md'},
-
+      {text: '绘画', link: '/design/Painting.md'},
     ]
   },{
     text: toolIcon + '工具',
