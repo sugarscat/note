@@ -2313,3 +2313,186 @@ func main() {
 ### Type Switch
 
 `switch` 语句还可以被用于 `type-switch` 来判断某个 `interface` 变量中实际存储的变量类型。
+
+#### 语法
+
+```go
+switch x.(type){
+    case type:
+       statement(s)      
+    case type:
+       statement(s)
+    /* 你可以定义任意个数的case */
+    default: /* 可选 */
+       statement(s)
+}
+```
+
+#### 示例
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+    var x interface{}
+    //写法一：
+    switch i := x.(type) { // 带初始化语句
+    case nil:
+        fmt.Printf(" x 的类型 :%T\r\n", i)
+    case int:
+        fmt.Printf("x 是 int 型")
+    case float64:
+        fmt.Printf("x 是 float64 型")
+    case func(int) float64:
+        fmt.Printf("x 是 func(int) 型")
+    case bool, string:
+        fmt.Printf("x 是 bool 或 string 型")
+    default:
+        fmt.Printf("未知型")
+    }
+    //写法二
+    var j = 0
+    switch j {
+    case 0:
+    case 1:
+        fmt.Println("1")
+    case 2:
+        fmt.Println("2")
+    default:
+        fmt.Println("def")
+    }
+    //写法三
+    var k = 0
+    switch k {
+    case 0:
+        println("fallthrough")
+        fallthrough
+        /*
+            Go的switch非常灵活，表达式不必是常量或整数，执行的过程从上至下，直到找到匹配项；
+            而如果switch没有表达式，它会匹配true。
+            Go里面switch默认相当于每个case最后带有break，
+            匹配成功后不会自动向下执行其他case，而是跳出整个switch,
+            但是可以使用fallthrough强制执行后面的case代码。
+        */
+    case 1:
+        fmt.Println("1")
+    case 2:
+        fmt.Println("2")
+    default:
+        fmt.Println("def")
+    }
+    //写法三
+    var m = 0
+    switch m {
+    case 0, 1:
+        fmt.Println("1")
+    case 2:
+        fmt.Println("2")
+    default:
+        fmt.Println("def")
+    }
+    //写法四
+    var n = 0
+    switch { //省略条件表达式，可当 if...else if...else
+    case n > 0 && n < 10:
+        fmt.Println("i > 0 and i < 10")
+    case n > 10 && n < 20:
+        fmt.Println("i > 10 and i < 20")
+    default:
+        fmt.Println("def")
+    }
+}
+```
+
+以上代码执行结果为：
+
+```
+x 的类型 :<nil>
+fallthrough
+1
+1
+def
+```
+
+### 条件语句 select
+
+#### 语法
+
+```go
+select {
+    case communication clause  :
+       statement(s);      
+    case communication clause  :
+       statement(s);
+    /* 你可以定义任意数量的 case */
+    default : /* 可选 */
+       statement(s);
+}
+```
+
+1. 每个 `case` 都必须是一个通信
+2. 所有 `channel` 表达式都会被求值
+3. 所有被发送的表达式都会被求值
+4. 如果任意某个通信可以进行，它就执行；其他被忽略。
+5. 如果有多个 `case` 都可以运行，`Select` 会随机公平地选出一个执行。其他不会执行。
+6. 如果有 `default` 子句，则执行该语句。
+7. 如果没有 `default` 字句，`select` 将阻塞，直到某个通信可以运行；Go不会重新对 `channel` 或值进行求值。
+
+#### 示例
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+   var c1, c2, c3 chan int
+   var i1, i2 int
+   select {
+      case i1 = <-c1:
+         fmt.Printf("received ", i1, " from c1\n")
+      case c2 <- i2:
+         fmt.Printf("sent ", i2, " to c2\n")
+      case i3, ok := (<-c3):  // same as: i3, ok := <-c3
+         if ok {
+            fmt.Printf("received ", i3, " from c3\n")
+         } else {
+            fmt.Printf("c3 is closed\n")
+         }
+      default:
+         fmt.Printf("no communication\n")
+   }    
+}
+```
+
+以上代码执行结果为：
+
+```
+no communication
+```
+
+`select` 可以监听 `channel` 的数据流动
+
+`select` 的用法与 `switch` 语法非常类似，由 `select` 开始的一个新的选择块，每个选择条件由 `case` 语句来描述
+
+与 `switch` 语句可以选择任何使用相等比较的条件相比，`select` 由比较多的限制，其中最大的一条限制就是每个 `case` 语句里必须是一个 `IO` 操作
+
+```go
+select { //不停的在这里检测
+    case <- chanl : //检测有没有数据可以读
+    //如果chanl成功读取到数据，则进行该case处理语句
+    case chan2 <- 1 : //检测有没有可以写
+    //如果成功向chan2写入数据，则进行该case处理语句
+
+
+    //假如没有default，那么在以上两个条件都不成立的情况下，就会在此阻塞//一般default会不写在里面，select中的default子句总是可运行的，因为会很消耗CPU资源
+    default:
+    //如果以上都没有符合条件，那么则进行default处理流程
+}
+```
+
+在一个 `select` 语句中，Go 会按顺序从头到尾评估每一个发送和接收的语句。
+
+如果其中的任意一个语句可以继续执行（即没有被阻塞），那么就从那些可以执行的语句中任意选择一条来使用。 如果没有任意一条语句可以执行（即所有的通道都被阻塞），那么有两种可能的情况： ①如果给出了 `default` 语句，那么就会执行`default` 的流程，同时程序的执行会从 `select` 语句后的语句中恢复。 ②如果没有 `default` 语句，那么 `select` 语句将被阻塞，直到至少有一个 `case` 可以进行下去。
