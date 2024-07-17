@@ -92,6 +92,14 @@ export default  [
     collapsed: true,
     items: [
       {
+        text: 'Go 语言',
+        collapsible: true,
+        collapsed: true,
+        items: [
+          {text: 'Go 快速入门', link: '/backend/go/Go.md'},
+        ]
+      },
+      {
         text: javaIcon + 'Java',
         collapsible: true,
         collapsed: true,

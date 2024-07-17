@@ -115,6 +115,27 @@ html {
     height: 25px;
 }
 
+// 侧边目录
+#VPSidebarNav {
+    .group {
+        border-top: none !important;
+        padding: 5px 10px !important;
+        border-radius: 10px;
+
+        transition: all .2s ease-in-out;
+        margin-top: 5px;
+
+        &:hover {
+            background-color: var(--color-neutral4);
+        }
+
+        &:has(.is-active) {
+            background-color: var(--color-neutral4);
+        }
+    }
+}
+
+// 侧边目录 Item
 .VPSidebarItem {
     --gap: 3px;
 
@@ -131,6 +152,10 @@ html {
             width: 25px;
             height: 25px;
         }
+    }
+
+    &.level-0 {
+        padding-bottom: 0 !important;
     }
 
     &.level-1 {
@@ -258,7 +283,15 @@ code {
     }
 }
 
+// 公式区
 .katex-display {
     /* 设置溢出行为为自动添加滚动条 */
     overflow: auto;
+}
+
+// 正文
+.content {
+    h4, h5, h6 {
+        margin-top: 10px;
+    }
 }

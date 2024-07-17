@@ -12,9 +12,10 @@
 
         },
         {
+            // 启动默认浏览器
             "type": "chrome",
             "request": "launch",
-            "name": "启动 Chrome",
+            "name": "访问页面",
             "url": "http://localhost:2233",
             "webRoot": "${workspaceFolder}"
         }
