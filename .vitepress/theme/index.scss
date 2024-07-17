@@ -119,7 +119,7 @@ html {
 #VPSidebarNav {
     .group {
         border-top: none !important;
-        padding: 5px !important;
+        padding: 5px 10px !important;
         border-radius: 10px;
 
         transition: all .2s ease-in-out;
@@ -283,7 +283,15 @@ code {
     }
 }
 
+// 公式区
 .katex-display {
     /* 设置溢出行为为自动添加滚动条 */
     overflow: auto;
+}
+
+// 正文
+.content {
+    h4, h5, h6 {
+        margin-top: 10px;
+    }
 }
