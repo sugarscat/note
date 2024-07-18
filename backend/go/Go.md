@@ -2496,3 +2496,1733 @@ select { //不停的在这里检测
 在一个 `select` 语句中，Go 会按顺序从头到尾评估每一个发送和接收的语句。
 
 如果其中的任意一个语句可以继续执行（即没有被阻塞），那么就从那些可以执行的语句中任意选择一条来使用。 如果没有任意一条语句可以执行（即所有的通道都被阻塞），那么有两种可能的情况： ①如果给出了 `default` 语句，那么就会执行`default` 的流程，同时程序的执行会从 `select` 语句后的语句中恢复。 ②如果没有 `default` 语句，那么 `select` 语句将被阻塞，直到至少有一个 `case` 可以进行下去。
+
+#### 用法 - 超时判断
+
+比如在下面的场景中，使用全局 `resChan` 来接受 `response`，如果时间超过 `3S`，`resChan` 中还没有数据返回，则第二条 `case` 将执行。
+
+```go
+var resChan = make(chan int)
+// do request
+func test() {
+    select {
+    case data := <-resChan:
+        doData(data)
+    case <-time.After(time.Second * 3):
+        fmt.Println("request time out")
+    }
+}
+
+func doData(data int) {
+    //...
+}
+```
+
+#### 用法 - 退出
+
+```go
+// 主线程（协程）中如下：
+var shouldQuit=make(chan struct{})
+fun main(){
+    {
+        // loop
+    }
+    // ...out of the loop
+    select {
+        case <-c.shouldQuit:
+            cleanUp()
+            return
+        default:
+        }
+    // ...
+}
+
+// 再另外一个协程中，如果运行遇到非法操作或不可处理的错误，就向shouldQuit发送数据通知程序停止运行
+close(shouldQuit)
+```
+
+#### 用法 - 判断channel是否阻塞
+
+```go
+// 在某些情况下是存在不希望channel缓存满了的需求的，可以用如下方法判断
+ch := make (chan int, 5)
+// ...
+data：=0
+select {
+case ch <- data:
+default:
+    // 做相应操作，比如丢弃data。视需求而定
+}
+```
+
+### 循环语句for
+
+#### 语法
+
+Go语言的 `For` 循环有三种形式，只有其中的一种使用分号。
+
+```go
+for init; condition; post { }
+for condition { }
+for { }
+```
+
+- `init`： 一般为赋值表达式，给控制变量赋初值；
+- `condition`： 关系表达式或逻辑表达式，循环控制条件；
+- `post`： 一般为赋值表达式，给控制变量增量或减量。
+
+`for` 语句执行过程如下：
+    1. 先对表达式 `init` 赋初值；
+        2. 判别赋值表达式 `init` 是否满足给定 `condition` 条件，若其值为真，满足循环条件，则执行循环体内语句，然后执行 `post`，进入第二次循环，再判别 `condition`；否则判断 `condition` 的值为假，不满足条件，就终止 `for` 循环，执行循环体外语句。
+
+```go
+s := "abc"
+
+for i, n := 0, len(s); i < n; i++ { // 常见的 for 循环，支持初始化语句。
+    println(s[i])
+}
+
+n := len(s)
+for n > 0 {                // 替代 while (n > 0) {}
+    println(s[n])        // 替代 for (; n > 0;) {}
+    n-- 
+}
+
+for {                    // 替代 while (true) {}
+    println(s)            // 替代 for (;;) {}
+}
+```
+
+不要期望编译器能理解你的想法，在初始化语句中计算出全部结果是个好主意。
+
+```go
+package main
+
+func length(s string) int {
+    println("call length.")
+    return len(s)
+}
+
+func main() {
+    s := "abcd"
+
+    for i, n := 0, length(s); i < n; i++ {     // 避免多次调用 length 函数。
+        println(i, s[i])
+    } 
+}
+```
+
+输出:
+
+```
+call length.
+0 97
+1 98
+2 99
+3 100
+```
+
+#### 示例
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+
+   var b int = 15
+   var a int
+
+   numbers := [6]int{1, 2, 3, 5}
+
+   /* for 循环 */
+   for a := 0; a < 10; a++ {
+      fmt.Printf("a 的值为: %d\n", a)
+   }
+
+   for a < b {
+      a++
+      fmt.Printf("a 的值为: %d\n", a)
+      }
+
+   for i,x:= range numbers {
+      fmt.Printf("第 %d 位 x 的值 = %d\n", i,x)
+   }   
+}
+```
+
+以上实例运行输出结果为:
+
+```
+a 的值为: 0
+a 的值为: 1
+a 的值为: 2
+a 的值为: 3
+a 的值为: 4
+a 的值为: 5
+a 的值为: 6
+a 的值为: 7
+a 的值为: 8
+a 的值为: 9
+a 的值为: 1
+a 的值为: 2
+a 的值为: 3
+a 的值为: 4
+a 的值为: 5
+a 的值为: 6
+a 的值为: 7
+a 的值为: 8
+a 的值为: 9
+a 的值为: 10
+a 的值为: 11
+a 的值为: 12
+a 的值为: 13
+a 的值为: 14
+a 的值为: 15
+第 0 位 x 的值 = 1
+第 1 位 x 的值 = 2
+第 2 位 x 的值 = 3
+第 3 位 x 的值 = 5
+第 4 位 x 的值 = 0
+第 5 位 x 的值 = 0
+```
+
+### 循环嵌套
+
+在 `for` 循环中嵌套一个或多个 `for` 循环
+
+#### 语法
+
+以下为 Go 语言嵌套循环的格式：
+
+```go
+for [condition |  ( init; condition; increment ) | Range]
+{
+   for [condition |  ( init; condition; increment ) | Range]
+   {
+      statement(s)
+   }
+   statement(s)
+}
+```
+
+#### 示例
+
+以下实例使用循环嵌套来输出 2 到 100 间的素数：
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+   /* 定义局部变量 */
+   var i, j int
+
+   for i=2; i < 100; i++ {
+      for j=2; j <= (i/j); j++ {
+         if(i%j==0) {
+            break // 如果发现因子，则不是素数
+         }
+      }
+      if(j > (i/j)) {
+         fmt.Printf("%d  是素数\n", i)
+      }
+   }  
+}
+```
+
+### 循环语句range
+
+`Golang range` 类似迭代器操作，返回 (索引, 值) 或 (键, 值)。
+
+`for` 循环的 `range` 格式可以对 `slice`、`map`、数组、字符串等进行迭代循环。
+
+#### 语法
+
+```go
+for key, value := range oldMap {
+    newMap[key] = value
+}
+```
+
+|               | 第一个值  | 第二个值   |                   |
+| ------------- | --------- | ---------- | ----------------- |
+| `string`      | `index`   | `s[index]` | `unicode`, `rune` |
+| `array/slice` | `index`   | `s[index]` |                   |
+| `map`         | `key`     | `m[key]`   |                   |
+| `channel`     | `element` |            |                   |
+
+可忽略不想要的返回值，或 `"_"` 这个特殊变量。
+
+#### 示例
+
+```go
+package main
+
+func main() {
+    s := "abc"
+    // 忽略 2nd value，支持 string/array/slice/map。
+    for i := range s {
+        println(s[i])
+    }
+    // 忽略 index。
+    for _, c := range s {
+        println(c)
+    }
+    // 忽略全部返回值，仅迭代。
+    for range s {
+
+    }
+
+    m := map[string]int{"a": 1, "b": 2}
+    // 返回 (key, value)。
+    for k, v := range m {
+        println(k, v)
+    }
+}
+```
+
+输出结果：
+
+```
+97
+98
+99
+97
+98
+99
+a 1
+b 2
+```
+
+:::warning 注意
+
+`range` 会复制对象。
+
+:::
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+    a := [3]int{0, 1, 2}
+
+    for i, v := range a { // index、value 都是从复制品中取出。
+
+        if i == 0 { // 在修改前，我们先修改原数组。
+            a[1], a[2] = 999, 999
+            fmt.Println(a) // 确认修改有效，输出 [0, 999, 999]。
+        }
+
+        a[i] = v + 100 // 使用复制品中取出的 value 修改原数组。
+
+    }
+
+    fmt.Println(a) // 输出 [100, 101, 102]。
+}
+```
+
+输出结果：
+
+```
+[0 999 999]
+[100 101 102]
+```
+
+建议改用引用类型，其底层数据不会被复制。
+
+```go
+package main
+
+func main() {
+    s := []int{1, 2, 3, 4, 5}
+
+    for i, v := range s { // 复制 struct slice { pointer, len, cap }。
+
+        if i == 0 {
+            s = s[:3]  // 对 slice 的修改，不会影响 range。
+            s[2] = 100 // 对底层数据的修改。
+        }
+
+        println(i, v)
+    }
+}
+```
+
+输出结果:
+
+```
+0 1
+1 2
+2 100
+3 4
+4 5
+```
+
+另外两种引用类型 `map`、`channel` 是指针包装，而不像 `slice` 是 `struct`。
+
+### Goto、Break、Continue
+
+1. 三个语句都可以配合标签(`label`)使用
+2. 标签名区分大小写，定以后若不使用会造成编译错误
+3. `continue`、`break` 配合标签(`label`)可用于多层循环跳出
+4. `goto` 是调整执行位置，与 `continue`、`break` 配合标签(`label`)的结果并不相同
+
+## 函数
+
+### 函数特点
+
+- 无需声明原型。
+- 支持不定 变参。
+- 支持多返回值。
+- 支持命名返回参数。 
+- 支持匿名函数和闭包。
+- 函数也是一种类型，一个函数可以赋值给变量。
+- 不支持嵌套 (`nested`) 一个包不能有两个名字一样的函数。
+- 不支持重载 (`overload`) 
+- 不支持默认参数 (`default parameter`)。
+
+### 函数参数
+
+函数定义时指出，函数定义时有参数，该变量可称为函数的形参。形参就像定义在函数体内的局部变量。
+
+但当调用函数，传递过来的变量就是函数的实参，函数可以通过两种方式来传递参数：
+
+1. 值传递：指在调用函数时将实际参数复制一份传递到函数中，这样在函数中如果对参数进行修改，将不会影响到实际参数。
+
+   ```go
+   func swap(x, y int) int {
+      ... ...
+   }
+   ```
+
+2. 引用传递：是指在调用函数时将实际参数的地址传递到函数中，那么在函数中对参数所进行的修改，将影响到实际参数。
+
+   ```go
+   package main
+   
+   import (
+       "fmt"
+   )
+   
+   /* 定义相互交换值的函数 */
+   func swap(x, y *int) {
+       var temp int
+   
+       temp = *x /* 保存 x 的值 */
+       *x = *y   /* 将 y 值赋给 x */
+       *y = temp /* 将 temp 值赋给 y*/
+   
+   }
+   
+   func main() {
+       var a, b int = 1, 2
+       /*
+           调用 swap() 函数
+           &a 指向 a 指针，a 变量的地址
+           &b 指向 b 指针，b 变量的地址
+       */
+       swap(&a, &b)
+   
+       fmt.Println(a, b)
+   }
+   ```
+
+   输出结果：
+
+   ```
+   2 1
+   ```
+
+在默认情况下，Go 语言使用的是值传递，即在调用过程中不会影响到实际参数。
+
+:::warning 注意
+
+1. 无论是值传递，还是引用传递，传递给函数的都是变量的副本，不过，值传递是值的拷贝。引用传递是地址的拷贝，一般来说，地址拷贝更为高效。而值拷贝取决于拷贝的对象大小，对象越大，则性能越低。
+2. `map`、`slice`、`chan`、指针、`interface` 默认以引用的方式传递。
+
+:::
+
+不定参数传值 就是函数的参数不是固定的，后面的类型是固定的。（可变参数）
+
+Golang 可变参数本质上就是 slice。只能有一个，且必须是最后一个。
+
+在参数赋值时可以不用用一个一个的赋值，可以直接传递一个数组或者切片，特别注意的是在参数后加上 `…` 即可。
+
+```go
+func myfunc(args ...int) {    //0个或多个参数
+}
+
+func add(a int, args…int) int {    //1个或多个参数
+}
+
+func add(a int, b int, args…int) int {    //2个或多个参数
+}
+```
+
+:::tip 注意
+
+其中 `args` 是一个 `slice`，我们可以通过 `arg[index]` 依次访问所有参数,通过 `len(arg)` 来判断传递参数的个数.
+
+:::
+
+任意类型的不定参数： 就是函数的参数和每个参数的类型都不是固定的。
+
+用 `interface{}` 传递任意类型数据是 Go 语言的惯例用法，而且 `interface{}` 是类型安全的。
+
+```go
+func myfunc(args ...interface{}) {
+  }
+```
+
+代码：
+
+```go
+package main
+
+import (
+    "fmt"
+)
+
+func test(s string, n ...int) string {
+    var x int
+    for _, i := range n {
+        x += i
+    }
+
+    return fmt.Sprintf(s, x)
+}
+
+func main() {
+    println(test("sum: %d", 1, 2, 3))
+}
+```
+
+输出结果：
+
+```
+sum: 6
+```
+
+使用 `slice` 对象做变参时，必须展开。`（slice...）`
+
+```go
+package main
+
+import (
+    "fmt"
+)
+
+func test(s string, n ...int) string {
+    var x int
+    for _, i := range n {
+        x += i
+    }
+
+    return fmt.Sprintf(s, x)
+}
+
+func main() {
+    s := []int{1, 2, 3}
+    res := test("sum: %d", s...)    // slice... 展开slice
+    println(res)
+}
+```
+
+### 函数返回值
+
+`_` 标识符，用来忽略函数的某个返回值
+
+Go 的返回值可以被命名，并且就像在函数体开头声明的变量那样使用。
+
+返回值的名称应当具有一定的意义，可以作为文档使用。
+
+没有参数的 `return` 语句返回各个返回变量的当前值。这种用法被称作“裸”返回。
+
+直接返回语句仅应当用在像下面这样的短函数中。在长的函数中它们会影响代码的可读性。
+
+```go
+package main
+
+import (
+    "fmt"
+)
+
+func add(a, b int) (c int) {
+    c = a + b
+    return
+}
+
+func calc(a, b int) (sum int, avg int) {
+    sum = a + b
+    avg = (a + b) / 2
+
+    return
+}
+
+func main() {
+    var a, b int = 1, 2
+    c := add(a, b)
+    sum, avg := calc(a, b)
+    fmt.Println(a, b, c, sum, avg)
+}
+```
+
+输出结果：
+
+```
+1 2 3 3 1
+```
+
+Golang返回值不能用容器对象接收多返回值。只能用多个变量，或 `_` 忽略。
+
+```go
+package main
+
+func test() (int, int) {
+    return 1, 2
+}
+
+func main() {
+    // s := make([]int, 2)
+    // s = test()   // Error: multiple-value test() in single-value context
+
+    x, _ := test()
+    println(x)
+}
+```
+
+输出结果：
+
+```
+1
+```
+
+多返回值可直接作为其他函数调用实参。
+
+```go
+package main
+
+func test() (int, int) {
+    return 1, 2
+}
+
+func add(x, y int) int {
+    return x + y
+}
+
+func sum(n ...int) int {
+    var x int
+    for _, i := range n {
+        x += i
+    }
+
+    return x
+}
+
+func main() {
+    println(add(test()))
+    println(sum(test()))
+}
+```
+
+输出结果：
+
+```
+3
+3
+```
+
+命名返回参数可看做与形参类似的局部变量，最后由 return 隐式返回。
+
+```go
+package main
+
+func add(x, y int) (z int) {
+    z = x + y
+    return
+}
+
+func main() {
+    println(add(1, 2))
+}
+```
+
+输出结果：
+
+```
+3
+```
+
+命名返回参数可被同名局部变量遮蔽，此时需要显式返回。
+
+```go
+func add(x, y int) (z int) {
+    { // 不能在一个级别，引发 "z redeclared in this block" 错误。
+        var z = x + y
+        // return   // Error: z is shadowed during return
+        return z // 必须显式返回。
+    }
+}
+```
+
+命名返回参数允许 defer 延迟调用通过闭包读取和修改。
+
+```go
+package main
+
+func add(x, y int) (z int) {
+    defer func() {
+        z += 100
+    }()
+
+    z = x + y
+    return
+}
+
+func main() {
+    println(add(1, 2)) 
+}
+```
+
+输出结果：
+
+```
+103
+```
+
+显式 return 返回前，会先修改命名返回参数。
+
+```go
+package main
+
+func add(x, y int) (z int) {
+    defer func() {
+        println(z) // 输出: 203
+    }()
+
+    z = x + y
+    return z + 200 // 执行顺序: (z = z + 200) -> (call defer) -> (return)
+}
+
+func main() {
+    println(add(1, 2)) // 输出: 203
+}
+```
+
+输出结果：
+
+```
+203
+203
+```
+
+### 匿名函数
+
+在Go里面，函数可以像普通变量一样被传递或使用，Go语言支持随时在代码里定义匿名函数。
+
+匿名函数由一个不带函数名的函数声明和函数体组成。匿名函数的优越性在于可以直接使用函数内的变量，不必申明。
+
+```go
+package main
+
+import (
+    "fmt"
+    "math"
+)
+
+func main() {
+    getSqrt := func(a float64) float64 {
+        return math.Sqrt(a)
+    }
+    fmt.Println(getSqrt(4))
+}
+```
+
+输出结果：
+
+```
+2
+```
+
+上面先定义了一个名为 `getSqrt` 的变量，初始化该变量时和之前的变量初始化有些不同，使用了 `func`，`func` 是定义函数的，可是这个函数和上面说的函数最大不同就是没有函数名，也就是匿名函数。这里将一个函数当做一个变量一样的操作。
+
+### 闭包
+
+```go
+package main
+
+import (
+    "fmt"
+)
+
+func a() func() int {
+    i := 0
+    b := func() int {
+        i++
+        fmt.Println(i)
+        return i
+    }
+    return b
+}
+
+func main() {
+    c := a()
+    c()
+    c()
+    c()
+
+    a() //不会输出i
+}
+```
+
+输出结果：
+
+```
+1
+2
+3
+```
+
+闭包复制的是原对象指针，这就很容易解释延迟引用现象。
+
+```go
+package main
+
+import "fmt"
+
+func test() func() {
+    x := 100
+    fmt.Printf("x (%p) = %d\n", &x, x)
+
+    return func() {
+        fmt.Printf("x (%p) = %d\n", &x, x)
+    }
+}
+
+func main() {
+    f := test()
+    f()
+}
+```
+
+输出:
+
+```
+x (0xc42007c008) = 100
+x (0xc42007c008) = 100
+```
+
+在汇编层 ，`test` 实际返回的是 `FuncVal` 对象，其中包含了匿名函数地址、闭包对象指针。当调 匿名函数时，只需以某个寄存器传递该对象即可。
+
+```
+FuncVal { func_address, closure_var_pointer ... }
+```
+
+外部引用函数参数局部变量
+
+```go
+package main
+
+import "fmt"
+
+// 外部引用函数参数局部变量
+func add(base int) func(int) int {
+    return func(i int) int {
+        base += i
+        return base
+    }
+}
+
+func main() {
+    tmp1 := add(10)
+    fmt.Println(tmp1(1), tmp1(2))
+    // 此时tmp1和tmp2不是一个实体了
+    tmp2 := add(100)
+    fmt.Println(tmp2(1), tmp2(2))
+}
+```
+
+返回2个闭包
+
+```go
+package main
+
+import "fmt"
+
+// 返回2个函数类型的返回值
+func test01(base int) (func(int) int, func(int) int) {
+    // 定义2个函数，并返回
+    // 相加
+    add := func(i int) int {
+        base += i
+        return base
+    }
+    // 相减
+    sub := func(i int) int {
+        base -= i
+        return base
+    }
+    // 返回
+    return add, sub
+}
+
+func main() {
+    f1, f2 := test01(10)
+    // base一直是没有消
+    fmt.Println(f1(1), f2(2))
+    // 此时base是9
+    fmt.Println(f1(3), f2(4))
+}
+```
+
+### 递归函数
+
+递归，就是在运行的过程中调用自己。 一个函数调用自己，就叫做递归函数。
+
+构成递归需具备的条件：
+
+1. 子问题须与原始问题为同样的事，且更为简单。
+2. 不能无限制地调用本身，须有个出口，化简为非递归状况处理。
+
+#### 数字阶乘
+
+一个正整数的阶乘（`factorial`）是所有小于及等于该数的正整数的积，并且 `0` 的阶乘为 `1`。自然数 `n` 的阶乘写作 `n!`。1808年，基斯顿·卡曼引进这个表示法。
+
+```go
+package main
+
+import "fmt"
+
+func factorial(i int) int {
+    if i <= 1 {
+        return 1
+    }
+    return i * factorial(i-1)
+}
+
+func main() {
+    var i int = 7
+    fmt.Printf("Factorial of %d is %d\n", i, factorial(i))
+}
+```
+
+输出结果：
+
+```
+Factorial of 7 is 5040
+```
+
+#### 斐波那契数列
+
+这个数列从第 `3` 项开始，每一项都等于前两项之和。
+
+```go
+package main
+
+import "fmt"
+
+func fibonaci(i int) int {
+    if i == 0 {
+        return 0
+    }
+    if i == 1 {
+        return 1
+    }
+    return fibonaci(i-1) + fibonaci(i-2)
+}
+
+func main() {
+    var i int
+    for i = 0; i < 10; i++ {
+        fmt.Printf("%d\n", fibonaci(i))
+    }
+}
+```
+
+输出结果：
+
+```
+0
+1
+1
+2
+3
+5
+8
+13
+21
+34
+```
+
+### 延迟调用
+
+>  defer
+
+#### defer 特性
+
+1. 关键字 defer 用于注册延迟调用。
+2. 这些调用直到 return 前才被执。因此，可以用来做资源清理。
+3. 多个defer语句，按先进后出的方式执行。
+4. defer语句中的变量，在defer声明时就决定了。
+
+#### defer 用途
+
+1. 关闭文件句柄
+2. 锁资源释放
+3. 数据库连接释放
+
+同时 `defer` 是先进后出
+
+这个很自然,后面的语句会依赖前面的资源，因此如果先前面的资源先释放了，后面的语句就没法执行了。
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+    var whatever [5]struct{}
+
+    for i := range whatever {
+        defer fmt.Println(i)
+    }
+}
+```
+
+输出结果：
+
+```
+4
+3
+2
+1
+0
+```
+
+#### defer 碰上闭包
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+    var whatever [5]struct{}
+    for i := range whatever {
+        defer func() { fmt.Println(i) }()
+    }
+}
+```
+
+输出结果：
+
+```
+    4
+    4
+    4
+    4
+    4
+```
+
+其实 `go` 说的很清楚：
+
+Each time a "defer" statement executes, the function value and  parameters to the call are evaluated as usualand saved a new but the  actual function is not invoked.
+
+也就是说函数正常执行，由于闭包用到的变量 `i` 在执行的时候已经变成 `4`，所以输出全都是 `4`。
+
+#### defer f.Close
+
+这个大家用的都很频繁，但是 go 语言编程举了一个可能一不小心会犯错的例子.
+
+```go
+package main
+
+import "fmt"
+
+type Test struct {
+    name string
+}
+
+func (t *Test) Close() {
+    fmt.Println(t.name, " closed")
+}
+func main() {
+    ts := []Test{{"a"}, {"b"}, {"c"}}
+    for _, t := range ts {
+        defer t.Close()
+    }
+}
+```
+
+输出结果：
+
+```
+c  closed
+c  closed
+c  closed
+```
+
+这个输出并不会像我们预计的输出 `c b a`，而是输出 `c c c`。
+
+可是按照前面的 `go spec` 中的说明,应该输出 `c b a` 才对啊。
+
+那我们换一种方式来调用一下：
+
+```go
+package main
+
+import "fmt"
+
+type Test struct {
+    name string
+}
+
+func (t *Test) Close() {
+    fmt.Println(t.name, " closed")
+}
+func Close(t Test) {
+    t.Close()
+}
+func main() {
+    ts := []Test{{"a"}, {"b"}, {"c"}}
+    for _, t := range ts {
+        defer Close(t)
+    }
+}
+```
+
+输出结果：
+
+```
+c  closed
+b  closed
+a  closed
+```
+
+这个时候输出的就是 `c b a`
+
+当然,如果你不想多写一个函数，也很简单，可以像下面这样，同样会输出 `c b a`：
+
+```go
+package main
+
+import "fmt"
+
+type Test struct {
+    name string
+}
+
+func (t *Test) Close() {
+    fmt.Println(t.name, " closed")
+}
+func main() {
+    ts := []Test{{"a"}, {"b"}, {"c"}}
+    for _, t := range ts {
+        t2 := t
+        defer t2.Close()
+    }
+}
+```
+
+输出结果：
+
+```
+c  closed
+b  closed
+a  closed
+```
+
+通过以上例子，结合
+
+Each time a "defer" statement executes, the function value and  parameters to the call are evaluated as usualand saved anew but the  actual function is not invoked.
+
+这句话。可以得出下面的结论：
+
+`defer`  后面的语句在执行的时候，函数调用的参数会被保存起来，但是不执行。也就是复制了一份。但是并没有说 `struct` 这里的 `this` 指针如何处理，通过这个例子可以看出 `go` 语言并没有把这个明确写出来的 `this` 指针当作参数来看待。
+
+#### 多个 defer 注册
+
+按 FILO 次序执行 ( 先进后出 )。哪怕函数或某个延迟调用发生错误，这些调用依旧会被执行。
+
+```go
+package main
+
+func test(x int) {
+    defer println("a")
+    defer println("b")
+
+    defer func() {
+        println(100 / x) // div0 异常未被捕获，逐步往外传递，最终终止进程。
+    }()
+
+    defer println("c")
+}
+
+func main() {
+    test(0)
+}
+```
+
+输出结果:
+
+```
+c
+b
+a
+panic: runtime error: integer divide by zero
+```
+
+延迟调用参数在注册时求值或复制，可用指针或闭包 "延迟" 读取。
+
+```go
+package main
+
+func test() {
+    x, y := 10, 20
+
+    defer func(i int) {
+        println("defer:", i, y) // y 闭包引用
+    }(x) // x 被复制
+
+    x += 10
+    y += 100
+    println("x =", x, "y =", y)
+}
+
+func main() {
+    test()
+}
+```
+
+输出结果:
+
+```
+x = 20 y = 120
+defer: 10 120
+```
+
+:::warning 注意
+
+滥用 `defer` 可能会导致性能问题，尤其是在一个 "大循环" 里。
+
+```go
+package main
+
+import (
+    "fmt"
+    "sync"
+    "time"
+)
+
+var lock sync.Mutex
+
+func test() {
+    lock.Lock()
+    lock.Unlock()
+}
+
+func testdefer() {
+    lock.Lock()
+    defer lock.Unlock()
+}
+
+func main() {
+    func() {
+        t1 := time.Now()
+
+        for i := 0; i < 10000; i++ {
+            test()
+        }
+        elapsed := time.Since(t1)
+        fmt.Println("test elapsed: ", elapsed)
+    }()
+    func() {
+        t1 := time.Now()
+
+        for i := 0; i < 10000; i++ {
+            testdefer()
+        }
+        elapsed := time.Since(t1)
+        fmt.Println("testdefer elapsed: ", elapsed)
+    }()
+
+}
+```
+
+输出结果：
+
+```
+test elapsed:  223.162µs
+testdefer elapsed:  781.304µs
+```
+
+:::
+
+#### 陷阱 - defer 与 closure
+
+```go
+package main
+
+import (
+    "errors"
+    "fmt"
+)
+
+func foo(a, b int) (i int, err error) {
+    defer fmt.Printf("first defer err %v\n", err)
+    defer func(err error) { fmt.Printf("second defer err %v\n", err) }(err)
+    defer func() { fmt.Printf("third defer err %v\n", err) }()
+    if b == 0 {
+        err = errors.New("divided by zero!")
+        return
+    }
+
+    i = a / b
+    return
+}
+
+func main() {
+    foo(2, 0)
+}
+```
+
+输出结果：
+
+```
+third defer err divided by zero!
+second defer err <nil>
+first defer err <nil>
+```
+
+解释：如果 `defer` 后面跟的不是一个 `closure` 最后执行的时候我们得到的并不是最新的值。
+
+#### 陷阱 - defer 与 return
+
+```go
+package main
+
+import "fmt"
+
+func foo() (i int) {
+
+    i = 0
+    defer func() {
+        fmt.Println(i)
+    }()
+
+    return 2
+}
+
+func main() {
+    foo()
+}
+```
+
+输出结果：
+
+```
+2
+```
+
+解释：在有具名返回值的函数中（这里具名返回值为 `i`），执行 `return 2` 的时候实际上已经将 `i` 的值重新赋值为 `2`。所以 `defer` `closure` 输出结果为 `2` 而不是 `1`。
+
+#### 陷阱 -  defer nil 函数
+
+```go
+package main
+
+import (
+    "fmt"
+)
+
+func test() {
+    var run func() = nil
+    defer run()
+    fmt.Println("runs")
+}
+
+func main() {
+    defer func() {
+        if err := recover(); err != nil {
+            fmt.Println(err)
+        }
+    }()
+    test()
+}
+```
+
+输出结果：
+
+```
+runs
+runtime error: invalid memory address or nil pointer dereference
+```
+
+解释：名为 `test` 的函数一直运行至结束，然后 `defer` 函数会被执行且会因为值为 `nil` 而产生 `panic` 异常。然而值得注意的是，`run()` 的声明是没有问题，因为在 `test` 函数运行完成后它才会被调用。
+
+#### 陷阱 - 在错误的位置使用 defer
+
+当 `http.Get` 失败时会抛出异常。
+
+```go
+package main
+
+import "net/http"
+
+func do() error {
+    res, err := http.Get("http://www.google.com")
+    defer res.Body.Close()
+    if err != nil {
+        return err
+    }
+
+    // ..code...
+
+    return nil
+}
+
+func main() {
+    do()
+}
+```
+
+输出结果：
+
+```
+panic: runtime error: invalid memory address or nil pointer dereference
+```
+
+因为在这里我们并没有检查我们的请求是否成功执行，当它失败的时候，我们访问了 `Body` 中的空变量 `res`，因此会抛出异常
+
+解决方案：
+
+总是在一次成功的资源分配下面使用 `defer` ，对于这种情况来说意味着：当且仅当 `http.Get` 成功执行时才使用 `defer`
+
+```go
+package main
+
+import "net/http"
+
+func do() error {
+    res, err := http.Get("http://xxxxxxxxxx")
+    if res != nil {
+        defer res.Body.Close()
+    }
+
+    if err != nil {
+        return err
+    }
+
+    // ..code...
+
+    return nil
+}
+
+func main() {
+    do()
+}
+```
+
+在上述的代码中，当有错误的时候，`err` 会被返回，否则当整个函数返回的时候，会关闭 `res.Body` 。
+
+解释：在这里，你同样需要检查 `res` 的值是否为 `nil`，这是 `http.Get`  中的一个警告。通常情况下，出错的时候，返回的内容应为空并且错误会被返回，可当你获得的是一个重定向 `error` 时， `res` 的值并不会为 `nil`，但其又会将错误返回。上面的代码保证了无论如何 `Body` 都会被关闭，如果你没有打算使用其中的数据，那么你还需要丢弃已经接收的数据。
+
+### 异常处理
+
+Golang 没有结构化异常，使用 `panic` 抛出错误，`recover` 捕获错误。
+
+异常的使用场景简单描述：Go中可以抛出一个 `panic` 的异常，然后在 `defer` 中通过 `recover` 捕获这个异常，然后正常处理。
+
+`panic`：
+
+1. 内置函数
+2. 假如函数F中书写了 `panic` 语句，会终止其后要执行的代码，在 `panic` 所在函数F内如果存在要执行的 `defer` 函数列表，按照 `defer` 的逆序执行
+3. 返回函数F的调用者 `G`，在 `G` 中，调用函数F语句之后的代码不会执行，假如函数 `G` 中存在要执行的 `defer` 函数列表，按照 `defer` 的逆序执行
+4. 直到 `goroutine` 整个退出，并报告错误
+
+`recover`：
+
+1. 内置函数
+2. 用来控制一个 `goroutine` 的 `panicking` 行为，捕获 `panic`，从而影响应用的行为
+3. 一般的调用建议：
+    1. 在 `defer` 函数中，通过 `recever` 来终止一个 `goroutine` 的 `panicking` 过程，从而恢复正常代码的执行
+    2. 可以获取通过 `panic` 传递的 `error`
+
+:::warning 注意
+
+1. 利用recover处理panic指令，defer 必须放在 panic 之前定义，另外 recover 只有在 defer 调用的函数中才有效。否则当panic时，recover无法捕获到panic，无法防止panic扩散。
+2. recover 处理异常后，逻辑并不会恢复到 panic 那个点去，函数跑到 defer 之后的那个点。
+3. 多个 defer 会形成 defer 栈，后定义的 defer 语句会被最先调用。
+
+:::
+
+```go
+package main
+
+func main() {
+    test()
+}
+
+func test() {
+    defer func() {
+        if err := recover(); err != nil {
+            println(err.(string)) // 将 interface{} 转型为具体类型。
+        }
+    }()
+
+    panic("panic error!")
+}
+```
+
+输出结果：
+
+```
+panic error!
+```
+
+由于 `panic`、`recover` 参数类型为 `interface{}`，因此可抛出任何类型对象。
+
+```go
+func panic(v interface{})
+func recover() interface{}
+```
+
+向已关闭的通道发送数据会引发 `panic`
+
+```go
+package main
+
+import (
+    "fmt"
+)
+
+func main() {
+    defer func() {
+        if err := recover(); err != nil {
+            fmt.Println(err)
+        }
+    }()
+
+    var ch chan int = make(chan int, 10)
+    close(ch)
+    ch <- 1
+}
+```
+
+输出结果：
+
+```
+send on closed channel
+```
+
+延迟调用中引发的错误，可被后续延迟调用捕获，但仅最后一个错误可被捕获。
+
+```go
+package main
+
+import "fmt"
+
+func test() {
+    defer func() {
+        fmt.Println(recover())
+    }()
+
+    defer func() {
+        panic("defer panic")
+    }()
+
+    panic("test panic")
+}
+
+func main() {
+    test()
+}
+```
+
+输出:
+
+```
+defer panic
+```
+
+捕获函数 `recover` 只有在延迟调用内直接调用才会终止错误，否则总是返回 `nil`。任何未捕获的错误都会沿调用堆栈向外传递。
+
+```go
+package main
+
+import "fmt"
+
+func test() {
+    defer func() {
+        fmt.Println(recover()) //有效
+    }()
+    defer recover()              //无效！
+    defer fmt.Println(recover()) //无效！
+    defer func() {
+        func() {
+            println("defer inner")
+            recover() //无效！
+        }()
+    }()
+
+    panic("test panic")
+}
+
+func main() {
+    test()
+}
+```
+
+输出:
+
+```
+defer inner
+<nil>
+test panic
+```
+
+使用延迟匿名函数或下面这样都是有效的。
+
+```go
+package main
+
+import (
+    "fmt"
+)
+
+func except() {
+    fmt.Println(recover())
+}
+
+func test() {
+    defer except()
+    panic("test panic")
+}
+
+func main() {
+    test()
+}
+```
+
+输出结果：
+
+```
+test panic
+```
+
+如果需要保护代码 段，可将代码块重构成匿名函数，如此可确保后续代码被执 。
+
+```go
+package main
+
+import "fmt"
+
+func test(x, y int) {
+    var z int
+
+    func() {
+        defer func() {
+            if recover() != nil {
+                z = 0
+            }
+        }()
+        panic("test panic")
+        z = x / y
+        return
+    }()
+
+    fmt.Printf("x / y = %d\n", z)
+}
+
+func main() {
+    test(2, 1)
+}
+```
+
+输出结果：
+
+```
+x / y = 0
+```
+
+除用 `panic` 引发中断性错误外，还可返回 `error` 类型错误对象来表示函数调用状态。
+
+```go
+type error interface {
+    Error() string
+}
+```
+
+标准库 `errors.New` 和 `fmt.Errorf` 函数用于创建实现 `error` 接口的错误对象。通过判断错误对象实例来确定具体错误类型。
+
+```go
+package main
+
+import (
+    "errors"
+    "fmt"
+)
+
+var ErrDivByZero = errors.New("division by zero")
+
+func div(x, y int) (int, error) {
+    if y == 0 {
+        return 0, ErrDivByZero
+    }
+    return x / y, nil
+}
+
+func main() {
+    defer func() {
+        fmt.Println(recover())
+    }()
+    switch z, err := div(10, 0); err {
+    case nil:
+        println(z)
+    case ErrDivByZero:
+        panic(err)
+    }
+}
+```
+
+输出结果：
+
+```
+division by zero
+```
+
+Go 实现类似 `try catch` 的异常处理
+
+```go
+package main
+
+import "fmt"
+
+func Try(fun func(), handler func(interface{})) {
+    defer func() {
+        if err := recover(); err != nil {
+            handler(err)
+        }
+    }()
+    fun()
+}
+
+func main() {
+    Try(func() {
+        panic("test panic")
+    }, func(err interface{}) {
+        fmt.Println(err)
+    })
+}
+```
+
+输出结果：
+
+```
+test panic
+```
