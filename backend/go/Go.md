@@ -3465,10 +3465,10 @@ func main() {
 
 #### defer 特性
 
-1. 关键字 defer 用于注册延迟调用。
-2. 这些调用直到 return 前才被执。因此，可以用来做资源清理。
-3. 多个defer语句，按先进后出的方式执行。
-4. defer语句中的变量，在defer声明时就决定了。
+1. 关键字 `defe`r 用于注册延迟调用。
+2. 这些调用直到 `return` 前才被执。因此，可以用来做资源清理。
+3. 多个 `defe` r语句，按先进后出的方式执行。
+4. `defer` 语句中的变量，在 `defer` 声明时就决定了。
 
 #### defer 用途
 
@@ -3955,9 +3955,9 @@ Golang 没有结构化异常，使用 `panic` 抛出错误，`recover` 捕获错
 
 :::warning 注意
 
-1. 利用recover处理panic指令，defer 必须放在 panic 之前定义，另外 recover 只有在 defer 调用的函数中才有效。否则当panic时，recover无法捕获到panic，无法防止panic扩散。
-2. recover 处理异常后，逻辑并不会恢复到 panic 那个点去，函数跑到 defer 之后的那个点。
-3. 多个 defer 会形成 defer 栈，后定义的 defer 语句会被最先调用。
+1. 利用 `recover` 处理 `panic` 指令，`defer` 必须放在 `panic` 之前定义，另外 `recover` 只有在 `defer` 调用的函数中才有效。否则当 `panic` 时，`recover` 无法捕获到 `panic`，无法防止 `panic` 扩散。
+2. `recover` 处理异常后，逻辑并不会恢复到 `panic` 那个点去，函数跑到 `defer` 之后的那个点。
+3. 多个 `defer` 会形成 `defer` 栈，后定义的 `defer` 语句会被最先调用。
 
 :::
 
