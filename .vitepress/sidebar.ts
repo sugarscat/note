@@ -54,17 +54,17 @@ export default  [
     collapsible: true,
     collapsed: true,
     items: [
-      {text: regularExpressionIcon + '正则表达式', link: '/code/RegularExpression.md'},
-      {text: iconAscii + 'ASCII码对照表', link: '/code/ASCII.md'},
-      {text: spiderIcon + '爬虫', link: '/code/WebCrawling.md'},
-      {text: iconDataStructure + '数据结构', link: '/code/DataStructure.md'},
-      {text: starIcon + '软件设计师', link: '/code/SoftwareDesigner.md'},
+      {text: regularExpressionIcon + '正则表达式', link: '/program/RegularExpression.md'},
+      {text: iconAscii + 'ASCII码对照表', link: '/program/ASCII.md'},
+      {text: spiderIcon + '爬虫', link: '/program/WebCrawling.md'},
+      {text: iconDataStructure + '数据结构', link: '/program/DataStructure.md'},
+      {text: starIcon + '软件设计师', link: '/program/SoftwareDesigner.md'},
       {
         text: machineLearningIcon + '机器学习', 
         collapsible: true,
         collapsed: true,
         items: [
-          {text: '了解一下', link: '/code/MachineLearning/Introduction.md'},
+          {text: '了解一下', link: '/program/MachineLearning/Introduction.md'},
           {
             text: '快速入门', 
             collapsible: true,
@@ -72,17 +72,17 @@ export default  [
             items: [
               {
                 text: '数据分析与可视化工具', 
-                link: '/code/MachineLearning/GettingStarted/DataAnalysis.md'
+                link: '/program/MachineLearning/GettingStarted/DataAnalysis.md'
               },
               {
                 text: '深度学习', 
-                link: '/code/MachineLearning/GettingStarted/DeepLearning.md'
+                link: '/program/MachineLearning/GettingStarted/DeepLearning.md'
               },
             ]
           }
         ]
       },
-      {text:'C#教程', link: '/code/CSharp.md'},
+      {text:'C#教程', link: '/program/CSharp.md'},
 
     ]
   },
