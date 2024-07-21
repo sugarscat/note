@@ -302,19 +302,8 @@ code {
 
 // 导航栏
 .outline-link {
-    padding: 0 20px;
-    border-radius: 16px;
-    transition: all 0.25s ease-in-out !important;
     
     &.active {
         color: var(--vp-c-brand-1) !important;
-        background-color: var(--vp-c-brand-transparent);
-    }
-}
-
-.VPLocalNavOutlineDropdown .VPDocOutlineItem {
-    .outline-link {
-        padding: 0;
-        border-radius: 0;
     }
 }
