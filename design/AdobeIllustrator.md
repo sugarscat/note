@@ -2,8 +2,6 @@
 
 > 视频课程：[【哔哩哔哩】illustrator 零基础入门50集](https://www.bilibili.com/video/BV1ox411f7tA)
 
-
-
 ## 快捷键
 
 ### 常用的快捷键
