@@ -1,5 +1,7 @@
 # Redux
 
+> [中文官网](https://cn.redux.js.org/)
+
 ## 介绍
 
 Redux 是React最常用的集中状态管理工具，类似于 Vue 中的Pinia（Vuex），可以独立于框架运行
