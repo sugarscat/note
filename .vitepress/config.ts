@@ -2,7 +2,7 @@ import { defineConfig } from 'vitepress'
 import navbar from './navbar'
 import sidebar from './sidebar'
 import algolia from "./algolia";
-import mdItCustomAttrs  from 'markdown-it-custom-attrs'
+import mdItCustomAttrs from 'markdown-it-custom-attrs'
 import markdownItKatex from 'markdown-it-katex'
 
 // https://vitepress.dev/reference/site-config
@@ -26,9 +26,9 @@ export default defineConfig({
     ],
     [
       "link",
-      { 
-        rel: "stylesheet", 
-        href: "https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css" 
+      {
+        rel: "stylesheet",
+        href: "https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"
       },
     ],
     [
@@ -39,7 +39,7 @@ export default defineConfig({
   description: '心灵记忆过往，镜头捕捉瞬间。',
   lastUpdated: true,
 
-  markdown:{
+  markdown: {
     config: (md) => {
       // use more markdown-it plugins!
       md.use(mdItCustomAttrs, 'image', {
@@ -67,7 +67,7 @@ export default defineConfig({
     },
 
     socialLinks: [
-      {icon: 'github', link: 'https://github.com/Sugarscat/note'}
+      { icon: 'github', link: 'https://github.com/sugarscat/note' }
     ],
 
     lastUpdated: {
