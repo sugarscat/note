@@ -22,10 +22,10 @@ export default defineConfig({
             "link", { rel: "stylesheet", href: "/assets/libs/fancybox/fancybox.css" },
         ],
         [
-            "link", { rel: "stylesheet", href: "/assets/libs/katex/katex.min.css" },
+            "script", { src: "/assets/libs/fancybox/fancybox.umd.js" }
         ],
         [
-            "script", { src: "/assets/js/fancybox.umd.js" }
+            "link", { rel: "stylesheet", href: "/assets/libs/katex/katex.min.css" },
         ],
     ],
 

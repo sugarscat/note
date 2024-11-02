@@ -29,6 +29,12 @@ img {
     --color-nav-sidebar-background: rgba(246, 246, 247, .6);
 }
 
+/*front*/
+@font-face {
+    font-family: JetBrainsMono;
+    src: url("./font/JetBrainsMono-Medium.woff2")
+}
+
 .dark {
     --color-neutral4: #26292b;
     --color-neutral8: #4c5155;
