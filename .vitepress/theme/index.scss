@@ -1,3 +1,15 @@
+* {
+    scrollbar-width: thin;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+img {
+    border-radius: 5px;
+}
+
 :root {
     --color-blue-soft: #daedfe;
 
@@ -12,14 +24,9 @@
 
     --vp-sidebar-width: 320px !important;
     --vp-sidebar-width-collapse: 300px !important;
-}
 
-* {
-    scrollbar-width: thin;
-}
-
-img {
-    border-radius: 5px;
+    --color-nav-background: rgba(251, 251, 253, .6);
+    --color-nav-sidebar-background: rgba(246, 246, 247, .6);
 }
 
 .dark {
@@ -30,50 +37,25 @@ img {
     --vp-c-brand-1: #ce6e6e !important;
     --vp-c-brand-2: #ce5e5e;
     --vp-c-brand-3: #ce4e4e;
-    //--vp-c-divider: var(--color-neutral8) !important;
-}
 
-/* a:hover {
-    filter: blur(1px) !important;
-    opacity: 0.8 !important;
-} */
-
-html {
-    scroll-behavior: smooth;
+    --color-nav-background: rgba(27, 27, 31, 0.6);
+    --color-nav-sidebar-background: rgba(22, 22, 24, .6);
 }
 
 .VPFooter {
     z-index: -1 !important;
 }
 
-/* 修改滚动条的颜色 */
-.VPLocalNavOutlineDropdown .items,
-.VPSidebar{
-    scrollbar-width: thin;
-
-    .curtain {
-        background-color: transparent;
-    }
-}
-
 .VPLocalNavOutlineDropdown .items {
     /* display: flex; */
     background-color: var(--vp-c-bg-soft);
-
-    scrollbar-width: thin;
 }
 
 .VPNav {
-    // .divider {
-    //     display: none;
-    // }
-
     .container {
         background-color: transparent;
-
         .content {
             background-color: transparent;
-
             .content-body {
                 background-color: transparent !important;
             }
@@ -81,11 +63,16 @@ html {
     }
 }
 
-.VPLocalNav,
-.VPNavBar.has-sidebar .wrapper {
+.VPSidebar .curtain,
+.VPNavBar.has-sidebar .wrapper .content .content-body,
+.VPLocalNav {
     -webkit-backdrop-filter: saturate(180%) blur(20px);
     backdrop-filter: saturate(180%) blur(20px);
-    background: rgba(251,251,253,.7) !important;
+    background-color: var(--color-nav-background) !important;
+}
+
+.VPSidebar .curtain {
+    background-color: var(--color-nav-sidebar-background) !important;
 }
 
 .VPNavBar {
@@ -99,13 +86,6 @@ html {
             height: 0;
             border-bottom: 0 solid var(--vp-c-divider);
         }
-    }
-} 
-
-.dark {
-    .VPLocalNav,
-    .VPNavBar.has-sidebar .wrapper {
-        background: rgba(27, 27, 31, 0.6) !important;
     }
 }
 
@@ -206,12 +186,6 @@ html {
     }
 }
 
-/*front*/
-@font-face {
-    font-family: JetBrainsMono;
-    src: url("/assets/font/JetBrainsMono-Medium.woff2")
-}
-
 code {
     font-family: "JetBrainsMono", sans-serif;
 }
@@ -304,9 +278,14 @@ code {
     }
 }
 
+// 浮动导航栏
+.VPLocalNavOutlineDropdown .items {
+    border: none;
+}
+
 // 导航栏
 .outline-link {
-    
+
     &.active {
         color: var(--vp-c-brand-1) !important;
     }
