@@ -5,7 +5,7 @@ import {
     iconPython,
     iconAscii,
     iconDataStructure
-} from "./components/icon";
+} from "../components/icon";
 
 import {
     menuIcon,
@@ -36,7 +36,7 @@ import {
     regularExpressionIcon,
     starIcon,
     earthIcon, javaIcon
-} from './icons'
+} from '../components/icon/icons'
 
 export default  [
     {

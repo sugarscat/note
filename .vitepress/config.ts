@@ -1,7 +1,7 @@
 import { defineConfig } from 'vitepress'
 import mdItCustomAttrs from 'markdown-it-custom-attrs'
 import markdownItKatex from 'markdown-it-katex'
-import sidebar from './sidebar'
+import sidebar from './theme/sidebar'
 import algolia from "./algolia";
 
 // https://vitepress.dev/zh/reference/site-config
@@ -13,9 +13,6 @@ export default defineConfig({
     head: [
         [
             'link', { rel: 'icon', href: '/favicon.ico' }
-        ],
-        [
-            "link", { rel: "stylesheet", href: "/assets/css/style.css" },
         ],
         [
             "link", { rel: "stylesheet", href: "/assets/libs/fancybox/fancybox.css" },
