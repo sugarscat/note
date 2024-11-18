@@ -1,6 +1,6 @@
 {
   "index_name": "note",
-  "start_urls": ["https://note.sugarscat.com/"],
+  "start_urls": ["https://noteach.vercel.app/"],
   "rateLimit": 8,
   "maxDepth": 10,
   "selectors": {
