@@ -5,7 +5,7 @@ import {
     iconPython,
     iconAscii,
     iconDataStructure
-} from "./icon";
+} from "./components/icon";
 
 import {
     menuIcon,

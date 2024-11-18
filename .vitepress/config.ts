@@ -1,7 +1,6 @@
 import { defineConfig } from 'vitepress'
 import mdItCustomAttrs from 'markdown-it-custom-attrs'
 import markdownItKatex from 'markdown-it-katex'
-import navbar from './navbar'
 import sidebar from './sidebar'
 import algolia from "./algolia";
 
@@ -22,10 +21,10 @@ export default defineConfig({
             "link", { rel: "stylesheet", href: "/assets/libs/fancybox/fancybox.css" },
         ],
         [
-            "link", { rel: "stylesheet", href: "/assets/libs/katex/katex.min.css" },
+            "script", { src: "/assets/libs/fancybox/fancybox.umd.js" }
         ],
         [
-            "script", { src: "/assets/js/fancybox.umd.js" }
+            "link", { rel: "stylesheet", href: "/assets/libs/katex/katex.min.css" },
         ],
     ],
 
@@ -37,6 +36,9 @@ export default defineConfig({
                     api: 'modern-compiler'
                 }
             }
+        },
+        build: {
+            chunkSizeWarningLimit: 1000,
         },
     },
 
@@ -53,7 +55,16 @@ export default defineConfig({
     },
     themeConfig: {
         logo: '/favicon.ico',
-        nav: navbar,
+        nav: [
+            {
+                text: '首页',
+                link: '/',
+            },
+            {
+                text: '阅读',
+                link: '/welcome.md',
+            }
+        ],
         sidebar: sidebar,
         outline: {
             // 右侧导航目录显示层级
