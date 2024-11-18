@@ -1,15 +1,3 @@
-* {
-    scrollbar-width: thin;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-img {
-    border-radius: 5px;
-}
-
 :root {
     --color-blue-soft: #daedfe;
 
@@ -32,7 +20,27 @@ img {
 /*front*/
 @font-face {
     font-family: JetBrainsMono;
-    src: url("./font/JetBrainsMono-Medium.woff2")
+    src: url('./font/JetBrainsMono-Medium.woff2') format('truetype');
+}
+
+* {
+    scrollbar-width: thin;
+}
+
+html {
+    scroll-behavior: smooth;
+
+    img {
+        border-radius: 5px;
+    }
+
+    code {
+        font-family: "JetBrainsMono", sans-serif;
+    }
+
+    body {
+        font-family: "LXGW WenKai Screen", sans-serif;
+    }
 }
 
 .dark {
@@ -192,9 +200,6 @@ img {
     }
 }
 
-code {
-    font-family: "JetBrainsMono", sans-serif;
-}
 
 .go-to-top {
     background-color: var(--color-neutral4) !important;

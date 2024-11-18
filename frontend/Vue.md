@@ -58,11 +58,11 @@ const addCount = ()=> count.value++
 pnpm create vue@latest
 ```
 
-![create-vue](../assets/image/vue/create-vue.webp)
+![create-vue](./assets/vue/create-vue.webp)
 
 ## 熟悉项目和关键文件
 
-![Catalog introduction](../assets/image/vue/catalog_introduction.webp)
+![Catalog introduction](./assets/vue/catalog_introduction.webp)
 
 ## setup 选项
 
@@ -87,7 +87,7 @@ pnpm create vue@latest
 
 > 在 `beforeCreate` 钩子之前执行
 
-![life cycle](../assets/image/vue/life_cycle.webp)
+![life cycle](./assets/vue/life_cycle.webp)
 
 ### setup 中写代码的特点
 
@@ -587,7 +587,7 @@ export default defineConfig({
 ### 什么是 Pinia
 
 `Pinia` 是 `Vue` 的专属的最新状态管理库 ，是 `Vuex` 状态管理工具的替代品
-![Pinia_Position](../assets/image/vue/Pinia/Pinia_position.webp)
+![Pinia_Position](./assets/vue/Pinia/Pinia_position.webp)
 
 ### 添加 Pinia 到 Vue 项目
 
@@ -685,7 +685,7 @@ const { count, doubleCount } = storeToRefs(counterStore)
 ### Pinia的调试
 
 `Vue` 官方的 `dev-tools` 调试工具对 `Pinia` 直接支持，可以直接进行调试
-![Debugging_tools](../assets/image/vue/Pinia/Debugging_tools.webp)
+![Debugging_tools](./assets/vue/Pinia/Debugging_tools.webp)
 
 ### Pinia持久化插件
 

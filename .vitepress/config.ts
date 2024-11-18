@@ -1,7 +1,6 @@
 import { defineConfig } from 'vitepress'
 import mdItCustomAttrs from 'markdown-it-custom-attrs'
 import markdownItKatex from 'markdown-it-katex'
-import navbar from './navbar'
 import sidebar from './sidebar'
 import algolia from "./algolia";
 
@@ -38,6 +37,9 @@ export default defineConfig({
                 }
             }
         },
+        build: {
+            chunkSizeWarningLimit: 1000,
+        },
     },
 
     lastUpdated: true,
@@ -53,7 +55,16 @@ export default defineConfig({
     },
     themeConfig: {
         logo: '/favicon.ico',
-        nav: navbar,
+        nav: [
+            {
+                text: '首页',
+                link: '/',
+            },
+            {
+                text: '阅读',
+                link: '/welcome.md',
+            }
+        ],
         sidebar: sidebar,
         outline: {
             // 右侧导航目录显示层级
