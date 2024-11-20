@@ -50,6 +50,7 @@ export default defineConfig({
             md.use(markdownItKatex)
         }
     },
+
     themeConfig: {
         logo: '/favicon.ico',
         nav: [

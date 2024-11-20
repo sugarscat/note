@@ -42,14 +42,25 @@ export default  [
     {
         text: menuIcon + '欢迎',
         link: '/welcome.md'
-    },{
+    },
+    {
         text: iconPit + '踩坑日记',
         collapsible: true,
         collapsed: true,
         items: [
             {text: gitIcon + 'SSH公钥', link: '/pit/git_ssh.md'}
         ]
-    },{
+    },
+    {
+        text: '语言',
+        collapsible: true,
+        collapsed: true,
+        items: [
+            {text: '英语', link: '/language/English.md'},
+            {text: '日语', link: '/language/Japanese.md'},
+        ]
+    },
+    {
         text: pcIcon + '编程',
         collapsible: true,
         collapsed: true,
@@ -160,7 +171,8 @@ export default  [
             {text: dockerIcon + 'Docker', link: '/server/Docker.md'},
             {text: powershellIcon + 'ACME 申请证书', link: '/server/acme.md'},
         ]
-    },{
+    },
+    {
         text: sqlIcon + '数据库',
         collapsible: true,
         collapsed: true,
@@ -168,7 +180,8 @@ export default  [
             {text: mySQLIcon + 'MySQL', link: '/sql/MySQL.md'},
 
         ]
-    },{
+    },
+    {
         text: versionControlIcon + '版本控制',
         collapsible: true,
         collapsed: true,
@@ -176,7 +189,8 @@ export default  [
             {text: gitIcon + 'Git', link: '/version_control/Git.md'},
 
         ]
-    },{
+    },
+    {
         text: designIcon + '设计',
         collapsible: true,
         collapsed: true,
@@ -184,7 +198,8 @@ export default  [
             {text: blenderIcon + 'Blender 建模', link: '/design/Blender.md'},
             {text: '绘画', link: '/design/Painting.md'},
         ]
-    },{
+    },
+    {
         text: toolIcon + '工具',
         collapsible: true,
         collapsed: true,
