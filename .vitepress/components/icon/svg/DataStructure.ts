@@ -1,5 +1,5 @@
 const iconDataStructure: string = `
-<svg t="1714573200453" class="icon" viewBox="0 0 1024 1024"  
+<svg class="icon" viewBox="0 0 1024 1024"  
   xmlns="http://www.w3.org/2000/svg" width="30" height="30">
   <path d="M344.32 284.16h336v119.68h-336z m0 167.68h336v119.68h-336z m0 168.32h336v119.68h-336z" fill="#69C6DC" >
   </path>
