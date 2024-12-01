@@ -112,11 +112,6 @@ html {
     color: var(--vp-custom-block-details-text);
 }
 
-.icon {
-    width: 25px;
-    height: 25px;
-}
-
 // 侧边目录
 #VPSidebarNav {
     .group {
@@ -150,53 +145,10 @@ html {
         gap: var(--gap);
         align-items: center;
 
-        svg {
-            width: 25px;
-            height: 25px;
-        }
     }
 
     &.level-0 {
         padding-bottom: 0 !important;
-    }
-
-    &.level-1 {
-        .text {
-            margin-left: 8px;
-
-            svg {
-                width: 22px;
-                height: 22px;
-            }
-        }
-    }
-
-    &.level-2 {
-        .text {
-            gap: var(--gap);
-            margin-left: 14px;
-
-            svg {
-                width: 20px;
-                height: 20px;
-            }
-        }
-    }
-}
-
-.prev-next .pager-link {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-
-    span.title {
-        display: flex;
-        align-items: center;
-        gap: 5px;
-    }
-
-    &.next {
-        align-items: flex-end;
     }
 }
 

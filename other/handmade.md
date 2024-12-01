@@ -1,0 +1,7 @@
+# 手办拼接
+
+## 初音未来Latidos-2022.ver景品手办
+
+![640be8198a3a7e0542a6677ae70e5645](assets/640be8198a3a7e0542a6677ae70e5645.jpg)
+
+![RECTIFY_IMG_20241201_125756](assets/RECTIFY_IMG_20241201_125756.jpg)
