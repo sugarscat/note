@@ -4,14 +4,6 @@ export default  [
         link: '/welcome.md'
     },
     {
-        text: '踩坑日记',
-        collapsible: true,
-        collapsed: true,
-        items: [
-            {text: 'SSH公钥', link: '/pit/git_ssh.md'}
-        ]
-    },
-    {
         text: '语言',
         collapsible: true,
         collapsed: true,
