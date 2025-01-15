@@ -20,7 +20,14 @@
 /*front*/
 @font-face {
     font-family: JetBrainsMono;
-    src: url('./font/JetBrainsMono-Medium.woff2') format('truetype');
+    src: url('./font/JetBrainsMono-Medium.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: HarmonyOS_Sans;
+    src: url('./font/HarmonyOS_Sans.woff2') format('woff2'),
+        url('./font/HarmonyOS_Sans.woff') format('woff'),
+        url('./font/HarmonyOS_Sans.ttf') format('truetype');
 }
 
 * {
@@ -39,7 +46,7 @@ html {
     }
 
     body {
-        font-family: "LXGW WenKai Screen", sans-serif;
+        font-family: "HarmonyOS_Sans", "LXGW WenKai Screen", sans-serif;
     }
 }
 
