@@ -20,7 +20,7 @@
 /*front*/
 @font-face {
     font-family: JetBrainsMono;
-    src: url('./font/JetBrainsMono-Medium.woff2') format('woff2');
+    src: url('./font/JetBrainsMono.woff2') format('woff2');
 }
 
 @font-face {
@@ -42,11 +42,11 @@ html {
     }
 
     code {
-        font-family: "JetBrainsMono", sans-serif;
+        font-family: "JetBrainsMono", ui-monospace, 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', monospace;
     }
 
     body {
-        font-family: "HarmonyOS_Sans", "LXGW WenKai Screen", sans-serif;
+        font-family: "HarmonyOS_Sans", "HarmonyOS_Sans_SC", sans-serif;
     }
 }
 
