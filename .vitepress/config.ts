@@ -1,7 +1,7 @@
 import { defineConfig } from 'vitepress'
 import mdItCustomAttrs from 'markdown-it-custom-attrs'
 import markdownItKatex from 'markdown-it-katex'
-import sidebar from './theme/sidebar'
+import sidebar from './sidebar'
 import algolia from "./algolia";
 
 // https://vitepress.dev/zh/reference/site-config
