@@ -149,6 +149,7 @@ export default  [
         items: [
             {text: 'Blender 建模', link: '/design/Blender.md'},
             {text: '绘画', link: '/design/Painting.md'},
+            {text: 'Adobe Illustrator', link: '/design/AdobeIllustrator.md'},
         ]
     },
     {
