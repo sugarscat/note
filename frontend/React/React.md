@@ -1,6 +1,6 @@
 # React
 
-> [官方文档](https://react.dev/learn)
+> [中文官方文档](https://zh-hans.react.dev/)
 
 ## 开发环境创建
 

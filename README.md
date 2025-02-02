@@ -6,6 +6,8 @@
 
 ## 开发
 
+[Pnpm](https://pnpm.io/zh/) 安装依赖、编译、打包。
+
 ```shell
 pnpm install
 ```
