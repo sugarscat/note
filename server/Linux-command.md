@@ -1,306 +1,199 @@
-# Linux命令
+# Linux 命令大全
 
-## 基本
+## 🚀 终端基础操作
 
-### 命令格式
-
-```shell
-command [-options] [parameter]
-```
-
-- command ：命令名，相应功能的英文单词或单词的缩写
-- [-options] ：选项，可用来对命令进行控制，也可以省略
-- parameter ：传给命令的参数，可以是 零个、一个 或者 多个
-
-### 常用命令
-
-| 命令              | 对应英文                  | 作用                 |
-|:----------------|:----------------------|:-------------------|
-| ls              | list                  | 查看当前文件夹下的内容        |
-| pwd             | print work directory  | 查看当前所在文件夹          |
-| cd [目录名]        | change directory      |  切换文件夹             |
-| touch [文件名]     | touch                 |  如果文件不存在，新建文件      |
-| mkdir [目录名]     | make directory        |  创建目录              |
-| rm [文件名]        | remove                |  删除指定文件            |
-| clear           | clear                 |  清屏                |
-
-### 软连接
-
-> 建立文件的软链接（类似于快捷方式）
+### 1. 命令结构
 
 ```shell
-ln -s [被链接的源文件]
+命令 [-选项] [参数]
+# 示例：显示详细信息并排序
+ls -l --sort=size
 ```
 
-::: tip 提示
+### 2. 高频核心命令
 
-- 没有 -s 选项建立的是一个 硬链接文件两个文件占用相同大小的硬盘空间，工作中几乎不会建立文件的硬链接
-- 源文件要使用绝对路径，不能使用相对路径，这样可以方便移动链接文件后，仍然能够正常使用
-:::
+| 命令  | 功能描述     | 实战示例                    |
+| ----- | ------------ | --------------------------- |
+| `ls`  | 列出目录内容 | `ls -lh` 人性化显示文件大小 |
+| `pwd` | 显示当前路径 | `pwd -P` 显示物理路径       |
+| `cd`  | 目录跳转     | `cd -` 返回上次目录         |
+| `cat` | 查看文件内容 | `cat -n file` 显示行号      |
 
-### find 命令
+### 3. 效率提升技巧
+
+- **智能补全**：`Tab`键自动补全路径/命令
+- **历史追溯**：`Ctrl+R` 逆向搜索命令历史
+- **会话管理**：
+  ```shell
+  screen -S work  # 创建持久会话
+  tmux new -s dev # 高级终端复用
+  ```
+
+## 📦 文件系统管理
+
+### 1. 文件操作
 
 ```shell
-find [路径] -name "[文件名]"
+# 创建多层目录
+mkdir -p project/{src,dist,test}
+
+# 安全删除（需确认）
+rm -i *.log
+
+# 强力清除（慎用！）
+rm -rf node_modules/
 ```
 
-如：
-
-1. 查找指定路径下扩展名是 .py 的文件，包括子目录
-
-   ```shell
-   find [路径] -name "*.py"
-   ```
-
-2. 搜索当前目录下，文件名包含 1 的文件
-
-   ```shell
-   find -name "*1*"
-   ```
-
-### 小技巧
-
-1. ctrl + shift + = 放大终端窗口的字体显示
-2. ctrl + - 缩小终端窗口的字体显示
-3. 按 上 / 下 光标键可以在曾经使用过的命令之间来回切换
-4. 如果想要退出选择，并且不想执行当前选中的命令，可以按 ctrl + c
-5. 自动补全
-   - 在敲出 文件 / 目录 / 命令 的前几个字母之后，按下 tab 键
-   - 如果输入的没有歧义，系统会自动补全
-   - 如果还存在其他 文件 / 目录 / 命令 ，再按一下 tab 键，系统会提示可能存在的命令
-
-## 一、打包压缩
-
-### 1. 基本
-
-> Linux 常用 tar.gz
-
-1. 打包文件
-
-   ```shell
-   tar -cvf 打包文件.tar [被打包的文件/路径]
-   ```
-
-2. 解包文件
-
-   ```shell
-   tar -xvf 打包文件.tar
-   ```
-
-### 2. tar选项说明
-
-| 选项  | 含义                                 |
-|:----|:-----------------------------------|
-| c   | 生成档案文件，创建打包文件                      |
-| x   | 解开档案文件                             |
-| v   | 列出归档解档的详细过程，显示进度                   |
-| f   | 指定档案文件名称，f 后面一定是 .tar 文件，所以必须放选项最后 |
-
-::: warning 注意
- f 选项必须放在最后，其他选项顺序可以随意！
-:::
-
-## 二、压缩/解压缩
-
-### 1. 使用 gzip
-
-> 用 gzip 压缩 tar 打包后的文件，其扩展名一般用 xxx.tar.gz
-
-1. 压缩文件
-
-   ```shell
-   tar -zcvf 打包文件.tar.gz [被压缩的文件/路径]
-   ```
-
-2. 解压缩文件
-
-   1. 解压到当前目录
-
-      ```shell
-      tar -zxvf 打包文件.tar.gz
-      ```
-
-   2. 解压缩到指定路径
-
-      ```shell
-      tar -zxvf 打包文件.tar.gz -C [目标路径]
-      ```
-
-::: warning 注意
-要解压缩的目录必须存在。
-:::
-
-### 2. 使用 bzip2(two)
-
-> 用 bzip2 压缩 tar 打包后的文件，其扩展名一般用 xxx.tar.bz2
-
-1. 压缩文件
-
-   ```shell
-   tar -jcvf 打包文件.tar.bz2 [被压缩的文件/路径]
-   ```
-
-2. 解压缩文件
-
-   ```shell
-   tar -jxvf 打包文件.tar.bz2
-   ```
-
-## 三、软件安装
-
-> apt 安装/卸载软件
-
-### 1. 安装软件
-
-   ```shell
-   sudo apt install [软件包]
-   ```
-
-### 2. 卸载软件
-
-   ```shell
-   sudo apt remove [软件名]
-   ```
-
-### 3. 更新已安装的包
-
-   ```shell
-   sudo apt upgrade
-   ```
-
-## 四、文件和目录
-
-### 1. 切换目录
-
-#### cd 命令
-
-| 命令     | 含义                      |
-|:-------|:------------------------|
-| cd     | 切换到当前用户的主目录(/home/用户目录) |
-| cd ~   | 切换到当前用户的主目录(/home/用户目录) |
-| cd .   | 保持在当前目录不变               |
-| cd ..  | 切换到上级目录                 |
-| cd -   | 可以在最近两次工作目录之间来回切换       |
-
-### 2. 创建文件/目录
-
-#### touch 命令
+### 2. 链接管理
 
 ```shell
-touch [文件名]  # 应加后缀
+# 创建软链接（绝对路径）
+ln -s /opt/app/config.conf ~/config.link
+
+# 查看链接指向
+readlink config.link
 ```
 
-::: tip 提示
-
-- 创建文件或修改文件时间
-
-- 如果文件不存在，可以创建一个空白文件
-
-- 如果文件已经存在，可以修改文件的末次修改日期
-
-:::
-
-#### mkdir 命令
+### 3. 高级查找
 
 ```shell
-mkdir [目录名]
+# 按类型查找（f=文件，d=目录）
+find /var -type f -name "*.log"
+
+# 最近修改文件
+find . -mtime -1 -exec ls -lh {} \;
+
+# 组合条件搜索
+find /home -size +100M -user root
 ```
 
-> 创建一个新的目录
+## 🛠️ 系统管理
+
+### 1. 进程监控
 
 ```shell
-mkdir -p [目录名/路径]
+# 动态进程查看
+top -u nginx
+
+# 树状结构展示
+pstree -p
+
+# 杀灭进程组
+kill -9 $(pgrep -f "python script")
 ```
 
-> 可以递归创建目录
-> 即：若路径中的莫些目录不存在，系统会自动这些目录
+### 2. 网络诊断
 
 ```shell
-mkdir -m  <权限模式> [目录名]
+# 快速端口检测
+nc -zv example.com 22
+
+# 路由追踪
+mtr 8.8.8.8
+
+# 持续ping测试
+ping -i 0.5 -c 100 google.com
 ```
 
-> 对新建的目录设置权限，默认 755
+## 📦 软件管理
+
+### APT 高级用法
 
 ```shell
-mkdir -v [目录名]
+# 更新软件源
+sudo apt update && sudo apt upgrade -y
+
+# 搜索软件包
+apt search nginx
+
+# 清除旧内核
+sudo apt autoremove --purge
 ```
 
-> 创建新目录时显示信息
-
-### 3. 删除文件/目录
-
-#### rm 命令
-
-> 删除文件或目录
-
-::: warning 注意
-文件删除后不能恢复！
-:::
+### 源码编译
 
 ```shell
-rm -f [文件名]  # 应添加后缀 
+./configure --prefix=/opt/app
+make -j$(nproc)
+sudo make install
 ```
 
-> 强制删除，忽略不存在的文件，无需提示
+## 🔐 权限管理
+
+### 1. 权限控制
 
 ```shell
-rm -r [目录名]
+# 递归修改权限
+chmod -R 750 /opt/secure
+
+# 修改文件属主
+chown user:group file.txt
 ```
 
-> 递归地删除目录下的内容，删除文件夹 时必须加此参数
-
-### 4. 拷贝/移动文件
-
-#### mv 命令
-
-使用`mv`命令在文件系统中移动（或重命名）文件和目录。
-
-若要使用此命令，请将其名称与源文件和目标文件一起键入：
+### 2. 用户管理
 
 ```shell
-mv 源文件 目标目录
+# 创建系统用户
+useradd -r -s /bin/false service_user
+
+# 锁定账户
+usermod -L username
+
+# 查看登录历史
+last -n 10
 ```
 
-您还可以使用`mv`重命名文件，同时将其保留在同一目录中：
+## 🧰 开发工具链
+
+### 1. 文本处理
 
 ```shell
-mv old_name_file.txt new_name_file.txt
+# 实时日志分析
+tail -f /var/log/syslog | grep "ERROR"
+
+# JSON格式化
+curl api.example.com | jq .
+
+# CSV处理
+csvcut -c 1,3 data.csv | csvlook
 ```
 
-## 五、有关用户的操作
-
-### 1. 切换用户
-
-1. 切换普通用户
-
-    ```shell
-    su [用户名]
-    ```
-
-2. 切换 root 用户
-
-    ```shell
-    sudo su
-    ```
-
-### 2. 修改用户密码
+### 2. 压缩打包
 
 ```shell
-sudo passwd [用户名]  # 可以是 root
+# 创建带时间戳的压缩包
+tar -czvf backup-$(date +%Y%m%d).tar.gz /data
+
+# 排除指定目录
+tar --exclude='*.tmp' -cf archive.tar project/
+
+# 分卷压缩
+tar -cvzf - bigfile | split -b 2G - bigfile.tar.gz.
 ```
 
-### 3. 用户的启用和禁用
+## 💡 专家技巧
 
-#### 禁用
+### 1. 命令组合
 
 ```shell
-sudo passwd -l [用户名]
+# 统计代码行数
+find src/ -name "*.py" | xargs wc -l
+
+# 批量重命名
+rename 's/.JPG/.jpg/' *.JPG
+
+# 快速创建大文件
+dd if=/dev/zero of=test.img bs=1G count=5
 ```
 
-> 在非 root 下切换被禁用的用户，会认证失败。
-
-#### 启用
+### 2. 安全增强
 
 ```shell
-sudo passwd -u [用户名]
+# SSH密钥登录
+ssh-keygen -t ed25519 -C "user@server"
+
+# 防火墙配置
+ufw allow proto tcp from 192.168.1.0/24 to any port 22
 ```
+
+> 📌 提示：使用危险命令前建议添加 `echo` 预览效果，例如 `rm -rf` 改为 `echo rm -rf`
