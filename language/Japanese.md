@@ -1,6 +1,6 @@
 # 日语
 
-> 推荐课程：[【哔哩哔哩】教日语的阿飞老师)](https://www.bilibili.com/video/BV1Bp4y1D747?p=3)
+> 推荐课程：[【哔哩哔哩】教日语的阿飞老师](https://www.bilibili.com/video/BV1Bp4y1D747?p=3)
 
 ## 日语五十音
 
