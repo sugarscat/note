@@ -23,6 +23,6 @@ const iconDataStructure: string = `
   <path d="M259.84 499.84h96v23.68h-96z m-71.68 0h23.68v23.68h-23.68z" fill="#34303D">
   </path>
 </svg>
-`
+`;
 
-export default iconDataStructure
+export default iconDataStructure;

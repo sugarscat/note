@@ -1,28 +1,20 @@
-import { defineConfig } from 'vitepress'
-import mdItCustomAttrs from 'markdown-it-custom-attrs'
-import markdownItKatex from 'markdown-it-katex'
-import sidebar from './sidebar'
+import { withMermaid } from "vitepress-plugin-mermaid";
+import mdItCustomAttrs from "markdown-it-custom-attrs";
+import markdownItKatex from "markdown-it-katex";
+import sidebar from "./sidebar";
 import algolia from "./algolia";
 
 // https://vitepress.dev/zh/reference/site-config
-export default defineConfig({
-    base: '/',
+export default withMermaid({
+    base: "/",
     lang: "zh-CN",
-    title: 'Note',
-    description: '心灵记忆过往，镜头捕捉瞬间。',
+    title: "Note",
+    description: "心灵记忆过往，镜头捕捉瞬间。",
     head: [
-        [
-            'link', { rel: 'icon', href: '/favicon.ico' }
-        ],
-        [
-            "link", { rel: "stylesheet", href: "/assets/libs/fancybox/fancybox.css" },
-        ],
-        [
-            "script", { src: "/assets/libs/fancybox/fancybox.umd.js" }
-        ],
-        [
-            "link", { rel: "stylesheet", href: "/assets/libs/katex/katex.min.css" },
-        ],
+        ["link", { rel: "icon", href: "/favicon.ico" }],
+        ["link", { rel: "stylesheet", href: "/assets/libs/fancybox/fancybox.css" }],
+        ["script", { src: "/assets/libs/fancybox/fancybox.umd.js" }],
+        ["link", { rel: "stylesheet", href: "/assets/libs/katex/katex.min.css" }],
     ],
 
     vite: {
@@ -30,9 +22,9 @@ export default defineConfig({
         css: {
             preprocessorOptions: {
                 scss: {
-                    api: 'modern-compiler'
-                }
-            }
+                    api: "modern-compiler",
+                },
+            },
         },
         build: {
             chunkSizeWarningLimit: 1000,
@@ -44,54 +36,56 @@ export default defineConfig({
     markdown: {
         config: (md) => {
             // use more markdown-it plugins!
-            md.use(mdItCustomAttrs, 'image', {
-                'data-fancybox': "gallery"
-            })
-            md.use(markdownItKatex)
-        }
+            md.use(mdItCustomAttrs, "image", {
+                "data-fancybox": "gallery",
+            });
+            md.use(markdownItKatex);
+        },
     },
 
+    // optionally set additional config for plugin itself with MermaidPluginConfig
+    mermaidPlugin: {
+        class: "mermaid", // set additional css classes for parent container
+    },
     themeConfig: {
-        logo: '/favicon.ico',
+        logo: "/favicon.ico",
         nav: [
             {
-                text: '首页',
-                link: '/',
+                text: "首页",
+                link: "/",
             },
             {
-                text: '阅读',
-                link: '/welcome.md',
-            }
+                text: "阅读",
+                link: "/welcome.md",
+            },
         ],
         sidebar: sidebar,
         outline: {
             // 右侧导航目录显示层级
-            level: 'deep',
+            level: "deep",
             // 右侧导航目录显示文字
-            label: '页面导航'
+            label: "页面导航",
         },
 
         // algolia搜索
         search: {
-            provider: 'algolia',
+            provider: "algolia",
             options: algolia,
         },
 
-        socialLinks: [
-            { icon: 'github', link: 'https://github.com/sugarscat/note' }
-        ],
+        socialLinks: [{ icon: "github", link: "https://github.com/sugarscat/note" }],
 
         lastUpdated: {
-            text: '最后更新于',
+            text: "最后更新于",
         },
 
         docFooter: {
-            prev: '上一页',
-            next: '下一页'
+            prev: "上一页",
+            next: "下一页",
         },
 
-        sidebarMenuLabel: '菜单',
-        returnToTopLabel: '返回顶部',
-        darkModeSwitchLabel: '切换主题',
+        sidebarMenuLabel: "菜单",
+        returnToTopLabel: "返回顶部",
+        darkModeSwitchLabel: "切换主题",
     },
-})
+});

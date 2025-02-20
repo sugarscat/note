@@ -1,0 +1,17 @@
+/.idea/'node_modules'
+'.temp'
+'.cache'
+/node_modules/
+.vitepress/dist/
+.vitepress/temp/
+.vitepress/cache/
+public
+
+.vscode/*
+!.vscode/extensions.json
+!.vscode/launch.json
+
+pnpm-lock.yaml
+yarn.lock
+package-lock.json
+.idea/*

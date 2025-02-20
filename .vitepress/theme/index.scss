@@ -13,21 +13,22 @@
     --vp-sidebar-width: 320px !important;
     --vp-sidebar-width-collapse: 300px !important;
 
-    --color-nav-background: rgba(251, 251, 253, .6);
-    --color-nav-sidebar-background: rgba(246, 246, 247, .6);
+    --color-nav-background: rgba(251, 251, 253, 0.6);
+    --color-nav-sidebar-background: rgba(246, 246, 247, 0.6);
 }
 
 /*front*/
 @font-face {
     font-family: JetBrainsMono;
-    src: url('./font/JetBrainsMono.woff2') format('woff2');
+    src: url("./font/JetBrainsMono.woff2") format("woff2");
 }
 
 @font-face {
     font-family: HarmonyOS_Sans;
-    src: url('./font/HarmonyOS_Sans.woff2') format('woff2'),
-        url('./font/HarmonyOS_Sans.woff') format('woff'),
-        url('./font/HarmonyOS_Sans.ttf') format('truetype');
+    src:
+        url("./font/HarmonyOS_Sans.woff2") format("woff2"),
+        url("./font/HarmonyOS_Sans.woff") format("woff"),
+        url("./font/HarmonyOS_Sans.ttf") format("truetype");
 }
 
 * {
@@ -42,11 +43,15 @@ html {
     }
 
     code {
-        font-family: "JetBrainsMono", ui-monospace, 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', monospace;
+        font-family:
+            "JetBrainsMono", ui-monospace, "Menlo", "Monaco", "Consolas", "Liberation Mono",
+            "Courier New", monospace;
     }
 
     body {
-        font-family: "HarmonyOS_Sans", "HarmonyOS_Sans_SC", Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+        font-family:
+            "HarmonyOS_Sans", "HarmonyOS_Sans_SC", Inter, system-ui, Avenir, Helvetica, Arial,
+            sans-serif;
     }
 }
 
@@ -60,7 +65,7 @@ html {
     --vp-c-brand-3: #ce4e4e;
 
     --color-nav-background: rgba(27, 27, 31, 0.6);
-    --color-nav-sidebar-background: rgba(22, 22, 24, .6);
+    --color-nav-sidebar-background: rgba(22, 22, 24, 0.6);
 }
 
 .VPFooter {
@@ -126,7 +131,7 @@ html {
         padding: 5px 20px !important;
         border-radius: 10px;
 
-        transition: all .2s ease-in-out;
+        transition: all 0.2s ease-in-out;
         margin-top: 5px;
 
         &:hover {
@@ -151,14 +156,12 @@ html {
         display: flex;
         gap: var(--gap);
         align-items: center;
-
     }
 
     &.level-0 {
         padding-bottom: 0 !important;
     }
 }
-
 
 .go-to-top {
     background-color: var(--color-neutral4) !important;
@@ -181,9 +184,9 @@ html {
 
     background-size: 400% 400%;
     animation: gradient 5s ease infinite;
-    }
+}
 
-    @keyframes gradient {
+@keyframes gradient {
     0% {
         background-position: 0 50%;
     }
@@ -243,7 +246,9 @@ html {
 
 // 正文
 .content {
-    h4, h5, h6 {
+    h4,
+    h5,
+    h6 {
         margin-top: 10px;
     }
 }
@@ -255,7 +260,6 @@ html {
 
 // 导航栏
 .outline-link {
-
     &.active {
         color: var(--vp-c-brand-1) !important;
     }

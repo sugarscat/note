@@ -9,6 +9,6 @@ const iconPit: string = `
     fill="#1296db">
   </path>
 </svg>
-`
+`;
 
 export default iconPit;

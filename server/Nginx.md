@@ -48,14 +48,14 @@ sudo systemctl restart nginx
 ### 配置文件结构
 
 - 全局块在最上层
-  - 其次是 `events` 块
-    - 最后是 `http` 块
-      - `server` 块
-        - `localtion` 块
-        - `localtion` 块
-      - `server` 块
-        - `localtion` 块
-        - `localtion` 块
+    - 其次是 `events` 块
+        - 最后是 `http` 块
+            - `server` 块
+                - `localtion` 块
+                - `localtion` 块
+            - `server` 块
+                - `localtion` 块
+                - `localtion` 块
 
 ### 配置文件概览
 
@@ -171,49 +171,49 @@ http {
 
 内置全局变量：
 
-| 变量 | 描述 |
-| ---- | ---- |
-|`$args`|这个变量等于请求行中的参数，同`$query_string`。|
-|`$content_length`| 请求头中的 `Content-length` 字段。 |
-|`$content_type`| 请求头中的 `Content-Type` 字段。 |
-|`$document_root`| 当前请求在 `root` 指令中指定的值。 |
-|`$host`| 请求主机头字段，否则为服务器名称。|
-|`$http_user_agent`| 客户端 `agent` 信息。 |
-|`$http_cookie`| 客户端 `cookie` 信息。 |
-|`$limit_rate`| 这个变量可以限制连接速率。|
-|`$request_method`| 客户端请求的动作，通常为 `GET` 或 `POST`。 |
-|`$remote_addr`| 客户端的 `IP` 地址。 |
-|`$remote_port`| 客户端的端口。|
-|`$remote_user`| 已经经过 `Auth Basic Module` 验证的用户名。 |
-|`$request_filename`| 当前请求的文件路径，由 `root` 或 `alias` 指令与 `URI` 请求生成。 |
-|`$scheme`| `HTTP` 方法（如 `http`，`https`）。 |
-|`$server_protocol`| 请求使用的协议，通常是 `HTTP/1.0` 或 `HTTP/1.1`。 |
-|`$server_addr`| 服务器地址，在完成一次系统调用后可以确定这个值。|
-|`$server_name`| 服务器名称。|
-|`$server_port`| 请求到达服务器的端口号。|
-|`$request_uri`| 包含请求参数的原始 `URI`，不包含主机名，如：`/foo/bar.php?arg=baz`。 |
-|`$uri`| 不带请求参数的当前 `URI`，`$uri` 不包含主机名，如 `/foo/bar.html`。 |
-|`$document_uri`| 与 `$uri` 相同。 |
+| 变量                | 描述                                                                 |
+| ------------------- | -------------------------------------------------------------------- |
+| `$args`             | 这个变量等于请求行中的参数，同`$query_string`。                      |
+| `$content_length`   | 请求头中的 `Content-length` 字段。                                   |
+| `$content_type`     | 请求头中的 `Content-Type` 字段。                                     |
+| `$document_root`    | 当前请求在 `root` 指令中指定的值。                                   |
+| `$host`             | 请求主机头字段，否则为服务器名称。                                   |
+| `$http_user_agent`  | 客户端 `agent` 信息。                                                |
+| `$http_cookie`      | 客户端 `cookie` 信息。                                               |
+| `$limit_rate`       | 这个变量可以限制连接速率。                                           |
+| `$request_method`   | 客户端请求的动作，通常为 `GET` 或 `POST`。                           |
+| `$remote_addr`      | 客户端的 `IP` 地址。                                                 |
+| `$remote_port`      | 客户端的端口。                                                       |
+| `$remote_user`      | 已经经过 `Auth Basic Module` 验证的用户名。                          |
+| `$request_filename` | 当前请求的文件路径，由 `root` 或 `alias` 指令与 `URI` 请求生成。     |
+| `$scheme`           | `HTTP` 方法（如 `http`，`https`）。                                  |
+| `$server_protocol`  | 请求使用的协议，通常是 `HTTP/1.0` 或 `HTTP/1.1`。                    |
+| `$server_addr`      | 服务器地址，在完成一次系统调用后可以确定这个值。                     |
+| `$server_name`      | 服务器名称。                                                         |
+| `$server_port`      | 请求到达服务器的端口号。                                             |
+| `$request_uri`      | 包含请求参数的原始 `URI`，不包含主机名，如：`/foo/bar.php?arg=baz`。 |
+| `$uri`              | 不带请求参数的当前 `URI`，`$uri` 不包含主机名，如 `/foo/bar.html`。  |
+| `$document_uri`     | 与 `$uri` 相同。                                                     |
 
 ### 块的概述
 
 #### 全局块
 
-   就是配置文件从头开始到`events`块之间的内容，主要设置的是影响`nginx`服务器整体运行的配置指令，比如`worker_process`，值越大，可以支持的并发处理量也越多，但是还是和服务器的硬件相关。
+就是配置文件从头开始到`events`块之间的内容，主要设置的是影响`nginx`服务器整体运行的配置指令，比如`worker_process`，值越大，可以支持的并发处理量也越多，但是还是和服务器的硬件相关。
 
 #### events 块
 
-   `events` 块涉及的指令主要影响 `Nginx` 服务器与用户的网络连接，常用的设置包括是否开启对多 `work_process`下的网络连接进行序列化，是否允许同时接收多个网络连接，选取哪种事件驱动模型来处理连接请求，每个 `word_process` 可以同时支持的最大连接数等。
+`events` 块涉及的指令主要影响 `Nginx` 服务器与用户的网络连接，常用的设置包括是否开启对多 `work_process`下的网络连接进行序列化，是否允许同时接收多个网络连接，选取哪种事件驱动模型来处理连接请求，每个 `word_process` 可以同时支持的最大连接数等。
 
-   > 这部分的配置对 `Nginx` 的性能影响较大，在实际中应该灵活配置。
+> 这部分的配置对 `Nginx` 的性能影响较大，在实际中应该灵活配置。
 
 #### http 块
 
-   包括 `http` 全局块，以及多个 `server` 块。
+包括 `http` 全局块，以及多个 `server` 块。
 
 ##### http 全局块
 
-   `http` 全局块配置的指令包括文件引入、 MIME-TYPE 定义、日志自定义、连接超时时间、单链接请求数上限等。
+`http` 全局块配置的指令包括文件引入、 MIME-TYPE 定义、日志自定义、连接超时时间、单链接请求数上限等。
 
 ##### server 块
 
@@ -250,58 +250,58 @@ location / {
 
 1. `location` 语法：
 
-   ```nginx
-   location [=|~|~*|^~] /uri/ { … }
-   ```
+    ```nginx
+    location [=|~|~*|^~] /uri/ { … }
+    ```
 
-   - `=`：严格匹配。如果请求匹配这个 `location`，那么将停止搜索并立即处理此请求
-   - `~`： 区分大小写匹配(可用正则表达式)
-   - `~*`：不区分大小写匹配(可用正则表达式)
-   - `!~`：区分大小写不匹配
-   - `!~*`：不区分大小写不匹配
-   - `^~`：如果把这个前缀用于一个常规字符串,那么告诉 `nginx` 如果路径匹配那么不测试正则表达式
+    - `=`：严格匹配。如果请求匹配这个 `location`，那么将停止搜索并立即处理此请求
+    - `~`： 区分大小写匹配(可用正则表达式)
+    - `~*`：不区分大小写匹配(可用正则表达式)
+    - `!~`：区分大小写不匹配
+    - `!~*`：不区分大小写不匹配
+    - `^~`：如果把这个前缀用于一个常规字符串,那么告诉 `nginx` 如果路径匹配那么不测试正则表达式
 
 2. `alias `与 `root `的区别
 
-   - `root`  实际访问文件路径会拼接`URL`中的路径
+    - `root` 实际访问文件路径会拼接`URL`中的路径
 
-   - `alias`  实际访问文件路径不会拼接`URL`中的路径
+    - `alias` 实际访问文件路径不会拼接`URL`中的路径
 
-   - 示例如下：
+    - 示例如下：
 
-     ```nginx
-     location ^~ /test/ {  
-         alias /usr/local/nginx/html/static/;  
-     }
-     ```
-   
-     请求：/test/test1.html
-   
-     实际访问：/usr/local/nginx/html/static/test1.html 文件
-   
-     ```nginx
-     location ^~ /test/ {  
-         root /usr/local/nginx/html/;  
-     }
-     ```
+        ```nginx
+        location ^~ /test/ {
+            alias /usr/local/nginx/html/static/;
+        }
+        ```
 
-     请求：/test/test1.html
+        请求：/test/test1.html
 
-     实际访问：/usr/local/nginx/html/test/test1.html 文件
+        实际访问：/usr/local/nginx/html/static/test1.html 文件
+
+        ```nginx
+        location ^~ /test/ {
+            root /usr/local/nginx/html/;
+        }
+        ```
+
+        请求：/test/test1.html
+
+        实际访问：/usr/local/nginx/html/test/test1.html 文件
 
 3. `last` 和 `break` 关键字的区别
 
-   `last` 和 `break` 当出现在location 之外时：两者的作用是一致的没有任何差异
+    `last` 和 `break` 当出现在location 之外时：两者的作用是一致的没有任何差异
 
-   `last` 和 `break `当出现在 `location `内部时：
+    `last` 和 `break `当出现在 `location `内部时：
 
-   - `last ` 使用了`last `指令，`rewrite `后会跳出`location`作用域，重新开始再走一次刚才的行为
+    - `last ` 使用了`last `指令，`rewrite `后会跳出`location`作用域，重新开始再走一次刚才的行为
 
-   - `break`使用了`break`指令，`rewrite`后不会跳出`location`作用域，它的生命也在这个`location`中终结
+    - `break`使用了`break`指令，`rewrite`后不会跳出`location`作用域，它的生命也在这个`location`中终结
 
 4. `permanent `和 `redirect`关键字的区别
-   - `rewrite … permanent` 永久性重定向，请求日志中的状态码为`301`
-   - `rewrite … redirect` 临时重定向，请求日志中的状态码为`302`
+    - `rewrite … permanent` 永久性重定向，请求日志中的状态码为`301`
+    - `rewrite … redirect` 临时重定向，请求日志中的状态码为`302`
 
 ## 代理
 
@@ -319,11 +319,11 @@ location / {
 server {
     # 监听端口80 即当访问服务器的端口是 80 时，进入这个 server 块处理
     listen 80;
-    # server_name 当配置了 listen 时不起作用        
+    # server_name 当配置了 listen 时不起作用
     server_name  localhost;
     # location后面代表访问路径，当是 / 请求时 代理到 8080 的端口
     location / {
-    # 使用 proxy_pass（固定写法）后面跟要代理服务器地址            
+    # 使用 proxy_pass（固定写法）后面跟要代理服务器地址
         proxy_pass http://ip:8080;
     }
 }
@@ -386,7 +386,7 @@ upstream myserver{
 # server配置
 server {
   	# 监听80端口
-    listen 80;   
+    listen 80;
  	# location块
     location / {
 	# 反向代理到上面的两台服务器 写上自定义的名称
@@ -408,14 +408,14 @@ server {
 如：
 
 ```nginx
-upstream myserver { 
+upstream myserver {
     server ip:8081 weight=1 ;
     server ip:8082 weight=2 ;
 }
-server {  
-    listen       80;  
+server {
+    listen       80;
     location / {
-    proxy_pass http://myserver; 
+    proxy_pass http://myserver;
 }
 ```
 
@@ -427,15 +427,15 @@ server {
 
 ```nginx
 #配置负载均衡的服务器和端口
-upstream myserver { 
+upstream myserver {
     server ip:8081;
     server ip:8082;
     ip_hash;
 }
-server {  
-    listen 80;  
+server {
+    listen 80;
     location / {
-    	proxy_pass http://myserver; 
+    	proxy_pass http://myserver;
    	}
 }
 ```
@@ -448,16 +448,16 @@ server {
 
 ```nginx
 #配置负载均衡的服务器和端口
-upstream myserver {   
+upstream myserver {
     server ip:8081;
     server ip:8082;
     fair;
 }
-server {  
-    listen       80;   
+server {
+    listen       80;
     location / {
-    	proxy_pass http://myserver; 
-    }    
+    	proxy_pass http://myserver;
+    }
 }
 ```
 

@@ -8,67 +8,67 @@
 
 2. 引入依赖
 
-   ```xml
-   <parent>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-parent</artifactId>
-      <version>2.7.17</version>
-   </parent>
-   
-   <dependencies>
-      <dependency>
-      <groupId>org.springframework.boot</groupId>
-         <artifactId>spring-boot-starter-web</artifactId>
-      </dependency>
-   
-   </dependencies>
-   ```
+    ```xml
+    <parent>
+       <groupId>org.springframework.boot</groupId>
+       <artifactId>spring-boot-starter-parent</artifactId>
+       <version>2.7.17</version>
+    </parent>
+
+    <dependencies>
+       <dependency>
+       <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-web</artifactId>
+       </dependency>
+
+    </dependencies>
+    ```
 
 3. 创建主程序
 
-   ```java
-   /**
-    * 主程序类
-    * @SpringBootApplication：这是一个SpringBoot应用
-    */
-   @SpringBootApplication
-   public class MainApplication {
-      
-      public static void main(String[] args) {
-         SpringApplication.run(MainApplication.class,args);
-      }
-   }
-   ```
+    ```java
+    /**
+     * 主程序类
+     * @SpringBootApplication：这是一个SpringBoot应用
+     */
+    @SpringBootApplication
+    public class MainApplication {
+
+       public static void main(String[] args) {
+          SpringApplication.run(MainApplication.class,args);
+       }
+    }
+    ```
 
 4. 编写业务
 
-   ```java
-   @RestController
-   public class HelloController {
-   
-      @RequestMapping("/hello")
-      public String handle01(){
-         return "Hello, Spring Boot 2!";
-      }
-   }
-   ```
+    ```java
+    @RestController
+    public class HelloController {
+
+       @RequestMapping("/hello")
+       public String handle01(){
+          return "Hello, Spring Boot 2!";
+       }
+    }
+    ```
 
 5. 测试
 
-   直接运行main方法。
+    直接运行main方法。
 
 6. 简化部署
 
-   ```xml
-   <build>
-      <plugins>
-         <plugin>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-maven-plugin</artifactId>
-         </plugin>
-      </plugins>
-   </build>
-   ```
+    ```xml
+    <build>
+       <plugins>
+          <plugin>
+             <groupId>org.springframework.boot</groupId>
+             <artifactId>spring-boot-maven-plugin</artifactId>
+          </plugin>
+       </plugins>
+    </build>
+    ```
 
 ## Application Properties 配置
 
@@ -88,77 +88,78 @@ server.port=8080  # 端口
 
 1. 父项目做依赖管理
 
-   ```xml
-   <!--依赖管理-->
-   <parent>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-parent</artifactId>
-      <!-- 由此版本号决定，自动版本仲裁。 -->
-      <version>2.7.17</version>
-   </parent>
-   ```
+    ```xml
+    <!--依赖管理-->
+    <parent>
+       <groupId>org.springframework.boot</groupId>
+       <artifactId>spring-boot-starter-parent</artifactId>
+       <!-- 由此版本号决定，自动版本仲裁。 -->
+       <version>2.7.17</version>
+    </parent>
+    ```
 
-   :::tip 自动版本仲裁
-   1. 引入依赖默认都可以不写版本 ；
+    :::tip 自动版本仲裁
 
-   2. 引入非版本仲裁的jar，要写版本号。
-   :::
+    1. 引入依赖默认都可以不写版本 ；
+
+    2. 引入非版本仲裁的jar，要写版本号。
+       :::
 
 2. 以修改默认版本号
 
-   ```xml
-   <!--1. 查看spring-boot-dependencies里面规定当前依赖的版本用的 key。-->
-   <!--2. 在当前项目里面重写配置-->
-   <properties>
-      <mysql.version>8.0.21</mysql.version>
-   </properties>
-   ```
+    ```xml
+    <!--1. 查看spring-boot-dependencies里面规定当前依赖的版本用的 key。-->
+    <!--2. 在当前项目里面重写配置-->
+    <properties>
+       <mysql.version>8.0.21</mysql.version>
+    </properties>
+    ```
 
 ### 自动配置
 
 1. 自动配好Tomcat
 
-   - 引入Tomcat依赖；
+    - 引入Tomcat依赖；
 
-   - 配置 Tomcat。
+    - 配置 Tomcat。
 
 2. 自动配好 SpringMVC
 
-   - 引入 SpringMVC 全套组件；
-   - 自动配好SpringMVC 常用组件（功能）。
+    - 引入 SpringMVC 全套组件；
+    - 自动配好SpringMVC 常用组件（功能）。
 
 3. 自动配好 Web 常见功能
 
-   如：字符编码问题。
+    如：字符编码问题。
 
 4. 默认的包结构
 
-   - 主程序所在包及其下面的所有子包里面的组件都会被默认扫描进来；
+    - 主程序所在包及其下面的所有子包里面的组件都会被默认扫描进来；
 
-   - 无需以前的包扫描配置；
+    - 无需以前的包扫描配置；
 
-   - 想要改变扫描路径：
+    - 想要改变扫描路径：
 
-     @SpringBootApplication(scanBasePackages="com.atguigu")；
+        @SpringBootApplication(scanBasePackages="com.atguigu")；
 
-     @ComponentScan 指定扫描路径；
+        @ComponentScan 指定扫描路径；
 
-   ::: tip 提示
+    ::: tip 提示
 
-   ```java
-   @SpringBootApplication
-   // 等同于
-   @SpringBootConfiguration
-   @EnableAutoConfiguration
-   @ComponentScan("com.atguigu.boot")
-   ```
+    ```java
+    @SpringBootApplication
+    // 等同于
+    @SpringBootConfiguration
+    @EnableAutoConfiguration
+    @ComponentScan("com.atguigu.boot")
+    ```
 
-   :::
+    :::
 
 5. 各种配置拥有默认值
-   - 默认配置最终都是映射到某个类上，如：MultipartProperties ；
-   - 配置文件的值最终会绑定每个类上，这个类会在容器中创建对象；
-   - 按需加载所有自动配置项。
+    - 默认配置最终都是映射到某个类上，如：MultipartProperties ；
+    - 配置文件的值最终会绑定每个类上，这个类会在容器中创建对象；
+    - 按需加载所有自动配置项。
 
 ## 容器功能
 
@@ -179,89 +180,89 @@ Spring 的 @Bean 注解用于告诉方法，产生一个 Bean 对象，然后这
     - `Lite(proxyBeanMethods = false)`：每个 `@Bean` 方法被调用多少次返回的组件都是新创建的；
     - 组件依赖必须使用 `Full` 模式默认，其他默认是否 `Lite` 模式。
 
-   ```java
-   @Configuration(proxyBeanMethods = false) // 告诉 SpringBoot 这是一个配置类 == 配置文件
-   public class MyConfig {
-      /**
-       * Full:外部无论对配置类中的这个组件注册方法调用多少次获取的都是之前注册容器中的单实例对象
-      * @return
-      */
-      @Bean // 给容器中添加组件；以方法名作为组件的 id；返回类型就是组件类型；返回的值，就是组件在容器中的实例。
-      public User user01(){
-         User zhangsan = new User("zhangsan", 18);
-         //user组件依赖了Pet组件
-         zhangsan.setPet(tomcatPet());
-         return zhangsan;
-      }
-   
-      @Bean("tom")
-      public Pet tomcatPet(){
-         return new Pet("tomcat");
-      }
-   }
-   ```
+    ```java
+    @Configuration(proxyBeanMethods = false) // 告诉 SpringBoot 这是一个配置类 == 配置文件
+    public class MyConfig {
+       /**
+        * Full:外部无论对配置类中的这个组件注册方法调用多少次获取的都是之前注册容器中的单实例对象
+       * @return
+       */
+       @Bean // 给容器中添加组件；以方法名作为组件的 id；返回类型就是组件类型；返回的值，就是组件在容器中的实例。
+       public User user01(){
+          User zhangsan = new User("zhangsan", 18);
+          //user组件依赖了Pet组件
+          zhangsan.setPet(tomcatPet());
+          return zhangsan;
+       }
+
+       @Bean("tom")
+       public Pet tomcatPet(){
+          return new Pet("tomcat");
+       }
+    }
+    ```
 
 2. 测试
 
-   @Configuration 测试代码如下
+    @Configuration 测试代码如下
 
-   ```java
-   @SpringBootConfiguration
-   @EnableAutoConfiguration
-   @ComponentScan("com.atguigu.boot")
-   public class MainApplication {
-   
-      public static void main(String[] args) {
-         // 1、返回我们IOC容器
-         ConfigurableApplicationContext run = SpringApplication.run(MainApplication.class, args);
-   
-         // 2、查看容器里面的组件
-         String[] names = run.getBeanDefinitionNames();
-         for (String name : names) {
-          System.out.println(name);
-         }
-         // 3、从容器中获取组件
-         Pet tom01 = run.getBean("tom", Pet.class);
-         Pet tom02 = run.getBean("tom", Pet.class);
-         System.out.println("组件："+(tom01 == tom02));
-         // 4. com.atguigu.boot.config.MyConfig$$EnhancerBySpringCGLIB$$51f1e1ca@1654a892
-         MyConfig bean = run.getBean(MyConfig.class);
-         System.out.println(bean);
-   
-         // 如果@Configuration(proxyBeanMethods = true)代理对象调用方法。
-         // SpringBoot 总会检查这个组件是否在容器中有。
-         // 保持组件单实例
-         User user = bean.user01();
-         User user1 = bean.user01();
-         System.out.println(user == user1);
-   
-         User user01 = run.getBean("user01", User.class);
-         Pet tom = run.getBean("tom", Pet.class);
-         System.out.println("用户的宠物："+(user01.getPet() == tom));
-      }
-   }
-   ```
+    ```java
+    @SpringBootConfiguration
+    @EnableAutoConfiguration
+    @ComponentScan("com.atguigu.boot")
+    public class MainApplication {
+
+       public static void main(String[] args) {
+          // 1、返回我们IOC容器
+          ConfigurableApplicationContext run = SpringApplication.run(MainApplication.class, args);
+
+          // 2、查看容器里面的组件
+          String[] names = run.getBeanDefinitionNames();
+          for (String name : names) {
+           System.out.println(name);
+          }
+          // 3、从容器中获取组件
+          Pet tom01 = run.getBean("tom", Pet.class);
+          Pet tom02 = run.getBean("tom", Pet.class);
+          System.out.println("组件："+(tom01 == tom02));
+          // 4. com.atguigu.boot.config.MyConfig$$EnhancerBySpringCGLIB$$51f1e1ca@1654a892
+          MyConfig bean = run.getBean(MyConfig.class);
+          System.out.println(bean);
+
+          // 如果@Configuration(proxyBeanMethods = true)代理对象调用方法。
+          // SpringBoot 总会检查这个组件是否在容器中有。
+          // 保持组件单实例
+          User user = bean.user01();
+          User user1 = bean.user01();
+          System.out.println(user == user1);
+
+          User user01 = run.getBean("user01", User.class);
+          Pet tom = run.getBean("tom", Pet.class);
+          System.out.println("用户的宠物："+(user01.getPet() == tom));
+       }
+    }
+    ```
 
 3. Full 模式与 Lite 模式
 
-   - 配置类组件之间无依赖关系用Lite模式加速容器启动过程，减少判断 ；
-   - 配置类组件之间有依赖关系，方法会被调用得到之前单实例组件，用Full模式；
-   - 配置类里面使用@Bean标注在方法上给容器注册组件，默认也是单实例的；
-   - 配置类本身也是组件。
+    - 配置类组件之间无依赖关系用Lite模式加速容器启动过程，减少判断 ；
+    - 配置类组件之间有依赖关系，方法会被调用得到之前单实例组件，用Full模式；
+    - 配置类里面使用@Bean标注在方法上给容器注册组件，默认也是单实例的；
+    - 配置类本身也是组件。
 
 4. 其他办法
 
-   @Bean、@Component、@Controller、@Service、@Repository、@ComponentScan、@Import
+    @Bean、@Component、@Controller、@Service、@Repository、@ComponentScan、@Import
 
-   :::tip @Import 示例
+    :::tip @Import 示例
 
-   ```java
-   @Import({User.class})
-   @Configuration(proxyBeanMethods = false)
-   public class MyConfig {}
-   ```
+    ```java
+    @Import({User.class})
+    @Configuration(proxyBeanMethods = false)
+    public class MyConfig {}
+    ```
 
-   :::
+    :::
 
 ### @Autowired
 
@@ -282,7 +283,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {
-    
+
     @Autowired
     UserRepository userRepository;
 
@@ -369,7 +370,7 @@ mycar.price = "200000"
  */
 @Component
 @ConfigurationProperties(prefix = "mycar")
-// 根据 application.properties 中的配置内容一一绑定 
+// 根据 application.properties 中的配置内容一一绑定
 public class Car {
    private String brand;
    private Integer price;
@@ -417,29 +418,29 @@ public @interface EnableAutoConfiguration {}
 
 1. @AutoConfigurationPackage
 
-   - 自动配置包；
+    - 自动配置包；
 
-   - 指定了默认的包规则。
+    - 指定了默认的包规则。
 
-   ```java
-   @Import(AutoConfigurationPackages.Registrar.class) //给容器中导入一个组件
-   public @interface AutoConfigurationPackage {}
-   // 利用 Registrar 给容器中导入一系列组件;
-   // 将指定的一个包下的所有组件导入进来 --> MainApplication 所在包下。
-   ```
+    ```java
+    @Import(AutoConfigurationPackages.Registrar.class) //给容器中导入一个组件
+    public @interface AutoConfigurationPackage {}
+    // 利用 Registrar 给容器中导入一系列组件;
+    // 将指定的一个包下的所有组件导入进来 --> MainApplication 所在包下。
+    ```
 
 2. @Import(AutoConfigurationImportSelector.class)
 
-   > 文件里面写死了 spring-boot 一启动就要给容器中加载的所有配置类
+    > 文件里面写死了 spring-boot 一启动就要给容器中加载的所有配置类
 
-   - 利用 getAutoConfigurationEntry(annotationMetadata); 给容器中批量导入一些组件；
+    - 利用 getAutoConfigurationEntry(annotationMetadata); 给容器中批量导入一些组件；
 
-   - 调用 `List<String> configurations = getCandidateConfigurations(annotationMetadata, attributes)` 获取到所有需要导入到容器中的配置类；
-   - 利用工厂加载 `Map<String, List<String>> loadSpringFactories(@Nullable ClassLoader classLoader)`得到所有的组件；
+    - 调用 `List<String> configurations = getCandidateConfigurations(annotationMetadata, attributes)` 获取到所有需要导入到容器中的配置类；
+    - 利用工厂加载 `Map<String, List<String>> loadSpringFactories(@Nullable ClassLoader classLoader)`得到所有的组件；
 
-   - 从 META-INF/spring.factories 位置来加载一个文件:
-     - 默认扫描我们当前系统里面所有 META-INF/spring.factories 位置的文件；
-     - spring-boot-autoconfigure-2.3.4.RELEASE.jar 包里面也有 META-INF/spring.factories。
+    - 从 META-INF/spring.factories 位置来加载一个文件:
+        - 默认扫描我们当前系统里面所有 META-INF/spring.factories 位置的文件；
+        - spring-boot-autoconfigure-2.3.4.RELEASE.jar 包里面也有 META-INF/spring.factories。
 
 #### 按需开启自动配置项
 
@@ -474,7 +475,7 @@ public CharacterEncodingFilter characterEncodingFilter() {}
 
 - Negative（不生效）
 - Positive（生效）
-:::
+  :::
 
 ## 开发小技巧
 
@@ -699,40 +700,40 @@ YAML 是 "YAML Ain't Markup Language"（YAML 不是一种标记语言）的递�
 
 1. 字面量：单个的、不可再分的值。date、boolean、string、number、null
 
-   ```yaml
-   k: v
-   ```
+    ```yaml
+    k: v
+    ```
 
 2. 对象：键值对的集合。map、hash、set、object
 
-   ```yaml
-   # 行内写法
-   k: {k1:v1, k2:v2, k3:v3}
-   # 或
-   k:
-     k1: v1
-     k2: v2
-     k3: v3
-   
-   ```
+    ```yaml
+    # 行内写法
+    k: {k1:v1, k2:v2, k3:v3}
+    # 或
+    k:
+      k1: v1
+      k2: v2
+      k3: v3
+
+    ```
 
 3. 数组：一组按次序排列的值。array、list、queue
 
-   ```yaml
-   # 行内写法
-   k: [v1, v2, v3]
-   # 或者
-   k:
-     - v1
-     - v2
-     - v3
-   ```
+    ```yaml
+    # 行内写法
+    k: [v1, v2, v3]
+    # 或者
+    k:
+      - v1
+      - v2
+      - v3
+    ```
 
 #### 示例
 
 ```java
 @ConfigurationProperties(prefix = "person")
-// 根据 application.xml 中的配置内容一一绑定 
+// 根据 application.xml 中的配置内容一一绑定
 @Data
 public class Person {
     private String userName;
@@ -758,30 +759,30 @@ public class Pet {
 
 ```yaml
 person:
-  userName: zhangsan
-  boss: false
-  birth: 2019/12/12 20:12:33
-  age: 18
-  pet:
-  name: tomcat
-  weight: 23.4
-  interests: [篮球,游泳]
-  animal:
-    - jerry
-    - mario
-  score:
-  english:
-  first: 30
-  second: 40
-  third: 50
-  math: [131,140,148]
-  chinese: {first: 128,second: 136}
-  salarys: [3999,4999.98,5999.99]
-  allPets:
-  sick:
-    - {name: tom}
-    - {name: jerry,weight: 47}
-  health: [{name: mario,weight: 47}]
+    userName: zhangsan
+    boss: false
+    birth: 2019/12/12 20:12:33
+    age: 18
+    pet:
+    name: tomcat
+    weight: 23.4
+    interests: [篮球, 游泳]
+    animal:
+        - jerry
+        - mario
+    score:
+    english:
+    first: 30
+    second: 40
+    third: 50
+    math: [131, 140, 148]
+    chinese: { first: 128, second: 136 }
+    salarys: [3999, 4999.98, 5999.99]
+    allPets:
+    sick:
+        - { name: tom }
+        - { name: jerry, weight: 47 }
+    health: [{ name: mario, weight: 47 }]
 ```
 
 双引号不会转义：`/n` 会被视为换行；
@@ -837,7 +838,7 @@ person:
 
 访问 ： 当前项目根路径/ + 静态资源名
 
-原理： 静态映射/**。
+原理： 静态映射/\*\*。
 
 > 请求进来，先去找Controller看能不能处理，不能处理的所有请求又都交给静态资源处理器，静态资源也找不到则响应404页面。
 
@@ -851,8 +852,8 @@ spring.mvc.static-path-pattern=/mypath/**
 
 ```yaml
 spring:
-  resources:
-    static-locations: [classpath:/mypath/]
+    resources:
+        static-locations: [classpath:/mypath/]
 ```
 
 ### 静态资源访问前缀
@@ -863,8 +864,8 @@ spring:
 
 ```yaml
 spring:
-  mvc:
-    static-path-pattern: /res/**
+    mvc:
+        static-path-pattern: /res/**
 ```
 
 当前项目 + static-path-pattern + 静态资源名 = 静态资源文件夹下找。
@@ -890,8 +891,8 @@ spring:
 
 ```yaml
 spring:
-  mvc:
-    static-path-pattern: /res/** # 这个会导致welcome page功能失效
+    mvc:
+        static-path-pattern: /res/** # 这个会导致welcome page功能失效
 ```
 
 :::
@@ -908,15 +909,15 @@ spring:
 
 - SpringMVC 功能的自动配置类 `WebMvcAutoConfiguration` 生效；
 
-  ```java
-  @Configuration(proxyBeanMethods = false)
-  @ConditionalOnWebApplication(type = Type.SERVLET)
-  @ConditionalOnClass({ Servlet.class, DispatcherServlet.class, WebMvcConfigurer.class })
-  @ConditionalOnMissingBean(WebMvcConfigurationSupport.class)
-  @AutoConfigureOrder(Ordered.HIGHEST_PRECEDENCE + 10)
-  @AutoConfigureAfter({ DispatcherServletAutoConfiguration.class,TaskExecutionAutoConfiguration.class,ValidationAutoConfiguration.class })
-  public class WebMvcAutoConfiguration {}
-  ```
+    ```java
+    @Configuration(proxyBeanMethods = false)
+    @ConditionalOnWebApplication(type = Type.SERVLET)
+    @ConditionalOnClass({ Servlet.class, DispatcherServlet.class, WebMvcConfigurer.class })
+    @ConditionalOnMissingBean(WebMvcConfigurationSupport.class)
+    @AutoConfigureOrder(Ordered.HIGHEST_PRECEDENCE + 10)
+    @AutoConfigureAfter({ DispatcherServletAutoConfiguration.class,TaskExecutionAutoConfiguration.class,ValidationAutoConfiguration.class })
+    public class WebMvcAutoConfiguration {}
+    ```
 
 - 配置文件的相关属性和 `xxx` 进行了绑定。`WebMvcProperties==spring.mvc`、`ResourceProperties==spring.resources`；
 
@@ -932,83 +933,83 @@ spring:
 
 2. Rest 风格支持（使用HTTP请求方式动词来表示对资源的操作）
 
-   - 以前：`/getUser` 获取用户 `/deleteUser` 删除用户 `/editUser` 修改用户 `/saveUser` 保存用户；
+    - 以前：`/getUser` 获取用户 `/deleteUser` 删除用户 `/editUser` 修改用户 `/saveUser` 保存用户；
 
-   - 现在： `/user` GET-获取用户 DELETE-删除用户 PUT-修改用户 POST-保存用户；
+    - 现在： `/user` GET-获取用户 DELETE-删除用户 PUT-修改用户 POST-保存用户；
 
-   - 核心 `Filter`、`HiddenHttpMethodFilter` 用法：
+    - 核心 `Filter`、`HiddenHttpMethodFilter` 用法：
 
-     - 表单 `method=post`，隐藏域 `_method=put SpringBoot` 中手动开启；
+        - 表单 `method=post`，隐藏域 `_method=put SpringBoot` 中手动开启；
 
-     - SpringBoot 中手动开启。
+        - SpringBoot 中手动开启。
 
-       ```java
-       // 源码默认关闭。
-       @Bean
-       @ConditionalOnMissingBean(HiddenHttpMethodFilter.class)
-       @ConditionalOnProperty(prefix = "spring.mvc.hiddenmethod.filter", name = "enabled", matchIfMissing = false)
-       public OrderedHiddenHttpMethodFilter hiddenHttpMethodFilter() {
-         return new OrderedHiddenHttpMethodFilter();
-       }
-       ```
+            ```java
+            // 源码默认关闭。
+            @Bean
+            @ConditionalOnMissingBean(HiddenHttpMethodFilter.class)
+            @ConditionalOnProperty(prefix = "spring.mvc.hiddenmethod.filter", name = "enabled", matchIfMissing = false)
+            public OrderedHiddenHttpMethodFilter hiddenHttpMethodFilter() {
+              return new OrderedHiddenHttpMethodFilter();
+            }
+            ```
 
-       开启
+            开启
 
-       ```yaml
-       spring:
-         mvc:
-           hiddenmethod:
-             filter:
-               enabled: true
-       ```
+            ```yaml
+            spring:
+                mvc:
+                    hiddenmethod:
+                        filter:
+                            enabled: true
+            ```
 
-   - 扩展：如何把 `_method` 这个名字换成我们自己喜欢的。
+    - 扩展：如何把 `_method` 这个名字换成我们自己喜欢的。
 
-     ```java
-     //自定义filter
-     @Bean
-     public HiddenHttpMethodFilter hiddenHttpMethodFilter(){
-         HiddenHttpMethodFilter methodFilter = new HiddenHttpMethodFilter();
-         methodFilter.setMethodParam("_m");
-         return methodFilter;
-     }
-     ```
+        ```java
+        //自定义filter
+        @Bean
+        public HiddenHttpMethodFilter hiddenHttpMethodFilter(){
+            HiddenHttpMethodFilter methodFilter = new HiddenHttpMethodFilter();
+            methodFilter.setMethodParam("_m");
+            return methodFilter;
+        }
+        ```
 
 3. 代码示例
 
-   ```java
-   @RequestMapping(value = "/user",method = RequestMethod.GET)
-   public String getUser() {
-      return "GET-张三";
-   }
-   
-   @RequestMapping(value = "/user",method = RequestMethod.POST)
-   public String saveUser(){
-      return "POST-张三";
-   }
-   
-   @RequestMapping(value = "/user",method = RequestMethod.PUT)
-   public String putUser(){
-      return "PUT-张三";
-   }
-   
-   @RequestMapping(value = "/user",method = RequestMethod.DELETE)
-   public String deleteUser(){
-      return "DELETE-张三";
-   }
-   ```
+    ```java
+    @RequestMapping(value = "/user",method = RequestMethod.GET)
+    public String getUser() {
+       return "GET-张三";
+    }
+
+    @RequestMapping(value = "/user",method = RequestMethod.POST)
+    public String saveUser(){
+       return "POST-张三";
+    }
+
+    @RequestMapping(value = "/user",method = RequestMethod.PUT)
+    public String putUser(){
+       return "PUT-张三";
+    }
+
+    @RequestMapping(value = "/user",method = RequestMethod.DELETE)
+    public String deleteUser(){
+       return "DELETE-张三";
+    }
+    ```
 
 4. 简化
 
-   ```java
-   @RequestMapping(value = "/user",method = RequestMethod.GET)
-   @RequestMapping(value = "/user",method = RequestMethod.POST)
-   // ...
-   // 等同于
-   @GETMapping("/user")
-   @POSTMapping("/user")
-   // ...
-   ```
+    ```java
+    @RequestMapping(value = "/user",method = RequestMethod.GET)
+    @RequestMapping(value = "/user",method = RequestMethod.POST)
+    // ...
+    // 等同于
+    @GETMapping("/user")
+    @POSTMapping("/user")
+    // ...
+    ```
 
 ### 普通参数与基本注解
 
@@ -1024,11 +1025,11 @@ spring:
 
 - `@MatrixVariable`：拓展了 `URL` 请求地址的功能。使用 `@Matrixvariable` 注解时多个变量可以使用 `;`(分号)分隔，该注解允许开发者进行多条件组合査询。
 
-  启用 `@MatrixVariable`:
+    启用 `@MatrixVariable`:
 
-  ![@MatrixVariable](./assets/SpringBoot/MatrixVariable1.png)
+    ![@MatrixVariable](./assets/SpringBoot/MatrixVariable1.png)
 
-  ![@MatrixVariable](./assets/SpringBoot/MatrixVariable2.png)
+    ![@MatrixVariable](./assets/SpringBoot/MatrixVariable2.png)
 
 - `@CookieValue`：可让处理方法入参绑定某个 `Cookie` 值。
 
@@ -1082,13 +1083,13 @@ public class ParameterTestController {
            @MatrixVariable("brand") List<String> brand,
               @PathVariable("path") String path){
       Map<String,Object> map = new HashMap<>();
-   
+
       map.put("low",low);
       map.put("brand",brand);
       map.put("path",path);
       return map;
    }
-   
+
    // /boss/1;age=20/2;age=10
    // pathVar 获取哪个路径的矩阵变量
    @GetMapping("/boss/{bossId}/{empId}")
@@ -1126,18 +1127,18 @@ request.getAttribute();
 
 2. `Map`、`Model`类型的参数，会返回 `mavContainer.getModel()` ---> `BindingAwareModelMap` 是 `Model` ，也是 `Map` （来自源码）。
 
-   ![map_model.png](./assets/SpringBoot/map_model.png)
+    ![map_model.png](./assets/SpringBoot/map_model.png)
 
 #### 自定义参数
 
 可以自动类型转换与格式化，可以级联封装。
 
 ```html
-<input name="userName" placeholder="姓名" /> <br/>
-<input name="age" placeholder="年龄"/> <br/>
-<input name="birth" placeholder="生日"/> <br/>
-<input name="pet.name" placeholder="宠物姓名"/><br/>
-<input name="pet.age" placeholder="宠物年龄"/>
+<input name="userName" placeholder="姓名" /> <br />
+<input name="age" placeholder="年龄" /> <br />
+<input name="birth" placeholder="生日" /> <br />
+<input name="pet.name" placeholder="宠物姓名" /><br />
+<input name="pet.age" placeholder="宠物年龄" />
 ```
 
 ```java
@@ -1220,7 +1221,7 @@ Object[] args = getMethodArgumentValues(request, mavContainer, providedArgs);
 <!-- web场景自动引入了json场景 -->
 <dependency>
   <groupId>org.springframework.boot</groupId>
-  <artifactId>spring-boot-starter-json</artifactId> 
+  <artifactId>spring-boot-starter-json</artifactId>
   <version>2.3.4.RELEASE</version>
   <scope>compile</scope>
 </dependency>
@@ -1247,8 +1248,8 @@ public class HelloController {
 
 ```json
 {
-   "name":"张三",
-   "age":18
+    "name": "张三",
+    "age": 18
 }
 ```
 
@@ -1261,13 +1262,14 @@ public class HelloController {
 2. 返回值处理器调用 `handleReturnValue` 进行处理；
 
 3. `RequestResponseBodyMethodProcessor` 可以处理返回值标了 `@ResponseBody` 注解的。
-   - 利用 `MessageConverters` 进行处理 将数据写为 `json`；
-     - 内容协商（浏览器默认会以请求头的方式告诉服务器他能接受什么样的内容类型）；
-     - 服务器最终根据自己自身的能力，决定服务器能生产出什么样内容类型的数据。
+
+    - 利用 `MessageConverters` 进行处理 将数据写为 `json`；
+        - 内容协商（浏览器默认会以请求头的方式告诉服务器他能接受什么样的内容类型）；
+        - 服务器最终根据自己自身的能力，决定服务器能生产出什么样内容类型的数据。
 
 4. `SpringMVC` 会挨个遍历所有容器底层的 `HttpMessageConverter`，看谁能处理？
-   - 得到 `MappingJackson2HttpMessageConverter` 可以将对象写为 `json`；
-   - 利用 `MappingJackson2HttpMessageConverter` 将对象转为 `json` 再写出去。
+    - 得到 `MappingJackson2HttpMessageConverter` 可以将对象写为 `json`；
+    - 利用 `MappingJackson2HttpMessageConverter` 将对象转为 `json` 再写出去。
 
 ##### SpringMVC 支持的返回值
 
@@ -1292,25 +1294,26 @@ public class HelloController {
 #### HTTPMessageConverter 原理
 
 1. MessageConverter规范
-   - `HttpMessageConverter`: 看是否支持将此 `Class` 类型的对象，转为 `MediaType` 类型的数据。
-   - 例子：`Person` 对象转为 `JSON`。或者 `JSON` 转为 `Person`。
+
+    - `HttpMessageConverter`: 看是否支持将此 `Class` 类型的对象，转为 `MediaType` 类型的数据。
+    - 例子：`Person` 对象转为 `JSON`。或者 `JSON` 转为 `Person`。
 
 2. 默认的 MessageConverter
 
-   ```txt
-   0 - 只支持Byte类型的
-   1 - String
-   2 - String
-   3 - Resource
-   4 - ResourceRegion
-   5 - DOMSource.class \ SAXSource.class \ StAXSource.class \ StreamSource.class \ Source.class
-   6 - MultiValueMap
-   7 - true
-   8 - true
-   9 - 支持注解方式xml处理的。
-   ```
+    ```txt
+    0 - 只支持Byte类型的
+    1 - String
+    2 - String
+    3 - Resource
+    4 - ResourceRegion
+    5 - DOMSource.class \ SAXSource.class \ StAXSource.class \ StreamSource.class \ Source.class
+    6 - MultiValueMap
+    7 - true
+    8 - true
+    9 - 支持注解方式xml处理的。
+    ```
 
-   最终 `MappingJackson2HttpMessageConverter` 把对象转为 `JSON`（利用底层的 `jackson` 的 `objectMapper` 转换的）
+    最终 `MappingJackson2HttpMessageConverter` 把对象转为 `JSON`（利用底层的 `jackson` 的 `objectMapper` 转换的）
 
 ### 内容协商
 
@@ -1318,32 +1321,32 @@ public class HelloController {
 
 1. 开启浏览器参数方式内容协商功能
 
-   ```yaml
-   spring:
-     contentnegotiation:
-       favor-parameter: true # 开启请求参数内容协商模式
-   ```
+    ```yaml
+    spring:
+        contentnegotiation:
+            favor-parameter: true # 开启请求参数内容协商模式
+    ```
 
 2. 确定客户端接收什么样的内容类型；
 
-   - `Parameter` 策略优先确定是要返回 `json` 数据（获取请求头中的 `format` 的值）；
-   - 最终进行内容协商返回给客户端 `json` 即可。
+    - `Parameter` 策略优先确定是要返回 `json` 数据（获取请求头中的 `format` 的值）；
+    - 最终进行内容协商返回给客户端 `json` 即可。
 
 3. 内容协商原理
 
-   - 判断当前响应头中是否已经有确定的媒体类型 `MediaType`；
+    - 判断当前响应头中是否已经有确定的媒体类型 `MediaType`；
 
-   - 获取客户端（PostMan、浏览器）支持接收的内容类型。（获取客户端 `Accept` 请求头字段）【application/xml】 `contentNegotiationManager` 内容协商管理器 默认使用基于请求头的策略 `HeaderContentNegotiationStrategy` 确定客户端可以接收的内容类型；
+    - 获取客户端（PostMan、浏览器）支持接收的内容类型。（获取客户端 `Accept` 请求头字段）【application/xml】 `contentNegotiationManager` 内容协商管理器 默认使用基于请求头的策略 `HeaderContentNegotiationStrategy` 确定客户端可以接收的内容类型；
 
-   - 遍历循环所有当前系统的 `MessageConverter` ，看谁支持操作这个对象；
+    - 遍历循环所有当前系统的 `MessageConverter` ，看谁支持操作这个对象；
 
-   - 找到支持操作当前数据的 `converter` ，把 `converter` 支持的媒体类型统计出来。
+    - 找到支持操作当前数据的 `converter` ，把 `converter` 支持的媒体类型统计出来。
 
-   - 客户端需要【application/xml】。服务端能力【10种、json、xml】
+    - 客户端需要【application/xml】。服务端能力【10种、json、xml】
 
-   - 进行内容协商的最佳匹配媒体类型
+    - 进行内容协商的最佳匹配媒体类型
 
-   - 用 支持 将对象转为最佳匹配媒体类型的 `converter`。调用它进行转化
+    - 用 支持 将对象转为最佳匹配媒体类型的 `converter`。调用它进行转化
 
 ### 自定义 MessageConverter
 
@@ -1370,12 +1373,12 @@ public class PersonMessageConvert implements HttpMessageConverter<Person> {
     public boolean canRead(Class<?> clazz, MediaType mediaType) {
         return false;
     }
- 
+
     @Override
     public boolean canWrite(Class<?> clazz, MediaType mediaType) {
         return clazz.isAssignableFrom(Person.class);
     }
- 
+
     /*
      * @Description 服务器需要统计所有MessageConvert都能写出哪些类型，我们这里也要自定义
      * @Author zoe
@@ -1386,12 +1389,12 @@ public class PersonMessageConvert implements HttpMessageConverter<Person> {
     public List<MediaType> getSupportedMediaTypes() {
         return MediaType.parseMediaTypes("application/x-person");
     }
- 
+
     @Override
     public Person read(Class<? extends Person> clazz, HttpInputMessage inputMessage) throws IOException, HttpMessageNotReadableException {
         return null;
     }
- 
+
     @Override
     public void write(Person person, MediaType contentType, HttpOutputMessage outputMessage) throws IOException, HttpMessageNotWritableException {
         //自定义协会数据的写出
@@ -1516,7 +1519,7 @@ public class AdminWebConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new LoginInterceptor())
                 .addPathPatterns("/**")  // 所有请求都被拦截包括静态资源
-                .excludePathPatterns("/","/login","/css/**","/fonts/**","/images/**","/js/**"); 
+                .excludePathPatterns("/","/login","/css/**","/fonts/**","/images/**","/js/**");
         //放行的请求
     }
 }
@@ -1530,7 +1533,7 @@ public class AdminWebConfig implements WebMvcConfigurer {
 
 3. 如果当前拦截器 `prehandler` 返回为 `true` ，则执行下一个拦截器的 `preHandle`；
 
-4. 如果当前拦截器返回为 `false` ，直接倒序执行所有已经执行了的拦截器的  `afterCompletion`；
+4. 如果当前拦截器返回为 `false` ，直接倒序执行所有已经执行了的拦截器的 `afterCompletion`；
 
 5. 如果任何一个拦截器返回 `false` ，直接跳出不执行目标方法；
 
@@ -1542,7 +1545,7 @@ public class AdminWebConfig implements WebMvcConfigurer {
 
 9. 页面成功渲染完成以后，也会倒序触发 `afterCompletion`。
 
-   ![img](./assets/SpringBoot/handler.png)
+    ![img](./assets/SpringBoot/handler.png)
 
 ## 文件上传
 
@@ -1589,9 +1592,9 @@ public String upload(@RequestParam("email") String email,
 1. 文件上传自动配置类：`MultipartAutoConfiguration` - `MultipartProperties`；
 2. 自动配置好了 `StandardServletMultipartResolver`【文件上传解析器】；
 3. 原理步骤：
-   - 请求进来使用文件上传解析器判断（ `isMultipart` ）并封装（ `resolveMultipart` ，返回 `MultipartHttpServletRequest` ）文件上传请求；
-   - 参数解析器来解析请求中的文件内容封装成 `MultipartFile`；
-   - 将 `request` 中文件信息封装为一个 `Map` ； `MultiValueMap<String, MultipartFile>`。
+    - 请求进来使用文件上传解析器判断（ `isMultipart` ）并封装（ `resolveMultipart` ，返回 `MultipartHttpServletRequest` ）文件上传请求；
+    - 参数解析器来解析请求中的文件内容封装成 `MultipartFile`；
+    - 将 `request` 中文件信息封装为一个 `Map` ； `MultiValueMap<String, MultipartFile>`。
 4. `FileCopyUtils`：实现文件流的拷贝。
 
 ## 异常处理
@@ -1608,13 +1611,13 @@ public String upload(@RequestParam("email") String email,
 
 - `error/` 下的 `4xx`，`5xx` 页面会被自动解析，可用于自定义错误页，有错误异常时会精确匹配错误状态码页面，没有就找 4xx.html，如果都没有就触发白页。
 
-  ![error](./assets/SpringBoot/error.png)
+    ![error](./assets/SpringBoot/error.png)
 
 ### 自定义错误规则
 
 1. 自定义错误页面：
 
-   `error/404.html`、`error/5xx.html`
+    `error/404.html`、`error/5xx.html`
 
 2. `@ControllerAdvice + @ExceptionHandler` 处理全局异常，底层是 `ExceptionHandlerExceptionResolver` 支持的；
 
@@ -1622,15 +1625,15 @@ public String upload(@RequestParam("email") String email,
 
 4. `Spring` 底层的异常，如参数类型转换异常： `DefaultHandlerExceptionResolver` 处理框架底层的异常；
 
-   - `response.sendError(HttpServletResponse.SC_BAD_REQUEST, ex.getMessage());`。
+    - `response.sendError(HttpServletResponse.SC_BAD_REQUEST, ex.getMessage());`。
 
 5. 自定义实现 `HandlerExceptionResolver` 处理异常，可以作为默认的全局异常处理规则；
 
 6. `ErrorViewResolver` 实现自定义处理异常；
 
-   - `response.sendError`，`error` 请求就会转给 `controller`；
-   - 你的异常没有任何人能处理，`tomcat` 底层 `response.sendError`，`error` 请求就会转给 `controller`；
-   - `basicErrorController` 要去的页面地址是 `ErrorViewResolver`。
+    - `response.sendError`，`error` 请求就会转给 `controller`；
+    - 你的异常没有任何人能处理，`tomcat` 底层 `response.sendError`，`error` 请求就会转给 `controller`；
+    - `basicErrorController` 要去的页面地址是 `ErrorViewResolver`。
 
 ### 异常处理步骤流程
 
@@ -1638,8 +1641,8 @@ public String upload(@RequestParam("email") String email,
 2. 进入视图解析流程
    `processDispatchResult(processedRequest, response, mappedHandler, mv, dispatchException);`
 3. `mv = processHandlerException`；处理`handler`发生的异常，处理完成返回`ModelAndView`；
-   - 遍历所有的 `handlerExceptionResolvers`，看谁能处理当前异常【`HandlerExceptionResolver`处理器异常解析器】
-   - 系统默认的异常解析器
+    - 遍历所有的 `handlerExceptionResolvers`，看谁能处理当前异常【`HandlerExceptionResolver`处理器异常解析器】
+    - 系统默认的异常解析器
 
 ## Web 原生组件注入
 
@@ -1660,8 +1663,8 @@ public String upload(@RequestParam("email") String email,
 
 `DispatchServlet` 如何注册进来：
 
-- 容器中自动配置了 `DispatcherServlet`  属性绑定到 `WebMvcProperties`；对应的配置文件配置项是 `spring.mvc`。
-- 通过 `ServletRegistrationBean<DispatcherServlet>` 把 `DispatcherServlet`  配置进来。
+- 容器中自动配置了 `DispatcherServlet` 属性绑定到 `WebMvcProperties`；对应的配置文件配置项是 `spring.mvc`。
+- 通过 `ServletRegistrationBean<DispatcherServlet>` 把 `DispatcherServlet` 配置进来。
 - 默认映射的是 `/` 路径。
 
 :::

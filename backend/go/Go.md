@@ -37,7 +37,7 @@
 ```go
     Constants:    true  false  iota  nil
 
-    Types:    int  int8  int16  int32  int64  
+    Types:    int  int8  int16  int32  int64
               uint  uint8  uint16  uint32  uint64  uintptr
               float32  float64  complex128  complex64
               bool  byte  rune  string  error
@@ -92,21 +92,21 @@
 
 Go 语言拥有一些不需要进行导入操作就可以使用的内置函数。它们有时可以针对不同的类型进行操作，例如：`len`、`cap` 和 `append`，或必须用于系统级的操作，例如：`panic`。因此，它们需要直接获得编译器的支持。
 
-| 函数               | 作用                                                         |
-| ------------------ | ------------------------------------------------------------ |
-| `append`           | 用来追加元素到数组、`slice中`，返回修改后的数组、`slice`     |
-| `close`            | 主要用来关闭 `channel`                                       |
-| `delete`           | 从 `map` 中删除 `key` 对应的 `value`                         |
-| `panic`            | 停止常规的 `goroutine`（`panic` 和 `recover`：用来做错误处理） |
-| `recover`          | 允许程序定义 `goroutine` 的 `panic` 动作                     |
-| `imag`             | 返回 `complex` 的实部（`complex`、`real imag`：用于创建和操作复数） |
-| `real`             | 返回 `complex` 的虚部                                        |
-| `make`             | 用来分配内存，返回 `Type` 本身(只能应用于 `slice`，`map`， `channel`) |
+| 函数               | 作用                                                                             |
+| ------------------ | -------------------------------------------------------------------------------- |
+| `append`           | 用来追加元素到数组、`slice中`，返回修改后的数组、`slice`                         |
+| `close`            | 主要用来关闭 `channel`                                                           |
+| `delete`           | 从 `map` 中删除 `key` 对应的 `value`                                             |
+| `panic`            | 停止常规的 `goroutine`（`panic` 和 `recover`：用来做错误处理）                   |
+| `recover`          | 允许程序定义 `goroutine` 的 `panic` 动作                                         |
+| `imag`             | 返回 `complex` 的实部（`complex`、`real imag`：用于创建和操作复数）              |
+| `real`             | 返回 `complex` 的虚部                                                            |
+| `make`             | 用来分配内存，返回 `Type` 本身(只能应用于 `slice`，`map`， `channel`)            |
 | `new`              | 用来分配内存，主要用来分配值类型，比如 `int`、`struct`。返回指向 `Type` 的指针。 |
-| `cap`              | `capacity` 是容量的意思，用于返回某个类型的最大容量（只能用于切片和 `map`） |
-| `copy`             | 用于复制和连接 `slice`，返回复制的数目                       |
-| `len`              | 来求长度，比如 `string`、`array`、`slice`、`map`、`channel`，返回长度 |
-| `print`、`println` | 底层打印函数，在部署环境中建议使用 `fmt` 包                  |
+| `cap`              | `capacity` 是容量的意思，用于返回某个类型的最大容量（只能用于切片和 `map`）      |
+| `copy`             | 用于复制和连接 `slice`，返回复制的数目                                           |
+| `len`              | 来求长度，比如 `string`、`array`、`slice`、`map`、`channel`，返回长度            |
+| `print`、`println` | 底层打印函数，在部署环境中建议使用 `fmt` 包                                      |
 
 ## 内置接口 error
 
@@ -146,10 +146,10 @@ func main(){
 ### 异同
 
 1. 相同点：
-       两个函数在定义时不能有任何的参数和返回值，且 Go 程序自动调用。
+   两个函数在定义时不能有任何的参数和返回值，且 Go 程序自动调用。
 2. 不同点：
-       `init` 可以应用于任意包中，且可以重复定义多个。
-       `main` 函数只能用于 `main` 包中，且只能定义一个。
+   `init` 可以应用于任意包中，且可以重复定义多个。
+   `main` 函数只能用于 `main` 包中，且只能定义一个。
 
 ### 执行顺序
 
@@ -167,20 +167,20 @@ func main(){
 
 ## 命令
 
-| 命令           | 操作                                                         |
-| -------------- | ------------------------------------------------------------ |
-| `go env`       | 用于打印Go语言的环境信息。                                   |
-| `go run`       | 编译并运行命令源码文件。                                     |
-| `go get`       | 根据要求和实际情况从互联网上下载或更新指定的代码包及其依赖包，并对它们进行编译和安装。 |
-| `go build`     | 用于编译我们指定的源码文件或代码包以及它们的依赖包。         |
-| `go install`   | 用于编译并安装指定的代码包及它们的依赖包。                   |
-| `go clean`     | 删除掉执行其它命令时产生的一些文件和目录。                   |
+| 命令           | 操作                                                                                                   |
+| -------------- | ------------------------------------------------------------------------------------------------------ |
+| `go env`       | 用于打印Go语言的环境信息。                                                                             |
+| `go run`       | 编译并运行命令源码文件。                                                                               |
+| `go get`       | 根据要求和实际情况从互联网上下载或更新指定的代码包及其依赖包，并对它们进行编译和安装。                 |
+| `go build`     | 用于编译我们指定的源码文件或代码包以及它们的依赖包。                                                   |
+| `go install`   | 用于编译并安装指定的代码包及它们的依赖包。                                                             |
+| `go clean`     | 删除掉执行其它命令时产生的一些文件和目录。                                                             |
 | `go doc`       | 打印附于Go语言程序实体上的文档。我们可以通过把程序实体的标识符作为该命令的参数来达到查看其文档的目的。 |
-| `go test`      | 用于对Go语言编写的程序进行测试。                             |
-| `go list`      | 列出指定的代码包的信息。                                     |
-| `go fix`       | 把指定代码包的所有Go语言源码文件中的旧版本代码修正为新版本的代码。 |
-| `go vet`       | 用于检查Go语言源码中静态错误的简单工具。                     |
-| `go tool prof` | 来交互式的访问概要文件的内容。                               |
+| `go test`      | 用于对Go语言编写的程序进行测试。                                                                       |
+| `go list`      | 列出指定的代码包的信息。                                                                               |
+| `go fix`       | 把指定代码包的所有Go语言源码文件中的旧版本代码修正为新版本的代码。                                     |
+| `go vet`       | 用于检查Go语言源码中静态错误的简单工具。                                                               |
+| `go tool prof` | 来交互式的访问概要文件的内容。                                                                         |
 
 ## 运算符
 
@@ -202,34 +202,34 @@ func main(){
 
 ### 关系运算符
 
-| 运算符 | 描述                                                         |
-| ------ | ------------------------------------------------------------ |
-| `==`   | 检查两个值是否相等，如果相等返回 True 否则返回 False。       |
-| `!=`   | 检查两个值是否不相等，如果不相等返回 True 否则返回 False。   |
-| `>`    | 检查左边值是否大于右边值，如果是返回 True 否则返回 False。   |
+| 运算符 | 描述                                                           |
+| ------ | -------------------------------------------------------------- |
+| `==`   | 检查两个值是否相等，如果相等返回 True 否则返回 False。         |
+| `!=`   | 检查两个值是否不相等，如果不相等返回 True 否则返回 False。     |
+| `>`    | 检查左边值是否大于右边值，如果是返回 True 否则返回 False。     |
 | `>=`   | 检查左边值是否大于等于右边值，如果是返回 True 否则返回 False。 |
-| `<`    | 检查左边值是否小于右边值，如果是返回 True 否则返回 False。   |
+| `<`    | 检查左边值是否小于右边值，如果是返回 True 否则返回 False。     |
 | `<=`   | 检查左边值是否小于等于右边值，如果是返回 True 否则返回 False。 |
 
 ### 逻辑运算符
 
-| 运算符 | 描述                                                         |
-| ------ | ------------------------------------------------------------ |
-| `&&`   | 逻辑 AND 运算符。 如果两边的操作数都是 True，则为 True，否则为 False。 |
+| 运算符 | 描述                                                                    |
+| ------ | ----------------------------------------------------------------------- |
+| `&&`   | 逻辑 AND 运算符。 如果两边的操作数都是 True，则为 True，否则为 False。  |
 | `ll`   | 逻辑 OR 运算符。 如果两边的操作数有一个 True，则为 True，否则为 False。 |
-| `!`    | 逻辑 NOT 运算符。 如果条件为 True，则为 False，否则为 True。 |
+| `!`    | 逻辑 NOT 运算符。 如果条件为 True，则为 False，否则为 True。            |
 
 ### 位运算符
 
 运算符对整数在内存中的二进制位进行操作。
 
-| 运算符 | 描述                                                         |
-| ------ | ------------------------------------------------------------ |
-| `&`    | 参与运算的两数各对应的二进位相与。（两位均为1才为1）         |
-| `l`    | 参与运算的两数各对应的二进位相或。（两位有一个为1就为1）     |
+| 运算符 | 描述                                                                                     |
+| ------ | ---------------------------------------------------------------------------------------- |
+| `&`    | 参与运算的两数各对应的二进位相与。（两位均为1才为1）                                     |
+| `l`    | 参与运算的两数各对应的二进位相或。（两位有一个为1就为1）                                 |
 | `^`    | 参与运算的两数各对应的二进位相异或，当两对应的二进位相异时，结果为1。（两位不一样则为1） |
-| `<<`   | 左移n位就是乘以2的n次方。“a<<b”是把a的各二进位全部左移b位，高位丢弃，低位补0。 |
-| `>>`   | 右移n位就是除以2的n次方。“a>>b”是把a的各二进位全部右移b位。  |
+| `<<`   | 左移n位就是乘以2的n次方。“a<<b”是把a的各二进位全部左移b位，高位丢弃，低位补0。           |
+| `>>`   | 右移n位就是除以2的n次方。“a>>b”是把a的各二进位全部右移b位。                              |
 
 ### 赋值运算符
 
@@ -249,11 +249,11 @@ func main(){
 
 ## 下划线
 
-“_” 是特殊标识符，用来忽略结果。
+“\_” 是特殊标识符，用来忽略结果。
 
 ### 在 import 中
 
- `import` 下划线（如：`import  _ "hello/imp"`）的作用：当导入一个包时，该包下的文件里所有 `init()` 函数都会被执行，然而，有些时候我们并不需要把整个包都导入进来，仅仅是是希望它执行 `init()` 函数而已。这个时候就可以使用 `import _`  引用该包。即使用【`import`  _ 包路径】只是引用该包，仅仅是为了调用 `init()` 函数，所以无法通过包名来调用包中的其他函数。 
+`import` 下划线（如：`import  _ "hello/imp"`）的作用：当导入一个包时，该包下的文件里所有 `init()` 函数都会被执行，然而，有些时候我们并不需要把整个包都导入进来，仅仅是是希望它执行 `init()` 函数而已。这个时候就可以使用 `import _` 引用该包。即使用【`import` \_ 包路径】只是引用该包，仅仅是为了调用 `init()` 函数，所以无法通过包名来调用包中的其他函数。
 
 示例：
 
@@ -265,7 +265,7 @@ package main
 import _ "./hello"
 
 func main() {
-    // hello.Print() 
+    // hello.Print()
     //编译报错：./main.go:6:5: undefined: hello
 }
 ```
@@ -308,7 +308,7 @@ func main() {
     for {
         n, _ := f.Read(buf)
         if n == 0 {
-            break    
+            break
 
         }
         os.Stdout.Write(buf[:n])
@@ -417,7 +417,7 @@ func main() {
 
 #### 匿名变量
 
-在使用多重赋值时，如果想要忽略某个值，可以使用`匿名变量（anonymous variable）`。 匿名变量用一个下划线_表示，例如：
+在使用多重赋值时，如果想要忽略某个值，可以使用`匿名变量（anonymous variable）`。 匿名变量用一个下划线\_表示，例如：
 
 ```go
 func foo() (int, string) {
@@ -570,7 +570,7 @@ a, b, c, d := 071, 0x1F, 1e9, math.MinInt16
 
 空指针值 `nil`，而非C/C++ `NULL`。
 
-###  整型
+### 整型
 
 整型分为以下两个大类： 按长度分为：`int8`、`int16`、`int32`、`int64`对应的无符号整型：`uint8`、`uint16`、`uint32`、`uint64`
 
@@ -580,7 +580,7 @@ a, b, c, d := 071, 0x1F, 1e9, math.MinInt16
 
 Go语言支持两种浮点型数：`float32` 和 `float64` 。这两种浮点型数据格式遵循 `IEEE 754` 标准： `float32` 的浮点数的最大范围约为`3.4e38 `，可以使用常量定义：`math.MaxFloat32`。 `float64` 的浮点数的最大范围约为 `1.8e308`，可以使用一个常量定义：`math.MaxFloat64`。
 
-###  复数
+### 复数
 
 > `complex64` 和 `complex128`
 
@@ -756,12 +756,13 @@ Golang Array 和以往认知的数组有很大不同：
 
 4. 数组可以通过下标进行访问，下标是从0开始，最后一个元素下标是：`len-1`
 
-   ```go
-   for i := 0; i < len(a); i++ {
-   }
-   for index, v := range a {
-   }
-   ```
+    ```go
+    for i := 0; i < len(a); i++ {
+    }
+    for index, v := range a {
+    }
+    ```
+
 5. 访问越界，如果下标在数组合法范围之外，则触发访问越界，会 `panic`。
 6. 数组是值类型，赋值和传参会复制整个数组，而不是指针。因此改变副本的值，不会改变本身的值。
 7. 支持 `==`、`!=` 操作符，因为内存总是被初始化过的。
@@ -871,7 +872,7 @@ package main
 
 func main() {
     a := [2]int{}
-    println(len(a), cap(a)) 
+    println(len(a), cap(a))
 }
 ```
 
@@ -906,7 +907,7 @@ func main() {
 输出结果：
 
 ```
-(0,0)=1 (0,1)=2 (0,2)=3 
+(0,0)=1 (0,1)=2 (0,2)=3
 (1,0)=7 (1,1)=8 (1,2)=9
 ```
 
@@ -944,7 +945,7 @@ func main() {
 
 1. 切片：切片是数组的一个引用，因此切片是引用类型。但自身是结构体，值拷贝传递。
 2. 切片的长度可以改变，因此，切片是一个可变的数组。
-3. 切片遍历方式和数组一样，可以用 `len()` 求长度。表示可用元素数量，读写操作不能超过该限制。 
+3. 切片遍历方式和数组一样，可以用 `len()` 求长度。表示可用元素数量，读写操作不能超过该限制。
 4. `cap` 可以求出 `slice` 最大扩张容量，不能超出数组限制。`0 <= len(slice) <= len(array)`，其中 `array` 是 `slice` 引用的数组。
 5. 切片的定义：`var` 变量名 `[]` 类型，比如 `var str []string` ， `var arr []int`。
 6. 如果 `slice == nil`，那么 `len`、`cap` 结果都等于 `0`。
@@ -1567,7 +1568,7 @@ value of c:10
 
 1. 对变量进行取地址（&）操作，可以获得这个变量的指针变量。
 2. 指针变量的值是指针地址。
-3. 对指针变量进行取值（*）操作，可以获得指针变量指向的原变量的值。
+3. 对指针变量进行取值（\*）操作，可以获得指针变量指向的原变量的值。
 
 指针传值示例：
 
@@ -2284,16 +2285,16 @@ func main() {
       case 90: grade = "A"
       case 80: grade = "B"
       case 50,60,70 : grade = "C"
-      default: grade = "D"  
+      default: grade = "D"
    }
 
    switch {
       case grade == "A" :
-         fmt.Printf("优秀!\n" )     
+         fmt.Printf("优秀!\n" )
       case grade == "B", grade == "C" :
-         fmt.Printf("良好\n" )      
+         fmt.Printf("良好\n" )
       case grade == "D" :
-         fmt.Printf("及格\n" )      
+         fmt.Printf("及格\n" )
       case grade == "F":
          fmt.Printf("不及格\n" )
       default:
@@ -2319,7 +2320,7 @@ func main() {
 ```go
 switch x.(type){
     case type:
-       statement(s)      
+       statement(s)
     case type:
        statement(s)
     /* 你可以定义任意个数的case */
@@ -2423,7 +2424,7 @@ def
 ```go
 select {
     case communication clause  :
-       statement(s);      
+       statement(s);
     case communication clause  :
        statement(s);
     /* 你可以定义任意数量的 case */
@@ -2463,7 +2464,7 @@ func main() {
          }
       default:
          fmt.Printf("no communication\n")
-   }    
+   }
 }
 ```
 
@@ -2571,9 +2572,7 @@ for { }
 - `condition`： 关系表达式或逻辑表达式，循环控制条件；
 - `post`： 一般为赋值表达式，给控制变量增量或减量。
 
-`for` 语句执行过程如下：
-    1. 先对表达式 `init` 赋初值；
-        2. 判别赋值表达式 `init` 是否满足给定 `condition` 条件，若其值为真，满足循环条件，则执行循环体内语句，然后执行 `post`，进入第二次循环，再判别 `condition`；否则判断 `condition` 的值为假，不满足条件，就终止 `for` 循环，执行循环体外语句。
+`for` 语句执行过程如下：1. 先对表达式 `init` 赋初值；2. 判别赋值表达式 `init` 是否满足给定 `condition` 条件，若其值为真，满足循环条件，则执行循环体内语句，然后执行 `post`，进入第二次循环，再判别 `condition`；否则判断 `condition` 的值为假，不满足条件，就终止 `for` 循环，执行循环体外语句。
 
 ```go
 s := "abc"
@@ -2585,7 +2584,7 @@ for i, n := 0, len(s); i < n; i++ { // 常见的 for 循环，支持初始化语
 n := len(s)
 for n > 0 {                // 替代 while (n > 0) {}
     println(s[n])        // 替代 for (; n > 0;) {}
-    n-- 
+    n--
 }
 
 for {                    // 替代 while (true) {}
@@ -2608,7 +2607,7 @@ func main() {
 
     for i, n := 0, length(s); i < n; i++ {     // 避免多次调用 length 函数。
         println(i, s[i])
-    } 
+    }
 }
 ```
 
@@ -2648,7 +2647,7 @@ func main() {
 
    for i,x:= range numbers {
       fmt.Printf("第 %d 位 x 的值 = %d\n", i,x)
-   }   
+   }
 }
 ```
 
@@ -2729,7 +2728,7 @@ func main() {
       if(j > (i/j)) {
          fmt.Printf("%d  是素数\n", i)
       }
-   }  
+   }
 }
 ```
 
@@ -2879,11 +2878,11 @@ func main() {
 - 无需声明原型。
 - 支持不定 变参。
 - 支持多返回值。
-- 支持命名返回参数。 
+- 支持命名返回参数。
 - 支持匿名函数和闭包。
 - 函数也是一种类型，一个函数可以赋值给变量。
 - 不支持嵌套 (`nested`) 一个包不能有两个名字一样的函数。
-- 不支持重载 (`overload`) 
+- 不支持重载 (`overload`)
 - 不支持默认参数 (`default parameter`)。
 
 ### 函数参数
@@ -2894,49 +2893,49 @@ func main() {
 
 1. 值传递：指在调用函数时将实际参数复制一份传递到函数中，这样在函数中如果对参数进行修改，将不会影响到实际参数。
 
-   ```go
-   func swap(x, y int) int {
-      ... ...
-   }
-   ```
+    ```go
+    func swap(x, y int) int {
+       ... ...
+    }
+    ```
 
 2. 引用传递：是指在调用函数时将实际参数的地址传递到函数中，那么在函数中对参数所进行的修改，将影响到实际参数。
 
-   ```go
-   package main
-   
-   import (
-       "fmt"
-   )
-   
-   /* 定义相互交换值的函数 */
-   func swap(x, y *int) {
-       var temp int
-   
-       temp = *x /* 保存 x 的值 */
-       *x = *y   /* 将 y 值赋给 x */
-       *y = temp /* 将 temp 值赋给 y*/
-   
-   }
-   
-   func main() {
-       var a, b int = 1, 2
-       /*
-           调用 swap() 函数
-           &a 指向 a 指针，a 变量的地址
-           &b 指向 b 指针，b 变量的地址
-       */
-       swap(&a, &b)
-   
-       fmt.Println(a, b)
-   }
-   ```
+    ```go
+    package main
 
-   输出结果：
+    import (
+        "fmt"
+    )
 
-   ```
-   2 1
-   ```
+    /* 定义相互交换值的函数 */
+    func swap(x, y *int) {
+        var temp int
+
+        temp = *x /* 保存 x 的值 */
+        *x = *y   /* 将 y 值赋给 x */
+        *y = temp /* 将 temp 值赋给 y*/
+
+    }
+
+    func main() {
+        var a, b int = 1, 2
+        /*
+            调用 swap() 函数
+            &a 指向 a 指针，a 变量的地址
+            &b 指向 b 指针，b 变量的地址
+        */
+        swap(&a, &b)
+
+        fmt.Println(a, b)
+    }
+    ```
+
+    输出结果：
+
+    ```
+    2 1
+    ```
 
 在默认情况下，Go 语言使用的是值传递，即在调用过程中不会影响到实际参数。
 
@@ -3185,7 +3184,7 @@ func add(x, y int) (z int) {
 }
 
 func main() {
-    println(add(1, 2)) 
+    println(add(1, 2))
 }
 ```
 
@@ -3461,7 +3460,7 @@ func main() {
 
 ### 延迟调用
 
->  defer
+> defer
 
 #### defer 特性
 
@@ -3531,7 +3530,7 @@ func main() {
 
 其实 `go` 说的很清楚：
 
-Each time a "defer" statement executes, the function value and  parameters to the call are evaluated as usualand saved a new but the  actual function is not invoked.
+Each time a "defer" statement executes, the function value and parameters to the call are evaluated as usualand saved a new but the actual function is not invoked.
 
 也就是说函数正常执行，由于闭包用到的变量 `i` 在执行的时候已经变成 `4`，所以输出全都是 `4`。
 
@@ -3639,11 +3638,11 @@ a  closed
 
 通过以上例子，结合
 
-Each time a "defer" statement executes, the function value and  parameters to the call are evaluated as usualand saved anew but the  actual function is not invoked.
+Each time a "defer" statement executes, the function value and parameters to the call are evaluated as usualand saved anew but the actual function is not invoked.
 
 这句话。可以得出下面的结论：
 
-`defer`  后面的语句在执行的时候，函数调用的参数会被保存起来，但是不执行。也就是复制了一份。但是并没有说 `struct` 这里的 `this` 指针如何处理，通过这个例子可以看出 `go` 语言并没有把这个明确写出来的 `this` 指针当作参数来看待。
+`defer` 后面的语句在执行的时候，函数调用的参数会被保存起来，但是不执行。也就是复制了一份。但是并没有说 `struct` 这里的 `this` 指针如何处理，通过这个例子可以看出 `go` 语言并没有把这个明确写出来的 `this` 指针当作参数来看待。
 
 #### 多个 defer 注册
 
@@ -3831,7 +3830,7 @@ func main() {
 
 解释：在有具名返回值的函数中（这里具名返回值为 `i`），执行 `return 2` 的时候实际上已经将 `i` 的值重新赋值为 `2`。所以 `defer` `closure` 输出结果为 `2` 而不是 `1`。
 
-#### 陷阱 -  defer nil 函数
+#### 陷阱 - defer nil 函数
 
 ```go
 package main
@@ -3930,7 +3929,7 @@ func main() {
 
 在上述的代码中，当有错误的时候，`err` 会被返回，否则当整个函数返回的时候，会关闭 `res.Body` 。
 
-解释：在这里，你同样需要检查 `res` 的值是否为 `nil`，这是 `http.Get`  中的一个警告。通常情况下，出错的时候，返回的内容应为空并且错误会被返回，可当你获得的是一个重定向 `error` 时， `res` 的值并不会为 `nil`，但其又会将错误返回。上面的代码保证了无论如何 `Body` 都会被关闭，如果你没有打算使用其中的数据，那么你还需要丢弃已经接收的数据。
+解释：在这里，你同样需要检查 `res` 的值是否为 `nil`，这是 `http.Get` 中的一个警告。通常情况下，出错的时候，返回的内容应为空并且错误会被返回，可当你获得的是一个重定向 `error` 时， `res` 的值并不会为 `nil`，但其又会将错误返回。上面的代码保证了无论如何 `Body` 都会被关闭，如果你没有打算使用其中的数据，那么你还需要丢弃已经接收的数据。
 
 ### 异常处理
 

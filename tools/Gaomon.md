@@ -5,4 +5,3 @@
 ## 1060PRO
 
 ![1060PRO](assets/1060PRO.jpg)
-
