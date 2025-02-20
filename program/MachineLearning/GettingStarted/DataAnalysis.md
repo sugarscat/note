@@ -152,7 +152,7 @@ print(b)  # [[1 2 3 4] [5 6 7 8]]
 c = b.reshape(2, 2, 2) # 变为2页2行2列的三维数组
 print(c)
 # [[[1 2]
-#   [3 4]] 
+#   [3 4]]
 #  [[5 6]
 #   [7 8]]]
 ```
@@ -189,7 +189,7 @@ t5 = np.arange(24)
 print(t5)
 print('-------------------------')
 t5 = t5.reshape((2,3,4))
-print(t5)   
+print(t5)
 ```
 
 输出：
@@ -244,8 +244,8 @@ print(t5)
 
 我们可以对 NumPy 数组进行索引或者切片，就像对 python 列表一样的操作：
 
-> * Numpy数组是同质数组，即所有元素的数据类型必须相同。
-> * Numpy数组的下标从0开始，最后一个元素的下标为数组长度减1，同python的列表。
+> - Numpy数组是同质数组，即所有元素的数据类型必须相同。
+> - Numpy数组的下标从0开始，最后一个元素的下标为数组长度减1，同python的列表。
 
 ![Image](assets/764fe939b65244f8a20e8adf79b4a2fb9f05ebfb770540a98c05426eca17ee9b.png)
 
@@ -285,13 +285,13 @@ print(a[0][0][0])
 ```python
 import numpy as np
 a = np.arange(1, 10)
-print(a) 
+print(a)
 print('----------------------')
-# print(a[0:3])  
-# print(a[3:6])  
-# print(a[6:])  
-# print(a[::-1])  
-print(a[-4:-1])  
+# print(a[0:3])
+# print(a[3:6])
+# print(a[6:])
+# print(a[::-1])
+print(a[-4:-1])
 ```
 
 输出：
@@ -305,12 +305,12 @@ print(a[-4:-1])
 ```python
 import numpy as np
 a = np.arange(1, 10)
-print(a) 
+print(a)
 print('----------------------')
-# print(a[::])  
-# print(a[:])  
-# print(a[::3])  
-print(a[1::3])  
+# print(a[::])
+# print(a[:])
+# print(a[::3])
+print(a[1::3])
 ```
 
 输出：
@@ -325,12 +325,12 @@ print(a[1::3])
 import numpy as np
 a = np.arange(1, 10)
 a = a.reshape(3,3)
-print(a)  
+print(a)
 print('----------------------')
-# print(a[0:3])  
-# print(a[::])  
+# print(a[0:3])
+# print(a[::])
 # print('----------------------')
-print(a[::-1])  
+print(a[::-1])
 ```
 
 输出：
@@ -351,7 +351,7 @@ a = np.arange(1, 28)
 a.resize(3,3,3)
 print(a)
 print('----------------------')
-# 切出索引为1的模块 
+# 切出索引为1的模块
 print(a[1, :, :])
 print('----------------------')
 ```
@@ -410,7 +410,7 @@ print(a[0, :, 1])
 
 ### numpy读取本地数据
 
-np.loadtxt(fname, dtype=float, comments='#', delimiter=None,converters=None, skiprows=0, usecols=None, unpack=False,ndmin=0, encoding='bytes', max\_rows=None)
+np.loadtxt(fname, dtype=float, comments='#', delimiter=None,converters=None, skiprows=0, usecols=None, unpack=False,ndmin=0, encoding='bytes', max_rows=None)
 
 > - `loadtxt`：从文本文件中读取内容
 > - `fname`：文件的位置
@@ -628,7 +628,7 @@ print(b)
 ```
 
 ```python
-# 水平方向完成组合操作，生成新数组 
+# 水平方向完成组合操作，生成新数组
 c = np.hstack((a, b)) # horizontal,水平的
 print(c)
 ```
@@ -746,20 +746,19 @@ print(e)
 
 > `numpy.random.`
 
-
 | 函数名称                                             | 函数功能                                                | 参数说明                                                                                                                    |
 | ---------------------------------------------------- | ------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| `rand(d0, d1, …, dn)`                               | 产生均匀分布的随机数                                    | dn为第n维数据的维度                                                                                                         |
-| `randn(d0, d1, …, dn)`                              | 产生标准正态分布随机数                                  | dn为第n维数据的维度                                                                                                         |
+| `rand(d0, d1, …, dn)`                                | 产生均匀分布的随机数                                    | dn为第n维数据的维度                                                                                                         |
+| `randn(d0, d1, …, dn)`                               | 产生标准正态分布随机数                                  | dn为第n维数据的维度                                                                                                         |
 | `randint(low[, high, size, dtype])`                  | 产生随机整数                                            | low：最小值；high：最大值；size：数据个数                                                                                   |
-| `np.random.seed(n)`                                  | 函数用于生成指定随机数                                  | 参数比喻成“堆”；eg. seed(5)：表示第5堆种子                                                                                |
+| `np.random.seed(n)`                                  | 函数用于生成指定随机数                                  | 参数比喻成“堆”；eg. seed(5)：表示第5堆种子                                                                                  |
 | `numpy.random.uniform(low,high,size)`                | 从一个均匀分布[low,high)中随机采样，包含low，不包含high | low: 采样下界，float类型，默认值为0；high: 采样上界，float类型，默认值为1；size: 输出样本数目，为int或元组(tuple)类型       |
 | `numpy.random.normal(loc=0.0, scale=1.0, size=None)` | 从正态（高斯）分布中抽取随机样本                        | loc，浮点型数据或者浮点型数据组成的数组，分布的均值（中心）；scale，浮点型数据或者浮点型数据组成的数组 分布的标准差（宽度） |
 
 ```python
 import numpy as np
 # 产生均匀分布的随机数
-np.random.rand(2,3) 
+np.random.rand(2,3)
 # array([[0.28352508, 0.69313792, 0.44045372],
 #        [0.15686774, 0.54464902, 0.78031476]])
 ```
@@ -783,13 +782,13 @@ print(b)
 
 ### numpy中常用统计函数
 
-> * 求和：`t.sum(axis=None)`
-> * 均值：`t.mean(a,axis=None)`，受离群点的影响较大
-> * 中值：`np.median(t,axis=None)`
-> * 最大值：`t.max(axis=None)`
-> * 最小值：`t.min(axis=None)`
-> * 极值：`np.ptp(t,axis=None)`，即最大值和最小值的差
-> * 标准差：`t.std(axis=None)`，衡量一组数据平均值分散程度，反映出数据的波动稳定情况，标准差较大，代表大部分数值和其平均值之间差异较大，波动越大，越不稳定；标准差较小，代表这些数值较接近平均值。
+> - 求和：`t.sum(axis=None)`
+> - 均值：`t.mean(a,axis=None)`，受离群点的影响较大
+> - 中值：`np.median(t,axis=None)`
+> - 最大值：`t.max(axis=None)`
+> - 最小值：`t.min(axis=None)`
+> - 极值：`np.ptp(t,axis=None)`，即最大值和最小值的差
+> - 标准差：`t.std(axis=None)`，衡量一组数据平均值分散程度，反映出数据的波动稳定情况，标准差较大，代表大部分数值和其平均值之间差异较大，波动越大，越不稳定；标准差较小，代表这些数值较接近平均值。
 
 NumPy 提供的另外一个优点是聚合功能。
 
@@ -835,7 +834,6 @@ pip install -U scipy
 
 ### SciPy任务子模块
 
-
 | 关键词参数          | 可选值             |
 | ------------------- | ------------------ |
 | `scipy.cluster`     | 向量计算           |
@@ -859,7 +857,7 @@ pip install -U scipy
 
 ```python
 import numpy as np
-from scipy import stats 
+from scipy import stats
 from scipy import io as spio
 
 # 创建一个3*3的矩阵，其中元素的值都为 1
@@ -914,7 +912,7 @@ print(a_temp)
 from scipy import linalg
 arr = np.array([[1, 2],
                 [3, 4]])
-linalg.det(arr)  # 求取行列式的值 det 
+linalg.det(arr)  # 求取行列式的值 det
 # -2.0
 ```
 
@@ -1031,8 +1029,8 @@ x = np.arange(-10, 10, 0.1)
 y = f(x)
 
 # 绘制图像
-plt.plot(x, y) 
-plt.show() 
+plt.plot(x, y)
+plt.show()
 ```
 
 输出：
@@ -1093,7 +1091,7 @@ print(xmin_global)  # [-1.47246094]
 我们用 `scipy.optimize.fminbound` 将变量限制在 `(0,10)` 区间：
 
 ```python
-xmin_local = optimize.fminbound(f, 0, 10)  
+xmin_local = optimize.fminbound(f, 0, 10)
 print(xmin_local)  # 3.8374671194983834
 ```
 
@@ -1257,8 +1255,8 @@ import numpy as np
 from scipy.sparse import csr_matrix
 
 arr = np.array([
-                [0, 0, 0], 
-                [0, 0, 1], 
+                [0, 0, 0],
+                [0, 0, 1],
                 [3, 0, 2]
                ])
 
@@ -1272,8 +1270,8 @@ import numpy as np
 from scipy.sparse import csr_matrix
 
 arr = np.array([
-                [0, 0, 0], 
-                [0, 0, 1], 
+                [0, 0, 0],
+                [0, 0, 1],
                 [3, 0, 2]
                ])
 
@@ -1287,8 +1285,8 @@ import numpy as np
 from scipy.sparse import csr_matrix
 
 arr = np.array([
-                [0, 0, 0], 
-                [0, 0, 1], 
+                [0, 0, 0],
+                [0, 0, 1],
                 [3, 0, 2]
                ])
 
@@ -1308,8 +1306,8 @@ import numpy as np
 from scipy.sparse import csr_matrix
 
 arr = np.array([
-                [0, 0, 0], 
-                [0, 0, 1], 
+                [0, 0, 0],
+                [0, 0, 1],
                 [3, 0, 2]
                ])
 
@@ -1329,8 +1327,8 @@ import numpy as np
 from scipy.sparse import csr_matrix
 
 arr = np.array([
-                [0, 0, 0], 
-                [0, 0, 1], 
+                [0, 0, 0],
+                [0, 0, 1],
                 [3, 0, 2]
                ])
 
@@ -1551,7 +1549,7 @@ print(df.tail(3)) # df的后三行
 
 import pandas as pd
 d = {'one' : pd.Series([1, 2, 3], index=['a', 'b', 'c']),
-     'two' : pd.Series([1, 2, 3, 4], index=['a', 'b', 'c', 'd']), 
+     'two' : pd.Series([1, 2, 3, 4], index=['a', 'b', 'c', 'd']),
      'three' : pd.Series([1, 3, 4], index=['a', 'c', 'd'])}
 
 df = pd.DataFrame(d)
@@ -1579,7 +1577,7 @@ print(df[['one','two']])
 # DataFrame添加一列的方法非常简单，只需要新建一个列索引。并对该索引下的数据进行赋值操作即可。
 import pandas as pd
 d = {'one' : pd.Series([1, 2, 3], index=['a', 'b', 'c']),
-     'two' : pd.Series([1, 2, 3, 4], index=['a', 'b', 'c', 'd']), 
+     'two' : pd.Series([1, 2, 3, 4], index=['a', 'b', 'c', 'd']),
      'three' : pd.Series([1, 3, 4], index=['a', 'c', 'd'])}
 
 df = pd.DataFrame(d)
@@ -1802,18 +1800,18 @@ print(df)
 
 #### DataFrame 常用属性
 
-| 编号 | 属性或方法 | 描述                                |
-| ---- | ---------- | ----------------------------------- |
-| 1    | `axes`     | 返回 行/列 标签（index）列表。      |
-| 2    | `columns`  | 返回列标签                          |
-| 3    | `index`    | 返回行标签                          |
-| 4    | `dtype`    | 返回对象的数据类型(`dtype`)。       |
-| 5    | `empty`    | 判断dateframe是否为空，则返回`True`。        |
-| 6    | `ndim`     | 返回底层数据的维数，默认定义：`1`。 |
-| 7    | `size`     | 返回基础数据中的元素数。            |
-| 8    | `values`   | 将系列作为`ndarray`返回。           |
-| 9    | `head(n)`  | 返回前`n`行。                       |
-| 10   | `tail(n)`  | 返回最后`n`行。                     |
+| 编号 | 属性或方法 | 描述                                  |
+| ---- | ---------- | ------------------------------------- |
+| 1    | `axes`     | 返回 行/列 标签（index）列表。        |
+| 2    | `columns`  | 返回列标签                            |
+| 3    | `index`    | 返回行标签                            |
+| 4    | `dtype`    | 返回对象的数据类型(`dtype`)。         |
+| 5    | `empty`    | 判断dateframe是否为空，则返回`True`。 |
+| 6    | `ndim`     | 返回底层数据的维数，默认定义：`1`。   |
+| 7    | `size`     | 返回基础数据中的元素数。              |
+| 8    | `values`   | 将系列作为`ndarray`返回。             |
+| 9    | `head(n)`  | 返回前`n`行。                         |
+| 10   | `tail(n)`  | 返回最后`n`行。                       |
 
 ```python
 # 实例代码：
@@ -1846,7 +1844,7 @@ print(df.axes)     #返回 行/列 标签（index）列表
 
 import pandas as pd
 d = {'one' : pd.Series([1, 2, 3], index=['a', 'b', 'c']),
-     'two' : pd.Series([1, 2, 3, 4], index=['a', 'b', 'c', 'd']), 
+     'two' : pd.Series([1, 2, 3, 4], index=['a', 'b', 'c', 'd']),
      'three' : pd.Series([1, 3, 4], index=['a', 'c', 'd'])}
 
 df = pd.DataFrame(d)
@@ -1874,7 +1872,7 @@ print(df[['one','two']])
 # DataFrame添加一列的方法非常简单，只需要新建一个列索引。并对该索引下的数据进行赋值操作即可。
 import pandas as pd
 d = {'one' : pd.Series([1, 2, 3], index=['a', 'b', 'c']),
-     'two' : pd.Series([1, 2, 3, 4], index=['a', 'b', 'c', 'd']), 
+     'two' : pd.Series([1, 2, 3, 4], index=['a', 'b', 'c', 'd']),
      'three' : pd.Series([1, 3, 4], index=['a', 'c', 'd'])}
 
 df = pd.DataFrame(d)
@@ -1920,7 +1918,6 @@ print(df)
 
 `from matplotlib import pyplot as plt`
 
-
 - Pyplot 是 Matplotlib 的子库，提供了和 MATLAB 类似的绘图 API。
 - Pyplot 是常用的绘图模块，能很方便让用户绘制 2D 图表。
 - Pyplot 包含一系列绘图函数的相关函数，每个函数会对当前的图像进行一些修改，例如：给图像加上标记，生新的图像，在图像中产生新的绘图区域等等。
@@ -1932,7 +1929,7 @@ print(df)
 `plt.plot(x, y, format_string, **kwargs)`：
 
 - `x`: X轴数据，列表或数组，可选
-- `y`: Y轴数据，列表或数组  
+- `y`: Y轴数据，列表或数组
 - `format_string`: 控制曲线的格式字符串，可选
 - `**kwargs`: 第二组或更多(`x,y,format_string`)，可画多条曲线
 
@@ -2193,23 +2190,23 @@ Matplotlib 默认情况不支持中文，显示中文时会有乱码问题。
 解决方法：
 
 ```python
-import numpy as np 
-from matplotlib import pyplot as plt 
+import numpy as np
+from matplotlib import pyplot as plt
 import matplotlib
- 
+
 # fname 为 你下载的字体库路径，
 # 本次我们使用思源黑体
 # 注意下载好字体之后， SourceHanSansSC-Bold.otf 字体的路径
-zhfont= matplotlib.font_manager.FontProperties(fname="SourceHanSansSC-Bold.otf") 
- 
-x = np.arange(1,11) 
-y =  2  * x +  5 
-plt.title("这是中文标题", fontproperties=zhfont) 
- 
+zhfont= matplotlib.font_manager.FontProperties(fname="SourceHanSansSC-Bold.otf")
+
+x = np.arange(1,11)
+y =  2  * x +  5
+plt.title("这是中文标题", fontproperties=zhfont)
+
 # fontproperties 设置中文显示，fontsize 设置字体大小
 plt.xlabel("x 轴", fontproperties=zhfont)
 plt.ylabel("y 轴", fontproperties=zhfont)
-plt.plot(x,y) 
+plt.plot(x,y)
 plt.show()
 ```
 
@@ -2225,12 +2222,11 @@ plt.show()
 
 参数说明：
 
+- `color`：`b` 蓝色，`m` 洋红色，`g` 绿色，`y` 黄色，`r` 红色，`k` 黑色，`w` 白色，`c` 青绿色，`#008000` RGB 颜色符串。
 
--  `color`：`b` 蓝色，`m` 洋红色，`g` 绿色，`y` 黄色，`r` 红色，`k` 黑色，`w` 白色，`c` 青绿色，`#008000` RGB 颜色符串。
+- `linestyle`：`‐` 实线，`‐‐` 破折线，`‐.` 点划线，`:` 虚线。
 
--  `linestyle`：`‐` 实线，`‐‐` 破折线，`‐.` 点划线，`:` 虚线。
-
--  `linewidth`：设置线的宽度，可以设置一个数字。
+- `linewidth`：设置线的宽度，可以设置一个数字。
 
 ```python
 import numpy as np
@@ -2437,7 +2433,7 @@ import numpy as np
 
 y = np.array([35, 25, 25, 15])  # 浮点型数组，表示每个扇形的面积
 
-plt.pie(y) 
+plt.pie(y)
 plt.show()
 ```
 
@@ -2593,7 +2589,6 @@ sns.kdeplot(array_random)
 
 在一个图中既包含直方图又包含核密度估计曲线：
 
-
 ```python
 # 绘制核密度估计曲线
 sns.histplot(array_random, kde=True)
@@ -2611,30 +2606,30 @@ sns.histplot(array_random, kde=True)
 
 ```python
 seaborn.scatterplot(
-    x=None, y=None, 
-    hue=None, 
-    style=None, 
+    x=None, y=None,
+    hue=None,
+    style=None,
     size=None,
-    data=None, 
-    palette=None, 
-    hue_order=None, 
-    hue_norm=None, 
+    data=None,
+    palette=None,
+    hue_order=None,
+    hue_norm=None,
     sizes=None,
-    size_order=None, 
-    size_norm=None, 
-    markers=True, 
+    size_order=None,
+    size_norm=None,
+    markers=True,
     style_order=None,
-    x_bins=None, 
-    y_bins=None, 
-    units=None, 
-    estimator=None, 
-    ci=95, 
+    x_bins=None,
+    y_bins=None,
+    units=None,
+    estimator=None,
+    ci=95,
     n_boot=1000,
-    alpha='auto', 
-    x_jitter=None, 
-    y_jitter=None, 
-    legend='brief', 
-    ax=None, 
+    alpha='auto',
+    x_jitter=None,
+    y_jitter=None,
+    legend='brief',
+    ax=None,
     **kwargs)
 ```
 
@@ -2674,20 +2669,19 @@ tips=pd.read_csv(r'./tips.csv')
 print(tips)
 ```
 
-|      | total_bill |  tip |    sex | smoker |  day |   time | size |
-| ---: | ---------: | ---: | -----: | -----: | ---: | -----: | ---: |
-|    0 |      16.99 | 1.01 | Female |     No |  Sun | Dinner |    2 |
-|    1 |      10.34 | 1.66 |   Male |     No |  Sun | Dinner |    3 |
-|    2 |      21.01 | 3.50 |   Male |     No |  Sun | Dinner |    3 |
-|    3 |      23.68 | 3.31 |   Male |     No |  Sun | Dinner |    2 |
-|    4 |      24.59 | 3.61 | Female |     No |  Sun | Dinner |    4 |
-|  ... |        ... |  ... |    ... |    ... |  ... |    ... |  ... |
-|  239 |      29.03 | 5.92 |   Male |     No |  Sat | Dinner |    3 |
-|  240 |      27.18 | 2.00 | Female |    Yes |  Sat | Dinner |    2 |
-|  241 |      22.67 | 2.00 |   Male |    Yes |  Sat | Dinner |    2 |
-|  242 |      17.82 | 1.75 |   Male |     No |  Sat | Dinner |    2 |
-|  243 |      18.78 | 3.00 | Female |     No | Thur | Dinner |    2 |
-
+|     | total_bill |  tip |    sex | smoker |  day |   time | size |
+| --: | ---------: | ---: | -----: | -----: | ---: | -----: | ---: |
+|   0 |      16.99 | 1.01 | Female |     No |  Sun | Dinner |    2 |
+|   1 |      10.34 | 1.66 |   Male |     No |  Sun | Dinner |    3 |
+|   2 |      21.01 | 3.50 |   Male |     No |  Sun | Dinner |    3 |
+|   3 |      23.68 | 3.31 |   Male |     No |  Sun | Dinner |    2 |
+|   4 |      24.59 | 3.61 | Female |     No |  Sun | Dinner |    4 |
+| ... |        ... |  ... |    ... |    ... |  ... |    ... |  ... |
+| 239 |      29.03 | 5.92 |   Male |     No |  Sat | Dinner |    3 |
+| 240 |      27.18 | 2.00 | Female |    Yes |  Sat | Dinner |    2 |
+| 241 |      22.67 | 2.00 |   Male |    Yes |  Sat | Dinner |    2 |
+| 242 |      17.82 | 1.75 |   Male |     No |  Sat | Dinner |    2 |
+| 243 |      18.78 | 3.00 | Female |     No | Thur | Dinner |    2 |
 
 ```python
 # 使用seaborn 加载数据
@@ -2696,7 +2690,6 @@ tips = sns.load_dataset('tips')
 
 在 `seaborn` 中，绘制散点图的函数有 `scatterplot` 和 `relplot`。
 `seaborn` 绘制散点图最简单的方式是使用 `scatterplot` 方法，指定 `data` 参数和 `x` 和 `y` 参数
-
 
 ```python
 # 绘制散点图
@@ -2709,7 +2702,6 @@ plt.show()
 #### hue 参数
 
 添加 hue 参数，设置点的分组颜色。可以用做分类的列，作用是分类显示 观察数据集中的 time 列，可以发现该列只有两个候选值：Dinner 和 Lunch。所以，可以观察到按照 time 列标记后，有两种颜色的点。
-
 
 ```python
 # 设置 hue 值
@@ -2753,8 +2745,8 @@ sns.scatterplot(data=tips,x='total_bill', y='tip', hue='time', style='sex', size
 这个函数有三个重要的设置参数：
 
 - `kind`：有两个可选值 `scatter`，`line`
-  - `scatter`：散点图
-  - `line`：线图
+    - `scatter`：散点图
+    - `line`：线图
 - `col`：列
 - `row`：行
 
@@ -2846,21 +2838,21 @@ sns.swarmplot(data=tips, x="day", y="total_bill", hue="sex", order=["Sun", "Sat"
 
 ```python
 seaborn.stripplot(
-    x=None, 
-    y=None, 
-    hue=None, 
-    data=None, 
+    x=None,
+    y=None,
+    hue=None,
+    data=None,
     order=None,
-    hue_order=None, 
-    jitter=True, 
-    dodge=False, 
-    orient=None, 
+    hue_order=None,
+    jitter=True,
+    dodge=False,
+    orient=None,
     color=None,
-    palette=None, 
-    size=5, 
-    edgecolor='gray', 
-    linewidth=0, 
-    ax=None, 
+    palette=None,
+    size=5,
+    edgecolor='gray',
+    linewidth=0,
+    ax=None,
     **kwargs)
 ```
 
@@ -2933,13 +2925,13 @@ plt.show()
 1. 判断偏态和尾重
    对于标准正态分布的大样本，中位数位于上下四分位数的中央，箱形图的方盒关于中位线对称。中位数越偏离上下四分位数的中心位置，分布偏态性越强。异常值集中在较大值一侧，则分布呈现右偏态；异常值集中在较小值一侧，则分布呈现左偏态。
 
-   :::tip 提示
+    :::tip 提示
 
-   **偏态**： 与正态分布相对，指的是非对称分布的偏斜状态。 在统计学上，众数和平均数之差可作为分配偏态的指标之一：如平均数大于众数，称为正偏态（或右偏态）；相反，则称为负偏态（或左偏态）。 
+    **偏态**： 与正态分布相对，指的是非对称分布的偏斜状态。 在统计学上，众数和平均数之差可作为分配偏态的指标之一：如平均数大于众数，称为正偏态（或右偏态）；相反，则称为负偏态（或左偏态）。
 
-   **众数**：众数是样本观测值在频数分布表中频数最多的那一组的组中值，主要应用于大面积普查研究之中。一般来说，一组数据中，出现次数最多的数就叫这组数据的众数。 例如：1，2，3，3，4的众数是3。 例如：1，2，2，3，3，4的众数是2和3。
+    **众数**：众数是样本观测值在频数分布表中频数最多的那一组的组中值，主要应用于大面积普查研究之中。一般来说，一组数据中，出现次数最多的数就叫这组数据的众数。 例如：1，2，3，3，4的众数是3。 例如：1，2，2，3，3，4的众数是2和3。
 
-   :::
+    :::
 
 1. 比较多批数据的形状
    箱子的上下限，分别是数据的上四分位数和下四分位数。这意味着箱子包含了50%的数据。因此，箱子的宽度在一定程度上反映了数据的波动程度。箱体越扁说明数据越集中，端线（虚线）越短也说明数据集中。
@@ -3041,21 +3033,21 @@ sns.swarmplot(x="day", y="total_bill", data=tips, color="c")
 联合图 `jointpolot` 的函数原型：
 
 ```python
-seaborn.jointplot(x, 
-                  y, 
-                  data=None, 
-                  kind='scatter', 
-                  stat_func=None, 
-                  color=None, 
+seaborn.jointplot(x,
+                  y,
+                  data=None,
+                  kind='scatter',
+                  stat_func=None,
+                  color=None,
                   height=6,
-                  ratio=5, 
-                  space=0.2, 
-                  dropna=True, 
-                  xlim=None, 
-                  ylim=None, 
+                  ratio=5,
+                  space=0.2,
+                  dropna=True,
+                  xlim=None,
+                  ylim=None,
                   joint_kws=None,
-                  marginal_kws=None, 
-                  annot_kws=None, 
+                  marginal_kws=None,
+                  annot_kws=None,
                   **kwargs)
 ```
 
@@ -3097,24 +3089,24 @@ sns.jointplot(x="total_bill", y="tip", data=tips, kind="reg")
 
 ```python
 seaborn.pairplot(
-    data, 
-    *, 
-    hue=None, 
-    hue_order=None, 
-    palette=None, 
-    vars=None, 
-    x_vars=None, 
-    y_vars=None, 
-    kind='scatter', 
-    diag_kind='auto', 
-    markers=None, 
-    height=2.5, 
-    aspect=1, 
-    corner=False, 
-    dropna=False, 
-    plot_kws=None, 
-    diag_kws=None, 
-    grid_kws=None, 
+    data,
+    *,
+    hue=None,
+    hue_order=None,
+    palette=None,
+    vars=None,
+    x_vars=None,
+    y_vars=None,
+    kind='scatter',
+    diag_kind='auto',
+    markers=None,
+    height=2.5,
+    aspect=1,
+    corner=False,
+    dropna=False,
+    plot_kws=None,
+    diag_kws=None,
+    grid_kws=None,
     size=None
 )
 ```
@@ -3183,7 +3175,7 @@ sns.pairplot(iris, kind="reg", diag_kind="kde")
 
 ```python
 # 不同类别的点会以不同的颜色显现出来
-sns.pairplot(iris, hue="species") 
+sns.pairplot(iris, hue="species")
 ```
 
 ![image-20240506111917536](assets/image-20240506111917536.png)
@@ -3207,7 +3199,7 @@ sns.pairplot(iris, hue="species", palette="husl")
 
 ```python
 #单独用vars参数选择"萼片长 "和"花瓣长"两种属性
-sns.pairplot(iris, vars=["sepal_length", "petal_length"]) 
+sns.pairplot(iris, vars=["sepal_length", "petal_length"])
 ```
 
 ![image-20240506112141002](assets/image-20240506112141002.png)
@@ -3226,7 +3218,7 @@ pip install opencv-python
 
 ```python
 # 导入opencv
-import cv2 
+import cv2
 
 # 查看opencv的版本
 print(cv2.__version__)
@@ -3265,7 +3257,7 @@ img = cv2.imread('./work/fox.jpg',0)
 
 # cv2.imwrite表示保存图像，
 # 第一个参数是保存的图像的路径，第二个参数是要保存的图像。
-cv2.imwrite('./data/fox_deal.png',img) 
+cv2.imwrite('./data/fox_deal.png',img)
 ```
 
 #### 图片的有损保存
@@ -3273,7 +3265,7 @@ cv2.imwrite('./data/fox_deal.png',img)
 ```python
 import cv2
 img = cv2.imread('./work/fox.jpg',1)
-# cv2.imwrite的参数 
+# cv2.imwrite的参数
 # cv2.CV_IMWRITE_JPEG_QUALITY  设置图片格式为.jpeg或者.jpg的图片质量，其值为0---100（数值越大质量越高），默认95
 # cv2.CV_IMWRITE_WEBP_QUALITY  设置图片的格式为.webp格式的图片质量，值为0--100
 # cv2.CV_IMWRITE_PNG_COMPRESSION  设置.png格式的压缩比，其值为0--9（数值越大，压缩比越大），默认为3
@@ -3293,7 +3285,7 @@ imgInfo = original.shape
 # 读出的图片信息是多维矩阵
 # 我们可以把这个矩阵信息打印出来
 print(imgInfo)
-img_result = original[:,:,::-1] 
+img_result = original[:,:,::-1]
 plt.imshow(img_result)
 
 height = imgInfo[0]
@@ -3305,12 +3297,11 @@ dstWidth = int(width*0.5)
 # 缩放到原来的二分之一，输出尺寸格式为（宽，高）
 tiger_resized_1 = cv2.resize(original,(dstWidth,dstHeight))
 # tiger_resized_1 = cv2.resize(original,(dstHeight,dstWidth))
-img_result = tiger_resized_1[:,:,::-1] 
+img_result = tiger_resized_1[:,:,::-1]
 plt.imshow(img_result)
 # 保存
 cv2.imwrite('./data/tiger_resized_1.jpg',tiger_resized_1)
 ```
-
 
 #### 图片剪切
 
@@ -3485,7 +3476,7 @@ from matplotlib import pyplot as plt
 # matplotlib绘图样式
 #方式一：参数可以是一个 URL 或者 路径，自定义一个style
 #方式二：matplotlib预置了一系列样式风格，可直接使用；用plt.style.available可以查出:可用的样式列表
-plt.style.use("fivethirtyeight") 
+plt.style.use("fivethirtyeight")
 
 # 读取图片, 并转换成灰度图
 img = cv2.imread("flower.jpg", 0)
@@ -3555,7 +3546,7 @@ img_equ = cv2.equalizeHist(img)
 
 # 直方图
 # subplots 一次性创建并返回所有的子图和其 axe 对象
-fig, ax = plt.subplots(2, 2, figsize=(16, 16)) 
+fig, ax = plt.subplots(2, 2, figsize=(16, 16))
 # subplots(nrows=1, ncols=1, sharex=False, sharey=False, squeeze=True, subplot_kw=None, gridspec_kw=None, **fig_kw)
 # fig和ax是两个subplots()的返回对象，名称可以自定义
 #实际的含义是什么呢？
@@ -3564,7 +3555,7 @@ fig, ax = plt.subplots(2, 2, figsize=(16, 16))
 ax[0, 0].imshow(img)
 ax[0, 0].set_title("before")
 ax[0, 1].imshow(img_equ)
-ax[0, 1].set_title("after") 
+ax[0, 1].set_title("after")
 
 # Axes.hist()函数用于绘制直方图,和cv2.calcHist()方法类似
 # matplotlib.pyplot.hist(x
@@ -3572,7 +3563,7 @@ ax[0, 1].set_title("after")
 # bins：当bin为整数时，则等于柱子的个数
 ax[1, 0].hist(img.ravel(), 256)  #将其拉成一维
 ax[1, 1].hist(img_equ.ravel(), 256) # 将其拉成一维
- 
+
 plt.show()
 ```
 
@@ -3585,6 +3576,7 @@ plt.show()
 > X：此参数是图像的数据。
 
 `cmap`：此参数是颜色图实例或注册的颜色图名称。
+
 - `cmap`，接受一个值（每个值代表一种配色方案），并将该值对应的颜色图分配给当前图窗
 - 形象化理解：若将当前图窗比作一幅画，则 `cmap` 就代表颜料盘的配色，用所提供的颜料盘自动给当前简笔画上色
 
@@ -3633,12 +3625,12 @@ plt.show()
 
 - `image>- templ`：输入模板；
 - `method`：方法；
-`-- TM_SQDIFF`：计算平方差, 计算出来的值越小, 越相关；
-`-- TM_CCORR`：计算相关性, 计算出来的值越大, 越相关；
-`-- TM_CCOEFF`：计算相关系数, 计算出来的值越大, 越相关；
-`-- TM_SQDIFF_NORMED`：计算归一化平方不同, 计算出来的值越接近 0, 越相关；
-`-- TM_CCORR_NORMED`：计算归一化相关性, 计算出来的值越接近 1, 越相关；
-`-- TM_CCOEFF_NORMED`：计算归一化系数, 计算出来的值越接近 1, 越相关。
+  `-- TM_SQDIFF`：计算平方差, 计算出来的值越小, 越相关；
+  `-- TM_CCORR`：计算相关性, 计算出来的值越大, 越相关；
+  `-- TM_CCOEFF`：计算相关系数, 计算出来的值越大, 越相关；
+  `-- TM_SQDIFF_NORMED`：计算归一化平方不同, 计算出来的值越接近 0, 越相关；
+  `-- TM_CCORR_NORMED`：计算归一化相关性, 计算出来的值越接近 1, 越相关；
+  `-- TM_CCOEFF_NORMED`：计算归一化系数, 计算出来的值越接近 1, 越相关。
 
 ```python
 import cv2
@@ -3781,31 +3773,43 @@ print(test_df.columns.values)
 
 对于大数据集，我们很难去查看所有的数据记录，然而，我们可以查看其中的多个小样本来了解数据。这些样本可以直接告诉我们哪些特征是需要修正的。
 
-[13]:
+[13]: ```python
 
-```python
 # 显示数据集前5行的记录
+
 print(train_df.head())
 
-#    PassengerId  Survived  Pclass  ...     Fare Cabin  Embarked
-# 0            1         0       3  ...   7.2500   NaN         S
-# 1            2         1       1  ...  71.2833   C85         C
-# 2            3         1       3  ...   7.9250   NaN         S
-# 3            4         1       1  ...  53.1000  C123         S
-# 4            5         0       3  ...   8.0500   NaN         S
+# PassengerId Survived Pclass ... Fare Cabin Embarked
+
+# 0 1 0 3 ... 7.2500 NaN S
+
+# 1 2 1 1 ... 71.2833 C85 C
+
+# 2 3 1 3 ... 7.9250 NaN S
+
+# 3 4 1 1 ... 53.1000 C123 S
+
+# 4 5 0 3 ... 8.0500 NaN S
 
 # 显示训练集最后5行的记录
+
 print(train_df.tail())
 
-#      PassengerId  Survived  Pclass  ...   Fare Cabin  Embarked
-# 886          887         0       2  ...  13.00   NaN         S
-# 887          888         1       1  ...  30.00   B42         S
-# 888          889         0       3  ...  23.45   NaN         S
-# 889          890         1       1  ...  30.00  C148         C
-# 890          891         0       3  ...   7.75   NaN         Q
+# PassengerId Survived Pclass ... Fare Cabin Embarked
+
+# 886 887 0 2 ... 13.00 NaN S
+
+# 887 888 1 1 ... 30.00 B42 S
+
+# 888 889 0 3 ... 23.45 NaN S
+
+# 889 890 1 1 ... 30.00 C148 C
+
+# 890 891 0 3 ... 7.75 NaN Q
 
 # [5 rows x 12 columns]
-```
+
+````
 
 #### 了解数据的中心趋势和离散趋势
 
@@ -3868,7 +3872,7 @@ print(train_df.describe(include=['O']))
 # unique                      891     2     681      147        3
 # top     Braund, Mr. Owen Harris  male  347082  B96 B98        S
 # freq                          1   577       7        4      644
-```
+````
 
 #### 特征间相关性的热图
 
@@ -3909,24 +3913,24 @@ plot_correlation_map(train_df)
 - 相关性
   了解所有特征与要预测的特征Survival/是否获救之间的关系。
 - 处理缺失值
-  1. 我们需要`Age`特征，它可能与`Survived`相关。
-  2. 我们需要`Fare`特征，它可能与`Survived`相关。
-  3. 我们需要`Embarked`特征，因为它可能与`Survived`或其他重要特征相关。
+    1. 我们需要`Age`特征，它可能与`Survived`相关。
+    2. 我们需要`Fare`特征，它可能与`Survived`相关。
+    3. 我们需要`Embarked`特征，因为它可能与`Survived`或其他重要特征相关。
 - 数据修正
-  1. `Ticket`/船票号码特征有可能会被删掉，因为它有`22%`的比例为重复值，它可能和`Survival`之间不相关。
-  2. `Cabin`/客舱号码特征有可能会被删掉，因为它在训练集和测试集的缺失值都很多。
-  3. `PassengerId`特征有可能删除，有可能和`Survival`无关。
-  4. `Name`特征是一个不太能够标准化的特征，它可能和`Survival`没有直接关系，可能会被删掉。
+    1. `Ticket`/船票号码特征有可能会被删掉，因为它有`22%`的比例为重复值，它可能和`Survival`之间不相关。
+    2. `Cabin`/客舱号码特征有可能会被删掉，因为它在训练集和测试集的缺失值都很多。
+    3. `PassengerId`特征有可能删除，有可能和`Survival`无关。
+    4. `Name`特征是一个不太能够标准化的特征，它可能和`Survival`没有直接关系，可能会被删掉。
 - 特征提取
-  1. 基于`Parch`和`SibSp`创造一个新特征`Family`，表示登船的家庭成员的数量。
-  2. 基于`Name`，提取出新特征`Title`。
-  3. `Age`离散化处理：基于`Age`，新建`Ageband`，将`Age`转变为分类特征。
-  4. `Fare`离散化处理：基于`Fare`，新建`FareBand`，将`Fare`转变成分类特征。
+    1. 基于`Parch`和`SibSp`创造一个新特征`Family`，表示登船的家庭成员的数量。
+    2. 基于`Name`，提取出新特征`Title`。
+    3. `Age`离散化处理：基于`Age`，新建`Ageband`，将`Age`转变为分类特征。
+    4. `Fare`离散化处理：基于`Fare`，新建`FareBand`，将`Fare`转变成分类特征。
 - 猜想
-  1. 女性`(Sex=female)`有更大可能性获救。
-  2. 儿童`（Age<?）`有更大可能性获救。
-  3. 上等舱位乘客更有可能获救。
-  4. 船票价格高的乘客更有可能获救。
+    1. 女性`(Sex=female)`有更大可能性获救。
+    2. 儿童`（Age<?）`有更大可能性获救。
+    3. 上等舱位乘客更有可能获救。
+    4. 船票价格高的乘客更有可能获救。
 
 【描述性统计分析】部分提供的信息，只是帮助我们对数据集的总体情况有一个初步的了解，但是对于最终建模和预测结果的帮助非常有限。
 
@@ -4029,6 +4033,7 @@ print(
 # 4      4  0.000000
 # 6      6  0.000000
 ```
+
 #### 有缺失值的特征
 
 **Age 与 Survived**
@@ -4055,13 +4060,14 @@ print(
 - 需要给Age进行缺失值填充处理 ==> 处理缺失值#1
 - 应该对Age进行分组处理 ==> 特征提取#3
 
-[23]:
+[23]: ```python
 
-```python
 # Age与Survived
+
 g = sns.FacetGrid(train_df, col='Survived')
-g.map(plt.hist, 'Age', bins=20)  # 年龄每4岁进行分割
+g.map(plt.hist, 'Age', bins=20) # 年龄每4岁进行分割
 plt.show()
+
 ```
 
 ![image-20240506150927421](assets/image-20240506150927421.png)
@@ -4077,11 +4083,14 @@ plt.show()
 - 我们应该把Fare特征放到训练模型中 ==> 猜想#4
 
 ```
+
 # Fare与Survived
+
 g = sns.FacetGrid(train_df, col='Survived')
 g.map(plt.hist, 'Fare', bins=30)
 plt.show()
-```
+
+````
 
 ![image-20240506151104990](assets/image-20240506151104990.png)
 
@@ -4105,7 +4114,7 @@ grid = sns.FacetGrid(train_df, col='Survived', row='Pclass',  aspect=1.6) # size
 grid.map(plt.hist, 'Age', alpha=.5, bins=20)
 grid.add_legend()
 plt.show()
-```
+````
 
 ![image-20240506151502546](assets/image-20240506151502546.png)
 
@@ -4245,7 +4254,7 @@ train_df[['AgeBand', 'Survived']].groupby(['AgeBand'], as_index=False).mean().so
 
 ```python
 # 根据AgeBand提供的区间切分信息，对Age进行分组处理
-for dataset in combine:    
+for dataset in combine:
     dataset.loc[ dataset['Age'] <= 16, 'Age'] = 0
     dataset.loc[(dataset['Age'] > 16) & (dataset['Age'] <= 32), 'Age'] = 1
     dataset.loc[(dataset['Age'] > 32) & (dataset['Age'] <= 48), 'Age'] = 2
@@ -4275,7 +4284,7 @@ from sklearn.ensemble import RandomForestRegressor
 
 
 def set_missing_ages(df):
-    
+
     # 把已有的数值型特征取出来丢进Random Forest Regressor中
     age_df = df[['Age','Fare', 'Parch', 'SibSp', 'Pclass']]
 
@@ -4292,13 +4301,13 @@ def set_missing_ages(df):
     # fit到RandomForestRegressor之中
     rfr = RandomForestRegressor(random_state=0, n_estimators=2000, n_jobs=-1)
     rfr.fit(X, y)
-    
+
     # 用得到的模型进行未知年龄结果预测
     predictedAges = rfr.predict(unknown_age[:, 1::])
-    
+
     # 用得到的预测结果填补原缺失数据
     df.loc[ (df.Age.isnull()), 'Age' ] = predictedAges
-    
+
     return df, rfr
 
 # 处理训练集Age特征
@@ -4346,7 +4355,7 @@ for dataset in combine:
 # 删掉FareBand
 train_df = train_df.drop(['FareBand'], axis=1)
 combine = [train_df, test_df]
-    
+
 print(train_df.head())
 ```
 
@@ -4370,7 +4379,7 @@ print(freq_port)
 # 将使用众数对Embarked的空值进行填充
 for dataset in combine:
     dataset['Embarked'] = dataset['Embarked'].fillna(freq_port)
-    
+
 train_df[['Embarked', 'Survived']].groupby(['Embarked'], as_index=False).mean().sort_values(by='Survived', ascending=False)
 ```
 
@@ -4392,7 +4401,7 @@ print(train_df.head())
 
 我们想分析 `Name` 特征是否能够提取 `title` 信息，并验证 `title` 与 `Survived` 之间的相关性。
 
-**观察发现**： 
+**观察发现**：
 
 当我们绘制称呼、年龄和 `Survived` 时，我们注意到以下几点：
 
@@ -4430,8 +4439,8 @@ for dataset in combine:
     'Don', 'Dr', 'Major', 'Rev', 'Sir', 'Jonkheer', 'Dona'], 'Rare')
 
     dataset['Title'] = dataset['Title'].replace(['Mlle', 'Ms'], 'Miss')
-    dataset['Title'] = dataset['Title'].replace(['Mme','Countess'], 'Mrs') 
-    
+    dataset['Title'] = dataset['Title'].replace(['Mme','Countess'], 'Mrs')
+
 train_df[['Title', 'Survived']].groupby(['Title'], as_index=False).mean()
 ```
 
@@ -4534,19 +4543,19 @@ print(train_df)
 
 输出：
 
-|      | PassengerId | Survived | Pclass |  Sex |  Age | Fare | Embarked | Title | IsAlone | Age*Class | Age_scaled | Fare_scaled |
-| ---: | ----------: | -------: | -----: | ---: | ---: | ---: | -------: | ----: | ------: | --------: | ---------: | ----------: |
-|    0 |           1 |        0 |      3 |    0 |    1 |    0 |        0 |     1 |       0 |         3 |  -0.392999 |   -1.346777 |
-|    1 |           2 |        1 |      1 |    1 |    2 |    3 |        1 |     3 |       0 |         2 |   0.827078 |    1.337738 |
-|    2 |           3 |        1 |      3 |    1 |    1 |    1 |        0 |     2 |       1 |         3 |  -0.392999 |   -0.451938 |
-|    3 |           4 |        1 |      1 |    1 |    2 |    3 |        0 |     3 |       0 |         2 |   0.827078 |    1.337738 |
-|    4 |           5 |        0 |      3 |    0 |    2 |    1 |        0 |     1 |       1 |         6 |   0.827078 |   -0.451938 |
-|  ... |         ... |      ... |    ... |  ... |  ... |  ... |      ... |   ... |     ... |       ... |        ... |         ... |
-|  886 |         887 |        0 |      2 |    0 |    1 |    1 |        0 |     5 |       1 |         2 |  -0.392999 |   -0.451938 |
-|  887 |         888 |        1 |      1 |    1 |    1 |    2 |        0 |     2 |       1 |         1 |  -0.392999 |    0.442900 |
-|  888 |         889 |        0 |      3 |    1 |    1 |    2 |        0 |     2 |       0 |         3 |  -0.392999 |    0.442900 |
-|  889 |         890 |        1 |      1 |    0 |    1 |    2 |        1 |     1 |       1 |         1 |  -0.392999 |    0.442900 |
-|  890 |         891 |        0 |      3 |    0 |    1 |    0 |        2 |     1 |       1 |         3 |  -0.392999 |   -1.346777 |
+|     | PassengerId | Survived | Pclass | Sex | Age | Fare | Embarked | Title | IsAlone | Age\*Class | Age_scaled | Fare_scaled |
+| --: | ----------: | -------: | -----: | --: | --: | ---: | -------: | ----: | ------: | ---------: | ---------: | ----------: |
+|   0 |           1 |        0 |      3 |   0 |   1 |    0 |        0 |     1 |       0 |          3 |  -0.392999 |   -1.346777 |
+|   1 |           2 |        1 |      1 |   1 |   2 |    3 |        1 |     3 |       0 |          2 |   0.827078 |    1.337738 |
+|   2 |           3 |        1 |      3 |   1 |   1 |    1 |        0 |     2 |       1 |          3 |  -0.392999 |   -0.451938 |
+|   3 |           4 |        1 |      1 |   1 |   2 |    3 |        0 |     3 |       0 |          2 |   0.827078 |    1.337738 |
+|   4 |           5 |        0 |      3 |   0 |   2 |    1 |        0 |     1 |       1 |          6 |   0.827078 |   -0.451938 |
+| ... |         ... |      ... |    ... | ... | ... |  ... |      ... |   ... |     ... |        ... |        ... |         ... |
+| 886 |         887 |        0 |      2 |   0 |   1 |    1 |        0 |     5 |       1 |          2 |  -0.392999 |   -0.451938 |
+| 887 |         888 |        1 |      1 |   1 |   1 |    2 |        0 |     2 |       1 |          1 |  -0.392999 |    0.442900 |
+| 888 |         889 |        0 |      3 |   1 |   1 |    2 |        0 |     2 |       0 |          3 |  -0.392999 |    0.442900 |
+| 889 |         890 |        1 |      1 |   0 |   1 |    2 |        1 |     1 |       1 |          1 |  -0.392999 |    0.442900 |
+| 890 |         891 |        0 |      3 |   0 |   1 |    0 |        2 |     1 |       1 |          3 |  -0.392999 |   -1.346777 |
 
 ### 特征因子化
 
@@ -4570,7 +4579,7 @@ print(train_df)
 
 #### one-hot编码必要性
 
-如果你不了解这个编码的话，你可能会觉得分解会增加没必要的麻烦，因为独热编码大量地增加了数据集的维度。相反，你可能会尝试将类别属性转换成一个标量值，例如`Embarked`可能会用`{1,2,3`}表示`{S,C,Q}`。***这里存在两个问题***:
+如果你不了解这个编码的话，你可能会觉得分解会增加没必要的麻烦，因为独热编码大量地增加了数据集的维度。相反，你可能会尝试将类别属性转换成一个标量值，例如`Embarked`可能会用`{1,2,3`}表示`{S,C,Q}`。**_这里存在两个问题_**:
 
 1. 对于一个数学模型，这意味着某种意义上S和C比和Q更“相似”（因为`|1-3|` > `|1-2|`）。除非你的类别拥有排序的属性（比如铁路线上的站），这样可能会误导你的模型。
 2. 可能会导致统计指标（比如均值）无意义，更糟糕的情况是会误导你的模型。例如颜色属性可能会用{1,2,3}表示{红，绿，蓝},假如你的数据集包含相同数量的红色和蓝色的实例，但是没有绿色的，那么颜色的均值可能还是得到2，也就是绿色的意思。
@@ -4603,17 +4612,17 @@ print(train_df.head())
 
 输出：
 
-|      | PassengerId | Survived | Age*Class | Age_scaled | Fare_scaled | Pclass_1 | Pclass_2 | Pclass_3 | Sex_0 | Sex_1 |  ... | IsAlone_1 | Age_0 | Age_1 | Age_2 | Age_3 | Age_4 | Fare_0 | Fare_1 | Fare_2 | Fare_3 |
-| ---: | ----------: | -------: | --------: | ---------: | ----------: | -------: | -------: | -------: | ----: | ----: | ---: | --------: | ----: | ----: | ----: | ----: | ----: | -----: | -----: | -----: | -----: |
-|    0 |           1 |        0 |         3 |  -0.392999 |   -1.346777 |        0 |        0 |        1 |     1 |     0 |  ... |         0 |     0 |     1 |     0 |     0 |     0 |      1 |      0 |      0 |      0 |
-|    1 |           2 |        1 |         2 |   0.827078 |    1.337738 |        1 |        0 |        0 |     0 |     1 |  ... |         0 |     0 |     0 |     1 |     0 |     0 |      0 |      0 |      0 |      1 |
-|    2 |           3 |        1 |         3 |  -0.392999 |   -0.451938 |        0 |        0 |        1 |     0 |     1 |  ... |         1 |     0 |     1 |     0 |     0 |     0 |      0 |      1 |      0 |      0 |
-|    3 |           4 |        1 |         2 |   0.827078 |    1.337738 |        1 |        0 |        0 |     0 |     1 |  ... |         0 |     0 |     0 |     1 |     0 |     0 |      0 |      0 |      0 |      1 |
-|    4 |           5 |        0 |         6 |   0.827078 |   -0.451938 |        0 |        0 |        1 |     1 |     0 |  ... |         1 |     0 |     0 |     1 |     0 |     0 |      0 |      1 |      0 |      0 |
+|     | PassengerId | Survived | Age\*Class | Age_scaled | Fare_scaled | Pclass_1 | Pclass_2 | Pclass_3 | Sex_0 | Sex_1 | ... | IsAlone_1 | Age_0 | Age_1 | Age_2 | Age_3 | Age_4 | Fare_0 | Fare_1 | Fare_2 | Fare_3 |
+| --: | ----------: | -------: | ---------: | ---------: | ----------: | -------: | -------: | -------: | ----: | ----: | --: | --------: | ----: | ----: | ----: | ----: | ----: | -----: | -----: | -----: | -----: |
+|   0 |           1 |        0 |          3 |  -0.392999 |   -1.346777 |        0 |        0 |        1 |     1 |     0 | ... |         0 |     0 |     1 |     0 |     0 |     0 |      1 |      0 |      0 |      0 |
+|   1 |           2 |        1 |          2 |   0.827078 |    1.337738 |        1 |        0 |        0 |     0 |     1 | ... |         0 |     0 |     0 |     1 |     0 |     0 |      0 |      0 |      0 |      1 |
+|   2 |           3 |        1 |          3 |  -0.392999 |   -0.451938 |        0 |        0 |        1 |     0 |     1 | ... |         1 |     0 |     1 |     0 |     0 |     0 |      0 |      1 |      0 |      0 |
+|   3 |           4 |        1 |          2 |   0.827078 |    1.337738 |        1 |        0 |        0 |     0 |     1 | ... |         0 |     0 |     0 |     1 |     0 |     0 |      0 |      0 |      0 |      1 |
+|   4 |           5 |        0 |          6 |   0.827078 |   -0.451938 |        0 |        0 |        1 |     1 |     0 | ... |         1 |     0 |     0 |     1 |     0 |     0 |      0 |      1 |      0 |      0 |
 
 ### 逻辑回归
 
->  我们终于可以建模了！
+> 我们终于可以建模了！
 
 ```python
 # 准备放入模型中的最终训练数据和测试数据
@@ -4655,32 +4664,32 @@ print(coeff_df)
 
 输出：
 
-|      |     Feature | Correlation |
-| ---: | ----------: | ----------: |
-|    0 |    Survived |   -0.196464 |
-|    1 |   Age*Class |    1.054967 |
-|    2 |  Age_scaled |    0.025194 |
-|    3 | Fare_scaled |   -1.080114 |
-|    4 |    Pclass_1 |   -0.918372 |
-|    5 |    Pclass_2 |    0.918419 |
-|    6 |    Pclass_3 |   -0.356831 |
+|     |     Feature | Correlation |
+| --: | ----------: | ----------: |
+|   0 |    Survived |   -0.196464 |
+|   1 |  Age\*Class |    1.054967 |
+|   2 |  Age_scaled |    0.025194 |
+|   3 | Fare_scaled |   -1.080114 |
+|   4 |    Pclass_1 |   -0.918372 |
+|   5 |    Pclass_2 |    0.918419 |
+|   6 |    Pclass_3 |   -0.356831 |
 
 ```python
 # 根据相关系数的大小从高到底排序
-coeff_df.sort_values(by='Correlation', ascending=False) 
+coeff_df.sort_values(by='Correlation', ascending=False)
 ```
 
 输出：
 
-|      |    Feature | Correlation |
-| ---: | ---------: | ----------: |
-|   12 |    Title_1 |    1.395398 |
-|    1 |  Age*Class |    1.054967 |
-|    5 |   Pclass_2 |    0.918419 |
-|   11 | Embarked_2 |    0.636696 |
-|    7 |      Sex_0 |    0.273314 |
-|   22 |      Age_3 |    0.261424 |
-|   17 |  IsAlone_0 |    0.235837 |
+|     |    Feature | Correlation |
+| --: | ---------: | ----------: |
+|  12 |    Title_1 |    1.395398 |
+|   1 | Age\*Class |    1.054967 |
+|   5 |   Pclass_2 |    0.918419 |
+|  11 | Embarked_2 |    0.636696 |
+|   7 |      Sex_0 |    0.273314 |
+|  22 |      Age_3 |    0.261424 |
+|  17 |  IsAlone_0 |    0.235837 |
 
 - `Sex`：`female`会极大提高最后获救的概率，`male`会很大程度拉低这个概率。
 - `Pclass`：`1`等舱乘客最后获救的概率会上升，而乘客等级为`3`会极大地拉低这个概率。
@@ -4702,18 +4711,20 @@ coeff_df.sort_values(by='Correlation', ascending=False)
 #### 常见类型的交叉验证
 
 1. 重复随机子抽样验证
-   - 将数据集随机的划分为训练集和测试集。对每一个划分，用训练集训练分类器或模型，用测试集评估预测的精确度。进行多次划分，用均值来表示效能。
-   - 优点：与k倍交叉验证相比，这种方法的与k无关。
-   - 缺点：有些数据可能从未做过训练或测试数据；而有些数据不止一次选为训练或测试数据。
+
+    - 将数据集随机的划分为训练集和测试集。对每一个划分，用训练集训练分类器或模型，用测试集评估预测的精确度。进行多次划分，用均值来表示效能。
+    - 优点：与k倍交叉验证相比，这种方法的与k无关。
+    - 缺点：有些数据可能从未做过训练或测试数据；而有些数据不止一次选为训练或测试数据。
 
 2. K倍交叉验证（K>=2）
-   - 将样本数据集随机划分为K个子集（一般是均分），将一个子集数据作为测试集，其余的K-1组子集作为训练集；将K个子集轮流作为测试集，重复上述过程，这样得到了K个分类器或模型，并利用测试集得到了K个分类器或模型的分类准确率。用K个分类准确率的平均值作为分类器或模型的性能指标。10-倍交叉证实是比较常用的。 
-   - 优点：每一个样本数据都即被用作训练数据，也被用作测试数据。避免的过度学习和欠学习状态的发生，得到的结果比较具有说服力。
+
+    - 将样本数据集随机划分为K个子集（一般是均分），将一个子集数据作为测试集，其余的K-1组子集作为训练集；将K个子集轮流作为测试集，重复上述过程，这样得到了K个分类器或模型，并利用测试集得到了K个分类器或模型的分类准确率。用K个分类准确率的平均值作为分类器或模型的性能指标。10-倍交叉证实是比较常用的。
+    - 优点：每一个样本数据都即被用作训练数据，也被用作测试数据。避免的过度学习和欠学习状态的发生，得到的结果比较具有说服力。
 
 3. 留一法交叉验证
-   - 假设样本数据集中有N个样本数据。将每个样本单独作为测试集，其余N-1个样本作为训练集，这样得到了N个分类器或模型，用这N个分类器或模型的分类准确率的平均数作为此分类器的性能指标。
-   - 优点：每一个分类器或模型都是用几乎所有的样本来训练模型，最接近样本，这样评估所得的结果比较可靠。实验没有随机因素，整个过程是可重复的。
-   - 缺点：计算成本高，当N非常大时，计算耗时。
+    - 假设样本数据集中有N个样本数据。将每个样本单独作为测试集，其余N-1个样本作为训练集，这样得到了N个分类器或模型，用这N个分类器或模型的分类准确率的平均数作为此分类器的性能指标。
+    - 优点：每一个分类器或模型都是用几乎所有的样本来训练模型，最接近样本，这样评估所得的结果比较可靠。实验没有随机因素，整个过程是可重复的。
+    - 缺点：计算成本高，当N非常大时，计算耗时。
 
 #### 训练集和测试集的选取
 
@@ -4757,17 +4768,17 @@ print(bad_cases)
 
 输出：
 
-|      | PassengerId | Survived | Age*Class | Pclass_1 | Pclass_2 |
-| ---: | ----------: | -------: | --------: | -------: | -------: |
-|   14 |          15 |        0 |         0 |        0 |        0 |
-|   18 |          19 |        0 |         3 |        0 |        0 |
-|   30 |          31 |        0 |         2 |        1 |        0 |
-|   40 |          41 |        0 |         6 |        0 |        0 |
-|   49 |          50 |        0 |         3 |        0 |        0 |
-|   55 |          56 |        1 |         2 |        1 |        0 |
-|   64 |          65 |        0 |         2 |        1 |        0 |
-|   65 |          66 |        1 |         3 |        0 |        0 |
-|   85 |          86 |        1 |         6 |        0 |        0 |
+|     | PassengerId | Survived | Age\*Class | Pclass_1 | Pclass_2 |
+| --: | ----------: | -------: | ---------: | -------: | -------: |
+|  14 |          15 |        0 |          0 |        0 |        0 |
+|  18 |          19 |        0 |          3 |        0 |        0 |
+|  30 |          31 |        0 |          2 |        1 |        0 |
+|  40 |          41 |        0 |          6 |        0 |        0 |
+|  49 |          50 |        0 |          3 |        0 |        0 |
+|  55 |          56 |        1 |          2 |        1 |        0 |
+|  64 |          65 |        0 |          2 |        1 |        0 |
+|  65 |          66 |        1 |          3 |        0 |        0 |
+|  85 |          86 |        1 |          6 |        0 |        0 |
 
 观察这些预测错误的记录，提出新的优化方向，继续尝试挖掘，可能还可以想到更多可以细挖的部分。将新的特征和已有特征组合在一起，查看模型预测准确度是否有所提升，继续迭代下去。
 
@@ -4811,7 +4822,7 @@ import matplotlib.pyplot as plt
 from sklearn.model_selection import learning_curve
 
 # 用sklearn的learning_curve得到training_score和cv_score，使用matplotlib画出learning curve
-def plot_learning_curve(estimator, title, X, y, ylim=None, cv=None, n_jobs=1, 
+def plot_learning_curve(estimator, title, X, y, ylim=None, cv=None, n_jobs=1,
                         train_sizes=np.linspace(.05, 1., 20), verbose=0, plot=True): # train_sizes训练集占数据的比例
     """
     画出data在某模型上的learning curve.
@@ -4843,9 +4854,9 @@ def plot_learning_curve(estimator, title, X, y, ylim=None, cv=None, n_jobs=1,
         plt.gca().invert_yaxis()
         plt.grid()
 
-        plt.fill_between(train_sizes, train_scores_mean - train_scores_std, train_scores_mean + train_scores_std, 
+        plt.fill_between(train_sizes, train_scores_mean - train_scores_std, train_scores_mean + train_scores_std,
                          alpha=0.1, color="b")
-        plt.fill_between(train_sizes, test_scores_mean - test_scores_std, test_scores_mean + test_scores_std, 
+        plt.fill_between(train_sizes, test_scores_mean - test_scores_std, test_scores_mean + test_scores_std,
                          alpha=0.1, color="r")
         plt.plot(train_sizes, train_scores_mean, 'o-', color="b", label=u"train_scores")
         plt.plot(train_sizes, test_scores_mean, 'o-', color="r", label=u"cv_scores")
@@ -4864,8 +4875,6 @@ plot_learning_curve(clf, u"learning curve", X_train, Y_train)
 ```
 
 ![img](assets/img.png)
-
-
 
 在实际数据上看，我们得到的`learning curve`没有理论推导的那么光滑哈，但是可以大致看出来，训练集和交叉验证集上的得分曲线走势还是符合预期的。
 

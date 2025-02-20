@@ -39,41 +39,40 @@ Redux 是React最常用的集中状态管理工具，类似于 Vue 中的Pinia�
 <script src="https://unpkg.com/redux@latest/dist/redux.min.js"></script>
 
 <script>
-  // 定义reducer函数 
-  // 内部主要的工作是根据不同的action 返回不同的state
-  function counterReducer (state = { count: 0 }, action) {
-    switch (action.type) {
-      case 'INCREMENT':
-        return { count: state.count + 1 }
-      case 'DECREMENT':
-        return { count: state.count - 1 }
-      default:
-        return state
+    // 定义reducer函数
+    // 内部主要的工作是根据不同的action 返回不同的state
+    function counterReducer(state = { count: 0 }, action) {
+        switch (action.type) {
+            case "INCREMENT":
+                return { count: state.count + 1 };
+            case "DECREMENT":
+                return { count: state.count - 1 };
+            default:
+                return state;
+        }
     }
-  }
-  // 使用reducer函数生成store实例
-  const store = Redux.createStore(counterReducer)
+    // 使用reducer函数生成store实例
+    const store = Redux.createStore(counterReducer);
 
-  // 订阅数据变化
-  store.subscribe(() => {
-    console.log(store.getState())
-    document.getElementById('count').innerText = store.getState().count
-
-  })
-  // 增
-  const inBtn = document.getElementById('increment')
-  inBtn.addEventListener('click', () => {
-    store.dispatch({
-      type: 'INCREMENT'
-    })
-  })
-  // 减
-  const dBtn = document.getElementById('decrement')
-  dBtn.addEventListener('click', () => {
-    store.dispatch({
-      type: 'DECREMENT'
-    })
-  })
+    // 订阅数据变化
+    store.subscribe(() => {
+        console.log(store.getState());
+        document.getElementById("count").innerText = store.getState().count;
+    });
+    // 增
+    const inBtn = document.getElementById("increment");
+    inBtn.addEventListener("click", () => {
+        store.dispatch({
+            type: "INCREMENT",
+        });
+    });
+    // 减
+    const dBtn = document.getElementById("decrement");
+    dBtn.addEventListener("click", () => {
+        store.dispatch({
+            type: "DECREMENT",
+        });
+    });
 </script>
 ```
 
@@ -108,21 +107,21 @@ Redux 虽然是一个框架无关可以独立运行的插件，但是社区通�
 
 1. 使用 CRA 快速创建 React 项目
 
-   ```bash
-   npx create-react-app react-redux 
-   ```
+    ```bash
+    npx create-react-app react-redux
+    ```
 
 2. 安装配套工具
 
-   ```bash
-   npm i @reduxjs/toolkit  react-redux 
-   ```
+    ```bash
+    npm i @reduxjs/toolkit  react-redux
+    ```
 
 3. 启动项目
 
-   ```bash
-   npm run start 
-   ```
+    ```bash
+    npm run start
+    ```
 
 #### store目录结构设计
 
@@ -140,51 +139,50 @@ Redux 虽然是一个框架无关可以独立运行的插件，但是社区通�
 
 ![image.png](assets/Redux/6.png)
 
-
 #### 使用React Toolkit 创建 counterStore
 
 ```javascript
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from "@reduxjs/toolkit";
 
 const counterStore = createSlice({
-  // 模块名称独一无二
-  name: 'counter',
-  // 初始数据
-  initialState: {
-    count: 1
-  },
-  // 修改数据的同步方法
-  reducers: {
-    increment (state) {
-      state.count++
+    // 模块名称独一无二
+    name: "counter",
+    // 初始数据
+    initialState: {
+        count: 1,
     },
-    decrement(state){
-      state.count--
-    }
-  }
-})
+    // 修改数据的同步方法
+    reducers: {
+        increment(state) {
+            state.count++;
+        },
+        decrement(state) {
+            state.count--;
+        },
+    },
+});
 // 结构出actionCreater
-const { increment,decrement } = counter.actions
+const { increment, decrement } = counter.actions;
 
 // 获取reducer函数
-const counterReducer = counterStore.reducer
+const counterReducer = counterStore.reducer;
 
 // 导出
-export { increment, decrement }
-export default counterReducer
+export { increment, decrement };
+export default counterReducer;
 ```
 
 ```javascript
-import { configureStore } from '@reduxjs/toolkit'
+import { configureStore } from "@reduxjs/toolkit";
 
-import counterReducer from './modules/counterStore'
+import counterReducer from "./modules/counterStore";
 
 export default configureStore({
-  reducer: {
-    // 注册子模块
-    counter: counterReducer
-  }
-})
+    reducer: {
+        // 注册子模块
+        counter: counterReducer,
+    },
+});
 ```
 
 #### 为React注入store
@@ -192,20 +190,20 @@ export default configureStore({
 `react-redux` 负责把 Redux 和 React 链接 起来，内置 `Provider` 组件 通过 `store` 参数把创建好的 `store` 实例注入到应用中，链接正式建立
 
 ```jsx
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App'
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
 // 导入store
-import store from './store'
+import store from "./store";
 // 导入store提供组件Provider
-import { Provider } from 'react-redux'
+import { Provider } from "react-redux";
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  // 提供store数据
-  <Provider store={store}>
-    <App />
-  </Provider>
-)
+ReactDOM.createRoot(document.getElementById("root")).render(
+    // 提供store数据
+    <Provider store={store}>
+        <App />
+    </Provider>
+);
 ```
 
 #### React 组件使用 store 中的数据
@@ -217,7 +215,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 #### React 组件修改 store 中的数据
 
 React 组件中修改 `store` 中的数据需要借助另外一个 `hook` 函数 - `useDispatch`，它的作用是生成提交 `action` 对象的`dispatch` 函数，使用样例如下：
-
 
 ![image.png](assets/Redux/8.png)
 
@@ -245,71 +242,72 @@ React 组件中修改 `store` 中的数据需要借助另外一个 `hook` 函数
 
 1. 创建 `store` 的写法保持不变，配置好同步修改状态的方法
 2. 单独封装一个函数，在函数内部return一个新函数，在新函数中
-   1. 封装异步请求获取数据
-   2. 调用同步 `actionCreater` 传入异步数据生成一个 `action` 对象，并使用 `dispatch` 提交
+    1. 封装异步请求获取数据
+    2. 调用同步 `actionCreater` 传入异步数据生成一个 `action` 对象，并使用 `dispatch` 提交
 3. 组件中 `dispatch` 的写法保持不变
 
 #### 代码实现
 
-> 测试接口地址：  [http://geek.itheima.net/v1_0/channels](http://geek.itheima.net/v1_0/channels')
+> 测试接口地址： [http://geek.itheima.net/v1_0/channels](http://geek.itheima.net/v1_0/channels')
 
 ```javascript
-import { createSlice } from '@reduxjs/toolkit'
-import axios from 'axios'
+import { createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
 
 const channelStore = createSlice({
-  name: 'channel',
-  initialState: {
-    channelList: []
-  },
-  reducers: {
-    setChannelList (state, action) {
-      state.channelList = action.payload
-    }
-  }
-})
-
+    name: "channel",
+    initialState: {
+        channelList: [],
+    },
+    reducers: {
+        setChannelList(state, action) {
+            state.channelList = action.payload;
+        },
+    },
+});
 
 // 创建异步
-const { setChannelList } = channelStore.actions
-const url = 'http://geek.itheima.net/v1_0/channels'
+const { setChannelList } = channelStore.actions;
+const url = "http://geek.itheima.net/v1_0/channels";
 // 封装一个函数 在函数中return一个新函数 在新函数中封装异步
 // 得到数据之后通过dispatch函数 触发修改
 const fetchChannelList = () => {
-  return async (dispatch) => {
-    const res = await axios.get(url)
-    dispatch(setChannelList(res.data.data.channels))
-  }
-}
+    return async (dispatch) => {
+        const res = await axios.get(url);
+        dispatch(setChannelList(res.data.data.channels));
+    };
+};
 
-export { fetchChannelList }
+export { fetchChannelList };
 
-const channelReducer = channelStore.reducer
-export default channelReducer
+const channelReducer = channelStore.reducer;
+export default channelReducer;
 ```
 
 ```jsx
-import { useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { fetchChannelList } from './store/channelStore'
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchChannelList } from "./store/channelStore";
 
-function App () {
-  // 使用数据
-  const { channelList } = useSelector(state => state.channel)
-  useEffect(() => {
-    dispatch(fetchChannelList())
-  }, [dispatch])
+function App() {
+    // 使用数据
+    const { channelList } = useSelector((state) => state.channel);
+    useEffect(() => {
+        dispatch(fetchChannelList());
+    }, [dispatch]);
 
-  return (
-    <div className="App">
-      <ul>
-        {channelList.map(task => <li key={task.id}>{task.name}</li>)}
-      </ul>
-    </div>
-  )
+    return (
+        <div className="App">
+            <ul>
+                {channelList.map((task) => (
+                    <li key={task.id}>{task.name}</li>
+                ))}
+            </ul>
+        </div>
+    );
 }
 
-export default App
+export default App;
 ```
 
 ## Redux调试 - devtools
@@ -317,4 +315,3 @@ export default App
 Redux 官方提供了针对于 Redux 的调试工具，支持实时 `state` 信息展示，`action` 提交信息查看等
 
 ![image.png](assets/Redux/12.png)
-

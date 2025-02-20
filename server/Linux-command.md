@@ -24,10 +24,10 @@ ls -l --sort=size
 - **智能补全**：`Tab`键自动补全路径/命令
 - **历史追溯**：`Ctrl+R` 逆向搜索命令历史
 - **会话管理**：
-  ```shell
-  screen -S work  # 创建持久会话
-  tmux new -s dev # 高级终端复用
-  ```
+    ```shell
+    screen -S work  # 创建持久会话
+    tmux new -s dev # 高级终端复用
+    ```
 
 ## 📦 文件系统管理
 

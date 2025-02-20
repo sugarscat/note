@@ -25,23 +25,21 @@ npm run start
 ![image.png](assets/2-1720406867196-43.png)
 
 ```jsx
-import React from 'react'
-import ReactDOM from 'react-dom/client'
+import React from "react";
+import ReactDOM from "react-dom/client";
 
 const router = createBrowserRouter([
-  {
-    path:'/login',
-    element: <div>登录</div>
-  },
-  {
-    path:'/article',
-    element: <div>文章</div>
-  }
-])
+    {
+        path: "/login",
+        element: <div>登录</div>,
+    },
+    {
+        path: "/article",
+        element: <div>文章</div>,
+    },
+]);
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <RouterProvider router={router}/>
-)
+ReactDOM.createRoot(document.getElementById("root")).render(<RouterProvider router={router} />);
 ```
 
 ## 抽象路由模块
@@ -58,7 +56,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 ### 声明式导航
 
 > 声明式导航是指通过在模版中通过 `<Link/> ` 组件描述出要跳转到哪里去，比如后台管理系统的左侧菜单通常使用这种方式进行
-
 
 ![image.png](assets/5-1720406867197-46.png)
 
@@ -87,7 +84,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
 > 实现步骤
 >
->     1. 使用 `children`属性配置路由嵌套关系  
+>     1. 使用 `children`属性配置路由嵌套关系
 >     2. 使用 `<Outlet/>` 组件配置二级路由渲染位置
 
 ![image.png](assets/9-1720406867197-50.png)

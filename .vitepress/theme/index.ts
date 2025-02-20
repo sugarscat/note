@@ -1,11 +1,11 @@
 import DefaultTheme from "vitepress/theme";
-import {EnhanceAppContext} from 'vitepress';
+import { EnhanceAppContext } from "vitepress";
 import { h } from "vue";
-import 'vitepress-plugin-back-to-top/dist/style.css';
-import vitepressBackToTop from 'vitepress-plugin-back-to-top';
+import "vitepress-plugin-back-to-top/dist/style.css";
+import vitepressBackToTop from "vitepress-plugin-back-to-top";
 import Layout from "./Layout.vue";
 
-import './index.scss'
+import "./index.scss";
 
 export default {
     extends: DefaultTheme,
@@ -16,7 +16,7 @@ export default {
         DefaultTheme.enhanceApp(ctx);
         // 设置全局返回顶部按钮
         vitepressBackToTop({
-            threshold: 300
+            threshold: 300,
         });
     },
-}
+};

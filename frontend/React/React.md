@@ -18,15 +18,15 @@ npx create-react-app react-basic
 概念：`JSX` 是 `JavaScript` 和 `XMl`(HTML)的缩写，表示在 `JS` 代码中编写 `HTML` 模版结构，它是 `React` 中构建 `UI` 的方式
 
 ```jsx
-const message = 'this is message'
+const message = "this is message";
 
-function App(){
-  return (
-    <div>
-      <h1>this is title</h1>
-      {message}
-    </div>
-  )
+function App() {
+    return (
+        <div>
+            <h1>this is title</h1>
+            {message}
+        </div>
+    );
 }
 ```
 
@@ -54,26 +54,26 @@ function App(){
    :::
 
 ```jsx
-const message = 'this is message'
+const message = "this is message";
 
-function getAge(){
-  return 18
+function getAge() {
+    return 18;
 }
 
-function App(){
-  return (
-    <div>
-      <h1>this is title</h1>
-      {/* 字符串识别 */}
-      {'this is str'}
-      {/* 变量识别 */}
-      {message}
-      {/* 变量识别 */}
-      {message}
-      {/* 函数调用 渲染为函数的返回值 */}
-      {getAge()}
-    </div>
-  )
+function App() {
+    return (
+        <div>
+            <h1>this is title</h1>
+            {/* 字符串识别 */}
+            {"this is str"}
+            {/* 变量识别 */}
+            {message}
+            {/* 变量识别 */}
+            {message}
+            {/* 函数调用 渲染为函数的返回值 */}
+            {getAge()}
+        </div>
+    );
 }
 ```
 
@@ -85,17 +85,19 @@ function App(){
 
 ```jsx
 const list = [
-  {id:1001, name:'Vue'},
-  {id:1002, name: 'React'},
-  {id:1003, name: 'Angular'}
-]
+    { id: 1001, name: "Vue" },
+    { id: 1002, name: "React" },
+    { id: 1003, name: "Angular" },
+];
 
-function App(){
-  return (
-    <ul>
-      {list.map(item=><li key={item.id}>{item}</li>)}
-    </ul>
-  )
+function App() {
+    return (
+        <ul>
+            {list.map((item) => (
+                <li key={item.id}>{item}</li>
+            ))}
+        </ul>
+    );
 }
 ```
 
@@ -106,16 +108,16 @@ function App(){
 在React中，可以通过逻辑与运算符 `&&`、三元表达式(`?:`) 实现基础的条件渲染
 
 ```jsx
-const flag = true
-const loading = false
+const flag = true;
+const loading = false;
 
-function App(){
-  return (
-    <>
-      {flag && <span>this is span</span>}
-      {loading ? <span>loading...</span>:<span>this is span</span>}
-    </>
-  )
+function App() {
+    return (
+        <>
+            {flag && <span>this is span</span>}
+            {loading ? <span>loading...</span> : <span>this is span</span>}
+        </>
+    );
 }
 ```
 
@@ -153,13 +155,11 @@ function App(){
 > React中的事件绑定，通过语法 `on + 事件名称 = { 事件处理程序 }`，整体上遵循驼峰命名法
 
 ```jsx
-function App(){
-  const clickHandler = ()=>{
-    console.log('button按钮点击了')
-  }
-  return (
-    <button onClick={clickHandler}>click me</button>
-  )
+function App() {
+    const clickHandler = () => {
+        console.log("button按钮点击了");
+    };
+    return <button onClick={clickHandler}>click me</button>;
 }
 ```
 
@@ -168,13 +168,11 @@ function App(){
 > 在事件回调函数中设置形参e即可
 
 ```jsx
-function App(){
-  const clickHandler = (e)=>{
-    console.log('button按钮点击了', e)
-  }
-  return (
-    <button onClick={clickHandler}>click me</button>
-  )
+function App() {
+    const clickHandler = (e) => {
+        console.log("button按钮点击了", e);
+    };
+    return <button onClick={clickHandler}>click me</button>;
 }
 ```
 
@@ -183,13 +181,11 @@ function App(){
 > 语法：事件绑定的位置改造成箭头函数的写法，在执行 `clickHandler` 实际处理业务函数的时候传递实参
 
 ```jsx
-function App(){
-  const clickHandler = (name)=>{
-    console.log('button按钮点击了', name)
-  }
-  return (
-    <button onClick={()=>clickHandler('jack')}>click me</button>
-  )
+function App() {
+    const clickHandler = (name) => {
+        console.log("button按钮点击了", name);
+    };
+    return <button onClick={() => clickHandler("jack")}>click me</button>;
 }
 ```
 
@@ -202,13 +198,11 @@ function App(){
 > 语法：在事件绑定的位置传递事件实参e和自定义参数，`clickHandler` 中声明形参，注意顺序对应
 
 ```jsx
-function App(){
-  const clickHandler = (name,e)=>{
-    console.log('button按钮点击了', name,e)
-  }
-  return (
-    <button onClick={(e)=>clickHandler('jack',e)}>click me</button>
-  )
+function App() {
+    const clickHandler = (name, e) => {
+        console.log("button按钮点击了", name, e);
+    };
+    return <button onClick={(e) => clickHandler("jack", e)}>click me</button>;
 }
 ```
 
@@ -225,20 +219,20 @@ function App(){
 
 ```jsx
 // 1. 定义组件
-function Button(){
-  return <button>click me</button>
+function Button() {
+    return <button>click me</button>;
 }
 
 // 2. 使用组件
-function App(){
-  return (
-    <div>
-      {/* 自闭和 */}
-      <Button/>
-      {/* 成对标签 */}
-      <Button></Button>
-    </div>
-  )
+function App() {
+    return (
+        <div>
+            {/* 自闭和 */}
+            <Button />
+            {/* 成对标签 */}
+            <Button></Button>
+        </div>
+    );
 }
 ```
 
@@ -252,13 +246,13 @@ function App(){
 ![image.png](assets/React/08.png)
 
 ```jsx
-function App(){
-  const [ count, setCount ] = React.useState(0)
-  return (
-    <div>
-      <button onClick={()=>setCount(count+1)}>{ count }</button>
-    </div>
-  )
+function App() {
+    const [count, setCount] = React.useState(0);
+    return (
+        <div>
+            <button onClick={() => setCount(count + 1)}>{count}</button>
+        </div>
+    );
 }
 ```
 
@@ -279,24 +273,24 @@ function App(){
 React组件基础的样式控制有俩种方式，行内样式和 `class` 类名控制
 
 ```jsx
-<div style={{ color:'red'}}>this is div</div>
+<div style={{ color: "red" }}>this is div</div>
 ```
 
 ```css
-.foo{
-  color: red;
+.foo {
+    color: red;
 }
 ```
 
 ```jsx
-import './index.css'
+import "./index.css";
 
-function App(){
-  return (
-    <div>
-      <span className="foo">this is span</span>
-    </div>
-  )
+function App() {
+    return (
+        <div>
+            <span className="foo">this is span</span>
+        </div>
+    );
 }
 ```
 
@@ -309,15 +303,9 @@ function App(){
 ![image.png](assets/React/01.png)
 
 ```jsx
-function App(){
-  const [value, setValue] = useState('')
-  return (
-    <input 
-      type="text" 
-      value={value} 
-      onChange={e => setValue(e.target.value)}
-    />
-  )
+function App() {
+    const [value, setValue] = useState("");
+    return <input type="text" value={value} onChange={(e) => setValue(e.target.value)} />;
 }
 ```
 
@@ -326,20 +314,14 @@ function App(){
 概念：通过获取DOM的方式获取表单的输入数据
 
 ```jsx
-function App(){
-  const inputRef = useRef(null)
+function App() {
+    const inputRef = useRef(null);
 
-  const onChange = ()=>{
-    console.log(inputRef.current.value)
-  }
-  
-  return (
-    <input 
-      type="text" 
-      ref={inputRef}
-      onChange={onChange}
-    />
-  )
+    const onChange = () => {
+        console.log(inputRef.current.value);
+    };
+
+    return <input type="text" ref={inputRef} onChange={onChange} />;
 }
 ```
 
@@ -361,22 +343,21 @@ function App(){
 
 实现步骤：
 
-1. 父组件传递数据 - 在子组件标签上绑定属性 
+1. 父组件传递数据 - 在子组件标签上绑定属性
 2. 子组件接收数据 - 子组件通过props参数接收数据
 
 ```jsx
-function Son(props){
-  return <div>{ props.name }</div>
+function Son(props) {
+    return <div>{props.name}</div>;
 }
 
-
-function App(){
-  const name = 'this is app name'
-  return (
-    <div>
-       <Son name={name}/>
-    </div>
-  )
+function App() {
+    const name = "this is app name";
+    return (
+        <div>
+            <Son name={name} />
+        </div>
+    );
 }
 ```
 
@@ -385,7 +366,7 @@ function App(){
 **props可以传递任意的合法数据**，比如数字、字符串、布尔值、数组、对象、函数、JSX
 ![image.png](assets/React/05-1720403695173-12.png)
 **props是只读对象**
-子组件只能读取 `props` 中的数据，不能直接进行修改, 父组件的数据只能由父组件修改 
+子组件只能读取 `props` 中的数据，不能直接进行修改, 父组件的数据只能由父组件修改
 
 #### 特殊的prop-chilren
 
@@ -400,26 +381,25 @@ function App(){
 核心思路：在子组件中调用父组件中的函数并传递参数
 
 ```tsx
-function Son({ onGetMsg }){
-  const sonMsg = 'this is son msg'
-  return (
-    <div>
-      {/* 在子组件中执行父组件传递过来的函数 */}
-      <button onClick={()=>onGetMsg(sonMsg)}>send</button>
-    </div>
-  )
+function Son({ onGetMsg }) {
+    const sonMsg = "this is son msg";
+    return (
+        <div>
+            {/* 在子组件中执行父组件传递过来的函数 */}
+            <button onClick={() => onGetMsg(sonMsg)}>send</button>
+        </div>
+    );
 }
 
+function App() {
+    const getMsg = (msg) => console.log(msg);
 
-function App(){
-  const getMsg = (msg)=>console.log(msg)
-  
-  return (
-    <div>
-      {/* 传递父组件中的函数到子组件 */}
-       <Son onGetMsg={ getMsg }/>
-    </div>
-  )
+    return (
+        <div>
+            {/* 传递父组件中的函数到子组件 */}
+            <Son onGetMsg={getMsg} />
+        </div>
+    );
 }
 ```
 
@@ -436,43 +416,43 @@ function App(){
 // 1. 通过子传父 A -> App
 // 2. 通过父传子 App -> B
 
-import { useState } from "react"
+import { useState } from "react";
 
-function A ({ onGetAName }) {
-  // Son组件中的数据
-  const name = 'this is A name'
-  return (
-    <div>
-      this is A compnent,
-      <button onClick={() => onGetAName(name)}>send</button>
-    </div>
-  )
+function A({ onGetAName }) {
+    // Son组件中的数据
+    const name = "this is A name";
+    return (
+        <div>
+            this is A compnent,
+            <button onClick={() => onGetAName(name)}>send</button>
+        </div>
+    );
 }
 
-function B ({ name }) {
-  return (
-    <div>
-      this is B compnent,
-      {name}
-    </div>
-  )
+function B({ name }) {
+    return (
+        <div>
+            this is B compnent,
+            {name}
+        </div>
+    );
 }
 
-function App () {
-  const [name, setName] = useState('')
-  const getAName = (name) => {
-    setName(name)
-  }
-  return (
-    <div>
-      this is App
-      <A onGetAName={getAName} />
-      <B name={name} />
-    </div>
-  )
+function App() {
+    const [name, setName] = useState("");
+    const getAName = (name) => {
+        setName(name);
+    };
+    return (
+        <div>
+            this is App
+            <A onGetAName={getAName} />
+            <B name={name} />
+        </div>
+    );
 }
 
-export default App
+export default App;
 ```
 
 ### 跨层组件通信
@@ -480,59 +460,55 @@ export default App
 ![image.png](assets/React/09-1720403695174-16.png)
 **实现步骤：**
 
-1. 使用 `createContext`方法创建一个上下文对象Ctx 
-2. 在顶层组件（App）中通过 `Ctx.Provider` 组件提供数据 
+1. 使用 `createContext`方法创建一个上下文对象Ctx
+2. 在顶层组件（App）中通过 `Ctx.Provider` 组件提供数据
 3. 在底层组件（B）中通过 `useContext` 钩子函数获取消费数据
 
 ```jsx
 // App -> A -> B
 
-import { createContext, useContext } from "react"
+import { createContext, useContext } from "react";
 
 // 1. createContext方法创建一个上下文对象
 
-const MsgContext = createContext()
+const MsgContext = createContext();
 
-function A () {
-  return (
-    <div>
-      this is A component
-      <B />
-    </div>
-  )
+function A() {
+    return (
+        <div>
+            this is A component
+            <B />
+        </div>
+    );
 }
 
-function B () {
-  // 3. 在底层组件 通过useContext钩子函数使用数据
-  const msg = useContext(MsgContext)
-  return (
-    <div>
-      this is B compnent,{msg}
-    </div>
-  )
+function B() {
+    // 3. 在底层组件 通过useContext钩子函数使用数据
+    const msg = useContext(MsgContext);
+    return <div>this is B compnent,{msg}</div>;
 }
 
-function App () {
-  const msg = 'this is app msg'
-  return (
-    <div>
-      {/* 2. 在顶层组件 通过Provider组件提供数据 */}
-      <MsgContext.Provider value={msg}>
-        this is App
-        <A />
-      </MsgContext.Provider>
-    </div>
-  )
+function App() {
+    const msg = "this is app msg";
+    return (
+        <div>
+            {/* 2. 在顶层组件 通过Provider组件提供数据 */}
+            <MsgContext.Provider value={msg}>
+                this is App
+                <A />
+            </MsgContext.Provider>
+        </div>
+    );
 }
 
-export default App
+export default App;
 ```
 
 ## React副作用管理-useEffect
 
-### 概念理解 
+### 概念理解
 
-`useEffect` 是一个React Hook函数，用于在React组件中创建不是由事件引起而是由渲染本身引起的操作（副作用）, 比如发送 `AJAX` 请求，更改 `DOM` 等等 
+`useEffect` 是一个React Hook函数，用于在React组件中创建不是由事件引起而是由渲染本身引起的操作（副作用）, 比如发送 `AJAX` 请求，更改 `DOM` 等等
 ![image.png](assets/React/10-1720403695174-17.png)
 :::warning 注意
 说明：上面的组件中没有发生任何的用户事件，组件渲染完毕之后就需要和服务器要数据，整个过程属于“只由渲染引起的操作”
@@ -543,12 +519,12 @@ export default App
 需求：在组件渲染完毕之后，立刻从服务端获取平道列表数据并显示到页面中
 
 ![image.png](assets/React/11.png)
-说明： 
+说明：
 
 1. 参数1是一个函数，可以把它叫做副作用函数，在函数内部可以放置要执行的操作 ；
 2. 参数2是一个数组（可选参），在数组里放置依赖项，不同依赖项会影响第一个参数函数的执行，当是一个空数组的时候，副作用函数只会在组件渲染完毕之后执行一次。
 
-### useEffect依赖说明 
+### useEffect依赖说明
 
 `useEffect` 副作用函数的执行时机存在多种情况，根据传入依赖项的不同，会有不同的执行表现
 
@@ -568,35 +544,35 @@ export default App
 :::
 
 ```jsx
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 
-function Son () {
-  // 1. 渲染时开启一个定时器
-  useEffect(() => {
-    const timer = setInterval(() => {
-      console.log('定时器执行中...')
-    }, 1000)
+function Son() {
+    // 1. 渲染时开启一个定时器
+    useEffect(() => {
+        const timer = setInterval(() => {
+            console.log("定时器执行中...");
+        }, 1000);
 
-    return () => {
-      // 清除副作用(组件卸载时)
-      clearInterval(timer)
-    }
-  }, [])
-  return <div>this is son</div>
+        return () => {
+            // 清除副作用(组件卸载时)
+            clearInterval(timer);
+        };
+    }, []);
+    return <div>this is son</div>;
 }
 
-function App () {
-  // 通过条件渲染模拟组件卸载
-  const [show, setShow] = useState(true)
-  return (
-    <div>
-      {show && <Son />}
-      <button onClick={() => setShow(false)}>卸载Son组件</button>
-    </div>
-  )
+function App() {
+    // 通过条件渲染模拟组件卸载
+    const [show, setShow] = useState(true);
+    return (
+        <div>
+            {show && <Son />}
+            <button onClick={() => setShow(false)}>卸载Son组件</button>
+        </div>
+    );
 }
 
-export default App
+export default App;
 ```
 
 ## 自定义Hook实现
@@ -612,19 +588,19 @@ export default App
 
 // 解决思路: 自定义hook
 
-import { useState } from "react"
+import { useState } from "react";
 
-function useToggle () {
-  // 可复用的逻辑代码
-  const [value, setValue] = useState(true)
+function useToggle() {
+    // 可复用的逻辑代码
+    const [value, setValue] = useState(true);
 
-  const toggle = () => setValue(!value)
+    const toggle = () => setValue(!value);
 
-  // 哪些状态和回调函数需要在其他组件中使用 return
-  return {
-    value,
-    toggle
-  }
+    // 哪些状态和回调函数需要在其他组件中使用 return
+    return {
+        value,
+        toggle,
+    };
 }
 
 // 封装自定义hook通用思路
@@ -634,18 +610,17 @@ function useToggle () {
 // 3. 把组件中用到的状态或者回调return出去（以对象或者数组）
 // 4. 在哪个组件中要用到这个逻辑，就执行这个函数，解构出来状态和回调进行使用
 
-
-function App () {
-  const { value, toggle } = useToggle()
-  return (
-    <div>
-      {value && <div>this is div</div>}
-      <button onClick={toggle}>toggle</button>
-    </div>
-  )
+function App() {
+    const { value, toggle } = useToggle();
+    return (
+        <div>
+            {value && <div>this is div</div>}
+            <button onClick={toggle}>toggle</button>
+        </div>
+    );
 }
 
-export default App
+export default App;
 ```
 
 ## React Hooks使用规则

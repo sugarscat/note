@@ -13,6 +13,6 @@ const iconPython: string = `
     fill="#FFD400" >
   </path>
 </svg>
-`
+`;
 
-export default iconPython
+export default iconPython;

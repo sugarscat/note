@@ -39,5 +39,4 @@
 
 > 推荐课程：[【哔哩哔哩】EnglishTime](https://space.bilibili.com/1823466601/lists/1916066?type=series)
 
-> [【维基百科】元音大推移](https://zh.wikipedia.org/wiki/%E6%AF%8D%E9%9F%B3%E5%A4%A7%E6%8E%A8%E7%A7%BB)、[【维基百科】维尔纳定律](https://zh.wikipedia.org/wiki/%E7%B6%AD%E7%88%BE%E7%B4%8D%E5%AE%9A%E5%BE%8B)、R音位移、萨宾L、[【维基百科】51格林定律](https://zh.wikipedia.org/wiki/%E6%A0%BC%E6%9E%97%E5%AE%9A%E5%BE%8B)
-
+> [【维基百科】元音大推移](https://zh.wikipedia.org/wiki/%E6%AF%8D%E9%9F%B3%E5%A4%A7%E6%8E%A8%E7%A7%BB)、[【维基百科】维尔纳定律](https://zh.wikipedia.org/wiki/%E7%B6%AD%E7%88%BE%E7%B4%8D%E5%AE%9A%E5%BE%8B)、R 音位移、萨宾 L、[【维基百科】51 格林定律](https://zh.wikipedia.org/wiki/%E6%A0%BC%E6%9E%97%E5%AE%9A%E5%BE%8B)
