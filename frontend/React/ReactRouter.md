@@ -95,6 +95,28 @@ ReactDOM.createRoot(document.getElementById("root")).render(<RouterProvider rout
 
 ![image.png](assets/10-1720406867197-51.png)
 
+### 索引路由
+
+实现父路由自动跳转到子路由。
+
+```tsx
+{
+    path: "/console",
+    element: <ConsoleLayout />,
+        children: [
+            // 索引路由（必须放在第一个）
+            {
+                index: true,
+                element: <Navigate to="dashboard" replace />
+            },
+            {
+                path: "dashboard",
+                element: <Dashboard />,
+            }
+        ]
+}
+```
+
 ### 404路由配置
 
 场景：当浏览器输入 `url` 的路径在整个路由配置中都找不到对应的 `path`，为了用户体验，可以使用 `404` 兜底组件进行渲染
