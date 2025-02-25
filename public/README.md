@@ -4,4 +4,4 @@
 
 记录笔记和教程文档。
 
-[sugarscat/note](https://sugarscat.com/note/)
+[noteach.vercel.app](https://noteach.vercel.app/)
