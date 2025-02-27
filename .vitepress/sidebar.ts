@@ -95,6 +95,7 @@ export default [
         collapsed: true,
         items: [
             { text: "语言代码表", link: "/frontend/LanguageCode.md" },
+            { text: "Vite", link: "/frontend/Vite.md" },
             { text: "Vue", link: "/frontend/Vue.md" },
             {
                 text: "React",
