@@ -2,27 +2,25 @@
     "type": "module",
     "devDependencies": {
         "@braintree/sanitize-url": "^7.1.1",
-        "cytoscape": "^3.31.0",
+        "cytoscape": "^3.31.1",
         "cytoscape-cose-bilkent": "^4.1.0",
         "dayjs": "^1.11.13",
         "debug": "^4.4.0",
+        "markdown-it-custom-attrs": "^1.0.2",
         "markdown-it-katex": "^2.0.3",
         "mermaid": "^11.4.1",
-        "prettier": "^3.3.3",
+        "prettier": "^3.5.2",
+        "sass": "^1.85.1",
         "vitepress": "1.4.2",
-        "vitepress-plugin-mermaid": "^2.0.17"
+        "vitepress-plugin-back-to-top": "^1.0.1",
+        "vitepress-plugin-mermaid": "^2.0.17",
+        "vue": "^3.5.13"
     },
     "scripts": {
         "docs:dev": "vitepress dev --port 2233",
         "docs:build": "vitepress build",
         "docs:preview": "vitepress preview",
         "prettier": "prettier --write ."
-    },
-    "dependencies": {
-        "markdown-it-custom-attrs": "^1.0.2",
-        "sass": "^1.85.0",
-        "vitepress-plugin-back-to-top": "^1.0.1",
-        "vue": "^3.5.13"
     },
     "pnpm": {
         "ignoredBuiltDependencies": [
