@@ -5,7 +5,7 @@ import "vitepress-plugin-back-to-top/dist/style.css";
 import vitepressBackToTop from "vitepress-plugin-back-to-top";
 import Layout from "./Layout.vue";
 
-import "./index.scss";
+import "./custom.scss";
 
 export default {
     extends: DefaultTheme,

@@ -108,6 +108,7 @@ export default [
                 ],
             },
             { text: "ArkTS", link: "/frontend/ArkTS.md" },
+            { text: "渐进式 Web 应用（PWA）", link: "/frontend/PWA.md" },
         ],
     },
     {
