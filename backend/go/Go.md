@@ -1,5 +1,7 @@
 # Golang
 
+> - [Go 语言编程](https://golang.org/doc/)
+
 ## 主要特征
 
 1. 自动立即回收。
