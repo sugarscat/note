@@ -1,10 +1,10 @@
 export default [
     {
-        text: "欢迎",
+        text: "🏡 欢迎",
         link: "/welcome.md",
     },
     {
-        text: "语言",
+        text: "🌏️ 语言",
         collapsible: true,
         collapsed: true,
         items: [
@@ -13,7 +13,7 @@ export default [
         ],
     },
     {
-        text: "编程",
+        text: "💻️ 编程",
         collapsible: true,
         collapsed: true,
         items: [
@@ -50,7 +50,7 @@ export default [
         ],
     },
     {
-        text: "后端",
+        text: "🪐 后端",
         collapsible: true,
         collapsed: true,
         items: [
@@ -58,7 +58,12 @@ export default [
                 text: "Go 语言",
                 collapsible: true,
                 collapsed: true,
-                items: [{ text: "Go 快速入门", link: "/backend/go/Go.md" }],
+                items: [
+                    { text: "Go 快速入门", link: "/backend/go/Go.md" },
+                    { text: "Gin 框架", link: "/backend/go/Gin.md" },
+                    { text: "Kratos 微服务", link: "/backend/go/Kratos.md" },
+                    { text: "Go Micro", link: "/backend/go/GoMicro.md" },
+                ],
             },
             {
                 text: "Java",
@@ -90,7 +95,7 @@ export default [
         ],
     },
     {
-        text: "前端",
+        text: "📱 前端",
         collapsible: true,
         collapsed: true,
         items: [
@@ -112,7 +117,7 @@ export default [
         ],
     },
     {
-        text: "部署",
+        text: "🫧 部署",
         collapsible: true,
         collapsed: true,
         items: [
@@ -123,19 +128,19 @@ export default [
         ],
     },
     {
-        text: "数据库",
+        text: "💾 数据库",
         collapsible: true,
         collapsed: true,
         items: [{ text: "MySQL", link: "/sql/MySQL.md" }],
     },
     {
-        text: "版本控制",
+        text: "📦️ 版本控制",
         collapsible: true,
         collapsed: true,
         items: [{ text: "Git", link: "/version_control/Git.md" }],
     },
     {
-        text: "设计",
+        text: "🖌️ 设计",
         collapsible: true,
         collapsed: true,
         items: [
@@ -145,18 +150,18 @@ export default [
         ],
     },
     {
-        text: "工具",
+        text: "🛠️ 工具",
         collapsible: true,
         collapsed: true,
         items: [
             { text: "VS Code 基本使用", link: "/tools/vs-code.md" },
-            { text: "腹灵F12 68键 RGB", link: "/tools/F12.md" },
+            { text: "⌨️ 腹灵F12 68键 RGB", link: "/tools/F12.md" },
             { text: "高漫数位板", link: "/tools/Gaomon.md" },
-            { text: "相机", link: "/tools/camera.md" },
+            { text: "📷️ 相机", link: "/tools/camera.md" },
         ],
     },
     {
-        text: "其他",
+        text: "🧺 其他",
         collapsible: true,
         collapsed: true,
         items: [{ text: "手办拼接", link: "/other/handmade.md" }],

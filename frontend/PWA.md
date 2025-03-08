@@ -76,9 +76,9 @@ self.addEventListener("fetch", (e) => {
 
 ## 三、离线策略矩阵
 
-| 策略类型 | 适用场景 | 实现方式                                                |
+| 策略类型 | 适用场景 | 实现方式                                            |
 | -------- | -------- | --------------------------------------------------- |
-| 缓存优先 | 静态资源 | `cache.addAll()` 预缓存                                |
+| 缓存优先 | 静态资源 | `cache.addAll()` 预缓存                             |
 | 网络优先 | 实时数据 | `fetch().then(networkResponse)`                     |
 | 混合模式 | 动态内容 | `cache.match().then(cached => cached \|\| fetch())` |
 | 失效更新 | 版本控制 | `caches.delete(oldCache)`                           |
