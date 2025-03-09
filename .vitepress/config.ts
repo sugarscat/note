@@ -1,8 +1,8 @@
 import { withMermaid } from "vitepress-plugin-mermaid";
-import mdItCustomAttrs from "markdown-it-custom-attrs";
-import markdownItKatex from "markdown-it-katex";
 import sidebar from "./sidebar";
 import algolia from "./algolia";
+
+const GITURL = "https://github.com/sugarscat/note";
 
 // https://vitepress.dev/zh/reference/site-config
 export default withMermaid({
@@ -10,12 +10,7 @@ export default withMermaid({
     lang: "zh-CN",
     title: "Note",
     description: "心灵记忆过往，镜头捕捉瞬间。",
-    head: [
-        ["link", { rel: "icon", href: "/favicon.ico" }],
-        ["link", { rel: "stylesheet", href: "/assets/libs/fancybox/fancybox.css" }],
-        ["script", { src: "/assets/libs/fancybox/fancybox.umd.js" }],
-        ["link", { rel: "stylesheet", href: "/assets/libs/katex/katex.min.css" }],
-    ],
+    head: [["link", { rel: "icon", href: "/favicon.ico" }]],
 
     vite: {
         // Vite 配置选项
@@ -27,7 +22,22 @@ export default withMermaid({
             },
         },
         build: {
-            chunkSizeWarningLimit: 1000,
+            chunkSizeWarningLimit: 600,
+            rollupOptions: {
+                output: {
+                    manualChunks(id) {
+                        if (id.includes("node_modules")) {
+                            if (id.includes("vue")) {
+                                return "vue"; // react 相关的单独打包
+                            }
+                            if (id.includes("vitepress")) {
+                                return "vitepress";
+                            }
+                            return "vendor"; // 其他第三方库打包到 vendor
+                        }
+                    },
+                },
+            },
         },
     },
 
@@ -36,10 +46,11 @@ export default withMermaid({
     markdown: {
         config: (md) => {
             // use more markdown-it plugins!
-            md.use(mdItCustomAttrs, "image", {
-                "data-fancybox": "gallery",
-            });
-            md.use(markdownItKatex);
+        },
+        math: true,
+        image: {
+            // 默认禁用；设置为 true 可为所有图片启用懒加载。
+            lazyLoading: true,
         },
     },
 
@@ -73,7 +84,12 @@ export default withMermaid({
             options: algolia,
         },
 
-        socialLinks: [{ icon: "github", link: "https://github.com/sugarscat/note" }],
+        socialLinks: [{ icon: "github", link: GITURL }],
+
+        editLink: {
+            pattern: GITURL + "/edit/develop/:path",
+            text: "在 GitHub 上编辑此页面",
+        },
 
         lastUpdated: {
             text: "最后更新于",
