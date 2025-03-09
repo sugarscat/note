@@ -242,12 +242,6 @@ html {
     }
 }
 
-// 公式区
-.katex-display {
-    /* 设置溢出行为为自动添加滚动条 */
-    overflow: auto;
-}
-
 // 正文
 .content {
     h4,
@@ -266,5 +260,30 @@ html {
 .outline-link {
     &.active {
         color: var(--vp-c-brand-1) !important;
+    }
+}
+
+// medium-zoom
+.medium-zoom-overlay {
+    z-index: 30;
+}
+
+.medium-zoom-image {
+    z-index: 9999 !important;
+}
+
+// 进度条
+.nprogress {
+    .bar {
+        background: var(--vp-c-brand-1);
+    }
+    .peg {
+        box-shadow:
+            0 0 10px var(--vp-c-brand-1),
+            0 0 5px var(--vp-c-brand-1);
+    }
+    .spinner-icon {
+        border-top-color: var(--vp-c-brand-1);
+        border-left-color: var(--vp-c-brand-1);
     }
 }
