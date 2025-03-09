@@ -1,8 +1,8 @@
 export default [
-    {
-        text: "🏡 欢迎",
-        link: "/welcome.md",
-    },
+    // {
+    //     text: "🏡 欢迎",
+    //     link: "/welcome.md",
+    // },
     {
         text: "🌏️ 语言",
         collapsible: true,
