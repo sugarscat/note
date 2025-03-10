@@ -28,6 +28,9 @@ jobs:
           # 添加 GitLab 远程仓库
           git remote add gitlab "$GITLAB_REMOTE" || git remote set-url gitlab "$GITLAB_REMOTE"
 
-          git pull gitlab main --rebase
-          # 推送 main 分支到 GitLab
+          # 先拉取 GitLab 最新代码并合并
+          git fetch gitlab main
+          git merge --no-edit gitlab/main || git rebase gitlab/main
+
+          # 推送到 GitLab
           git push gitlab main
