@@ -47,7 +47,7 @@ export default [
                     },
                 ],
             },
-            { text: "爬虫", link: "/program/WebCrawling.md" },
+            { text: "爬虫", link: "/program/WebCrawler.md" },
         ],
     },
     {
