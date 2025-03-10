@@ -32,7 +32,7 @@ jobs:
           git fetch gitlab main
 
           # 解决冲突（始终以 GitHub 代码为准）
-          git reset --hard github/main
+          git reset --hard main
 
           # 推送 GitHub 代码到 GitLab
           git push --force gitlab main
