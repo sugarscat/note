@@ -8,6 +8,7 @@ variables:
   BUILD_DIR: ".vitepress/dist"
 
 before_script:
+  - npm config set registry https://registry.npmmirror.com #  设置淘宝镜像
   - npm install
 
 build:
