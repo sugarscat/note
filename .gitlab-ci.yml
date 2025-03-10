@@ -1,3 +1,5 @@
+image: node:18  # 使用 Node.js 18 版本，可根据需要修改
+
 stages:
   - build
   - deploy
@@ -15,3 +17,5 @@ build:
   artifacts:
     paths:
       - $BUILD_DIR
+  only:
+    - main  # 只在 main 分支执行
