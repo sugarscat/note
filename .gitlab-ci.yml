@@ -1,0 +1,17 @@
+stages:
+  - build
+  - deploy
+
+variables:
+  BUILD_DIR: ".vitepress/dist"
+
+before_script:
+  - npm install
+
+build:
+  stage: build
+  script:
+    - npm run docs:build
+  artifacts:
+    paths:
+      - $BUILD_DIR
