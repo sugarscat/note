@@ -19,7 +19,9 @@ export default [
         items: [
             { text: "正则表达式", link: "/program/RegularExpression.md" },
             { text: "ASCII码对照表", link: "/program/ASCII.md" },
-            { text: "爬虫", link: "/program/WebCrawling.md" },
+            { text: "C 笔记", link: "/program/C.md" },
+            { text: "C++ 笔记", link: "/program/C++.md" },
+            { text: "C# 笔记", link: "/program/CSharp.md" },
             { text: "数据结构", link: "/program/DataStructure.md" },
             { text: "软件设计师", link: "/program/SoftwareDesigner.md" },
             {
@@ -45,8 +47,7 @@ export default [
                     },
                 ],
             },
-            { text: "C#教程", link: "/program/CSharp.md" },
-            { text: "Neo4j教程", link: "/program/Neo4j.md" },
+            { text: "爬虫", link: "/program/WebCrawling.md" },
         ],
     },
     {
@@ -90,7 +91,7 @@ export default [
                 text: "Python",
                 collapsible: true,
                 collapsed: true,
-                items: [{ text: "Flask教程", link: "/backend/python/Flask.md" }],
+                items: [{ text: "Flask笔记", link: "/backend/python/Flask.md" }],
             },
         ],
     },
@@ -131,7 +132,12 @@ export default [
         text: "💾 数据库",
         collapsible: true,
         collapsed: true,
-        items: [{ text: "MySQL", link: "/sql/MySQL.md" }],
+        items: [
+            { text: "MySQL", link: "/sql/MySQL.md" },
+            { text: "Redis", link: "/sql/Redis.md" },
+            { text: "MongoDB", link: "/sql/MongoDB.md" },
+            { text: "Neo4j", link: "/sql/Neo4j.md" },
+        ],
     },
     {
         text: "📦️ 版本控制",
