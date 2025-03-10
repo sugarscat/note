@@ -27,5 +27,5 @@ jobs:
           GITLAB_REMOTE="https://oauth2:${GITLAB_TOKEN}@${GITLAB_URL}/${GITLAB_REPO}"
           git remote add gitlab "$GITLAB_REMOTE" || git remote set-url gitlab "$GITLAB_REMOTE"
           
-          git fetch --unshallow gitlab main  # 补充获取完整历史
-          git push --force gitlab main  # 强制推送
+          git fetch gitlab main
+          git push --mirror gitlab main
