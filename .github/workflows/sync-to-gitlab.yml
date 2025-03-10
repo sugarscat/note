@@ -28,5 +28,5 @@ jobs:
           # 添加 GitLab 远程仓库
           git remote add gitlab "$GITLAB_REMOTE" || git remote set-url gitlab "$GITLAB_REMOTE"
 
-          # 推送所有分支到 GitLab
-          git push --mirror gitlab
+          # 推送 main 分支到 GitLab
+          git push gitlab main
