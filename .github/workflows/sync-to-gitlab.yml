@@ -28,4 +28,4 @@ jobs:
           git remote add gitlab "$GITLAB_REMOTE" || git remote set-url gitlab "$GITLAB_REMOTE"
           
           git fetch gitlab main
-          git push --mirror gitlab main
+          git push --force gitlab main  # 强制推送
