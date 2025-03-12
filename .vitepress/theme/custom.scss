@@ -1,289 +1,288 @@
 :root {
-    --color-blue-soft: #daedfe;
+  --color-blue-soft: #daedfe;
 
-    --color-neutral4: #eceef0;
-    --color-neutral9: #889096;
-    --color-neutral8: #c1c8cd;
+  --color-neutral4: #eceef0;
+  --color-neutral9: #889096;
+  --color-neutral8: #c1c8cd;
 
-    --vp-c-brand-1: #ce6e6e;
-    --vp-c-brand-2: #ce7e7e;
-    --vp-c-brand-3: #ce8e8e;
-    --vp-c-brand-transparent: #ce6e6e20;
+  --vp-c-brand-1: #ce6e6e;
+  --vp-c-brand-2: #ce7e7e;
+  --vp-c-brand-3: #ce8e8e;
+  --vp-c-brand-transparent: #ce6e6e20;
 
-    --vp-sidebar-width: 320px !important;
-    --vp-sidebar-width-collapse: 300px !important;
+  --vp-sidebar-width: 320px !important;
+  --vp-sidebar-width-collapse: 300px !important;
 
-    --color-nav-background: rgba(251, 251, 253, 0.6);
-    --color-nav-sidebar-background: rgba(246, 246, 247, 0.6);
+  --color-nav-background: rgba(251, 251, 253, 0.6);
+  --color-nav-sidebar-background: rgba(246, 246, 247, 0.6);
 }
 
 /*front*/
 @font-face {
-    font-family: JetBrainsMono;
-    src: url("./font/JetBrainsMono.woff2") format("woff2");
+  font-family: JetBrainsMono;
+  src: url("./font/JetBrainsMono.woff2") format("woff2");
 }
 
 @font-face {
-    font-family: HarmonyOS_Sans;
-    src:
-        url("./font/HarmonyOS_Sans.woff2") format("woff2"),
-        url("./font/HarmonyOS_Sans.woff") format("woff"),
-        url("./font/HarmonyOS_Sans.ttf") format("truetype");
+  font-family: HarmonyOS_Sans;
+  src:
+    url("./font/HarmonyOS_Sans.woff2") format("woff2"),
+    url("./font/HarmonyOS_Sans.woff") format("woff"),
+    url("./font/HarmonyOS_Sans.ttf") format("truetype");
 }
 
 * {
-    scrollbar-width: thin;
+  scrollbar-width: thin;
 }
 
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 
-    img {
-        border-radius: 5px;
-    }
+  img {
+    border-radius: 5px;
+  }
 
-    code {
-        font-family:
-            "JetBrainsMono", ui-monospace, "Menlo", "Monaco", "Consolas", "Liberation Mono",
-            "Courier New", monospace;
-    }
+  code {
+    font-family:
+      "JetBrainsMono", ui-monospace, "Menlo", "Monaco", "Consolas", "Liberation Mono",
+      "Courier New", monospace;
+  }
 
-    body {
-        font-family:
-            "HarmonyOS_Sans", "HarmonyOS_Sans_SC", Inter, system-ui, Avenir, Helvetica, Arial,
-            sans-serif;
-    }
+  body {
+    font-family:
+      "HarmonyOS_Sans", "HarmonyOS_Sans_SC", Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  }
 }
 
 .dark {
-    --color-neutral4: #26292b;
-    --color-neutral8: #4c5155;
-    --color-neutral9: #697177;
+  --color-neutral4: #26292b;
+  --color-neutral8: #4c5155;
+  --color-neutral9: #697177;
 
-    --vp-c-brand-1: #ce6e6e !important;
-    --vp-c-brand-2: #ce5e5e;
-    --vp-c-brand-3: #ce4e4e;
+  --vp-c-brand-1: #ce6e6e !important;
+  --vp-c-brand-2: #ce5e5e;
+  --vp-c-brand-3: #ce4e4e;
 
-    --color-nav-background: rgba(27, 27, 31, 0.6);
-    --color-nav-sidebar-background: rgba(22, 22, 24, 0.6);
+  --color-nav-background: rgba(27, 27, 31, 0.6);
+  --color-nav-sidebar-background: rgba(22, 22, 24, 0.6);
 }
 
 .VPFooter {
-    z-index: -1 !important;
+  z-index: -1 !important;
 }
 
 .VPLocalNavOutlineDropdown .items {
-    /* display: flex; */
-    background-color: var(--vp-c-bg-soft);
+  /* display: flex; */
+  background-color: var(--vp-c-bg-soft);
 }
 
 .VPNav {
-    .container {
-        background-color: transparent;
-        .content {
-            background-color: transparent;
-            .content-body {
-                background-color: transparent !important;
-            }
-        }
+  .container {
+    background-color: transparent;
+    .content {
+      background-color: transparent;
+      .content-body {
+        background-color: transparent !important;
+      }
     }
+  }
 }
 
 .VPSidebar .curtain,
 .VPNavBar.has-sidebar .wrapper .content .content-body,
 .VPLocalNav {
-    -webkit-backdrop-filter: saturate(180%) blur(20px);
-    backdrop-filter: saturate(180%) blur(20px);
-    background-color: var(--color-nav-background) !important;
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
+  background-color: var(--color-nav-background) !important;
 }
 
 .VPSidebar .curtain {
-    background-color: var(--color-nav-sidebar-background) !important;
+  background-color: var(--color-nav-sidebar-background) !important;
 }
 
 .VPNavBar {
-    .divider .divider-line {
-        height: 0;
-        border-bottom: 1px solid var(--vp-c-divider);
-    }
+  .divider .divider-line {
+    height: 0;
+    border-bottom: 1px solid var(--vp-c-divider);
+  }
 
-    &.home {
-        .divider .divider-line {
-            height: 0;
-            border-bottom: 0 solid var(--vp-c-divider);
-        }
+  &.home {
+    .divider .divider-line {
+      height: 0;
+      border-bottom: 0 solid var(--vp-c-divider);
     }
+  }
 }
 
 .VPNavBar .container .content .curtain::before {
-    display: none;
+  display: none;
 }
 
 .VPPluginSearch-search-item:hover {
-    background-color: var(--vp-custom-block-tip-bg);
-    color: var(--vp-custom-block-details-text);
+  background-color: var(--vp-custom-block-tip-bg);
+  color: var(--vp-custom-block-details-text);
 }
 
 // 侧边目录
 #VPSidebarNav {
-    .group {
-        border-top: none !important;
-        padding: 5px 20px !important;
-        border-radius: 10px;
+  .group {
+    border-top: none !important;
+    padding: 5px 20px !important;
+    border-radius: 10px;
 
-        transition: all 0.2s ease-in-out;
-        margin-top: 5px;
+    transition: all 0.2s ease-in-out;
+    margin-top: 5px;
 
-        &:hover {
-            background-color: var(--color-neutral4);
-        }
-
-        &:has(.is-active) {
-            background-color: var(--color-neutral4);
-        }
+    &:hover {
+      background-color: var(--color-neutral4);
     }
+
+    &:has(.is-active) {
+      background-color: var(--color-neutral4);
+    }
+  }
 }
 
 // 侧边目录 Item
 .VPSidebarItem {
-    --gap: 3px;
+  --gap: 3px;
 
-    h2.text,
-    h3.text,
-    h4.text,
-    h5.text,
-    p.text {
-        display: flex;
-        gap: var(--gap);
-        align-items: center;
-    }
+  h2.text,
+  h3.text,
+  h4.text,
+  h5.text,
+  p.text {
+    display: flex;
+    gap: var(--gap);
+    align-items: center;
+  }
 
-    &.level-0 {
-        padding-bottom: 0 !important;
-    }
+  &.level-0 {
+    padding-bottom: 0 !important;
+  }
 
-    &.level-1 {
-        padding-left: 10px !important;
-    }
+  &.level-1 {
+    padding-left: 10px !important;
+  }
 }
 
 .go-to-top {
-    background-color: var(--color-neutral4) !important;
-    &:hover {
-        background-color: var(--color-neutral8) !important;
-    }
+  background-color: var(--color-neutral4) !important;
+  &:hover {
+    background-color: var(--color-neutral8) !important;
+  }
 }
 
 .name .clip,
 .discoloration {
-    background: -webkit-linear-gradient(
-        315deg,
-        rgb(210, 86, 53) 10%,
-        #647eff 50%,
-        rgb(238, 224, 112) 90%
-    );
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+  background: -webkit-linear-gradient(
+    315deg,
+    rgb(210, 86, 53) 10%,
+    #647eff 50%,
+    rgb(238, 224, 112) 90%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 
-    background-size: 400% 400%;
-    animation: gradient 5s ease infinite;
+  background-size: 400% 400%;
+  animation: gradient 5s ease infinite;
 }
 
 @keyframes gradient {
-    0% {
-        background-position: 0 50%;
-    }
+  0% {
+    background-position: 0 50%;
+  }
 
-    50% {
-        background-position: 100% 50%;
-    }
+  50% {
+    background-position: 100% 50%;
+  }
 
-    100% {
-        background-position: 0 50%;
-    }
+  100% {
+    background-position: 0 50%;
+  }
 }
 
 .DocSearch-Modal {
-    -webkit-animation-name: slideInUp;
-    animation-name: slideInUp;
-    -webkit-animation-duration: 0.25s;
-    animation-duration: 0.25s;
-    -webkit-animation-fill-mode: both;
-    animation-fill-mode: both;
-    -webkit-animation-timing-function: ease-in-out;
-    animation-timing-function: ease-in-out;
+  -webkit-animation-name: slideInUp;
+  animation-name: slideInUp;
+  -webkit-animation-duration: 0.25s;
+  animation-duration: 0.25s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-timing-function: ease-in-out;
+  animation-timing-function: ease-in-out;
 }
 
 @-webkit-keyframes slideInUp {
-    from {
-        -webkit-transform: translateY(50px);
-        transform: translateY(50px);
-        opacity: 0;
-    }
+  from {
+    -webkit-transform: translateY(50px);
+    transform: translateY(50px);
+    opacity: 0;
+  }
 
-    to {
-        -webkit-transform: translateY(0);
-        transform: translateY(0);
-        opacity: 1;
-    }
+  to {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 @keyframes slideInUp {
-    from {
-        -webkit-transform: translateY(50px);
-        transform: translateY(50px);
-        opacity: 0;
-    }
+  from {
+    -webkit-transform: translateY(50px);
+    transform: translateY(50px);
+    opacity: 0;
+  }
 
-    to {
-        -webkit-transform: translateY(0);
-        transform: translateY(0);
-        opacity: 1;
-    }
+  to {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 // 正文
 .content {
-    h4,
-    h5,
-    h6 {
-        margin-top: 10px;
-    }
+  h4,
+  h5,
+  h6 {
+    margin-top: 10px;
+  }
 }
 
 // 浮动导航栏
 .VPLocalNavOutlineDropdown .items {
-    border: none;
+  border: none;
 }
 
 // 导航栏
 .outline-link {
-    &.active {
-        color: var(--vp-c-brand-1) !important;
-    }
+  &.active {
+    color: var(--vp-c-brand-1) !important;
+  }
 }
 
 // medium-zoom
 .medium-zoom-overlay {
-    z-index: 30;
+  z-index: 30;
 }
 
 .medium-zoom-image {
-    z-index: 9999 !important;
+  z-index: 9999 !important;
 }
 
 // 进度条
 .nprogress {
-    .bar {
-        background: var(--vp-c-brand-1);
-    }
-    .peg {
-        box-shadow:
-            0 0 10px var(--vp-c-brand-1),
-            0 0 5px var(--vp-c-brand-1);
-    }
-    .spinner-icon {
-        border-top-color: var(--vp-c-brand-1);
-        border-left-color: var(--vp-c-brand-1);
-    }
+  .bar {
+    background: var(--vp-c-brand-1);
+  }
+  .peg {
+    box-shadow:
+      0 0 10px var(--vp-c-brand-1),
+      0 0 5px var(--vp-c-brand-1);
+  }
+  .spinner-icon {
+    border-top-color: var(--vp-c-brand-1);
+    border-left-color: var(--vp-c-brand-1);
+  }
 }

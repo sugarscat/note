@@ -36,6 +36,22 @@ acme 被 ZeroSSL 收购，其默认的证书方式为 ZeroSSL，但此证书生�
 
 ## 生成证书
 
+### Http 验证方式
+
+只需要指定域名, 并指定域名所在的网站根目录. acme.sh 会全自动的生成验证文件, 并放到网站的根目录, 然后自动完成验证. 最后会聪明的删除验证文件. 整个过程没有任何副作用.
+
+如果你用的 apache服务器, acme.sh 还可以智能的从 apache的配置中自动完成验证, 你不需要指定网站根目录:
+
+```sh
+acme.sh --issue -d 域名 --apache
+```
+
+如果你用的 nginx服务器, 或者反代, acme.sh 还可以智能的从 nginx的配置中自动完成验证, 你不需要指定网站根目录:
+
+```sh
+acme.sh --issue -d 域名 --nginx
+```
+
 ### DNS 验证方式
 
 ```sh
@@ -56,4 +72,24 @@ acme.sh --issue --dns dns_ali -d 域名
 ```txt
 /root/.acme.sh/域名_ecc/域名.cer
 /root/.acme.sh/域名_ecc/域名.key
+```
+
+## 安装证书
+
+### Apache
+
+```shell
+acme.sh --install-cert -d "域名" \
+  --key-file /etc/apache2/ssl/域名.key \
+  --fullchain-file /etc/apache2/ssl/域名.crt \
+  --reloadcmd "systemctl reload apache2"
+```
+
+### Nginx
+
+```shell
+acme.sh --install-cert -d "域名" \
+  --key-file /etc/nginx/ssl/域名.key \
+  --fullchain-file /etc/nginx/ssl/域名.crt \
+  --reloadcmd "systemctl reload nginx"
 ```
