@@ -18,7 +18,11 @@ MongoDB 的数据模型以“文档”为核心。
 
 ```javascript
 // 插入文档，简短有力
-db.users.insertOne({ name: "Alice", age: 28, interests: ["reading", "traveling"] });
+db.users.insertOne({
+    name: "Alice",
+    age: 28,
+    interests: ["reading", "traveling"],
+});
 
 // 插入多个文档，结构各异，变化多端
 db.users.insertMany([
