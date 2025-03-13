@@ -15,7 +15,7 @@
   "tabWidth": 2,
   "overrides": [
     {
-      "files": ["*.html", "*.css", "*.md"],
+      "files": ["*.html", "*.css", "*.scss", "*.md"],
       "options": {
         "tabWidth": 4
       }

@@ -128,9 +128,10 @@ export default [
     collapsible: true,
     collapsed: true,
     items: [
-      { text: "Linux 命令", link: "/server/Linux-command.md" },
-      { text: "Nginx", link: "/server/Nginx.md" },
-      { text: "Docker", link: "/server/Docker.md" },
+      { text: "软件源更换", link: "/server/software-source.md" },
+      { text: "Linux 命令", link: "/server/linux-command.md" },
+      { text: "Nginx", link: "/server/nginx.md" },
+      { text: "Docker", link: "/server/docker.md" },
       { text: "ACME 申请证书", link: "/server/acme.md" },
     ],
   },

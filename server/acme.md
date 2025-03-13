@@ -2,7 +2,7 @@
 
 ## ACME安装
 
-```sh
+```bash
 curl  https://get.acme.sh | sh
 ```
 
@@ -18,13 +18,13 @@ curl  https://get.acme.sh | sh
 
 ## 方便使用
 
-```sh
+```bash
 alias acme.sh=~/.acme.sh/acme.sh
 ```
 
 ## 更改默认证书
 
-```sh
+```bash
 acme.sh --set-default-ca --server letsencrypt
 ```
 
@@ -42,19 +42,19 @@ acme 被 ZeroSSL 收购，其默认的证书方式为 ZeroSSL，但此证书生�
 
 如果你用的 apache服务器, acme.sh 还可以智能的从 apache的配置中自动完成验证, 你不需要指定网站根目录:
 
-```sh
+```bash
 acme.sh --issue -d 域名 --apache
 ```
 
 如果你用的 nginx服务器, 或者反代, acme.sh 还可以智能的从 nginx的配置中自动完成验证, 你不需要指定网站根目录:
 
-```sh
+```bash
 acme.sh --issue -d 域名 --nginx
 ```
 
 ### DNS 验证方式
 
-```sh
+```bash
 export Ali_Key=""
 export Ali_Secret=""
 acme.sh --issue --dns dns_ali -d 域名
@@ -78,7 +78,7 @@ acme.sh --issue --dns dns_ali -d 域名
 
 ### Apache
 
-```shell
+```bash
 acme.sh --install-cert -d "域名" \
   --key-file /etc/apache2/ssl/域名.key \
   --fullchain-file /etc/apache2/ssl/域名.crt \
@@ -87,9 +87,50 @@ acme.sh --install-cert -d "域名" \
 
 ### Nginx
 
-```shell
+```bash
 acme.sh --install-cert -d "域名" \
   --key-file /etc/nginx/ssl/域名.key \
   --fullchain-file /etc/nginx/ssl/域名.crt \
   --reloadcmd "systemctl reload nginx"
+```
+
+## 删除证书
+
+#### **查看现有证书**
+
+```bash
+acme.sh --list
+```
+
+这会列出所有受 `acme.sh` 管理的证书。
+
+#### 删除特定证书
+
+假设你要删除 `example.com` 的证书：
+
+```
+acme.sh --remove -d example.com
+```
+
+#### 移除自动更新任务
+
+`acme.sh` 的自动续期任务通常是通过 `cron` 运行的，可以检查 `/var/spool/cron/crontabs/root` 或 `crontab -l`，找到 `acme.sh` 相关的行并手动删除：
+
+```bash
+crontab -l | grep acme.sh
+crontab -e  # 编辑并删除相关行
+```
+
+## 卸载 Acme.sh
+
+卸载 Acme.sh
+
+```bash
+acme.sh --uninstall
+```
+
+删除文件
+
+```bash
+rm -rf ~/.acme.sh
 ```

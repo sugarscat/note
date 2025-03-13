@@ -86,7 +86,7 @@ Redis 定期将内存中的数据快照写入磁盘，形成一个二进制文�
 
 示例配置（redis.conf）：
 
-```conf
+```txt
 save 900 1    # 900 秒内至少有 1 个 key 发生变化则进行一次快照
 save 300 10
 save 60 10000
@@ -101,7 +101,7 @@ save 60 10000
 
 示例配置（redis.conf）：
 
-```conf
+```txt
 appendonly yes
 appendfsync everysec  # 每秒同步一次
 ```
@@ -116,7 +116,7 @@ Redis 支持主从复制（Replication），可通过配置将数据同步到一
 此外，**Redis Sentinel** 提供监控、通知和自动故障转移机制，确保 Redis 部署的高可用性。  
 示例 Sentinel 配置（sentinel.conf）：
 
-```conf
+```txt
 sentinel monitor mymaster 127.0.0.1 6379 2
 sentinel down-after-milliseconds mymaster 5000
 sentinel failover-timeout mymaster 60000
