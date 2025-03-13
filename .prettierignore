@@ -15,3 +15,5 @@ pnpm-lock.yaml
 yarn.lock
 package-lock.json
 .idea/*
+
+**/RegularExpression.md
