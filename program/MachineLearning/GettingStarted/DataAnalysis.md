@@ -828,7 +828,7 @@ SciPy包含许多专注于科学计算中的常见问题的工具箱。它的子
 
 ### SciPy 安装
 
-```sh
+```shell
 pip install -U scipy
 ```
 
@@ -2489,7 +2489,7 @@ plt.show()
 
 安装 seaborn 库
 
-```sh
+```shell
 pip install seaborn
 pip install --upgrade seaborn
 pip install --upgrade numpy
@@ -3210,7 +3210,7 @@ sns.pairplot(iris, vars=["sepal_length", "petal_length"])
 
 #### 下载 opencv
 
-```sh
+```shell
 pip install opencv-python
 ```
 

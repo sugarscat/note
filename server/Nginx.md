@@ -2,11 +2,47 @@
 
 ## 安装
 
-```sh
-# 切换至root用户
-sudo su root
-apt-get install nginx
+### 更新包列表
+
+首先，确保你的包列表是最新的：
+
+```bash
+sudo apt update
 ```
+
+### 安装 Nginx
+
+运行以下命令来安装 Nginx：
+
+```bash
+sudo apt install -y nginx
+```
+
+### 启动 Nginx 服务
+
+安装完成后，启动 Nginx 服务：
+
+```bash
+sudo systemctl start nginx
+```
+
+### 配置 Nginx 开机自启
+
+设置 Nginx 在系统启动时自动启动：
+
+```bash
+sudo systemctl enable nginx
+```
+
+### 检查 Nginx 状态
+
+可以通过以下命令检查 Nginx 是否正在运行：
+
+```bash
+sudo systemctl status nginx
+```
+
+如果显示 `active (running)`，则表示 Nginx 正在正常运行。
 
 目录结构：
 
@@ -15,18 +51,85 @@ apt-get install nginx
 - `/usr/share/nginx` 或 `/var/www`: 存放静态文件
 - `/var/log/nginx`：存放日志
 
-相关命令：
+### 配置防火墙允许 HTTP 和 HTTPS 流量
 
-```sh
-# systemctl命令
-# 查看状态
-sudo systemctl status nginx
-# 启动
-sudo systemctl start nginx
-# 停止
-sudo systemctl stop nginx
-# 重启
-sudo systemctl restart nginx
+如果你的系统启用了 UFW（Uncomplicated Firewall），你需要允许 HTTP 和 HTTPS 流量。可以使用以下命令：
+
+```bash
+sudo ufw allow 'Nginx Full'
+```
+
+这将允许通过 80（HTTP）和 443（HTTPS）端口的流量。
+
+### 测试 Nginx
+
+安装并启动 Nginx 后，您可以在浏览器中访问服务器的 IP 地址，或者使用 `curl` 进行测试：
+
+```bash
+curl -I http://localhost
+```
+
+如果一切正常，您应该会看到类似以下的响应：
+
+```txt
+HTTP/1.1 200 OK
+Server: nginx/1.18.0 (Ubuntu)
+Date: Sat, 13 Mar 2025 06:40:00 GMT
+Content-Type: text/html; charset=UTF-8
+Content-Length: 612
+Last-Modified: Thu, 13 Mar 2025 06:30:00 GMT
+Connection: keep-alive
+ETag: "6037f4fa-264"
+Accept-Ranges: bytes
+```
+
+### 配置虚拟主机
+
+Nginx 配置文件位于 `/etc/nginx/nginx.conf`，而虚拟主机配置文件位于 `/etc/nginx/sites-available/` 目录下。你可以创建新的虚拟主机配置文件来管理不同的网站。
+
+- 创建新站点的配置文件：
+
+```bash
+sudo nano /etc/nginx/sites-available/example.com
+```
+
+- 在配置文件中添加内容（例如简单的 HTML 页面）：
+
+```nginx
+server {
+    listen 80;
+    server_name example.com;
+
+    location / {
+        root /var/www/example.com;
+        index index.html;
+    }
+}
+```
+
+- 创建站点目录并添加 `index.html` 文件：
+
+```bash
+sudo mkdir -p /var/www/example.com
+echo "<h1>Welcome to Example.com</h1>" | sudo tee /var/www/example.com/index.html
+```
+
+- 启用站点配置：
+
+```bash
+sudo ln -s /etc/nginx/sites-available/example.com /etc/nginx/sites-enabled/
+```
+
+- 测试 Nginx 配置文件是否正确：
+
+```bash
+sudo nginx -t
+```
+
+- 如果测试成功，重新加载 Nginx 使配置生效：
+
+```bash
+sudo systemctl reload nginx
 ```
 
 ## Nginx 配置文件

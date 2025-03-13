@@ -7,7 +7,7 @@
 `create-react-app` 是一个快速创建 `React` 开发环境的工具，底层由 `Webpack` 构件，封装了配置细节，开箱即用
 执行命令：
 
-```sh
+```shell
 npx create-react-app react-basic
 ```
 

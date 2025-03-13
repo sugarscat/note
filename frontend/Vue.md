@@ -696,7 +696,7 @@ const { count, doubleCount } = storeToRefs(counterStore);
 
 1. 安装插件 `pinia-plugin-persistedstate`
 
-    ```sh
+    ```shell
     pnpm add pinia-plugin-persistedstate
     ```
 
