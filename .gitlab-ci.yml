@@ -16,6 +16,6 @@ build:
     - npm run docs:build
   artifacts:
     paths:
-      - "$BUILD_DIR/**"
+      - $BUILD_DIR
   only:
     - main # 只在 main 分支执行
