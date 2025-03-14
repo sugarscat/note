@@ -19,8 +19,8 @@ sync_repo:
     - |
       if [ "$(git rev-parse HEAD)" != "$(git rev-parse mirror/main)" ]; then
         echo "Changes detected, syncing..."
-        - git merge mirror/main
-        - git push
+        git merge mirror/main
+        git push
       else
         echo "No changes detected."
       fi
