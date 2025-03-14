@@ -828,7 +828,7 @@ person:
 
 ## SpringMVC 配置
 
-[SpringMVC](./Spring.md#springmvc-↓↓↓)
+[SpringMVC](./spring#springmvc-↓↓↓)
 
 ## 静态资源访问
 
@@ -1705,4 +1705,4 @@ public class MyRegistConfig {
 
 ## 数据访问 ↓↓↓
 
-[SpringBoot 数据访问](SpringBootDatasource.md)
+[SpringBoot 数据访问](spring-boot-datasource)

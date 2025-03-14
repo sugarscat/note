@@ -8,7 +8,6 @@ variables:
   BUILD_DIR: ".vitepress/dist"
   MIRROR_REPO: "https://gitee.com/Sugarscat/note.git"
 
-
 sync_repo:
   stage: sync
   script:
