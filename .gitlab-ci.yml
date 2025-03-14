@@ -41,3 +41,5 @@ build:
       - $BUILD_DIR
   only:
     - main # 只在 main 分支执行
+  rules:
+    - if: '$CI_PIPELINE_SOURCE != "schedule"'  # 不在 schedule 触发
