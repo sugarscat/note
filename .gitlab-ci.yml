@@ -13,7 +13,6 @@ sync_repo:
   script:
     # 确保远程仓库 mirror 存在，如果已存在则不重复添加
     - git remote | grep -q mirror || git remote add mirror $MIRROR_REPO
-    - git remote -v
     # 获取远程最新的 main 分支
     - git fetch mirror main
     # 判断是否有更新
@@ -21,7 +20,7 @@ sync_repo:
       if [ "$(git rev-parse HEAD)" != "$(git rev-parse mirror/main)" ]; then
         echo "Changes detected, syncing..."
         - git merge mirror/main
-      
+        - git push
       else
         echo "No changes detected."
       fi
