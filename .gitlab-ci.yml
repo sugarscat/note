@@ -12,15 +12,20 @@ variables:
 sync_repo:
   stage: sync
   script:
-    # 添加新的仓库
-    - git remote add mirror $MIRROR_REPO
-    - git fetch mirror
-    # 判断是否存更新
-    - if [ "$(git rev-parse HEAD)" != "$(git rev-parse mirror/main)" ]; then
-        # 拉取远程仓库
-        git pull mirror main
-        # 推送到本仓库
-        git push origin main
+    - git config --global user.name "GitLab CI"
+    - git config --global user.email "ci@sugarscat.com"
+    # 确保远程仓库 mirror 存在，如果已存在则不重复添加
+    - git remote | grep -q mirror || git remote add mirror $MIRROR_REPO
+    # 获取远程最新的 main 分支
+    - git fetch mirror main
+    # 判断是否有更新
+    - |
+      if [ "$(git rev-parse HEAD)" != "$(git rev-parse mirror/main)" ]; then
+        echo "Changes detected, syncing..."
+        git reset --hard mirror/main
+        git push --force origin main
+      else
+        echo "No changes detected."
       fi
   only:
     - schedules
