@@ -28,7 +28,7 @@ mirror-sync:
     git fetch mirror
 
     echo "💾 合并镜像仓库代码（强制合并策略）"
-    git checkout $CI_COMMIT_BRANCH
+    git checkout origin/main
     # 合并 mirror 仓库的目标分支（使用 ours 策略忽略冲突），允许不同历史合并
     git merge --allow-unrelated-histories --strategy=ours "mirror/${TARGET_BRANCH}" -m "Force merge mirror branch ${TARGET_BRANCH}"
     
