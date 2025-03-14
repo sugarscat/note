@@ -9,24 +9,21 @@ variables:
 
 mirror-sync:
   stage: mirror-sync
-  image: alpine:latest
+  image: alpine/git:latest
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"  # 通过定时任务触发
-    - if: $CI_MERGE_REQUEST_ID  # 允许手动触发
-      when: manual
-  before_script:
-    - apk add --no-cache git openssh-client
   script: |
     # 配置Git身份
     git config --global user.name "GitLab CI"
     git config --global user.email "ci@sugarscat.com"
     # 添加镜像仓库
-    git remote add mirror $MIRROR_REPO
-    git fetch mirror
+    git remote -v
+    git remote add mirrorrepo $MIRROR_REPO
+    git fetch mirrorrepo
     # 合并镜像仓库代码（强制合并策略）
     git checkout $CI_COMMIT_BRANCH
     # 合并 mirror 仓库的目标分支（使用 ours 策略忽略冲突），允许不同历史合并
-    git merge --allow-unrelated-histories --strategy=ours "mirror/${TARGET_BRANCH}" -m "Force merge mirror branch ${TARGET_BRANCH}"
+    git merge --allow-unrelated-histories --strategy=ours "mirrorrepo/${TARGET_BRANCH}" -m "Force merge mirror repo branch ${TARGET_BRANCH}"
     # 强制推送回源仓库
     git push --force origin $CI_COMMIT_BRANCH
 
