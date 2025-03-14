@@ -27,7 +27,7 @@ mirror-sync:
     git fetch mirror
 
     echo "💾 合并镜像仓库代码（强制合并策略）"
-    # git checkout origin/main
+    git checkout -B main
     # 合并 mirror 仓库的目标分支（使用 ours 策略忽略冲突），允许不同历史合并
     git merge --allow-unrelated-histories --strategy=ours "mirror/${TARGET_BRANCH}" -m "Force merge mirror branch ${TARGET_BRANCH}"
     
@@ -49,4 +49,4 @@ build:
       - $BUILD_DIR
   rules:
     # 当非 定时触发 且位于 main 分支时执行。
-    - if: '$CI_COMMIT_BRANCH == "main" && $CI_PIPELINE_SOURCE != "schedule"'
+    - if: '$CI_COMMIT_BRANCH == "deve" && $CI_PIPELINE_SOURCE != "schedule"'
