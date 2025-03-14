@@ -22,8 +22,8 @@ sync_repo:
     - |
       if [ "$(git rev-parse HEAD)" != "$(git rev-parse mirror/main)" ]; then
         echo "Changes detected, syncing..."
-        git reset --hard mirror/main
-        git push --force origin main
+        git pull mirror main
+        git push origin main
       else
         echo "No changes detected."
       fi
