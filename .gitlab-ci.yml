@@ -9,9 +9,13 @@ variables:
 
 mirror-sync:
   stage: mirror-sync
-  image: alpine/git:latest
+  image: alpine:latest
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"  # 通过定时任务触发
+  before_script:
+    # 使用国内镜像源加速安装
+    - echo "https://mirrors.aliyun.com/alpine/v3.18/main" > /etc/apk/repositories
+    - apk add --no-cache git openssh-client
   script: |
     echo "🛠️ 配置Git身份"
     git config --global user.name "GitLab CI"
@@ -19,13 +23,14 @@ mirror-sync:
 
     echo "📦 添加镜像仓库"
     git remote -v
-    git remote add mirrorrepo $MIRROR_REPO
-    git fetch mirrorrepo
+    git remote remove mirror || true
+    git remote add mirror $MIRROR_REPO
+    git fetch mirror
 
     echo "💾 合并镜像仓库代码（强制合并策略）"
     git checkout $CI_COMMIT_BRANCH
     # 合并 mirror 仓库的目标分支（使用 ours 策略忽略冲突），允许不同历史合并
-    git merge --allow-unrelated-histories --strategy=ours "mirrorrepo/${TARGET_BRANCH}" -m "Force merge mirror repo branch ${TARGET_BRANCH}"
+    git merge --allow-unrelated-histories --strategy=ours "mirror/${TARGET_BRANCH}" -m "Force merge mirror branch ${TARGET_BRANCH}"
     
     echo "🚀 强制推送回源仓库"
     git push --force origin $CI_COMMIT_BRANCH
