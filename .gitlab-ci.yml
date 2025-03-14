@@ -1,18 +1,35 @@
 image: node:18 # 使用 Node.js 18 版本，可根据需要修改
 
 stages:
+  - sync
   - build
 
 variables:
   BUILD_DIR: ".vitepress/dist"
+  MIRROR_REPO: "https://gitee.com/Sugarscat/note.git"
 
-before_script:
-  - npm config set registry https://registry.npmmirror.com # 设置淘宝镜像
-  - npm install
+
+sync_repo:
+  stage: sync
+  script:
+    # 添加新的仓库
+    - git remote add mirror $MIRROR_REPO
+    - git fetch mirror
+    # 判断是否存更新
+    - if [ "$(git rev-parse HEAD)" != "$(git rev-parse mirror/main)" ]; then
+        # 拉取远程仓库
+        git pull mirror main
+        # 推送到本仓库
+        git push origin main
+      fi
+  only:
+    - schedules
 
 build:
   stage: build
   script:
+    - npm config set registry https://registry.npmmirror.com # 设置淘宝镜像
+    - npm install
     - npm run docs:build
   artifacts:
     paths:
