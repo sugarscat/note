@@ -32,8 +32,7 @@ mirror-sync:
     git merge --allow-unrelated-histories --strategy=ours "mirror/${TARGET_BRANCH}" -m "Force merge mirror branch ${TARGET_BRANCH}"
     
     echo "🚀 强制推送回源仓库"
-    git branch
-    # git push --force origin main
+    git push --force origin main
 
 build:
   stage: build
