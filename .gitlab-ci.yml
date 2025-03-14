@@ -1,5 +1,3 @@
-image: node:18 # 使用 Node.js 18 版本，可根据需要修改
-
 stages:
   - sync
   - build
@@ -10,25 +8,24 @@ variables:
 
 sync_repo:
   stage: sync
+  image: alpine:latest # 轻量级Linux镜像
   script:
-    # 确保远程仓库 mirror 存在，如果已存在则不重复添加
+    - git config --global user.email "ci@sugarscat.cn"
+    - git config --global user.name "GitLab CI"
     - git remote | grep -q mirror || git remote add mirror $MIRROR_REPO
-    # 获取远程最新的 main 分支
+    # 强制同步分支
     - git fetch mirror main
-    # 判断是否有更新
-    - |
-      if [ "$(git rev-parse HEAD)" != "$(git rev-parse mirror/main)" ]; then
-        echo "Changes detected, syncing..."
-        git merge mirror/main
-        git push
-      else
-        echo "No changes detected."
-      fi
+    - git checkout -B main --track mirror/main || (git checkout --orphan tmp && git branch -D main && git checkout -B main mirror/main)
+    # 合并并处理可能的冲突（此处选择强制覆盖）
+    - git reset --hard mirror/main
+    # 推送到目标仓库
+    - git push --force origin main:main
   only:
     - schedules
 
 build:
   stage: build
+  image: node:18 # 使用 Node.js 18 版本
   script:
     - npm config set registry https://registry.npmmirror.com # 设置淘宝镜像
     - npm install
