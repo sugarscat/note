@@ -4,11 +4,9 @@
 >
 > 笔记来自 [黑马程序员](https://www.itheima.com/)
 
-:::warning 提示 ⚠️
-
-本教程使用 [Pnpm](https://pnpm.io/zh/) 进行包管理，请提前下载。
-
-:::
+> [!WARNING] 提示
+>
+> 本教程使用 [Pnpm](https://pnpm.io/zh/) 进行包管理，请提前下载。
 
 ## 选项式 vs 组合式
 
@@ -590,7 +588,7 @@ export default defineConfig({
 ### 什么是 Pinia
 
 `Pinia` 是 `Vue` 的专属的最新状态管理库 ，是 `Vuex` 状态管理工具的替代品
-![Pinia_Position](./assets/vue/Pinia/Pinia_position.webp)
+![Pinia_Position](assets/vue/pinia/pinia_position.webp)
 
 ### 添加 Pinia 到 Vue 项目
 
@@ -688,7 +686,7 @@ const { count, doubleCount } = storeToRefs(counterStore);
 ### Pinia的调试
 
 `Vue` 官方的 `dev-tools` 调试工具对 `Pinia` 直接支持，可以直接进行调试
-![Debugging_tools](./assets/vue/Pinia/Debugging_tools.webp)
+![Debugging_tools](assets/vue/pinia/debugging_tools.webp)
 
 ### Pinia持久化插件
 

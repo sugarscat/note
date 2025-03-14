@@ -8,8 +8,8 @@ export default [
     collapsible: true,
     collapsed: true,
     items: [
-      { text: "英语", link: "/language/English.md" },
-      { text: "日语", link: "/language/Japanese.md" },
+      { text: "英语", link: "/language/english.md" },
+      { text: "日语", link: "/language/japanese.md" },
     ],
   },
   {
@@ -17,13 +17,12 @@ export default [
     collapsible: true,
     collapsed: true,
     items: [
-      { text: "正则表达式", link: "/program/RegularExpression.md" },
-      { text: "ASCII码对照表", link: "/program/ASCII.md" },
-      { text: "C 笔记", link: "/program/C.md" },
-      { text: "C++ 笔记", link: "/program/C++.md" },
-      { text: "C# 笔记", link: "/program/CSharp.md" },
-      { text: "数据结构", link: "/program/DataStructure.md" },
-      { text: "软件设计师", link: "/program/SoftwareDesigner.md" },
+      { text: "正则表达式", link: "/program/regular-expression.md" },
+      { text: "ASCII码对照表", link: "/program/ascii.md" },
+      { text: "C 笔记", link: "/program/c.md" },
+      { text: "C++ 笔记", link: "/program/c++.md" },
+      { text: "C# 笔记", link: "/program/csharp.md" },
+      { text: "数据结构", link: "/program/data-structure.md" },
       {
         text: "机器学习",
         collapsible: true,
@@ -31,7 +30,7 @@ export default [
         items: [
           {
             text: "了解一下",
-            link: "/program/MachineLearning/Introduction.md",
+            link: "/program/machine-learning/introduction.md",
           },
           {
             text: "快速入门",
@@ -40,17 +39,17 @@ export default [
             items: [
               {
                 text: "数据分析与可视化工具",
-                link: "/program/MachineLearning/GettingStarted/DataAnalysis.md",
+                link: "/program/machine-learning/getting-started/data-analysis.md",
               },
               {
                 text: "深度学习",
-                link: "/program/MachineLearning/GettingStarted/DeepLearning.md",
+                link: "/program/machine-learning/getting-started/deep-learning.md",
               },
             ],
           },
         ],
       },
-      { text: "爬虫", link: "/program/WebCrawler.md" },
+      { text: "爬虫", link: "/program/web-crawler.md" },
     ],
   },
   {
@@ -63,10 +62,10 @@ export default [
         collapsible: true,
         collapsed: true,
         items: [
-          { text: "Go 快速入门", link: "/backend/go/Go.md" },
-          { text: "Gin 框架", link: "/backend/go/Gin.md" },
-          { text: "Kratos 微服务", link: "/backend/go/Kratos.md" },
-          { text: "Go Micro", link: "/backend/go/GoMicro.md" },
+          { text: "Go 快速入门", link: "/backend/go/go.md" },
+          { text: "Gin 框架", link: "/backend/go/gin.md" },
+          { text: "Kratos 微服务", link: "/backend/go/kratos.md" },
+          { text: "Go Micro", link: "/backend/go/go-micro.md" },
         ],
       },
       {
@@ -79,16 +78,15 @@ export default [
             collapsible: true,
             collapsed: true,
             items: [
-              { text: "Spring", link: "/backend/java/spring/Spring.md" },
+              { text: "Spring", link: "/backend/java/spring/spring.md" },
               {
                 text: "SpringBoot",
-                link: "/backend/java/spring/SpringBoot.md",
+                link: "/backend/java/spring/spring-boot.md",
               },
               {
                 text: "SpringBoot 数据访问",
-                link: "/backend/java/spring/SpringBootDatasource.md",
+                link: "/backend/java/spring/spring-boot-datasource.md",
               },
-              { text: "微服务", link: "/backend/java/spring/Microservices.md" },
             ],
           },
         ],
@@ -97,7 +95,7 @@ export default [
         text: "Python",
         collapsible: true,
         collapsed: true,
-        items: [{ text: "Flask笔记", link: "/backend/python/Flask.md" }],
+        items: [{ text: "Flask笔记", link: "/backend/python/flask.md" }],
       },
     ],
   },
@@ -106,21 +104,21 @@ export default [
     collapsible: true,
     collapsed: true,
     items: [
-      { text: "语言代码表", link: "/frontend/LanguageCode.md" },
-      { text: "Vite", link: "/frontend/Vite.md" },
-      { text: "Vue", link: "/frontend/Vue.md" },
+      { text: "语言代码表", link: "/frontend/language-code.md" },
+      { text: "Vite", link: "/frontend/vite.md" },
+      { text: "Vue", link: "/frontend/vue.md" },
       {
-        text: "React",
+        text: "react",
         collapsible: true,
         collapsed: true,
         items: [
-          { text: "基础入门", link: "/frontend/React/React.md" },
-          { text: "React 路由", link: "/frontend/React/ReactRouter.md" },
-          { text: "Redux 状态管理", link: "/frontend/React/Redux.md" },
+          { text: "基础入门", link: "/frontend/react/react.md" },
+          { text: "react 路由", link: "/frontend/react/react-router.md" },
+          { text: "Redux 状态管理", link: "/frontend/react/Redux.md" },
         ],
       },
-      { text: "ArkTS", link: "/frontend/ArkTS.md" },
-      { text: "渐进式 Web 应用（PWA）", link: "/frontend/PWA.md" },
+      { text: "ArkTS", link: "/frontend/arkts.md" },
+      { text: "渐进式 Web 应用（PWA）", link: "/frontend/pwa.md" },
     ],
   },
   {
@@ -140,26 +138,26 @@ export default [
     collapsible: true,
     collapsed: true,
     items: [
-      { text: "MySQL", link: "/sql/MySQL.md" },
-      { text: "Redis", link: "/sql/Redis.md" },
-      { text: "MongoDB", link: "/sql/MongoDB.md" },
-      { text: "Neo4j", link: "/sql/Neo4j.md" },
+      { text: "MySQL", link: "/sql/mysql.md" },
+      { text: "Redis", link: "/sql/redis.md" },
+      { text: "MongoDB", link: "/sql/mongodb.md" },
+      { text: "Neo4j", link: "/sql/neo4j.md" },
     ],
   },
   {
     text: "📦️ 版本控制",
     collapsible: true,
     collapsed: true,
-    items: [{ text: "Git", link: "/version_control/Git.md" }],
+    items: [{ text: "Git", link: "/version_control/git.md" }],
   },
   {
     text: "🖌️ 设计",
     collapsible: true,
     collapsed: true,
     items: [
-      { text: "Blender 建模", link: "/design/Blender.md" },
-      { text: "绘画", link: "/design/Painting.md" },
-      { text: "Adobe Illustrator", link: "/design/AdobeIllustrator.md" },
+      { text: "Blender 建模", link: "/design/blender.md" },
+      { text: "绘画", link: "/design/painting.md" },
+      { text: "Adobe Illustrator", link: "/design/adobe-illustrator.md" },
     ],
   },
   {
@@ -168,8 +166,8 @@ export default [
     collapsed: true,
     items: [
       { text: "VS Code 基本使用", link: "/tools/vs-code.md" },
-      { text: "⌨️ 腹灵F12 68键 RGB", link: "/tools/F12.md" },
-      { text: "高漫数位板", link: "/tools/Gaomon.md" },
+      { text: "⌨️ 腹灵F12 68键 RGB", link: "/tools/fuling-f12.md" },
+      { text: "高漫数位板", link: "/tools/gaomon.md" },
       { text: "📷️ 相机", link: "/tools/camera.md" },
     ],
   },

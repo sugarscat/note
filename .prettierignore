@@ -16,4 +16,4 @@ yarn.lock
 package-lock.json
 .idea/*
 
-**/RegularExpression.md
+program/regular-expression.md
