@@ -22,7 +22,7 @@ mirror-sync:
     git config --global user.email "ci@sugarscat.com"
 
     echo "📦 添加镜像仓库"
-    git remote -v
+    git pull origin main
     git remote remove mirror || true
     git remote add mirror $MIRROR_REPO
     git fetch mirror
@@ -33,7 +33,7 @@ mirror-sync:
     git merge --allow-unrelated-histories --strategy=ours "mirror/${TARGET_BRANCH}" -m "Force merge mirror branch ${TARGET_BRANCH}"
     
     echo "🚀 强制推送回源仓库"
-    git push --force origin $CI_COMMIT_BRANCH
+    git push --force origin main
 
 build:
   stage: build
