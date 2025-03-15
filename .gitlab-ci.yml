@@ -20,10 +20,14 @@ mirror-sync:
     echo "🛠️ 配置Git身份"
     git config --global user.name "GitLab CI"
     git config --global user.email "ci@sugarscat.com"
-
+    
+    echo "🔑 配置Git认证"
+    git remote remove origin || true
+    git remote add origin "https://oauth2:${REPO_TOKEN}@${THE_REPO}"
+    
     echo "📦 添加镜像仓库"
     git remote remove mirror || true
-    git remote add mirror $MIRROR_REPO
+    git remote add mirror 
     git fetch mirror
 
     echo "💾 合并镜像仓库代码（强制合并策略）"
