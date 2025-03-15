@@ -108,13 +108,13 @@ export default [
       { text: "Vite", link: "/frontend/vite.md" },
       { text: "Vue", link: "/frontend/vue.md" },
       {
-        text: "react",
+        text: "React",
         collapsible: true,
         collapsed: true,
         items: [
           { text: "基础入门", link: "/frontend/react/react.md" },
           { text: "react 路由", link: "/frontend/react/react-router.md" },
-          { text: "Redux 状态管理", link: "/frontend/react/Redux.md" },
+          { text: "Redux 状态管理", link: "/frontend/react/redux.md" },
         ],
       },
       { text: "ArkTS", link: "/frontend/arkts.md" },
