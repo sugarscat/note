@@ -54,4 +54,4 @@ build:
       - $BUILD_DIR
   rules:
     # 当非 定时触发 且位于 main 分支时执行。
-    - if: '$CI_COMMIT_BRANCH == "deve" && $CI_PIPELINE_SOURCE != "schedule"'
+    - if: '$CI_COMMIT_BRANCH == "main" && $CI_PIPELINE_SOURCE != "schedule"'
