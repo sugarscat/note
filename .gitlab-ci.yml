@@ -19,7 +19,7 @@ mirror-sync:
     - apk add --no-cache git openssh-client
   script: |
     echo "🛠️ 配置Git身份"
-    git config --global user.name "GitLab CI"
+    git config --global user.name "CI/CD"
     git config --global user.email "ci@sugarscat.com"
     
     echo "🔑 配置Git认证"
@@ -34,8 +34,7 @@ mirror-sync:
 
     echo "💾 合并镜像仓库代码（强制合并策略）"
     git checkout -B main
-    # 合并 mirror 仓库的目标分支（使用 ours 策略忽略冲突），允许不同历史合并
-    git merge --allow-unrelated-histories --strategy=ours "mirror/${TARGET_BRANCH}" -m "Force merge mirror branch ${TARGET_BRANCH}"
+    git merge -Xours mirror/$TARGET_BRANCH
     
     echo "🚀 强制推送回源仓库"
     git push --force origin main
