@@ -4,8 +4,6 @@ stages:
 
 variables:
   BUILD_DIR: ".vitepress/dist"
-  THE_REPO: "git.sugarscat.cn/me/note.git"
-  MIRROR_REPO: "https://gitee.com/Sugarscat/note.git"
   TARGET_BRANCH: "main" # 需要同步的目标分支
 
 mirror-sync:
