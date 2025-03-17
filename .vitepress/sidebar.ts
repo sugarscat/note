@@ -113,7 +113,7 @@ export default [
         collapsed: true,
         items: [
           { text: "基础入门", link: "/frontend/react/react.md" },
-          { text: "react 路由", link: "/frontend/react/react-router.md" },
+          { text: "React 路由", link: "/frontend/react/react-router.md" },
           { text: "Redux 状态管理", link: "/frontend/react/redux.md" },
         ],
       },
