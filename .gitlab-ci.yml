@@ -39,7 +39,7 @@ mirror-sync:
 
 build:
   stage: build
-  image: node:18 # 使用 Node.js 18 版本
+  image: node:22.14.0
   before_script:
     - npm config set registry https://registry.npmmirror.com # 设置淘宝镜像
   script:
