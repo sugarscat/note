@@ -5,7 +5,6 @@
 > 笔记来自 [黑马程序员](https://www.itheima.com/)
 
 > [!WARNING] 提示
->
 > 本教程使用 [Pnpm](https://pnpm.io/zh/) 进行包管理，请提前下载。
 
 ## 选项式 vs 组合式
