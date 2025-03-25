@@ -18,7 +18,7 @@ export default [
     collapsed: true,
     items: [
       { text: "正则表达式", link: "/program/regular-expression.md" },
-      { text: "ASCII码对照表", link: "/program/ascii.md" },
+      { text: "ASCII 码对照表", link: "/program/ascii.md" },
       { text: "C 笔记", link: "/program/c.md" },
       { text: "C++ 笔记", link: "/program/c++.md" },
       { text: "C# 笔记", link: "/program/csharp.md" },
@@ -50,6 +50,7 @@ export default [
         ],
       },
       { text: "爬虫", link: "/program/web-crawler.md" },
+      { text: "Wireshark 笔记", link: "/program/wireshark.md" },
     ],
   },
   {
@@ -95,7 +96,7 @@ export default [
         text: "Python",
         collapsible: true,
         collapsed: true,
-        items: [{ text: "Flask笔记", link: "/backend/python/flask.md" }],
+        items: [{ text: "Flask 笔记", link: "/backend/python/flask.md" }],
       },
     ],
   },
