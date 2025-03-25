@@ -10,7 +10,7 @@ mirror-sync:
   stage: mirror-sync
   image: alpine:latest
   rules:
-    - if: $CI_PIPELINE_SOURCE == "schedule"  # 通过定时任务触发
+    - if: $CI_PIPELINE_SOURCE == "schedule" # 通过定时任务触发
   before_script:
     # 使用国内镜像源加速安装
     - echo "https://mirrors.aliyun.com/alpine/v3.18/main" > /etc/apk/repositories
@@ -19,12 +19,12 @@ mirror-sync:
     echo "🛠️ 配置Git身份"
     git config --global user.name "CI/CD"
     git config --global user.email "cicd@sugarscat.cn"
-    
+
     echo "🔑 配置Git认证"
     git remote remove origin || true
     git remote add origin "https://oauth2:${REPO_TOKEN}@${THE_REPO}"
     git fetch origin
-    
+
     echo "📦 添加镜像仓库"
     git remote remove mirror || true
     git remote add mirror $MIRROR_REPO
@@ -33,7 +33,7 @@ mirror-sync:
     echo "💾 合并镜像仓库代码（强制合并策略）"
     git checkout -B main
     git merge -Xours mirror/$TARGET_BRANCH
-    
+
     echo "🚀 强制推送回源仓库"
     git push --force origin main
 
