@@ -19,6 +19,7 @@ export default [
     items: [
       { text: "正则表达式", link: "/program/regular-expression.md" },
       { text: "ASCII 码对照表", link: "/program/ascii.md" },
+      { text: "十大经典排序算法笔记", link: "/program/sorting-algorithms.md" },
       { text: "C 笔记", link: "/program/c.md" },
       { text: "C++ 笔记", link: "/program/c++.md" },
       { text: "C# 笔记", link: "/program/csharp.md" },
