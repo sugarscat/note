@@ -11,10 +11,12 @@
             "id": "c115296e5e233b14",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
-              "icon": "lucide-file",
-              "title": "新标签页"
+              "type": "image",
+              "state": {
+                "file": "program/assets/image-20250331220815628.png"
+              },
+              "icon": "lucide-image",
+              "title": "image-20250331220815628"
             }
           }
         ]
@@ -90,6 +92,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "program/assets/image-20250331220815628.png",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -99,7 +102,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "反向链接"
+              "title": "image-20250331220815628 的反向链接列表"
             }
           },
           {
@@ -108,11 +111,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "program/assets/image-20250331220815628.png",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "出链"
+              "title": "image-20250331220815628 的出链列表"
             }
           },
           {
@@ -136,12 +140,13 @@
             "state": {
               "type": "outline",
               "state": {
+                "file": "program/assets/image-20250331220815628.png",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "大纲"
+              "title": "image-20250331220815628 的大纲"
             }
           },
           {
