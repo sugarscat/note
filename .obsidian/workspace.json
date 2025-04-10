@@ -4,19 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "db78fdf8376acbc9",
+        "id": "5ffac8f93fb6788a",
         "type": "tabs",
         "children": [
           {
-            "id": "c115296e5e233b14",
+            "id": "ddf5a9e039766020",
             "type": "leaf",
             "state": {
-              "type": "image",
-              "state": {
-                "file": "program/assets/image-20250331220815628.png"
-              },
-              "icon": "lucide-image",
-              "title": "image-20250331220815628"
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "新标签页"
             }
           }
         ]
@@ -177,7 +175,7 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "c115296e5e233b14",
+  "active": "0433dddf70c65039",
   "lastOpenFiles": [
     "未命名.canvas",
     "program/c.md",
