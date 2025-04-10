@@ -4,17 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "5ffac8f93fb6788a",
+        "id": "dfea9672186b3622",
         "type": "tabs",
         "children": [
           {
-            "id": "ddf5a9e039766020",
+            "id": "6a2966101ba41933",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "backend/go/kratos.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "新标签页"
+              "title": "kratos"
             }
           }
         ]
@@ -109,12 +113,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "program/assets/image-20250331220815628.png",
+                "file": "backend/go/kratos.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "image-20250331220815628 的出链列表"
+              "title": "kratos 的出链列表"
             }
           },
           {
@@ -138,13 +142,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "program/assets/image-20250331220815628.png",
+                "file": "backend/go/kratos.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "image-20250331220815628 的大纲"
+              "title": "kratos 的大纲"
             }
           },
           {
@@ -158,25 +162,30 @@
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
       "switcher:打开快速切换": false,
-      "graph:查看关系图谱": false,
-      "canvas:新建白板": false,
-      "daily-notes:打开/创建今天的日记": false,
-      "templates:插入模板": false,
       "command-palette:打开命令面板": false,
-      "obsidian-git:Open Git source control": false
+      "obsidian-git:Open Git source control": false,
+      "file-tree-alternative:File Tree Alternative Plugin": false
     }
   },
-  "active": "0433dddf70c65039",
+  "active": "6a2966101ba41933",
   "lastOpenFiles": [
+    "backend/go/go-micro.md",
+    "backend/go/go.md",
+    "backend/java/spring/assets/SpringBoot/MatrixVariable2.png",
+    "backend/java/spring/assets/SpringBoot/MatrixVariable1.png",
+    "language/english.md",
+    "language/japanese.md",
+    "backend/go/gin.md",
     "program/c.md",
     "design/adobe-illustrator.md",
     "math",
@@ -185,8 +194,6 @@
     "frontend/vue.md",
     "frontend/language-code.md",
     "frontend/arkts.md",
-    "language/japanese.md",
-    "language/english.md",
     "other/handmade.md",
     "other/assets/RECTIFY_IMG_20241201_125756.jpg",
     "other/assets/640be8198a3a7e0542a6677ae70e5645.jpg",
