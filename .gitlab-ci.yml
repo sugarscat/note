@@ -18,7 +18,7 @@ mirror-sync:
   script: |
     echo "🛠️ 配置Git身份"
     git config --global user.name "CI/CD"
-    git config --global user.email "cicd@sugarscat.cn"
+    git config --global user.email $CI_EMAIL
 
     echo "🔑 配置Git认证"
     git remote remove origin || true
