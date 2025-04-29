@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "backend/go/kratos.md",
+                "file": "backend/python/flask.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "kratos"
+              "title": "flask"
             }
           }
         ]
@@ -173,31 +173,41 @@
     "hiddenItems": {
       "switcher:打开快速切换": false,
       "command-palette:打开命令面板": false,
-      "obsidian-git:Open Git source control": false,
-      "file-tree-alternative:File Tree Alternative Plugin": false
+      "obsidian-git:Open Git source control": false
     }
   },
   "active": "6a2966101ba41933",
   "lastOpenFiles": [
+    "backend/java/spring/spring-boot-datasource.md",
+    "backend/java/spring/spring-boot.md",
+    "backend/java/spring/spring.md",
     "backend/go/go-micro.md",
+    "backend/go/kratos.md",
     "backend/go/go.md",
-    "backend/java/spring/assets/SpringBoot/MatrixVariable2.png",
-    "backend/java/spring/assets/SpringBoot/MatrixVariable1.png",
-    "language/english.md",
-    "language/japanese.md",
     "backend/go/gin.md",
-    "program/c.md",
     "design/adobe-illustrator.md",
-    "math",
+    "design/blender.md",
+    "design/painting.md",
+    "frontend/arkts.md",
+    "frontend/language-code.md",
     "frontend/pwa.md",
     "frontend/vite.md",
     "frontend/vue.md",
-    "frontend/language-code.md",
-    "frontend/arkts.md",
-    "other/handmade.md",
+    "program/machine-learning/introduction.md",
+    "program/c++.md",
+    "program/csharp.md",
+    "program/data-structure.md",
+    "program/embedded.md",
+    "program/open.md",
+    "program/regular-expression.md",
+    "program/sorting-algorithms.md",
+    "program/web-crawler.md",
+    "program/wireshark.md",
+    "sql/redis.md",
+    "backend/java/spring/assets/SpringBoot/MatrixVariable2.png",
+    "backend/java/spring/assets/SpringBoot/MatrixVariable1.png",
+    "math",
     "other/assets/RECTIFY_IMG_20241201_125756.jpg",
-    "other/assets/640be8198a3a7e0542a6677ae70e5645.jpg",
-    "tools/camera.md",
-    "version_control/git.md"
+    "other/assets/640be8198a3a7e0542a6677ae70e5645.jpg"
   ]
 }

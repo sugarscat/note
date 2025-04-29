@@ -475,12 +475,9 @@ provide('key'，顶层组件中的数据)
 const message = inject("key");
 ```
 
-:::tip 提示
-
-`key` 需要相同。
-
-:::
-
+> [!TIP] 提示
+>
+> `key` 需要相同。
 ### 跨层传递响应式数据
 
 顶层组件
