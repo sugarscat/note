@@ -478,6 +478,7 @@ const message = inject("key");
 > [!TIP] 提示
 >
 > `key` 需要相同。
+
 ### 跨层传递响应式数据
 
 顶层组件
