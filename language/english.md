@@ -40,3 +40,58 @@
 > 推荐课程：[【哔哩哔哩】EnglishTime](https://space.bilibili.com/1823466601/lists/1916066?type=series)
 
 > [【维基百科】元音大推移](https://zh.wikipedia.org/wiki/%E6%AF%8D%E9%9F%B3%E5%A4%A7%E6%8E%A8%E7%A7%BB)、[【维基百科】维尔纳定律](https://zh.wikipedia.org/wiki/%E7%B6%AD%E7%88%BE%E7%B4%8D%E5%AE%9A%E5%BE%8B)、R 音位移、萨宾 L、[【维基百科】51 格林定律](https://zh.wikipedia.org/wiki/%E6%A0%BC%E6%9E%97%E5%AE%9A%E5%BE%8B)
+
+### 英语单词后缀
+
+#### 名词后缀
+
+| 后缀            | 含义/功能        | 例词                     |
+| ------------- | ------------ | ---------------------- |
+| -er / -or     | 表“人”或“物”     | teacher, actor         |
+| -ist          | 表职业或信仰       | artist, scientist      |
+| -ness         | 抽象名词，表示状态    | happiness, darkness    |
+| -ment         | 行为或过程        | development, movement  |
+| -tion / -sion | 动作或状态        | action, decision       |
+| -ity / -ty    | 抽象名词，性质      | reality, ability       |
+| -ance / -ence | 状态、质量        | importance, existence  |
+| -ship         | 身份、关系        | friendship, leadership |
+| -al           | 行为、过程（有时形容词） | refusal, arrival       |
+
+#### 形容词后缀
+
+|后缀|含义/功能|例词|
+|---|---|---|
+|-ful|充满的，有……性质的|beautiful, helpful|
+|-less|缺乏的|hopeless, careless|
+|-ous / -ious|有……的性质|dangerous, curious|
+|-al|属于……的|natural, cultural|
+|-ic|……的，具有……的|poetic, economic|
+|-able / -ible|可……的|readable, possible|
+|-ive|有……倾向的|active, creative|
+|-y|多……的，像……的|sunny, sleepy|
+
+#### 动词后缀
+
+|后缀|含义/功能|例词|
+|---|---|---|
+|-ize / -ise|使成为|realize, organize|
+|-en|使变得……|strengthen, darken|
+|-ify / -fy|使变成……|simplify, beautify|
+
+#### 副词后缀
+
+|后缀|含义/功能|例词|
+|---|---|---|
+|-ly|……地（由形容词变为副词）|quickly, happily|
+|-ward / -wards|向……方向|forward, backwards|
+|-wise|以……方式，关于……|clockwise, otherwise|
+
+### 单词速记
+
+| 元音                      | 互换  |
+| ----------------------- | --- |
+| `g`, `k`, `h`           | 互换  |
+| `d`, `t`, `s`           | 互换  |
+| `u`, `v`, `w`           | 互换  |
+| `m`, `n`, `l`, `r`      | 互换  |
+| `b`, `p`, `m`, `f`, `v` | 互换  |

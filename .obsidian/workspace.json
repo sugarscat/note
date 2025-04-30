@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "backend/python/flask.md",
+                "file": "language/english.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "flask"
+              "title": "english"
             }
           }
         ]
@@ -113,12 +113,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "backend/go/kratos.md",
+                "file": "language/english.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "kratos 的出链列表"
+              "title": "english 的出链列表"
             }
           },
           {
@@ -150,16 +150,6 @@
               "icon": "lucide-list",
               "title": "kratos 的大纲"
             }
-          },
-          {
-            "id": "0433dddf70c65039",
-            "type": "leaf",
-            "state": {
-              "type": "git-view",
-              "state": {},
-              "icon": "git-pull-request",
-              "title": "Source Control"
-            }
           }
         ],
         "currentTab": 1
@@ -172,12 +162,13 @@
   "left-ribbon": {
     "hiddenItems": {
       "switcher:打开快速切换": false,
-      "command-palette:打开命令面板": false,
-      "obsidian-git:Open Git source control": false
+      "command-palette:打开命令面板": false
     }
   },
   "active": "6a2966101ba41933",
   "lastOpenFiles": [
+    "language/japanese.md",
+    "backend/python/flask.md",
     "backend/java/spring/spring-boot-datasource.md",
     "backend/java/spring/spring-boot.md",
     "backend/java/spring/spring.md",
@@ -202,8 +193,6 @@
     "program/regular-expression.md",
     "program/sorting-algorithms.md",
     "program/web-crawler.md",
-    "program/wireshark.md",
-    "sql/redis.md",
     "backend/java/spring/assets/SpringBoot/MatrixVariable2.png",
     "backend/java/spring/assets/SpringBoot/MatrixVariable1.png",
     "math",
