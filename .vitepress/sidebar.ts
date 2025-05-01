@@ -16,7 +16,7 @@ export default [
     text: "💻️ 计算机基础",
     collapsible: true,
     collapsed: true,
-    items: [{ text: "数据结构", link: "/program/408/data-structure.md" },]
+    items: [{ text: "数据结构", link: "/program/408/data-structure.md" }],
   },
   {
     text: "⌨️ 编程",
@@ -83,7 +83,7 @@ export default [
           },
         ],
       },
-      { text: "Flask 笔记", link: "/backend/python/flask.md" }
+      { text: "Flask 笔记", link: "/backend/python/flask.md" },
     ],
   },
   {
@@ -152,11 +152,11 @@ export default [
     collapsible: true,
     collapsed: true,
     items: [
-      { text: "VS Code 基本使用", link: "/tools/vs-code.md" },
-      { text: "Wireshark 笔记", link: "/program/wireshark.md" },
-      { text: "⌨️ 腹灵F12 68键 RGB", link: "/tools/fuling-f12.md" },
-      { text: "高漫数位板", link: "/tools/gaomon.md" },
-      { text: "📷️ 相机", link: "/tools/camera.md" },
+      { text: "VS Code 基本使用", link: "/tool/vs-code.md" },
+      { text: "Wireshark 笔记", link: "/tool/wireshark.md" },
+      { text: "⌨️ 腹灵F12 68键 RGB", link: "/tool/fuling-f12.md" },
+      { text: "高漫数位板", link: "/tool/gaomon.md" },
+      { text: "📷️ 相机", link: "/tool/camera.md" },
     ],
   },
   {
