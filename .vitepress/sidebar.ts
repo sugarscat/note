@@ -13,7 +13,13 @@ export default [
     ],
   },
   {
-    text: "💻️ 编程",
+    text: "💻️ 计算机基础",
+    collapsible: true,
+    collapsed: true,
+    items: [{ text: "数据结构", link: "/program/408/data-structure.md" },]
+  },
+  {
+    text: "⌨️ 编程",
     collapsible: true,
     collapsed: true,
     items: [
@@ -23,7 +29,7 @@ export default [
       { text: "C 笔记", link: "/program/c.md" },
       { text: "C++ 笔记", link: "/program/c++.md" },
       { text: "C# 笔记", link: "/program/csharp.md" },
-      { text: "数据结构", link: "/program/data-structure.md" },
+      { text: "Go 笔记", link: "/program/go.md" },
       {
         text: "机器学习",
         collapsible: true,
@@ -51,7 +57,6 @@ export default [
         ],
       },
       { text: "爬虫", link: "/program/web-crawler.md" },
-      { text: "Wireshark 笔记", link: "/program/wireshark.md" },
     ],
   },
   {
@@ -59,46 +64,26 @@ export default [
     collapsible: true,
     collapsed: true,
     items: [
+      { text: "Gin 框架", link: "/backend/go/gin.md" },
+      { text: "Kratos 微服务", link: "/backend/go/kratos.md" },
+      { text: "Go Micro", link: "/backend/go/go-micro.md" },
       {
-        text: "Go 语言",
+        text: "Spring",
         collapsible: true,
         collapsed: true,
         items: [
-          { text: "Go 快速入门", link: "/backend/go/go.md" },
-          { text: "Gin 框架", link: "/backend/go/gin.md" },
-          { text: "Kratos 微服务", link: "/backend/go/kratos.md" },
-          { text: "Go Micro", link: "/backend/go/go-micro.md" },
-        ],
-      },
-      {
-        text: "Java",
-        collapsible: true,
-        collapsed: true,
-        items: [
+          { text: "Spring", link: "/backend/java/spring/spring.md" },
           {
-            text: "Spring",
-            collapsible: true,
-            collapsed: true,
-            items: [
-              { text: "Spring", link: "/backend/java/spring/spring.md" },
-              {
-                text: "SpringBoot",
-                link: "/backend/java/spring/spring-boot.md",
-              },
-              {
-                text: "SpringBoot 数据访问",
-                link: "/backend/java/spring/spring-boot-datasource.md",
-              },
-            ],
+            text: "SpringBoot",
+            link: "/backend/java/spring/spring-boot.md",
+          },
+          {
+            text: "SpringBoot 数据访问",
+            link: "/backend/java/spring/spring-boot-datasource.md",
           },
         ],
       },
-      {
-        text: "Python",
-        collapsible: true,
-        collapsed: true,
-        items: [{ text: "Flask 笔记", link: "/backend/python/flask.md" }],
-      },
+      { text: "Flask 笔记", link: "/backend/python/flask.md" }
     ],
   },
   {
@@ -168,6 +153,7 @@ export default [
     collapsed: true,
     items: [
       { text: "VS Code 基本使用", link: "/tools/vs-code.md" },
+      { text: "Wireshark 笔记", link: "/program/wireshark.md" },
       { text: "⌨️ 腹灵F12 68键 RGB", link: "/tools/fuling-f12.md" },
       { text: "高漫数位板", link: "/tools/gaomon.md" },
       { text: "📷️ 相机", link: "/tools/camera.md" },

@@ -31,6 +31,11 @@
         url("./font/HarmonyOS_Sans.ttf") format("truetype");
 }
 
+div {
+    -webkit-tap-highlight-color: transparent; /* 针对 WebKit 浏览器 */
+    touch-action: manipulation; /* 防止默认行为 */
+}
+
 .VPSidebar {
     scrollbar-width: thin;
 }
