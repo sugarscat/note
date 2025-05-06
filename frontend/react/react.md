@@ -49,9 +49,9 @@ function App() {
 2. 使用 `JS` 变量
 3. 函数调用和方法调用
 4. 使用 `JavaScript` 对象
-   
-   > [!warning] 警告
-   > 注意：`if` 语句、`switch` 语句、变量声明不属于表达式，不能出现在 `{}` 中
+
+    > [!warning] 警告
+    > 注意：`if` 语句、`switch` 语句、变量声明不属于表达式，不能出现在 `{}` 中
 
 ```jsx
 const message = "this is message";

@@ -806,7 +806,7 @@ public class User {
 ### @Before/@After/@Around/@AfterThrowing/@AfterReturning
 
 > [!tip] 提示
-> 
+>
 > ```java
 > /**
 >  * 第一个 * 表示：任意返回类型
@@ -2012,9 +2012,9 @@ public class UserController {
 根据类型注入 `bean`，假如有多个同类型的 `bean` 对象，再根据名称去匹配 `bean` 对象。
 
 > [!tip] 扩展
-> 
+>
 > `@Qualifier` 注解会改变 `Autowired` 注入策略，去 IOC 容器中获取 `bean` 对象，使用它的配置名称时，必须在 IOC 容器中有所配置。
-> 
+>
 > ```java
 > @Qualifier("serviceHello")
 > // 同时在 service 上必须配置

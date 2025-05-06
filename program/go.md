@@ -2118,9 +2118,9 @@ fmt.Printf("p8=%#v\n", p8) //p8=&main.person{name:"pprof.cn", city:"北京", age
 ```
 
 > [!warning] 注意
-> 
+>
 > 使用这种格式初始化时，需要注意：
-> 
+>
 > 1. 必须初始化结构体的所有字段。
 > 2. 初始值的填充顺序必须与字段在结构体中的声明顺序一致。
 > 3. 该方式不能和键值初始化方式混用。
@@ -2924,7 +2924,7 @@ func main() {
 在默认情况下，Go 语言使用的是值传递，即在调用过程中不会影响到实际参数。
 
 > [!warning] 注意
-> 
+>
 > 1. 无论是值传递，还是引用传递，传递给函数的都是变量的副本，不过，值传递是值的拷贝。引用传递是地址的拷贝，一般来说，地址拷贝更为高效。而值拷贝取决于拷贝的对象大小，对象越大，则性能越低。
 > 2. `map`、`slice`、`chan`、指针、`interface` 默认以引用的方式传递。
 
@@ -3686,34 +3686,34 @@ defer: 10 120
 ```
 
 > [!warning] 注意
-> 
+>
 > 滥用 `defer` 可能会导致性能问题，尤其是在一个 "大循环" 里。
-> 
+>
 > ```go
 > package main
-> 
+>
 > import (
 >     "fmt"
 >     "sync"
 >     "time"
 > )
-> 
+>
 > var lock sync.Mutex
-> 
+>
 > func test() {
 >     lock.Lock()
 >     lock.Unlock()
 > }
-> 
+>
 > func testdefer() {
 >     lock.Lock()
 >     defer lock.Unlock()
 > }
-> 
+>
 > func main() {
 >     func() {
 >         t1 := time.Now()
-> 
+>
 >         for i := 0; i < 10000; i++ {
 >             test()
 >         }
@@ -3722,19 +3722,19 @@ defer: 10 120
 >     }()
 >     func() {
 >         t1 := time.Now()
-> 
+>
 >         for i := 0; i < 10000; i++ {
 >             testdefer()
 >         }
 >         elapsed := time.Since(t1)
 >         fmt.Println("testdefer elapsed: ", elapsed)
 >     }()
-> 
+>
 > }
 > ```
-> 
+>
 > 输出结果：
-> 
+>
 > ```
 > test elapsed:  223.162µs
 > testdefer elapsed:  781.304µs
@@ -3931,7 +3931,7 @@ Golang 没有结构化异常，使用 `panic` 抛出错误，`recover` 捕获错
     2. 可以获取通过 `panic` 传递的 `error`
 
 > [!warning] 注意
-> 
+>
 > 1. 利用 `recover` 处理 `panic` 指令，`defer` 必须放在 `panic` 之前定义，另外 > `recover` 只有在 `defer` 调用的函数中才有效。否则当 `panic` 时，`recover` 无法捕获> 到 `panic`，无法防止 `panic` 扩散。
 > 2. `recover` 处理异常后，逻辑并不会恢复到 `panic` 那个点去，函数跑到 `defer` 之后的那> 个点。
 > 3. 多个 `defer` 会形成 `defer` 栈，后定义的 `defer` 语句会被最先调用。

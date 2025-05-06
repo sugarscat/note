@@ -917,11 +917,11 @@ linalg.det(arr)  # 求取行列式的值 det
 ```
 
 > [!warning] 注意
-> 
+>
 > `linalg.det()` 函数只能计算方阵行列式。
-> 
+>
 > 下面这段代码会报错：
-> 
+>
 > ```python
 > linalg.det(np.ones((3, 4)))
 > ```
@@ -2182,25 +2182,25 @@ plt.show()
 ![image-20240506092450110](assets/image-20240506092450110.png)
 
 > [!warning] 中文乱码
-> 
+>
 > Matplotlib 默认情况不支持中文，显示中文时会有乱码问题。
-> 
+>
 > 解决方法：
-> 
+>
 > ```python
 > import numpy as np
 > from matplotlib import pyplot as plt
 > import matplotlib
-> 
+>
 > # fname 为 你下载的字体库路径，
 > # 本次我们使用思源黑体
 > # 注意下载好字体之后， SourceHanSansSC-Bold.otf 字体的路径
 > zhfont= matplotlib.font_manager.FontProperties(fname="SourceHanSansSC-Bold.> otf")
-> 
+>
 > x = np.arange(1,11)
 > y =  2  * x +  5
 > plt.title("这是中文标题", fontproperties=zhfont)
-> 
+>
 > # fontproperties 设置中文显示，fontsize 设置字体大小
 > plt.xlabel("x 轴", fontproperties=zhfont)
 > plt.ylabel("y 轴", fontproperties=zhfont)
@@ -2920,7 +2920,7 @@ plt.show()
    对于标准正态分布的大样本，中位数位于上下四分位数的中央，箱形图的方盒关于中位线对称。中位数越偏离上下四分位数的中心位置，分布偏态性越强。异常值集中在较大值一侧，则分布呈现右偏态；异常值集中在较小值一侧，则分布呈现左偏态。
 
     > tip 提示
-    > 
+    >
     > **偏态**： 与正态分布相对，指的是非对称分布的偏斜状态。 在统计学上，众数和平均数之差可作为分配偏态的指标之一：如平均数大于众数，称为正偏态（或右偏态）；相反，则称为负偏态（或左偏态）。
     >
     > **众数**：众数是样本观测值在频数分布表中频数最多的那一组的组中值，主要应用于大面积普查研究之中。一般来说，一组数据中，出现次数最多的数就叫这组数据的众数。 例如：1，2，3，3，4的众数是3。 例如：1，2，2，3，3，4的众数是2和3。

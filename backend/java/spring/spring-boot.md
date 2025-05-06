@@ -466,7 +466,7 @@ public CharacterEncodingFilter characterEncodingFilter() {}
 
 > [!TIP] 提示
 > 配置文件`application.properties`中加入`debug=true`开启自动配置报告。
-> 
+>
 > - Negative（不生效）
 > - Positive（生效）
 
@@ -880,7 +880,7 @@ spring:
 
 > [!warning] 提示
 > 但是不可以配置静态资源的访问前缀；否则导致 `index.html` 不能被默认访问。
-> 
+>
 > ```yaml
 > spring:
 >     mvc:
@@ -1648,9 +1648,9 @@ public String upload(@RequestParam("email") String email,
 ```
 
 > [!tip] 拓展
-> 
+>
 > `DispatchServlet` 如何注册进来：
-> 
+>
 > - 容器中自动配置了 `DispatcherServlet` 属性绑定到 `WebMvcProperties`；对应的配置文件配置项是 `spring.mvc`。
 > - 通过 `ServletRegistrationBean<DispatcherServlet>` 把 `DispatcherServlet` 配置进来。
 > - 默认映射的是 `/` 路径。

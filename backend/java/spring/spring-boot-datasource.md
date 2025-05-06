@@ -414,8 +414,8 @@ spring:
 
 > [!TIP] 提示
 >
->- `Redis` 默认情况下，`maxIdle` 值为 `8`，`maxTotal` 值为 `8`，`maxWaitMillis` 值为 `-1`。
->- 负值表示没有限制。
+> - `Redis` 默认情况下，`maxIdle` 值为 `8`，`maxTotal` 值为 `8`，`maxWaitMillis` 值为 `-1`。
+> - 负值表示没有限制。
 
 ### RedisTemplate 与 Lettuce
 
