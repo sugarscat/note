@@ -6,15 +6,11 @@
 curl  https://get.acme.sh | sh
 ```
 
-::: tip 安装程序会自动做以下操作
-
-- 自动把 acme.sh 安装到你的 home 的.acme.sh目录下，即~/.acme.sh/
-
-- 自动创建一个 bash 的 alias
-
-- 自动为你创建 cronjob, 每天 0:00 点自动检测所有的证书, 如果快过期了, 需要更新, 则会自动更新证书.
-
-:::
+> [!tip] 安装程序会自动做以下操作
+> 
+> - 自动把 acme.sh 安装到你的 home 的.acme.sh目录下，即~/.acme.sh/
+> - 自动创建一个 bash 的 alias
+> - 自动为你创建 cronjob, 每天 0:00 点自动检测所有的证书, 如果快过期了, 需要更新, 则会自动更新证书.
 
 ## 方便使用
 
@@ -28,11 +24,10 @@ alias acme.sh=~/.acme.sh/acme.sh
 acme.sh --set-default-ca --server letsencrypt
 ```
 
-::: tip 提示
-acme 被 ZeroSSL 收购，其默认的证书方式为 ZeroSSL，但此证书生成时会携带邮箱，因此更换为 letsencrypt。
-
-您可以自定义生成什么证书，修改 "--server" 后的 "letsencrypt" 即可。
-:::
+> [!tip] 提示
+> acme 被 ZeroSSL 收购，其默认的证书方式为 ZeroSSL，但此证书生成时会携带邮箱，因此更换为 letsencrypt。
+>
+> 您可以自定义生成什么证书，修改 "--server" 后的 "letsencrypt" 即可。
 
 ## 生成证书
 
@@ -60,12 +55,11 @@ export Ali_Secret=""
 acme.sh --issue --dns dns_ali -d 域名
 ```
 
-::: tip 提示
-此命令为 阿里云api
-
-更多请查看[文档](https://github.com/acmesh-official/acme.sh/wiki/dnsapi)
-
-:::
+> [!tip] 提示
+> 
+> 此命令为 阿里云api
+>
+> 更多请查看[文档](https://github.com/acmesh-official/acme.sh/wiki/dnsapi)
 
 ## 证书存放位置
 

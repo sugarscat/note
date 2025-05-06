@@ -159,11 +159,9 @@ func main(){
 
 3. 对于不同的 `package`，如果不相互依赖的话，按照 `main` 包中，先 `import` 的后调用"的顺序调用其包中的 `init()`，如果 `package` 存在依赖，则先调用最早被依赖的 `package` 中的 `init()`，最后调用 `main` 函数。
 
-:::warning 注意
-
-如果 `init` 函数中使用了 `println()` 或者 `print()` 你会发现在执行过程中这两个不会按照你想象中的顺序执行。这两个函数官方只推荐在测试环境中使用，对于正式环境不要使用。
-
-:::
+> [!warning] 注意
+>
+> 如果 `init` 函数中使用了 `println()` 或者 `print()` 你会发现在执行过程中这两个不会按照你想象中的顺序执行。这两个函数官方只推荐在测试环境中使用，对于正式环境不要使用。
 
 ## 命令
 
@@ -194,11 +192,9 @@ func main(){
 | `/`    | 相除 |
 | `%`    | 求余 |
 
-:::warning 注意
-
-`++`（自增）和 `--`（自减）在Go语言中是单独的语句，并不是运算符。
-
-:::
+> [!warning] 注意
+>
+> `++`（自增）和 `--`（自减）在Go语言中是单独的语句，并不是运算符。
 
 ### 关系运算符
 
@@ -433,13 +429,11 @@ func main() {
 
 匿名变量不占用命名空间，不会分配内存，所以匿名变量之间不存在重复声明。 (在Lua等编程语言里，匿名变量也被叫做哑元变量。)
 
-:::warning 注意
-
-1. 函数外的每个语句都必须以关键字开始（`var`、`const`、`func` 等）
-2. `:=` 不能使用在函数外。
-3. `_` 多用于占位，表示忽略值。
-
-:::
+> [!warning] 注意
+>
+> 1. 函数外的每个语句都必须以关键字开始（`var`、`const`、`func` 等）
+> 2. `:=` 不能使用在函数外。
+> 3. `_` 多用于占位，表示忽略值。
 
 ## 常量
 
@@ -590,13 +584,11 @@ Go语言支持两种浮点型数：`float32` 和 `float64` 。这两种浮点型
 
 Go语言中以`bool`类型进行声明布尔型数据，布尔型数据只有`true`和`false`两个值。
 
-:::warning 注意
-
-1. 布尔类型变量的默认值为 `false`。
-2. Go 语言中不允许将整型强制转换为布尔型。
-3. 布尔型无法参与数值运算，也无法与其他类型进行转换。
-
-:::
+> [!warning] 注意
+>
+> 1. 布尔类型变量的默认值为 `false`。
+> 2. Go 语言中不允许将整型强制转换为布尔型。
+> 3. 布尔型无法参与数值运算，也无法与其他类型进行转换。
 
 ### 字符串
 
@@ -937,11 +929,9 @@ func main() {
 
 ## 切片
 
-:::warning 注意
-
-需要说明，slice 并不是数组或数组指针。它通过内部指针和相关属性引用数组片段，以实现变长方案。
-
-:::
+> [!warning] 注意
+>
+> 需要说明，slice 并不是数组或数组指针。它通过内部指针和相关属性引用数组片段，以实现变长方案。
 
 1. 切片：切片是数组的一个引用，因此切片是引用类型。但自身是结构体，值拷贝传递。
 2. 切片的长度可以改变，因此，切片是一个可变的数组。
@@ -1497,11 +1487,9 @@ slice c : [3 4 5] , len(c) : 3
 
 ## 指针
 
-:::tip 提示
-
-区别于C/C++中的指针，Go语言中的指针不能进行偏移和运算，是安全指针。
-
-:::
+> [!tip] 提示
+>
+> 区别于C/C++中的指针，Go语言中的指针不能进行偏移和运算，是安全指针。
 
 Go语言中的函数传参都是值拷贝，当我们想要修改某个变量的时候，我们可以创建一个指向该变量地址的指针变量。传递数据使用指针，而无须拷贝数据。类型指针不能进行偏移和运算。Go语言中的指针操作非常简单，只需要记住两个符号：`&`（取地址）和`*`（根据地址取值）。
 
@@ -2129,15 +2117,13 @@ p8 := &person{
 fmt.Printf("p8=%#v\n", p8) //p8=&main.person{name:"pprof.cn", city:"北京", age:18}
 ```
 
-:::warning 注意
-
-使用这种格式初始化时，需要注意：
-
-1. 必须初始化结构体的所有字段。
-2. 初始值的填充顺序必须与字段在结构体中的声明顺序一致。
-3. 该方式不能和键值初始化方式混用。
-
-:::
+> [!warning] 注意
+> 
+> 使用这种格式初始化时，需要注意：
+> 
+> 1. 必须初始化结构体的所有字段。
+> 2. 初始值的填充顺序必须与字段在结构体中的声明顺序一致。
+> 3. 该方式不能和键值初始化方式混用。
 
 ### 结构体内存布局
 
@@ -2796,11 +2782,9 @@ a 1
 b 2
 ```
 
-:::warning 注意
-
-`range` 会复制对象。
-
-:::
+> [!warning] 注意
+>
+> `range` 会复制对象。
 
 ```go
 package main
@@ -2939,12 +2923,10 @@ func main() {
 
 在默认情况下，Go 语言使用的是值传递，即在调用过程中不会影响到实际参数。
 
-:::warning 注意
-
-1. 无论是值传递，还是引用传递，传递给函数的都是变量的副本，不过，值传递是值的拷贝。引用传递是地址的拷贝，一般来说，地址拷贝更为高效。而值拷贝取决于拷贝的对象大小，对象越大，则性能越低。
-2. `map`、`slice`、`chan`、指针、`interface` 默认以引用的方式传递。
-
-:::
+> [!warning] 注意
+> 
+> 1. 无论是值传递，还是引用传递，传递给函数的都是变量的副本，不过，值传递是值的拷贝。引用传递是地址的拷贝，一般来说，地址拷贝更为高效。而值拷贝取决于拷贝的对象大小，对象越大，则性能越低。
+> 2. `map`、`slice`、`chan`、指针、`interface` 默认以引用的方式传递。
 
 不定参数传值 就是函数的参数不是固定的，后面的类型是固定的。（可变参数）
 
@@ -2963,11 +2945,9 @@ func add(a int, b int, args…int) int {    //2个或多个参数
 }
 ```
 
-:::tip 注意
-
-其中 `args` 是一个 `slice`，我们可以通过 `arg[index]` 依次访问所有参数,通过 `len(arg)` 来判断传递参数的个数.
-
-:::
+> [!tip] 注意
+>
+> 其中 `args` 是一个 `slice`，我们可以通过 `arg[index]` 依次访问所有参数,通过 `len(arg)` 来判断传递参数的个数.
 
 任意类型的不定参数： 就是函数的参数和每个参数的类型都不是固定的。
 
@@ -3705,62 +3685,60 @@ x = 20 y = 120
 defer: 10 120
 ```
 
-:::warning 注意
-
-滥用 `defer` 可能会导致性能问题，尤其是在一个 "大循环" 里。
-
-```go
-package main
-
-import (
-    "fmt"
-    "sync"
-    "time"
-)
-
-var lock sync.Mutex
-
-func test() {
-    lock.Lock()
-    lock.Unlock()
-}
-
-func testdefer() {
-    lock.Lock()
-    defer lock.Unlock()
-}
-
-func main() {
-    func() {
-        t1 := time.Now()
-
-        for i := 0; i < 10000; i++ {
-            test()
-        }
-        elapsed := time.Since(t1)
-        fmt.Println("test elapsed: ", elapsed)
-    }()
-    func() {
-        t1 := time.Now()
-
-        for i := 0; i < 10000; i++ {
-            testdefer()
-        }
-        elapsed := time.Since(t1)
-        fmt.Println("testdefer elapsed: ", elapsed)
-    }()
-
-}
-```
-
-输出结果：
-
-```
-test elapsed:  223.162µs
-testdefer elapsed:  781.304µs
-```
-
-:::
+> [!warning] 注意
+> 
+> 滥用 `defer` 可能会导致性能问题，尤其是在一个 "大循环" 里。
+> 
+> ```go
+> package main
+> 
+> import (
+>     "fmt"
+>     "sync"
+>     "time"
+> )
+> 
+> var lock sync.Mutex
+> 
+> func test() {
+>     lock.Lock()
+>     lock.Unlock()
+> }
+> 
+> func testdefer() {
+>     lock.Lock()
+>     defer lock.Unlock()
+> }
+> 
+> func main() {
+>     func() {
+>         t1 := time.Now()
+> 
+>         for i := 0; i < 10000; i++ {
+>             test()
+>         }
+>         elapsed := time.Since(t1)
+>         fmt.Println("test elapsed: ", elapsed)
+>     }()
+>     func() {
+>         t1 := time.Now()
+> 
+>         for i := 0; i < 10000; i++ {
+>             testdefer()
+>         }
+>         elapsed := time.Since(t1)
+>         fmt.Println("testdefer elapsed: ", elapsed)
+>     }()
+> 
+> }
+> ```
+> 
+> 输出结果：
+> 
+> ```
+> test elapsed:  223.162µs
+> testdefer elapsed:  781.304µs
+> ```
 
 #### 陷阱 - defer 与 closure
 
@@ -3952,13 +3930,11 @@ Golang 没有结构化异常，使用 `panic` 抛出错误，`recover` 捕获错
     1. 在 `defer` 函数中，通过 `recever` 来终止一个 `goroutine` 的 `panicking` 过程，从而恢复正常代码的执行
     2. 可以获取通过 `panic` 传递的 `error`
 
-:::warning 注意
-
-1. 利用 `recover` 处理 `panic` 指令，`defer` 必须放在 `panic` 之前定义，另外 `recover` 只有在 `defer` 调用的函数中才有效。否则当 `panic` 时，`recover` 无法捕获到 `panic`，无法防止 `panic` 扩散。
-2. `recover` 处理异常后，逻辑并不会恢复到 `panic` 那个点去，函数跑到 `defer` 之后的那个点。
-3. 多个 `defer` 会形成 `defer` 栈，后定义的 `defer` 语句会被最先调用。
-
-:::
+> [!warning] 注意
+> 
+> 1. 利用 `recover` 处理 `panic` 指令，`defer` 必须放在 `panic` 之前定义，另外 > `recover` 只有在 `defer` 调用的函数中才有效。否则当 `panic` 时，`recover` 无法捕获> 到 `panic`，无法防止 `panic` 扩散。
+> 2. `recover` 处理异常后，逻辑并不会恢复到 `panic` 那个点去，函数跑到 `defer` 之后的那> 个点。
+> 3. 多个 `defer` 会形成 `defer` 栈，后定义的 `defer` 语句会被最先调用。
 
 ```go
 package main

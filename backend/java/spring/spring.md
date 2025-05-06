@@ -101,10 +101,9 @@
     </beans>
     ```
 
-    :::tip 提示
-    `singleton` 只有一个实例，也即是单例模式；
-    `prototype` 访问一次创建一个实例，相当于 `new` 。
-    :::
+    > [!tip] 提示
+    > `singleton` 只有一个实例，也即是单例模式；
+    > `prototype` 访问一次创建一个实例，相当于 `new` 。
 
 5. 获取 Bean（创建IOC容器）
 
@@ -167,11 +166,9 @@ public void myBookTest() {
 }
 ```
 
-:::warning 提示
-
-使用 `setter` 注入时，类必须有 `setter` 方法。
-
-:::
+> [!warning] 提示
+>
+> 使用 `setter` 注入时，类必须有 `setter` 方法。
 
 ### 构造方法注入
 
@@ -808,21 +805,19 @@ public class User {
 
 ### @Before/@After/@Around/@AfterThrowing/@AfterReturning
 
-:::tip 提示
-
-```java
-/**
- * 第一个 * 表示：任意返回类型
- * 第二个 * 表示：任意方法名
- * .. 表示：任意参数列表
- */
-@Before("execution(* com.demo.domain.User.*(..))")
-// 同时 * 也可以匹配任意字符
-@After("execution(* com.demo.domain.User.save*(..))")
-// 匹配以 save 开头的方法
-```
-
-:::
+> [!tip] 提示
+> 
+> ```java
+> /**
+>  * 第一个 * 表示：任意返回类型
+>  * 第二个 * 表示：任意方法名
+>  * .. 表示：任意参数列表
+>  */
+> @Before("execution(* com.demo.domain.User.*(..))")
+> // 同时 * 也可以匹配任意字符
+> @After("execution(* com.demo.domain.User.save*(..))")
+> // 匹配以 save 开头的方法
+> ```
 
 ```java
 // 增强类,用来增强User类
@@ -2016,17 +2011,15 @@ public class UserController {
 
 根据类型注入 `bean`，假如有多个同类型的 `bean` 对象，再根据名称去匹配 `bean` 对象。
 
-:::tip 扩展
-
-`@Qualifier` 注解会改变 `Autowired` 注入策略，去 IOC 容器中获取 `bean` 对象，使用它的配置名称时，必须在 IOC 容器中有所配置。
-
-```java
-@Qualifier("serviceHello")
-// 同时在 service 上必须配置
-@Service("serviceHello")
-```
-
-:::
+> [!tip] 扩展
+> 
+> `@Qualifier` 注解会改变 `Autowired` 注入策略，去 IOC 容器中获取 `bean` 对象，使用它的配置名称时，必须在 IOC 容器中有所配置。
+> 
+> ```java
+> @Qualifier("serviceHello")
+> // 同时在 service 上必须配置
+> @Service("serviceHello")
+> ```
 
 ### @Configuration
 

@@ -916,17 +916,15 @@ linalg.det(arr)  # 求取行列式的值 det
 # -2.0
 ```
 
-:::warning 注意:warning:
-
-`linalg.det()` 函数只能计算方阵行列式。
-
-下面这段代码会报错：
-
-```python
-linalg.det(np.ones((3, 4)))
-```
-
-:::
+> [!warning] 注意
+> 
+> `linalg.det()` 函数只能计算方阵行列式。
+> 
+> 下面这段代码会报错：
+> 
+> ```python
+> linalg.det(np.ones((3, 4)))
+> ```
 
 #### 计算逆方阵
 
@@ -2183,34 +2181,32 @@ plt.show()
 
 ![image-20240506092450110](assets/image-20240506092450110.png)
 
-:::warning 中文乱码
-
-Matplotlib 默认情况不支持中文，显示中文时会有乱码问题。
-
-解决方法：
-
-```python
-import numpy as np
-from matplotlib import pyplot as plt
-import matplotlib
-
-# fname 为 你下载的字体库路径，
-# 本次我们使用思源黑体
-# 注意下载好字体之后， SourceHanSansSC-Bold.otf 字体的路径
-zhfont= matplotlib.font_manager.FontProperties(fname="SourceHanSansSC-Bold.otf")
-
-x = np.arange(1,11)
-y =  2  * x +  5
-plt.title("这是中文标题", fontproperties=zhfont)
-
-# fontproperties 设置中文显示，fontsize 设置字体大小
-plt.xlabel("x 轴", fontproperties=zhfont)
-plt.ylabel("y 轴", fontproperties=zhfont)
-plt.plot(x,y)
-plt.show()
-```
-
-:::
+> [!warning] 中文乱码
+> 
+> Matplotlib 默认情况不支持中文，显示中文时会有乱码问题。
+> 
+> 解决方法：
+> 
+> ```python
+> import numpy as np
+> from matplotlib import pyplot as plt
+> import matplotlib
+> 
+> # fname 为 你下载的字体库路径，
+> # 本次我们使用思源黑体
+> # 注意下载好字体之后， SourceHanSansSC-Bold.otf 字体的路径
+> zhfont= matplotlib.font_manager.FontProperties(fname="SourceHanSansSC-Bold.> otf")
+> 
+> x = np.arange(1,11)
+> y =  2  * x +  5
+> plt.title("这是中文标题", fontproperties=zhfont)
+> 
+> # fontproperties 设置中文显示，fontsize 设置字体大小
+> plt.xlabel("x 轴", fontproperties=zhfont)
+> plt.ylabel("y 轴", fontproperties=zhfont)
+> plt.plot(x,y)
+> plt.show()
+> ```
 
 #### 绘制网格线
 
@@ -2912,28 +2908,24 @@ plt.show()
 - 下边缘则代表了该组数据的**最小值**。
 - 有时候箱子外部会有一些点，可以理解为数据中的 **“异常值”**。
 
-:::tip 四分位数
-一组数据按照从小到大顺序排列后，把该组数据四等分的数，称为四分位数。 第一四分位数 (`Q1`)、第二四分位数 (`Q2`，也叫“中位数”)和第三四分位数 (`Q3`)分别等于该样本中所有数值由小到大排列后第`25%`、第`50%`和第`75%`的数字。第三四分位数与第一四分位数的差距又称四分位距（`interquartile range, IQR`）。
-
-:::
+> [!tip] 四分位数
+> 一组数据按照从小到大顺序排列后，把该组数据四等分的数，称为四分位数。 第一四分位数 (`Q1`)、第二四分位数 (`Q2`，也叫“中位数”)和第三四分位数 (`Q3`)分别等于该样本中所有数值由小到大排列后第`25%`、第`50%`和第`75%`的数字。第三四分位数与第一四分位数的差距又称四分位距（`interquartile range, IQR`）。
 
 虽然箱线图看起来元素比较多，看起来很复杂，但是其功能也很强大。
 
 1. 发现异常值
    箱形图可以用来观察数据整体的分布情况，箱体上边界和下边界之外的，就是异常数据。
 
-1. 判断偏态和尾重
+2. 判断偏态和尾重
    对于标准正态分布的大样本，中位数位于上下四分位数的中央，箱形图的方盒关于中位线对称。中位数越偏离上下四分位数的中心位置，分布偏态性越强。异常值集中在较大值一侧，则分布呈现右偏态；异常值集中在较小值一侧，则分布呈现左偏态。
 
-    :::tip 提示
+    > tip 提示
+    > 
+    > **偏态**： 与正态分布相对，指的是非对称分布的偏斜状态。 在统计学上，众数和平均数之差可作为分配偏态的指标之一：如平均数大于众数，称为正偏态（或右偏态）；相反，则称为负偏态（或左偏态）。
+    >
+    > **众数**：众数是样本观测值在频数分布表中频数最多的那一组的组中值，主要应用于大面积普查研究之中。一般来说，一组数据中，出现次数最多的数就叫这组数据的众数。 例如：1，2，3，3，4的众数是3。 例如：1，2，2，3，3，4的众数是2和3。
 
-    **偏态**： 与正态分布相对，指的是非对称分布的偏斜状态。 在统计学上，众数和平均数之差可作为分配偏态的指标之一：如平均数大于众数，称为正偏态（或右偏态）；相反，则称为负偏态（或左偏态）。
-
-    **众数**：众数是样本观测值在频数分布表中频数最多的那一组的组中值，主要应用于大面积普查研究之中。一般来说，一组数据中，出现次数最多的数就叫这组数据的众数。 例如：1，2，3，3，4的众数是3。 例如：1，2，2，3，3，4的众数是2和3。
-
-    :::
-
-1. 比较多批数据的形状
+3. 比较多批数据的形状
    箱子的上下限，分别是数据的上四分位数和下四分位数。这意味着箱子包含了50%的数据。因此，箱子的宽度在一定程度上反映了数据的波动程度。箱体越扁说明数据越集中，端线（虚线）越短也说明数据集中。
 
 ```python
@@ -3459,13 +3451,11 @@ plt.imshow(img_rotation)
 - `histSize`： `bin` 的数目, 用中括号括起来
 - `ranges`：像素范围 `[0, 256]`
 
-:::tip 提示
-
-以下处理基于这张图片
-
-![flower](assets/flower.jpg)
-
-:::
+> [!tip] 提示
+>
+> 以下处理基于这张图片
+>
+> ![flower](assets/flower.jpg)
 
 #### 灰度直方图
 
@@ -3738,15 +3728,13 @@ combine = [train_df, test_df]
 > Cabin/客舱号码
 > Embarked/登船港口 ==> C/Cherbourg, Q/Queenstown, S/Southampton
 
-:::tip 训练集
-
-泰坦尼克号幸存人员数据集示例（非真实情况）：
-
-[train.csv](assets/data/train.csv)
-
-[test.csv](assets/data/test.csv)
-
-:::
+> [>tip] 训练集
+>
+> 泰坦尼克号幸存人员数据集示例（非真实情况）：
+>
+> [train.csv](assets/data/train.csv)
+>
+> [test.csv](assets/data/test.csv)
 
 ### 描述性统计分析
 
@@ -3878,11 +3866,9 @@ print(train_df.describe(include=['O']))
 
 特征间相关性的热图可以帮助我们了解哪些变量可能更重要。
 
-:::warning 提示
-
-下列操作移除掉了所有是字符串的列。不移除会报错：`could not convert string to float: 'Braund, Mr. Owen Harris'`
-
-:::
+> [!warning] 提示
+>
+> 下列操作移除掉了所有是字符串的列。不移除会报错：`could not convert string to float: 'Braund, Mr. Owen Harris'`
 
 ```python
 # 定义特征间相关性热图函数，查看变量之间的相关性大小
