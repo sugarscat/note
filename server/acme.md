@@ -75,8 +75,13 @@ acme.sh --issue --dns dns_ali -d 域名
 ```bash
 acme.sh --install-cert -d "域名" \
   --key-file /etc/apache2/ssl/域名.key \
-  --fullchain-file /etc/apache2/ssl/域名.crt \
-  --reloadcmd "systemctl reload apache2"
+  --fullchain-file /etc/apache2/ssl/域名.crt 
+```
+
+重启 apache
+
+```bash
+systemctl reload apache2
 ```
 
 ### Nginx
@@ -84,8 +89,13 @@ acme.sh --install-cert -d "域名" \
 ```bash
 acme.sh --install-cert -d "域名" \
   --key-file /etc/nginx/ssl/域名.key \
-  --fullchain-file /etc/nginx/ssl/域名.crt \
-  --reloadcmd "systemctl reload nginx"
+  --fullchain-file /etc/nginx/ssl/域名.crt
+```
+
+重启 nginx
+
+```bash
+systemctl reload nginx
 ```
 
 ## 删除证书
