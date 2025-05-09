@@ -7,6 +7,7 @@ import Layout from "./Layout.vue";
 import { NProgress } from "nprogress-v2/dist/index.js"; // 进度条组件
 import mediumZoom from "medium-zoom";
 import "nprogress-v2/dist/index.css"; // 进度条样式
+import "virtual:group-icons.css";
 import "./custom.scss";
 
 export default {

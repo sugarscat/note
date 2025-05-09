@@ -23,8 +23,7 @@
 
 ### 2.1 核心配置文件
 
-```typescript
-// vite.config.ts
+```typescript [vite.config.ts]
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
@@ -78,8 +77,7 @@ import(/* webpackPreload: true */ "./critical-module.js");
 
 ### 3.2 CSS 模块化方案
 
-```css
-/* style.module.css */
+```css [style.module.css]
 .container {
     --primary-color: #1890ff;
 }
@@ -147,8 +145,7 @@ plugins: [
 
 ### 5.2 CDN 加速方案
 
-```typescript
-// vite.config.ts
+```typescript [vite.config.ts]
 import { splitVendorChunkPlugin } from "vite";
 
 export default defineConfig({
@@ -183,8 +180,7 @@ export default defineConfig({
 
 ### 6.2 工作区配置
 
-```json
-// package.json
+```json [package.json]
 {
     "workspaces": ["packages/*"],
     "scripts": {

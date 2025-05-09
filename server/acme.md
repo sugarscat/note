@@ -75,7 +75,7 @@ acme.sh --issue --dns dns_ali -d 域名
 ```bash
 acme.sh --install-cert -d "域名" \
   --key-file /etc/apache2/ssl/域名.key \
-  --fullchain-file /etc/apache2/ssl/域名.crt 
+  --fullchain-file /etc/apache2/ssl/域名.crt
 ```
 
 重启 apache

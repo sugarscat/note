@@ -23,7 +23,7 @@
 
 ::: code-group
 
-```c
+```c [c]
 void bubbleSort(int arr[], int n) {
     for (int i = 0; i < n-1; i++) {
         for (int j = 0; j < n-i-1; j++) {
@@ -37,7 +37,7 @@ void bubbleSort(int arr[], int n) {
 }
 ```
 
-```cpp
+```cpp [c++]
 void bubbleSort(vector<int>& arr) {
     int n = arr.size();
     for (int i = 0; i < n-1; i++) {
@@ -50,7 +50,7 @@ void bubbleSort(vector<int>& arr) {
 }
 ```
 
-```go
+```go [go]
 func bubbleSort(arr []int) []int {
     n := len(arr)
     for i := 0; i < n-1; i++ {
@@ -64,7 +64,7 @@ func bubbleSort(arr []int) []int {
 }
 ```
 
-```java
+```java [java]
 public static void bubbleSort(int[] arr) {
     int n = arr.length;
     for (int i = 0; i < n-1; i++) {
@@ -79,7 +79,7 @@ public static void bubbleSort(int[] arr) {
 }
 ```
 
-```python
+```python [python]
 def bubble_sort(arr):
     n = len(arr)
     for i in range(n):
@@ -89,7 +89,7 @@ def bubble_sort(arr):
     return arr
 ```
 
-```javascript
+```javascript [javascript]
 function bubbleSort(arr) {
     let len = arr.length;
     for (let i = 0; i < len; i++) {
@@ -115,7 +115,7 @@ function bubbleSort(arr) {
 
 ::: code-group
 
-```c
+```c [c]
 void selectionSort(int arr[], int n) {
     for (int i = 0; i < n-1; i++) {
         int min_idx = i;
@@ -131,7 +131,7 @@ void selectionSort(int arr[], int n) {
 }
 ```
 
-```cpp
+```cpp [c++]
 void selectionSort(vector<int>& arr) {
     int n = arr.size();
     for (int i = 0; i < n-1; i++) {
@@ -146,7 +146,7 @@ void selectionSort(vector<int>& arr) {
 }
 ```
 
-```go
+```go [go]
 func selectionSort(arr []int) []int {
     n := len(arr)
     for i := 0; i < n-1; i++ {
@@ -162,7 +162,7 @@ func selectionSort(arr []int) []int {
 }
 ```
 
-```java
+```java [java]
 public static void selectionSort(int[] arr) {
     for (int i = 0; i < arr.length - 1; i++) {
         int minIndex = i;
@@ -180,7 +180,7 @@ public static void selectionSort(int[] arr) {
 }
 ```
 
-```python
+```python [python]
 def selection_sort(arr):
     for i in range(len(arr)):
         min_idx = i
@@ -191,7 +191,7 @@ def selection_sort(arr):
     return arr
 ```
 
-```javascript
+```javascript [javascript]
 function selectionSort(arr) {
     let len = arr.length;
     for (let i = 0; i < len; i++) {
@@ -221,7 +221,7 @@ function selectionSort(arr) {
 
 ::: code-group
 
-```c
+```c [c]
 void insertionSort(int arr[], int n) {
     for (int i = 1; i < n; i++) {
         int key = arr[i];
@@ -235,7 +235,7 @@ void insertionSort(int arr[], int n) {
 }
 ```
 
-```cpp
+```cpp [c++]
 void insertionSort(vector<int>& arr) {
     int n = arr.size();
     for (int i = 1; i < n; i++) {
@@ -250,7 +250,7 @@ void insertionSort(vector<int>& arr) {
 }
 ```
 
-```go
+```go [go]
 func insertionSort(arr []int) []int {
     for i := 1; i < len(arr); i++ {
         key := arr[i]
@@ -265,7 +265,7 @@ func insertionSort(arr []int) []int {
 }
 ```
 
-```java
+```java [java]
 public static void insertionSort(int[] arr) {
     for (int i = 1; i < arr.length; i++) {
         int key = arr[i];
@@ -279,7 +279,7 @@ public static void insertionSort(int[] arr) {
 }
 ```
 
-```python
+```python [python]
 def insertion_sort(arr):
     for i in range(1, len(arr)):
         key = arr[i]
@@ -291,7 +291,7 @@ def insertion_sort(arr):
     return arr
 ```
 
-```javascript
+```javascript [javascript]
 function insertionSort(arr) {
     for (let i = 1; i < arr.length; i++) {
         let key = arr[i];
@@ -318,7 +318,7 @@ function insertionSort(arr) {
 
 ::: code-group
 
-```c
+```c [c]
 void shellSort(int arr[], int n) {
     for (int gap = n/2; gap > 0; gap /= 2) {
         for (int i = gap; i < n; i++) {
@@ -333,7 +333,7 @@ void shellSort(int arr[], int n) {
 }
 ```
 
-```cpp
+```cpp [c++]
 void shellSort(vector<int>& arr) {
     int n = arr.size();
     for (int gap = n/2; gap > 0; gap /= 2) {
@@ -349,7 +349,7 @@ void shellSort(vector<int>& arr) {
 }
 ```
 
-```go
+```go [go]
 func shellSort(arr []int) []int {
     n := len(arr)
     for gap := n / 2; gap > 0; gap /= 2 {
@@ -367,7 +367,7 @@ func shellSort(arr []int) []int {
 }
 ```
 
-```java
+```java [java]
 public static void shellSort(int[] arr) {
     int n = arr.length;
     for (int gap = n / 2; gap > 0; gap /= 2) {
@@ -383,7 +383,7 @@ public static void shellSort(int[] arr) {
 }
 ```
 
-```python
+```python [python]
 def shell_sort(arr):
     n = len(arr)
     gap = n // 2
@@ -399,7 +399,7 @@ def shell_sort(arr):
     return arr
 ```
 
-```javascript
+```javascript [javascript]
 function shellSort(arr) {
     let len = arr.length;
     for (let gap = Math.floor(len / 2); gap > 0; gap = Math.floor(gap / 2)) {
@@ -428,7 +428,7 @@ function shellSort(arr) {
 
 ::: code-group
 
-```c
+```c [c]
 void merge(int arr[], int l, int m, int r) {
     int i, j, k;
     int n1 = m - l + 1;
@@ -478,7 +478,7 @@ void mergeSort(int arr[], int l, int r) {
 }
 ```
 
-```cpp
+```cpp [c++]
 void merge(vector<int>& arr, int l, int m, int r) {
     int n1 = m - l + 1;
     int n2 = r - m;
@@ -525,7 +525,7 @@ void mergeSort(vector<int>& arr, int l, int r) {
 }
 ```
 
-```go
+```go [go]
 func mergeSort(arr []int) []int {
     if len(arr) <= 1 {
         return arr
@@ -558,7 +558,7 @@ func merge(left, right []int) []int {
 }
 ```
 
-```java
+```java [java]
 public static void mergeSort(int[] arr) {
     if (arr.length > 1) {
         int mid = arr.length / 2;
@@ -590,7 +590,7 @@ private static void merge(int[] arr, int[] left, int[] right) {
 }
 ```
 
-```python
+```python [python]
 def merge_sort(arr):
     if len(arr) > 1:
         mid = len(arr) // 2
@@ -623,7 +623,7 @@ def merge_sort(arr):
     return arr
 ```
 
-```javascript
+```javascript [javascript]
 function mergeSort(arr) {
     if (arr.length <= 1) return arr;
 
@@ -665,7 +665,7 @@ function merge(left, right) {
 
 ::: code-group
 
-```c
+```c [c]
 void swap(int* a, int* b) {
     int t = *a;
     *a = *b;
@@ -695,7 +695,7 @@ void quickSort(int arr[], int low, int high) {
 }
 ```
 
-```cpp
+```cpp [c++]
 int partition(vector<int>& arr, int low, int high) {
     int pivot = arr[high];
     int i = low - 1;
@@ -719,7 +719,7 @@ void quickSort(vector<int>& arr, int low, int high) {
 }
 ```
 
-```go
+```go [go]
 func quickSort(arr []int) []int {
     if len(arr) <= 1 {
         return arr
@@ -745,7 +745,7 @@ func quickSort(arr []int) []int {
 }
 ```
 
-```java
+```java [java]
 public static void quickSort(int[] arr, int low, int high) {
     if (low < high) {
         int pi = partition(arr, low, high);
@@ -776,7 +776,7 @@ private static void swap(int[] arr, int i, int j) {
 }
 ```
 
-```python
+```python [python]
 def quick_sort(arr):
     if len(arr) <= 1:
         return arr
@@ -787,7 +787,7 @@ def quick_sort(arr):
     return quick_sort(left) + middle + quick_sort(right)
 ```
 
-```javascript
+```javascript [javascript]
 function quickSort(arr) {
     if (arr.length <= 1) return arr;
 
@@ -812,7 +812,7 @@ function quickSort(arr) {
 
 ::: code-group
 
-```c
+```c [c]
 void heapify(int arr[], int n, int i) {
     int largest = i;
     int left = 2 * i + 1;
@@ -847,7 +847,7 @@ void heapSort(int arr[], int n) {
 }
 ```
 
-```cpp
+```cpp [c++]
 void heapify(vector<int>& arr, int n, int i) {
     int largest = i;
     int left = 2 * i + 1;
@@ -878,7 +878,7 @@ void heapSort(vector<int>& arr) {
 }
 ```
 
-```go
+```go [go]
 func heapSort(arr []int) []int {
     n := len(arr)
 
@@ -913,7 +913,7 @@ func heapify(arr []int, n, i int) {
 }
 ```
 
-```java
+```java [java]
 public static void heapSort(int[] arr) {
     int n = arr.length;
 
@@ -953,7 +953,7 @@ private static void heapify(int[] arr, int n, int i) {
 }
 ```
 
-```python
+```python [python]
 def heapify(arr, n, i):
     largest = i
     left = 2 * i + 1
@@ -981,7 +981,7 @@ def heap_sort(arr):
     return arr
 ```
 
-```javascript
+```javascript [javascript]
 function heapSort(arr) {
     let n = arr.length;
 
@@ -1028,7 +1028,7 @@ function heapify(arr, n, i) {
 
 ::: code-group
 
-```c
+```c [c]
 void countingSort(int arr[], int n) {
     int max = arr[0];
     for (int i = 1; i < n; i++) {
@@ -1054,7 +1054,7 @@ void countingSort(int arr[], int n) {
 }
 ```
 
-```cpp
+```cpp [c++]
 void countingSort(vector<int>& arr) {
     int max = *max_element(arr.begin(), arr.end());
     vector<int> count(max + 1, 0);
@@ -1073,7 +1073,7 @@ void countingSort(vector<int>& arr) {
 }
 ```
 
-```go
+```go [go]
 func countingSort(arr []int) []int {
     max := arr[0]
     for _, num := range arr {
@@ -1098,7 +1098,7 @@ func countingSort(arr []int) []int {
 }
 ```
 
-```java
+```java [java]
 public static void countingSort(int[] arr) {
     int max = Arrays.stream(arr).max().getAsInt();
     int[] count = new int[max + 1];
@@ -1117,7 +1117,7 @@ public static void countingSort(int[] arr) {
 }
 ```
 
-```python
+```python [python]
 def counting_sort(arr):
     max_val = max(arr)
     m = max_val + 1
@@ -1134,7 +1134,7 @@ def counting_sort(arr):
     return arr
 ```
 
-```javascript
+```javascript [javascript]
 function countingSort(arr) {
     let max = Math.max(...arr);
     let count = new Array(max + 1).fill(0);
@@ -1166,7 +1166,7 @@ function countingSort(arr) {
 
 ::: code-group
 
-```c
+```c [c]
 void bucketSort(float arr[], int n) {
     vector<float> buckets[n];
 
@@ -1188,7 +1188,7 @@ void bucketSort(float arr[], int n) {
 }
 ```
 
-```cpp
+```cpp [c++]
 void bucketSort(vector<float>& arr) {
     int n = arr.size();
     vector<vector<float>> buckets(n);
@@ -1211,7 +1211,7 @@ void bucketSort(vector<float>& arr) {
 }
 ```
 
-```go
+```go [go]
 func bucketSort(arr []float64) []float64 {
     n := len(arr)
     buckets := make([][]float64, n)
@@ -1233,7 +1233,7 @@ func bucketSort(arr []float64) []float64 {
 }
 ```
 
-```java
+```java [java]
 public static void bucketSort(float[] arr) {
     int n = arr.length;
     List<List<Float>> buckets = new ArrayList<>(n);
@@ -1260,7 +1260,7 @@ public static void bucketSort(float[] arr) {
 }
 ```
 
-```python
+```python [python]
 def bucket_sort(arr):
     max_val = max(arr)
     size = max_val/len(arr)
@@ -1282,7 +1282,7 @@ def bucket_sort(arr):
     return result
 ```
 
-```javascript
+```javascript [javascript]
 function bucketSort(arr, bucketSize = 5) {
     if (arr.length === 0) return arr;
 
@@ -1322,7 +1322,7 @@ function bucketSort(arr, bucketSize = 5) {
 
 ::: code-group
 
-```c
+```c [c]
 void countingSortForRadix(int arr[], int n, int exp) {
     int output[n];
     int count[10] = {0};
@@ -1359,7 +1359,7 @@ void radixSort(int arr[], int n) {
 }
 ```
 
-```cpp
+```cpp [c++]
 void countingSortForRadix(vector<int>& arr, int exp) {
     int n = arr.size();
     vector<int> output(n);
@@ -1392,7 +1392,7 @@ void radixSort(vector<int>& arr) {
 }
 ```
 
-```go
+```go [go]
 func countingSortForRadix(arr []int, exp int) []int {
     n := len(arr)
     output := make([]int, n)
@@ -1431,7 +1431,7 @@ func radixSort(arr []int) []int {
 }
 ```
 
-```java
+```java [java]
 public static void radixSort(int[] arr) {
     int max = Arrays.stream(arr).max().getAsInt();
 
@@ -1462,7 +1462,7 @@ private static void countingSortForRadix(int[] arr, int exp) {
 }
 ```
 
-```python
+```python [python]
 def counting_sort_for_radix(arr, exp):
     n = len(arr)
     output = [0] * n
@@ -1494,7 +1494,7 @@ def radix_sort(arr):
     return arr
 ```
 
-```javascript
+```javascript [javascript]
 function countingSortForRadix(arr, exp) {
     let n = arr.length;
     let output = new Array(n);

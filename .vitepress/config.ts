@@ -1,6 +1,7 @@
 import { withMermaid } from "vitepress-plugin-mermaid";
 import sidebar from "./sidebar";
 import algolia from "./algolia";
+import { groupIconMdPlugin, groupIconVitePlugin } from "vitepress-plugin-group-icons";
 
 const GITURL = "https://github.com/sugarscat/note";
 
@@ -21,8 +22,21 @@ export default withMermaid({
         },
       },
     },
+    plugins: [
+      groupIconVitePlugin({
+        customIcon: {
+          javascript: "vscode-icons:file-type-js",
+          markdown: "vscode-icons:file-type-markdown",
+          python: "vscode-icons:file-type-python",
+          java: "vscode-icons:file-type-java",
+          c: "vscode-icons:file-type-c",
+          "c++": "vscode-icons:file-type-cpp",
+          go: "vscode-icons:file-type-go",
+        },
+      }),
+    ],
     build: {
-      chunkSizeWarningLimit: 600,
+      chunkSizeWarningLimit: 2000,
       rollupOptions: {
         output: {
           manualChunks(id) {
@@ -46,6 +60,7 @@ export default withMermaid({
   markdown: {
     config: (md) => {
       // use more markdown-it plugins!
+      md.use(groupIconMdPlugin);
     },
     math: true,
     image: {
