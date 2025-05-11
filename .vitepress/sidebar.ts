@@ -1,8 +1,4 @@
 export default [
-  // {
-  //     text: "🏡 欢迎",
-  //     link: "/welcome.md",
-  // },
   {
     text: "🌏️ 语言",
     collapsible: true,
@@ -113,7 +109,6 @@ export default [
     collapsible: true,
     collapsed: true,
     items: [
-      { text: "软件源更换", link: "/server/software-source.md" },
       { text: "Linux 命令", link: "/server/linux-command.md" },
       { text: "Nginx", link: "/server/nginx.md" },
       { text: "Docker", link: "/server/docker.md" },
