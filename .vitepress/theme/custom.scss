@@ -73,6 +73,13 @@ html {
     --color-nav-sidebar-background: rgba(22, 22, 24, 0.6);
 }
 
+.go-to-top {
+    background-color: var(--color-neutral4) !important;
+    &:hover {
+        background-color: var(--color-neutral8) !important;
+    }
+}
+
 .VPFooter {
     z-index: -1 !important;
 }
