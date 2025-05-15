@@ -102,7 +102,7 @@ export default withMermaid({
     socialLinks: [{ icon: "github", link: GITURL }],
 
     editLink: {
-      pattern: GITURL + "/edit/develop/:path",
+      pattern: GITURL + "/edit/main/:path",
       text: "在 GitHub 上编辑此页面",
     },
 
