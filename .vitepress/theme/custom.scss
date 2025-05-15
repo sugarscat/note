@@ -172,15 +172,8 @@ html {
     }
 }
 
-.go-to-top {
-    background-color: var(--color-neutral4) !important;
-    &:hover {
-        background-color: var(--color-neutral8) !important;
-    }
-}
-
-.name .clip,
-.discoloration {
+// 首页标题
+.VPHome .heading .clip {
     background: -webkit-linear-gradient(
         315deg,
         rgb(210, 86, 53) 10%,
