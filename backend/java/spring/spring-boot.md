@@ -1691,4 +1691,4 @@ public class MyRegistConfig {
 
 ## 数据访问 ↓↓↓
 
-[SpringBoot 数据访问](spring-boot-datasource)
+[SpringBoot 数据访问](spring-boot-datasource.md)
