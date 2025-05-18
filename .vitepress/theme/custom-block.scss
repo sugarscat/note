@@ -5,6 +5,7 @@
 
     --vp-custom-block-tip-code-bg: rgba(0, 148, 0, 0.1);
     --custom-block-tip-bg: rgb(230, 246, 230);
+    --custom-block-tip-text: rgb(0, 148, 0);
 
     --vp-custom-block-warning-code-bg: rgba(230, 167, 0, 0.1);
     --custom-block-warning-bg: #fff8e6;
@@ -28,6 +29,7 @@
 
     --vp-custom-block-tip-code-bg: rgba(0, 148, 0, 0.1);
     --custom-block-tip-bg: #003100;
+    --custom-block-tip-text: rgb(0, 148, 0);
 
     --vp-custom-block-warning-code-bg: rgba(230, 167, 0, 0.1);
     --custom-block-warning-bg: #4d3800;
@@ -77,8 +79,8 @@
 .custom-block.tip {
     background-color: var(--custom-block-tip-bg);
 
-    .code {
-        background-color: var(--custom-block-tip-text);
+    code {
+        color: var(--custom-block-tip-text) !important;
     }
 }
 
@@ -99,10 +101,6 @@
 /* 警告容器:背景色、左侧 */
 .custom-block.warning {
     background-color: var(--custom-block-warning-bg);
-
-    .code {
-        background-color: var(--custom-block-warning-text);
-    }
 }
 
 /* 警告容器:svg图 */
@@ -121,10 +119,6 @@
 /* 危险容器:背景色、左侧 */
 .custom-block.danger {
     background-color: var(--custom-block-danger-bg);
-
-    .code {
-        background-color: var(--custom-block-danger-text);
-    }
 }
 
 /* 危险容器:svg图 */
@@ -144,10 +138,6 @@
 /* NOTE容器:背景色、左侧 */
 .custom-block.note {
     background-color: var(--custom-block-note-bg);
-
-    .code {
-        background-color: var(--custom-block-note-text);
-    }
 }
 
 /* NOTE容器:svg图 */
@@ -167,10 +157,6 @@
 /* IMPORTANT容器:背景色、左侧 */
 .custom-block.important {
     background-color: var(--custom-block-important-bg);
-
-    .code {
-        background-color: var(--custom-block-important-text);
-    }
 }
 
 /* IMPORTANT容器:svg图 */
@@ -191,10 +177,6 @@
 .custom-block.caution {
     border-text: 5px solid var(--custom-block-caution-text);
     background-color: var(--custom-block-caution-bg);
-
-    .code {
-        background-color: var(--custom-block-caution-text);
-    }
 }
 
 /* CAUTION容器:svg图 */
