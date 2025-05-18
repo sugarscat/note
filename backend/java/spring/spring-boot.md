@@ -98,7 +98,7 @@ server.port=8080  # 端口
     </parent>
     ```
 
-    > [!TIP] 
+    > [!TIP]
     >
     > 自动版本仲裁
     >
@@ -252,7 +252,7 @@ Spring 的 @Bean 注解用于告诉方法，产生一个 Bean 对象，然后这
 
     @Bean、@Component、@Controller、@Service、@Repository、@ComponentScan、@Import
 
-    > [!TIP] 
+    > [!TIP]
     >
     > @Import 示例
     >
@@ -469,7 +469,7 @@ public CharacterEncodingFilter characterEncodingFilter() {}
 ```
 
 > [!TIP]
-> 
+>
 > 配置文件`application.properties`中加入`debug=true`开启自动配置报告。
 >
 > - Negative（不生效）
@@ -871,7 +871,7 @@ spring:
 > 即：/index.html --> /res/index.html
 
 > [!TIP]
-> 
+>
 > 可用于拦截器不拦截静态资源。
 
 ### webjar
@@ -885,7 +885,7 @@ spring:
 静态资源路径下 `index.html` 可以配置静态资源路径 。
 
 > [!WARNING]
-> 
+>
 > 但是不可以配置静态资源的访问前缀；否则导致 `index.html` 不能被默认访问。
 >
 > ```yaml
@@ -1105,7 +1105,7 @@ public class ParameterTestController {
 `WebRequest`、`ServletRequest`、`MultipartRequest`、 `HttpSession`、`javax.servlet.http.PushBuilder`、`Principal`、`InputStream`、`Reader`、 `HttpMethod`、`Locale`、`TimeZone`、`ZoneId`
 
 > [!TIP]
-> 
+>
 > `ServletRequestMethodArgumentResolver` 可以解析以上的部分参数。
 
 #### 复杂参数
@@ -1356,7 +1356,7 @@ public class HelloController {
 3. 内容协商找到最终的 `messageConverter`。
 
 > [!WARNING]
-> 
+>
 > 添加的自定义的功能可能会覆盖默认很多功能，导致一些默认的功能失效。
 
 PersonMessageConvert
@@ -1656,8 +1656,7 @@ public String upload(@RequestParam("email") String email,
 @WebListener
 ```
 
-> [!TIP]
-> **拓展**
+> [!TIP] > **拓展**
 >
 > `DispatchServlet` 如何注册进来：
 >

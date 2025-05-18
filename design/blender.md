@@ -1,8 +1,7 @@
 # Blender
 
-> [!NOTE]
-> **快速入门**
-> 
+> [!NOTE] > **快速入门**
+>
 > 推荐课程：[【哔哩】GenJi是真想教会你](https://www.bilibili.com/video/BV1kX4y1m7G5)
 >
 > [官方文档](https://docs.blender.org/)

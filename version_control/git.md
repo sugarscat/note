@@ -170,7 +170,7 @@ git fetch --depth=5
 
 ### 版本回退
 
-> [!CAUTION] 
+> [!CAUTION]
 >
 > 执行强制推送前必须：
 >
