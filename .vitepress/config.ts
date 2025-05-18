@@ -1,7 +1,7 @@
-import { withMermaid } from "vitepress-plugin-mermaid";
-import sidebar from "./sidebar";
-import algolia from "./algolia";
 import { groupIconMdPlugin, groupIconVitePlugin } from "vitepress-plugin-group-icons";
+import { withMermaid } from "vitepress-plugin-mermaid";
+import algolia from "./algolia";
+import sidebar from "./sidebar";
 
 const GITURL = "https://github.com/sugarscat/note";
 

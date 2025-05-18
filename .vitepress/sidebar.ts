@@ -79,7 +79,7 @@ export default [
           },
         ],
       },
-      { text: "Flask 笔记", link: "/backend/python/flask.md" },
+      { text: "Flask 框架", link: "/backend/python/flask.md" },
     ],
   },
   {
@@ -147,8 +147,9 @@ export default [
     collapsible: true,
     collapsed: true,
     items: [
-      { text: "VS Code 基本使用", link: "/tool/vs-code.md" },
-      { text: "Wireshark 笔记", link: "/tool/wireshark.md" },
+      { text: "chsrc 镜像替换工具", link: "/tool/chsrc.md" },
+      { text: "VS Code 编译器", link: "/tool/vs-code.md" },
+      { text: "Wireshark", link: "/tool/wireshark.md" },
       { text: "⌨️ 腹灵F12 68键 RGB", link: "/tool/fuling-f12.md" },
       { text: "高漫数位板", link: "/tool/gaomon.md" },
       { text: "📷️ 相机", link: "/tool/camera.md" },
