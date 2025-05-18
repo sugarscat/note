@@ -4,7 +4,7 @@
 >
 > 笔记来自 [黑马程序员](https://www.itheima.com/)
 
-> [!WARNING] 提示
+> [!WARNING]
 >
 > 本教程使用 [Pnpm](https://pnpm.io/zh/) 进行包管理，请提前下载。
 
@@ -475,7 +475,7 @@ provide('key'，顶层组件中的数据)
 const message = inject("key");
 ```
 
-> [!TIP] 提示
+> [!TIP]
 >
 > `key` 需要相同。
 

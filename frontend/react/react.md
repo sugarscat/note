@@ -50,7 +50,8 @@ function App() {
 3. 函数调用和方法调用
 4. 使用 `JavaScript` 对象
 
-    > [!warning] 警告
+    > [!WARNING]
+    >
     > 注意：`if` 语句、`switch` 语句、变量声明不属于表达式，不能出现在 `{}` 中
 
 ```jsx
@@ -189,7 +190,8 @@ function App() {
 }
 ```
 
-> [!warning] 注意
+> [!WARNING]
+> 
 > 注意：不能直接写函数调用，这里事件绑定需要一个函数引用
 
 ### 同时传递事件对象和自定义参数
@@ -510,7 +512,8 @@ export default App;
 `useEffect` 是一个React Hook函数，用于在React组件中创建不是由事件引起而是由渲染本身引起的操作（副作用）, 比如发送 `AJAX` 请求，更改 `DOM` 等等
 ![image.png](assets/React/10-1720403695174-17.png)
 
-> [!warning] 注意
+> [!WARNING]
+> 
 > 说明：上面的组件中没有发生任何的用户事件，组件渲染完毕之后就需要和服务器要数据，整个过程属于“只由渲染引起的操作”
 
 ### 基础使用
@@ -539,7 +542,8 @@ export default App;
 
 ![image.png](assets/React/12.png)
 
-> [!warning] 注意
+> [!WARNING]
+> 
 > 说明：清除副作用的函数最常见的执行时机是在组件卸载时自动执行
 
 ```jsx

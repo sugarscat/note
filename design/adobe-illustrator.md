@@ -174,7 +174,7 @@
 | 将所选对象移到后面                                                                           | `Shift + Ctrl + [`                                       | `Shift + Command + [`                                    |
 | 仅选择完全位于选框内的对象                                                                   | 拖动选框时按 `E`                                         | 拖动选框时按 `E`                                         |
 
-> [!warning] 注意
+> [!WARNING]
 >
 > 在“常规偏好设置”中设置键盘增量 (`Ctrl/ Cmd + K`)。
 
@@ -371,7 +371,7 @@
 | 插入窄间隔                                                                                       | `Alt + Shift + Ctrl + M`                                                     | `Option + Shift + Command + M`                                                    |
 | 显示隐藏字符                                                                                     | `Alt + Ctrl + I`                                                             | `Option + Command + I`                                                            |
 
-> [!warning] 注意
+> [!WARNING]
 >
 > 要更改文字快捷键的增量值，请选择编辑 > 偏好设置 > 文字 (`Windows`)，或选择 `Illustrator` > 偏好设置 > 文字 (`macOS`)。在大小/行距、基线偏移和字距调整文本框中输入所需值，然后单击确定。
 

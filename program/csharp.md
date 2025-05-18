@@ -959,7 +959,7 @@ namespace StaticVarApplication
 
 派生类可以通过关键字base来调用基类的构造函数和方法。
 
-> [!tip] 提示
+> [!TIP]
 >
 > 一个类可以继承多个接口，但只能继承自一个类。
 

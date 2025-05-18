@@ -101,7 +101,8 @@
     </beans>
     ```
 
-    > [!tip] 提示
+    > [!TIP]
+    >
     > `singleton` 只有一个实例，也即是单例模式；
     > `prototype` 访问一次创建一个实例，相当于 `new` 。
 
@@ -166,7 +167,7 @@ public void myBookTest() {
 }
 ```
 
-> [!warning] 提示
+> [!WARNING]
 >
 > 使用 `setter` 注入时，类必须有 `setter` 方法。
 
@@ -805,7 +806,7 @@ public class User {
 
 ### @Before/@After/@Around/@AfterThrowing/@AfterReturning
 
-> [!tip] 提示
+> [!TIP]
 >
 > ```java
 > /**
@@ -2011,7 +2012,9 @@ public class UserController {
 
 根据类型注入 `bean`，假如有多个同类型的 `bean` 对象，再根据名称去匹配 `bean` 对象。
 
-> [!tip] 扩展
+> [!TIP] 
+> 
+> **扩展**
 >
 > `@Qualifier` 注解会改变 `Autowired` 注入策略，去 IOC 容器中获取 `bean` 对象，使用它的配置名称时，必须在 IOC 容器中有所配置。
 >

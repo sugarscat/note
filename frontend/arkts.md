@@ -81,7 +81,7 @@ if (num > 0) {
 }
 ```
 
-> [!tip] 提示
+> [!TIP]
 >
 > 在 `TypeScript` 中，空字符串、数字0、`null`、`undefined` 都被认为是 `false`，其它值则为 `true`
 
