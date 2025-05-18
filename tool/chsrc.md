@@ -1,10 +1,14 @@
-# chsrc
+# chsrc 换源工具
+
+> [!NOTE]
+>
+> 开源地址 [Github](https://github.com/RubyMetric/chsrc)
 
 ## 安装
 
 ### Windows
 
-- 可通过 `WinGet` 安装，感谢 [@YU-7]
+- 可通过 `WinGet` 安装。
 
     ```bash
     winget install RubyMetric.chsrc
