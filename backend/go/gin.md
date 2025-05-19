@@ -1,6 +1,8 @@
 # Gin 框架
 
-> - [Gin 官方文档](https://gin-gonic.com/docs/)
+> [!TIP]
+> 
+> - [Gin 官方中文文档](https://gin-gonic.com/zh-cn/docs/)
 > - [Gin GitHub 仓库](https://github.com/gin-gonic/gin)
 > - [Go 语言编程](https://golang.org/doc/)
 
