@@ -7,9 +7,8 @@ import vitepressBackToTop from "vitepress-plugin-back-to-top";
 import "vitepress-plugin-back-to-top/dist/style.css";
 import DefaultTheme from "vitepress/theme";
 import { h, nextTick, onMounted, watch } from "vue";
-import "./custom-block.scss";
-import "./custom.scss";
-import Layout from "./Layout.vue";
+import Layout from "./components/Layout.vue";
+import "./style.scss";
 
 export default {
   extends: DefaultTheme,

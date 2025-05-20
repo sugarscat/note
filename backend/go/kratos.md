@@ -1,7 +1,7 @@
 # Kratos 框架
 
 > [!TIP]
-> 
+>
 > - [Kratos 官方文档](https://go-kratos.dev/)
 > - [Kratos GitHub 仓库](https://github.com/go-kratos/kratos)
 > - [微服务架构设计模式](https://microservices.io/)
