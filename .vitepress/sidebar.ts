@@ -102,6 +102,7 @@ export default [
       },
       { text: "ArkTS", link: "/frontend/arkts.md" },
       { text: "渐进式 Web 应用（PWA）", link: "/frontend/pwa.md" },
+      { text: "Vitepress", link: "/frontend/vitepress.md" },
     ],
   },
   {
@@ -153,6 +154,7 @@ export default [
       { text: "⌨️ 腹灵F12 68键 RGB", link: "/tool/fuling-f12.md" },
       { text: "高漫数位板", link: "/tool/gaomon.md" },
       { text: "📷️ 相机", link: "/tool/camera.md" },
+      { text: "微软 Office", link: "/tool/office.md" },
     ],
   },
   {
