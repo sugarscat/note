@@ -3,7 +3,7 @@ import { withMermaid } from "vitepress-plugin-mermaid";
 import algolia from "./algolia";
 import sidebar from "./sidebar";
 
-const GITURL = "https://github.com/sugarscat/note";
+const GIT_URL = "https://github.com/sugarscat/note";
 
 // https://vitepress.dev/zh/reference/site-config
 export default withMermaid({
@@ -99,10 +99,10 @@ export default withMermaid({
       options: algolia,
     },
 
-    socialLinks: [{ icon: "github", link: GITURL }],
+    socialLinks: [{ icon: "github", link: GIT_URL }],
 
     editLink: {
-      pattern: GITURL + "/edit/main/:path",
+      pattern: GIT_URL + "/edit/main/:path",
       text: "在 GitHub 上编辑此页面",
     },
 
