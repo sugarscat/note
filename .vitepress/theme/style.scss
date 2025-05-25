@@ -1,4 +1,7 @@
 :root {
+    --vp-font-family-base: "HarmonyOS_Sans_SC";
+    --vp-font-family-mono: "JetBrainsMono";
+
     --color-blue-soft: #daedfe;
 
     --color-neutral4: #eceef0;
@@ -110,9 +113,7 @@ html {
     }
 
     body {
-        font-family:
-            "HarmonyOS_Sans", "HarmonyOS_Sans_SC", Inter, system-ui, Avenir, Helvetica, Arial,
-            sans-serif;
+        font-family: "HarmonyOS_Sans_SC", Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
     }
 }
 
