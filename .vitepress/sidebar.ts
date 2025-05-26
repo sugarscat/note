@@ -162,6 +162,9 @@ export default [
     text: "🧺 其他",
     collapsible: true,
     collapsed: true,
-    items: [{ text: "手办拼接", link: "/other/handmade.md" }],
+    items: [
+      { text: "手办", link: "/other/handmade.md" },
+      { text: "摩斯码", link: "/other/morse-code.md" },
+    ],
   },
 ];
