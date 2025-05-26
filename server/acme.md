@@ -6,7 +6,9 @@
 curl  https://get.acme.sh | sh
 ```
 
-> [!TIP] > **安装程序会自动做以下操作**
+> [!TIP]
+>
+> **安装程序会自动做以下操作**
 >
 > - 自动把 acme.sh 安装到你的 home 的.acme.sh目录下，即~/.acme.sh/
 > - 自动创建一个 bash 的 alias
