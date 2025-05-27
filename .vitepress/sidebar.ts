@@ -1,7 +1,6 @@
 export default [
   {
     text: "🌏️ 语言",
-    collapsible: true,
     collapsed: true,
     items: [
       { text: "英语", link: "/language/english.md" },
@@ -10,13 +9,11 @@ export default [
   },
   {
     text: "💻️ 计算机基础",
-    collapsible: true,
     collapsed: true,
     items: [{ text: "数据结构", link: "/program/408/data-structure.md" }],
   },
   {
     text: "⌨️ 编程",
-    collapsible: true,
     collapsed: true,
     items: [
       { text: "正则表达式", link: "/program/regular-expression.md" },
@@ -28,7 +25,6 @@ export default [
       { text: "Go 笔记", link: "/program/go.md" },
       {
         text: "机器学习",
-        collapsible: true,
         collapsed: true,
         items: [
           {
@@ -37,7 +33,6 @@ export default [
           },
           {
             text: "快速入门",
-            collapsible: true,
             collapsed: true,
             items: [
               {
@@ -57,7 +52,6 @@ export default [
   },
   {
     text: "🪐 后端",
-    collapsible: true,
     collapsed: true,
     items: [
       { text: "Gin 框架", link: "/backend/go/gin.md" },
@@ -65,7 +59,6 @@ export default [
       { text: "Go Micro", link: "/backend/go/go-micro.md" },
       {
         text: "Spring",
-        collapsible: true,
         collapsed: true,
         items: [
           { text: "Spring", link: "/backend/java/spring/spring.md" },
@@ -84,7 +77,6 @@ export default [
   },
   {
     text: "📱 前端",
-    collapsible: true,
     collapsed: true,
     items: [
       { text: "语言代码表", link: "/frontend/language-code.md" },
@@ -92,7 +84,6 @@ export default [
       { text: "Vue", link: "/frontend/vue.md" },
       {
         text: "React",
-        collapsible: true,
         collapsed: true,
         items: [
           { text: "基础入门", link: "/frontend/react/react.md" },
@@ -107,7 +98,6 @@ export default [
   },
   {
     text: "🫧 部署",
-    collapsible: true,
     collapsed: true,
     items: [
       { text: "Linux 命令", link: "/server/linux-command.md" },
@@ -118,7 +108,6 @@ export default [
   },
   {
     text: "💾 数据库",
-    collapsible: true,
     collapsed: true,
     items: [
       { text: "MySQL", link: "/sql/mysql.md" },
@@ -129,13 +118,11 @@ export default [
   },
   {
     text: "📦️ 版本控制",
-    collapsible: true,
     collapsed: true,
     items: [{ text: "Git", link: "/version_control/git.md" }],
   },
   {
     text: "🖌️ 设计",
-    collapsible: true,
     collapsed: true,
     items: [
       { text: "Blender 建模", link: "/design/blender.md" },
@@ -145,7 +132,6 @@ export default [
   },
   {
     text: "🛠️ 工具",
-    collapsible: true,
     collapsed: true,
     items: [
       { text: "chsrc 镜像替换工具", link: "/tool/chsrc.md" },
@@ -160,7 +146,6 @@ export default [
   },
   {
     text: "🧺 其他",
-    collapsible: true,
     collapsed: true,
     items: [
       { text: "手办", link: "/other/handmade.md" },
