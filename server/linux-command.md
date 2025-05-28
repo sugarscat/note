@@ -118,6 +118,18 @@ make -j$(nproc)
 sudo make install
 ```
 
+## 📦 软件管理（YUM）
+
+| 指令                 | 说明                 |
+| -------------------- | -------------------- |
+| `yum update`         | 更新所有已安装的软件 |
+| `yum install 包名`   | 安装软件包           |
+| `yum remove 包名`    | 卸载软件包           |
+| `yum search 关键字`  | 搜索软件包           |
+| `yum list installed` | 列出已安装软件       |
+| `rpm -qa`            | 查看所有安装包       |
+| `rpm -ivh 包.rpm`    | 安装 RPM 包          |
+
 ## 🔐 权限管理
 
 ### 1. 权限控制
