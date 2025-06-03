@@ -100,7 +100,7 @@ export default [
     text: "🫧 部署",
     collapsed: true,
     items: [
-      { text: "Linux 命令", link: "/server/linux-command.md" },
+      { text: "Linux", link: "/server/linux.md" },
       { text: "Nginx", link: "/server/nginx.md" },
       { text: "Docker", link: "/server/docker.md" },
       { text: "ACME 申请证书", link: "/server/acme.md" },
