@@ -474,7 +474,6 @@ SELECT AVG(DISTINCT 字段) AS 别名 FROM 表名;
 ### 2. 数据表（TABLE）
 
 1. 创建数据表
-
     1. 普通创建
 
         ```sql
@@ -499,7 +498,6 @@ SELECT AVG(DISTINCT 字段) AS 别名 FROM 表名;
     ```
 
 3. 修改数据表
-
     1. 添加列
 
         ```sql
@@ -533,7 +531,6 @@ SELECT AVG(DISTINCT 字段) AS 别名 FROM 表名;
 ### 3. 视图（VIEW）
 
 - 定义
-
     - 视图是基于 SQL 语句的结果集的可视化的表。
     - 视图是虚拟的表，本身不包含数据，也就不能对其进行索引操作。对视图的操作和对普通表的操作一样。
 
@@ -846,7 +843,6 @@ call getTotal();
     ```
 
 2. 说明：
-
     - trigger_name：触发器名
     - trigger_time: 触发器的触发时机。取值为 BEFORE 或 AFTER。
     - trigger_event: 触发器的监听事件。取值为 INSERT、UPDATE 或 DELETE。

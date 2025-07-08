@@ -118,13 +118,11 @@ server.port=8080  # 端口
 ### 自动配置
 
 1. 自动配好Tomcat
-
     - 引入Tomcat依赖；
 
     - 配置 Tomcat。
 
 2. 自动配好 SpringMVC
-
     - 引入 SpringMVC 全套组件；
     - 自动配好SpringMVC 常用组件（功能）。
 
@@ -133,7 +131,6 @@ server.port=8080  # 端口
     如：字符编码问题。
 
 4. 默认的包结构
-
     - 主程序所在包及其下面的所有子包里面的组件都会被默认扫描进来；
 
     - 无需以前的包扫描配置；
@@ -170,7 +167,6 @@ Spring 的 @Bean 注解用于告诉方法，产生一个 Bean 对象，然后这
 #### @Configuration 配置文件
 
 1. 基本使用
-
     - 配置类里面使用 `@Bean` 标注在方法上给容器注册组件，默认也是单实例的；
     - 配置类本身也是组件；
     - `proxyBeanMethods`：代理 `bean` 的方法；
@@ -242,7 +238,6 @@ Spring 的 @Bean 注解用于告诉方法，产生一个 Bean 对象，然后这
     ```
 
 3. Full 模式与 Lite 模式
-
     - 配置类组件之间无依赖关系用Lite模式加速容器启动过程，减少判断 ；
     - 配置类组件之间有依赖关系，方法会被调用得到之前单实例组件，用Full模式；
     - 配置类里面使用@Bean标注在方法上给容器注册组件，默认也是单实例的；
@@ -415,7 +410,6 @@ public @interface EnableAutoConfiguration {}
 ```
 
 1. @AutoConfigurationPackage
-
     - 自动配置包；
 
     - 指定了默认的包规则。
@@ -430,7 +424,6 @@ public @interface EnableAutoConfiguration {}
 2. @Import(AutoConfigurationImportSelector.class)
 
     > 文件里面写死了 spring-boot 一启动就要给容器中加载的所有配置类
-
     - 利用 getAutoConfigurationEntry(annotationMetadata); 给容器中批量导入一些组件；
 
     - 调用 `List<String> configurations = getCandidateConfigurations(annotationMetadata, attributes)` 获取到所有需要导入到容器中的配置类；
@@ -929,13 +922,11 @@ spring:
 1. `xxxMapping`
 
 2. Rest 风格支持（使用HTTP请求方式动词来表示对资源的操作）
-
     - 以前：`/getUser` 获取用户 `/deleteUser` 删除用户 `/editUser` 修改用户 `/saveUser` 保存用户；
 
     - 现在： `/user` GET-获取用户 DELETE-删除用户 PUT-修改用户 POST-保存用户；
 
     - 核心 `Filter`、`HiddenHttpMethodFilter` 用法：
-
         - 表单 `method=post`，隐藏域 `_method=put SpringBoot` 中手动开启；
 
         - SpringBoot 中手动开启。
@@ -1259,7 +1250,6 @@ public class HelloController {
 2. 返回值处理器调用 `handleReturnValue` 进行处理；
 
 3. `RequestResponseBodyMethodProcessor` 可以处理返回值标了 `@ResponseBody` 注解的。
-
     - 利用 `MessageConverters` 进行处理 将数据写为 `json`；
         - 内容协商（浏览器默认会以请求头的方式告诉服务器他能接受什么样的内容类型）；
         - 服务器最终根据自己自身的能力，决定服务器能生产出什么样内容类型的数据。
@@ -1291,7 +1281,6 @@ public class HelloController {
 #### HTTPMessageConverter 原理
 
 1. MessageConverter规范
-
     - `HttpMessageConverter`: 看是否支持将此 `Class` 类型的对象，转为 `MediaType` 类型的数据。
     - 例子：`Person` 对象转为 `JSON`。或者 `JSON` 转为 `Person`。
 
@@ -1325,12 +1314,10 @@ public class HelloController {
     ```
 
 2. 确定客户端接收什么样的内容类型；
-
     - `Parameter` 策略优先确定是要返回 `json` 数据（获取请求头中的 `format` 的值）；
     - 最终进行内容协商返回给客户端 `json` 即可。
 
 3. 内容协商原理
-
     - 判断当前响应头中是否已经有确定的媒体类型 `MediaType`；
 
     - 获取客户端（PostMan、浏览器）支持接收的内容类型。（获取客户端 `Accept` 请求头字段）【application/xml】 `contentNegotiationManager` 内容协商管理器 默认使用基于请求头的策略 `HeaderContentNegotiationStrategy` 确定客户端可以接收的内容类型；
@@ -1621,13 +1608,11 @@ public String upload(@RequestParam("email") String email,
 3. `@ResponseStatus + 自定义异常`：底层是 `ResponseStatusExceptionResolver` ，把 `responsestatus` 注解的信息底层调用 `response.sendError(statusCode, resolvedReason)`，`tomcat` 发送的 `/error`；
 
 4. `Spring` 底层的异常，如参数类型转换异常： `DefaultHandlerExceptionResolver` 处理框架底层的异常；
-
     - `response.sendError(HttpServletResponse.SC_BAD_REQUEST, ex.getMessage());`。
 
 5. 自定义实现 `HandlerExceptionResolver` 处理异常，可以作为默认的全局异常处理规则；
 
 6. `ErrorViewResolver` 实现自定义处理异常；
-
     - `response.sendError`，`error` 请求就会转给 `controller`；
     - 你的异常没有任何人能处理，`tomcat` 底层 `response.sendError`，`error` 请求就会转给 `controller`；
     - `basicErrorController` 要去的页面地址是 `ErrorViewResolver`。

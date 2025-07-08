@@ -132,7 +132,6 @@ self.addEventListener("push", (e) => {
 ## 五、性能优化指标
 
 1. **核心指标**
-
     - 首次有效绘制 (FCP) < 1.8s
     - 最大内容绘制 (LCP) < 2.5s
     - 累计布局偏移 (CLS) < 0.1
@@ -140,14 +139,19 @@ self.addEventListener("push", (e) => {
 
 2. **优化手段**
     - 预加载关键资源
+
     ```html
     <link rel="preload" href="critical.css" as="style" />
     ```
+
     - 代码分割
+
     ```javascript
     import('./module.js').then(module => {...});
     ```
+
     - 资源优化
+
     ```bash
     imagemin *.png --out-dir=optimized
     ```
@@ -155,7 +159,6 @@ self.addEventListener("push", (e) => {
 ## 六、调试工具链
 
 1. **Chrome DevTools**
-
     - Application面板：查看Service Workers、Cache Storage
     - Lighthouse审计：PWA评分检测
 
@@ -177,7 +180,6 @@ self.addEventListener("push", (e) => {
 ## 七、安全规范
 
 1. **强制要求**
-
     - 必须使用HTTPS（localhost除外）
     - 设置Content Security Policy
 
@@ -228,7 +230,6 @@ const registerNewWorker = () => {
 ## 十、未来演进方向
 
 1. **新标准**
-
     - Web Share API（文件共享）
     - Web Bluetooth（设备连接）
     - File System Access API
