@@ -11,8 +11,5 @@
 !.vscode/extensions.json
 !.vscode/launch.json
 
-pnpm-lock.yaml
-yarn.lock
-package-lock.json
 .idea/*
 !.idea/icon.png
