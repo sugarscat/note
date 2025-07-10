@@ -7,7 +7,8 @@ const GIT_URL = "https://github.com/sugarscat/note";
 
 // https://vitepress.dev/zh/reference/site-config
 export default withMermaid({
-  base: "/",
+  // 通过系统环境获取路径
+  base: process.env.BASE_URL || "/",
   lang: "zh-CN",
   title: "Note",
   description: "心灵记忆过往，镜头捕捉瞬间。",
@@ -95,7 +96,7 @@ export default withMermaid({
 
     // algolia搜索
     search: {
-      provider: "algolia",
+      provider: process.env.SEARCH_PROVIDER || "algolia",
       options: algolia,
     },
 

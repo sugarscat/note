@@ -3788,7 +3788,7 @@ print(train_df.tail())
 # 889 890 1 1 ... 30.00 C148 C
 # 890 891 0 3 ... 7.75 NaN Q
 # [5 rows x 12 columns]
-````
+```
 
 #### 了解数据的中心趋势和离散趋势
 
@@ -3851,7 +3851,7 @@ print(train_df.describe(include=['O']))
 # unique                      891     2     681      147        3
 # top     Braund, Mr. Owen Harris  male  347082  B96 B98        S
 # freq                          1   577       7        4      644
-````
+```
 
 #### 特征间相关性的热图
 
@@ -4064,7 +4064,7 @@ g = sns.FacetGrid(train_df, col='Survived')
 g.map(plt.hist, 'Fare', bins=30)
 plt.show()
 
-````
+```
 
 ![image-20240506151104990](assets/image-20240506151104990.png)
 
@@ -4088,7 +4088,7 @@ grid = sns.FacetGrid(train_df, col='Survived', row='Pclass',  aspect=1.6) # size
 grid.map(plt.hist, 'Age', alpha=.5, bins=20)
 grid.add_legend()
 plt.show()
-````
+```
 
 ![image-20240506151502546](assets/image-20240506151502546.png)
 
