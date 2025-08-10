@@ -275,18 +275,11 @@ html {
     z-index: 9999 !important;
 }
 
-// 进度条
-.nprogress {
-    .bar {
-        background: var(--vp-c-brand-1);
-    }
-    .peg {
-        box-shadow:
-            0 0 10px var(--vp-c-brand-1),
-            0 0 5px var(--vp-c-brand-1);
-    }
-    .spinner-icon {
-        border-top-color: var(--vp-c-brand-1);
-        border-left-color: var(--vp-c-brand-1);
-    }
+/**
+ * Component: Progress Bar
+ * -------------------------------------------------------------------------- */
+.bprogress {
+    --bprogress-color: var(--vp-c-brand-1);
+    --bprogress-box-shadow: none;
+    position: fixed !important;
 }
