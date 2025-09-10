@@ -696,12 +696,6 @@ void quickSort(int arr[], int low, int high) {
 ```
 
 ```cpp [C++]
-void swap(int* a, int* b) {
-    int t = *a;
-    *a = *b;
-    *b = t;
-}
-
 int partition(vector<int>& arr, int low, int high) {
     int pivot = arr[high];
     int i = low - 1;
