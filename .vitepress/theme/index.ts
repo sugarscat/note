@@ -1,13 +1,12 @@
-import { BProgress } from "@bprogress/core"; // 进度条组件
 import mediumZoom from "medium-zoom";
 import "virtual:group-icons.css";
 import { EnhanceAppContext, inBrowser, useRoute } from "vitepress";
 import vitepressBackToTop from "vitepress-plugin-back-to-top";
 import "vitepress-plugin-back-to-top/dist/style.css";
 import DefaultTheme from "vitepress/theme";
-import { h, nextTick, onMounted, watch } from "vue";
+import { nextTick, onMounted, watch } from "vue";
 import "./bprogress.css";
-import Layout from "./components/Layout.vue";
+import { BProgress } from "./bprogress.js"; // 进度条组件
 import "./style.scss";
 
 export default {
@@ -26,9 +25,6 @@ export default {
       () => route.path,
       () => nextTick(() => initZoom())
     );
-  },
-  Layout: () => {
-    return h(Layout);
   },
   enhanceApp({ router }: EnhanceAppContext) {
     // 设置全局返回顶部按钮

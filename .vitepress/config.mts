@@ -12,7 +12,7 @@ export default withMermaid({
   lang: "zh-CN",
   title: "Note",
   description: "心灵记忆过往，镜头捕捉瞬间。",
-  head: [["link", { rel: "icon", href: "/favicon.ico" }]],
+  head: [["link", { rel: "icon", href: "./favicon.ico" }]],
 
   vite: {
     // Vite 配置选项
