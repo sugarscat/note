@@ -23,7 +23,6 @@
     "prettier-plugin-organize-imports": "^4.3.0",
     "sass": "^1.93.2",
     "vitepress": "1.6.3",
-    "vitepress-plugin-back-to-top": "^1.0.1",
     "vitepress-plugin-mermaid": "^2.0.17"
   }
 }

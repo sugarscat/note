@@ -1,13 +1,13 @@
 import mediumZoom from "medium-zoom";
 import "virtual:group-icons.css";
 import { EnhanceAppContext, inBrowser, useRoute } from "vitepress";
-import vitepressBackToTop from "vitepress-plugin-back-to-top";
-import "vitepress-plugin-back-to-top/dist/style.css";
 import DefaultTheme from "vitepress/theme";
-import { nextTick, onMounted, watch } from "vue";
+import { h, nextTick, onMounted, watch } from "vue";
 import "./bprogress.css";
 import { BProgress } from "./bprogress.js"; // 进度条组件
 import "./style.scss";
+// @ts-ignore: 允许在没有 .vue 类型声明时导入 .vue 文件
+import BackToTop from "./components/backtotop.vue";
 
 export default {
   extends: DefaultTheme,
@@ -26,11 +26,13 @@ export default {
       () => nextTick(() => initZoom())
     );
   },
-  enhanceApp({ router }: EnhanceAppContext) {
-    // 设置全局返回顶部按钮
-    vitepressBackToTop({
-      threshold: 300,
+  Layout() {
+    return h(DefaultTheme.Layout, null, {
+      // 指定组件使用doc-footer-before插槽
+      "doc-footer-before": () => h(BackToTop),
     });
+  },
+  enhanceApp({ router }: EnhanceAppContext) {
     // 进度条组件
     if (inBrowser) {
       BProgress.configure({ showSpinner: false });
