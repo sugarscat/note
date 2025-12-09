@@ -1,13 +1,13 @@
+// https://vitepress.dev/guide/custom-theme
 import mediumZoom from "medium-zoom";
-import "virtual:group-icons.css";
-import { EnhanceAppContext, inBrowser, useRoute } from "vitepress";
+import { EnhanceAppContext, inBrowser, Theme, useRoute } from "vitepress";
 import DefaultTheme from "vitepress/theme";
 import { h, nextTick, onMounted, watch } from "vue";
-import "./bprogress.css";
-import { BProgress } from "./bprogress.js"; // 进度条组件
-import "./style.scss";
+import { BProgress } from "./bprogress"; // 进度条组件
+import "./bprogress.css"; // 进度条样式
 // @ts-ignore: 允许在没有 .vue 类型声明时导入 .vue 文件
 import BackToTop from "./components/backtotop.vue";
+import "./style.css";
 
 export default {
   extends: DefaultTheme,
@@ -32,7 +32,7 @@ export default {
       "doc-footer-before": () => h(BackToTop),
     });
   },
-  enhanceApp({ router }: EnhanceAppContext) {
+  enhanceApp({ app, router, siteData }: EnhanceAppContext) {
     // 进度条组件
     if (inBrowser) {
       BProgress.configure({ showSpinner: false });
@@ -44,4 +44,4 @@ export default {
       };
     }
   },
-};
+} satisfies Theme;

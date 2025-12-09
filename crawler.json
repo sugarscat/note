@@ -1,6 +1,4 @@
 {
-  "index_name": "note",
-  "start_urls": ["https://ntpad.vercel.app/"],
   "rateLimit": 8,
   "maxDepth": 10,
   "selectors": {

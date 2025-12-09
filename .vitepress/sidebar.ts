@@ -1,6 +1,6 @@
 export default [
   {
-    text: "🌐 语言学习",
+    text: "语言学习",
     collapsed: true,
     items: [
       { text: "英语", link: "/language/english.md" },
@@ -8,7 +8,7 @@ export default [
     ],
   },
   {
-    text: "🧠 计算机基础",
+    text: "计算机基础",
     collapsed: true,
     items: [
       { text: "C 笔记", link: "/program/c.md" },
@@ -18,7 +18,7 @@ export default [
     ],
   },
   {
-    text: "💻 编程语言与技术",
+    text: "编程语言与技术",
     collapsed: true,
     items: [
       { text: "C++ 笔记", link: "/program/c++.md" },
@@ -28,7 +28,7 @@ export default [
     ],
   },
   {
-    text: "📈 算法与机器学习",
+    text: "算法与机器学习",
     collapsed: true,
     items: [
       { text: "十大经典排序算法笔记", link: "/program/sorting-algorithms.md" },
@@ -57,7 +57,7 @@ export default [
     ],
   },
   {
-    text: "🧩 后端开发",
+    text: "后端开发",
     collapsed: true,
     items: [
       {
@@ -82,7 +82,7 @@ export default [
     ],
   },
   {
-    text: "🎨 前端开发",
+    text: "前端开发",
     collapsed: true,
     items: [
       { text: "语言代码表", link: "/frontend/language-code.md" },
@@ -103,7 +103,7 @@ export default [
     ],
   },
   {
-    text: "📦 数据库",
+    text: "数据库",
     collapsed: true,
     items: [
       { text: "MySQL", link: "/sql/mysql.md" },
@@ -113,7 +113,7 @@ export default [
     ],
   },
   {
-    text: "🚀 部署与运维",
+    text: "部署与运维",
     collapsed: true,
     items: [
       { text: "Linux", link: "/server/linux.md" },
@@ -123,7 +123,7 @@ export default [
     ],
   },
   {
-    text: "🧰 软件与开发工具",
+    text: "软件与开发工具",
     collapsed: true,
     items: [
       { text: "Office 文档", link: "/software/office.md" },
@@ -135,7 +135,7 @@ export default [
     ],
   },
   {
-    text: "🖥️ 硬件与外设",
+    text: "硬件与外设",
     collapsed: true,
     items: [
       { text: "腹灵F12 68键 RGB", link: "/peripheral/fuling-f12.md" },
@@ -144,7 +144,7 @@ export default [
     ],
   },
   {
-    text: "🧵 设计与创作",
+    text: "设计与创作",
     collapsed: true,
     items: [
       { text: "Blender 建模", link: "/design/blender.md" },
@@ -153,12 +153,12 @@ export default [
     ],
   },
   {
-    text: "🎁 兴趣与收藏",
+    text: "兴趣与收藏",
     collapsed: true,
     items: [{ text: "手办", link: "/pastimes/handmade.md" }],
   },
   {
-    text: "🔃 版本控制",
+    text: "版本控制",
     collapsed: true,
     items: [{ text: "Git", link: "/version_control/git.md" }],
   },
