@@ -3,23 +3,13 @@ name: Deploy VitePress site to Pages
 
 env:
   # 通过设置 BASE_URL 来覆盖默认值
-  BASE_URL: "/path/"  # 默认为 "/"
-
-  # 若果使用 Algolia，请在 secrets 配置
-  # APPLICATION_ID、SEARCH_API_KEY、WRITE_API_KEY、INDEX_NAME 和 START_URLS
-  # 然后取消下面注释
-  # SEARCH_PROVIDER: "algolia"  # 默认为 "local"
-  APPLICATION_ID: ${{ secrets.APPLICATION_ID }}
-  SEARCH_API_KEY: ${{ secrets.SEARCH_API_KEY }}
-  INDEX_NAME: ${{ secrets.INDEX_NAME }}
-  START_URLS: ${{ secrets.START_URLS }} # 用于爬取的页面，示例 ["https://example.com/", "..."]
+  BASE_URL: "/note/" # 默认为 "/"
 
 on:
   # 在针对 `main` 分支的推送上运行。如果你
   # 使用 `master` 分支作为默认分支，请将其更改为 `master`
   push:
-    # 默认不启用，需要时手动取消注释下面的行
-    # branches: [main]
+    branches: [main]
 
   # 允许你从 Actions 选项卡手动运行此工作流程
   workflow_dispatch:
@@ -77,28 +67,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-
-  # Algolia 搜索索引更新工作（默认不启用）
-  algolia:
-    runs-on: ubuntu-latest
-    needs: deploy
-    # 默认不启用，需要时删除下面的条件或将其设为 true
-    if: true
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Get the content of algolia.json as config
-        id: algolia_config
-        run: |
-          # 读取原始 crawler.json 内容
-          config=$(cat crawler.json | jq -r tostring)
-          # 添加 index_name 和 start_urls
-          config=$(echo $config | jq --arg index_name "${{ env.INDEX_NAME }}" --argjson start_urls "${{ env.START_URLS }}" '. + {index_name: $index_name, start_urls: $start_urls}')
-          echo "config=$config" >> $GITHUB_OUTPUT
-
-      - name: Push indices to Algolia
-        uses: signcl/docsearch-scraper-action@master
-        env:
-          APPLICATION_ID: ${{ secrets.APPLICATION_ID }}
-          API_KEY: ${{ secrets.ADMIN_API_KEY }}
-          CONFIG: ${{ steps.algolia_config.outputs.config }}

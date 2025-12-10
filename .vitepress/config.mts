@@ -32,18 +32,7 @@ export default defineConfig({
 
     sidebar: sidebar,
 
-    search:
-      process.env.SEARCH_PROVIDER === "algolia"
-        ? {
-            provider: "algolia",
-            options: {
-              appId: process.env.APPLICATION_ID || "",
-              apiKey: process.env.SEARCH_API_KEY || "",
-              indexName: process.env.INDEX_NAME || "",
-              ...searchOptions(),
-            },
-          }
-        : { provider: "local", options: searchOptions() },
+    search: { provider: "local", options: searchOptions() },
 
     socialLinks: [{ icon: "github", link: GITHUB_URL }],
 
