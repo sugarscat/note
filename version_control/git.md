@@ -1,229 +1,347 @@
-# Git 使用指南
+# Git 笔记
 
-## 提交规范
+## 一、Git 是什么？
 
-### 提交类型说明
+- **分布式版本控制系统**（DVCS）：每个开发者本地都拥有完整的代码历史。
+- 由 Linus Torvalds 于 2005 年为管理 Linux 内核开发而创建。
+- 核心优势：高效、安全、支持非线性开发（分支/合并）、离线工作。
 
-| 类型       | 适用场景                                         |
-| ---------- | ------------------------------------------------ |
-| `feat`     | 新增功能模块或组件                               |
-| `fix`      | 修复系统缺陷或错误                               |
-| `docs`     | 文档更新（README、CHANGELOG等）                  |
-| `style`    | 代码格式调整（缩进/空格/分号等不影响逻辑的修改） |
-| `build`    | 构建系统或外部依赖调整（webpack/gulp/npm等）     |
-| `refactor` | 代码重构（不改变功能的代码结构调整）             |
-| `revert`   | 版本回退操作                                     |
+## 二、安装与配置
 
-### 暂不使用类型
+### 1. 安装
 
-| 类型    | 适用场景               |
-| ------- | ---------------------- |
-| `test`  | 测试用例相关修改       |
-| `perf`  | 性能优化调整           |
-| `ci`    | 持续集成配置变更       |
-| `chore` | 辅助工具或构建流程调整 |
+- **Windows**: [Git for Windows](https://git-scm.com/)
+- **macOS**: `brew install git` 或 Xcode Command Line Tools
+- **Linux**: `sudo apt install git`（Debian/Ubuntu）或 `sudo yum install git`（CentOS）
 
-## 仓库管理
+### 2. 初始配置（全局）
 
-### 初始化操作
+```bash
+git config --global user.name "Your Name"
+git config --global user.email "your.email@example.com"
 
-```shell
-# 本地仓库初始化
-git init [目录路径]
+# 设置默认编辑器（可选）
+git configure --global core.editor "code --wait"  # VS Code
 
-# 创建裸仓库（无工作目录）
-git init --bare
+# 设置默认分支名（推荐设为 main 或 master）
+git config --global init.defaultBranch main
 
-# 指定模板目录
-git init --template=/path/to/template
+# 查看所有配置
+git config --list
 ```
 
-### 克隆仓库
-
-```shell
-# 基础克隆
-git clone https://github.com/user/repo.git
-
-# 克隆指定分支（深度克隆）
-git clone -b main --depth 1 https://github.com/user/repo.git
-
-# 克隆子模块
-git clone --recursive https://github.com/user/repo.git
-```
-
-## 远程管理
-
-### 远程操作命令集
-
-```shell
-# 查看远程仓库详情
-git remote -v
-
-# 添加新远程源
-git remote add upstream https://github.com/original/repo.git
-
-# 修改远程地址
-git remote set-url origin https://new.url/repo.git
-
-# 清理无效远程分支
-git remote prune origin
-```
-
-## 工作流管理
-
-### 状态监控
-
-```shell
-# 精简状态显示
-git status -sb
-
-# 显示忽略文件状态
-git status --ignored
-
-# 机器可读格式
-git status --porcelain
-```
-
-### 暂存操作
-
-```shell
-# 交互式暂存
-git add -p
-
-# 批量添加变更
-git add -A
-
-# 排除新增文件
-git add -u
-```
-
-## 提交配置
-
-### 用户身份设置
-
-```shell
-# 全局配置（推荐首次使用设置）
-git config --global user.name "开发者名称"
-git config --global user.email "合规邮箱@domain.com"
-
-# 项目级配置（覆盖全局）
-git config user.name "项目专用名称"
-```
-
-## 版本控制
-
-### 提交策略
-
-```shell
-# 快速提交
-git commit -m "fix: 修复登录页样式问题"
-
-# 追加提交（合并到上次提交）
-git commit --amend --no-edit
-
-# 跳过验证提交
-git commit --no-verify -m "紧急修复"
-```
-
-### 分支管理
-
-```shell
-# 创建特性分支
-git checkout -b feature/user-auth
-
-# 删除已合并分支
-git branch -d legacy-feature
-
-# 分支重命名
-git branch -m old-branch new-branch
-```
-
-## 远程协作
-
-### 同步操作
-
-```shell
-# 安全拉取（仅快进合并）
-git pull --ff-only
-
-# 变基式拉取
-git pull --rebase
-
-# 强制推送（谨慎使用）
-git push -f origin main
-```
-
-### 高级抓取
-
-```shell
-# 全量更新
-git fetch --all
-
-# 清理无效引用
-git fetch --prune
-
-# 指定深度抓取
-git fetch --depth=5
-```
-
-## 历史操作
-
-### 版本回退
-
-> [!CAUTION]
+> 配置文件位置：
 >
-> 执行强制推送前必须：
->
-> 1. 确保本地仓库为最新版本
-> 2. 通知所有协作者
-> 3. 确认没有未备份的重要修改
-> 4. 优先考虑使用`revert`代替`reset`
+> - 全局：`~/.gitconfig`
+> - 项目级：`.git/config`
 
-#### 回滚
+## 三、基本概念
 
-1. `git log`：首先使用该命令查看所有提交历史，找到需要回退到的特定版本的提交哈希值（commit hash）。
+| 概念                               | 说明                       |
+| ---------------------------------- | -------------------------- |
+| **工作区（Working Directory）**    | 你当前编辑的文件目录       |
+| **暂存区（Staging Area / Index）** | 临时保存即将提交的更改     |
+| **本地仓库（Local Repository）**   | `.git` 目录，包含完整历史  |
+| **远程仓库（Remote Repository）**  | 如 GitHub、GitLab 上的仓库 |
+| **HEAD**                           | 当前所在分支的最新提交指针 |
 
-2. `git reset –-hard [哈希值]`：使用上一步找到的提交哈希值替换 `[哈希值]`，执行该命令将 `HEAD` 指向指定版本，并且清除暂存区和工作目录的改动。
+## 四、基础操作流程（日常开发）
 
-3. `git push -f origin [分支] `：如果你正在使用远程仓库，并且需要将回退的更改强制推送到远程仓库，请使用该命令。将 `[分支]` 替换为你的分支名称。
+### 1. 初始化仓库
 
-> [!CAUTION]
->
-> 回归版本将会删除所有较新的提交历史，需要谨慎操作，确保备份了重要数据。如果你不确定自己的操作，请先进行代码备份。
-
-#### 删除某个提交信息
-
-1. 首先，使用 `git log` 命令找到要删除的提交的哈希值。
-2. 然后，使用 `git rebase -i` 命令进入交互式 rebase 界面。
-3. 在交互式 rebase 界面中，找到要删除的提交所在的行，`:i` 进入编辑模式，将其前面的命令从 pick 改为 drop。
-4. 按 `Ctrl + c` 退出编辑模式，使用 `:wq` 保存并退出交互式 rebase 界面。
-5. 执行 `git push --force` 命令将更改强制推送到远程仓库。
-
-> [!CAUTION]
->
-> 使用 `git rebase` 命令修改历史记录会改变提交的哈希值，这可能会对其他人的代码产生影响。 因此，在对公共分支进行重写操作之前，需要与团队成员讨论和协商。
-
-### 提交修正
-
-```mermaid
-graph LR
-    A[发现错误提交] --> B{是否已推送?}
-    B -->|否| C[git commit --amend]
-    B -->|是| D[git revert]
-    C --> E[正常推送]
-    D --> E
+```bash
+git init                    # 初始化新仓库
+git init -b main            # 指定初始分支名（Git 2.28+）
 ```
 
-## 最佳实践建议
+### 2. 克隆远程仓库
 
-1. **分支策略**：采用Git Flow工作流，保持`main`分支稳定
-2. **提交粒度**：每个提交应聚焦单一功能/修复
-3. **消息规范**：使用`类型: 描述`格式，如`feat: 新增支付网关集成`
-4. **定期同步**：每日至少执行一次`git pull --rebase`
-5. **备份机制**：重要修改前创建临时分支备份
+```bash
+git clone <url>             # 克隆整个仓库
+git clone -b <branch> <url> # 克隆指定分支
+```
 
----
+### 3. 查看状态
 
-> [!TIP]
+```bash
+git status                  # 查看工作区和暂存区状态
+git status -s               # 简洁模式
+```
+
+### 4. 添加文件到暂存区
+
+```bash
+git add <file>              # 添加单个文件
+git add .                   # 添加所有修改（不包括删除）
+git add -A                  # 添加所有变更（包括新增、修改、删除）
+git add -u                  # 仅添加已跟踪文件的修改/删除
+```
+
+### 5. 提交更改
+
+```bash
+git commit -m "描述信息"
+git commit                  # 打开编辑器写多行提交信息
+```
+
+> ✅ 提交信息规范建议：
 >
-> 使用`git reflog`可查看本地操作记录，用于恢复误操作。定期执行`git gc`可优化仓库性能。
+> ```
+> feat: 新功能
+> fix: 修复 bug
+> docs: 文档更新
+> style: 代码格式调整
+> refactor: 重构（无功能变化）
+> test: 测试相关
+> chore: 构建/依赖等杂项
+> ```
+
+### 6. 查看历史
+
+```bash
+git log                     # 完整日志
+git log --oneline           # 一行显示
+git log --graph --all       # 图形化分支历史
+git log -p -2               # 显示最近2次提交的差异
+```
+
+### 7. 差异对比
+
+```bash
+git diff                    # 工作区 vs 暂存区
+git diff --staged           # 暂存区 vs 最近一次提交
+git diff HEAD               # 工作区 vs 最近一次提交
+git diff branch1..branch2   # 两个分支差异
+```
+
+## 五、分支管理（核心功能）
+
+### 1. 创建与切换
+
+```bash
+git branch                  # 列出本地分支
+git branch <name>           # 创建分支
+git checkout <branch>       # 切换分支（旧）
+git switch <branch>         # 切换分支（新，Git 2.23+）
+git switch -c <new-branch>  # 创建并切换
+```
+
+### 2. 合并分支
+
+```bash
+git merge <branch>          # 将 <branch> 合并到当前分支
+```
+
+- **Fast-forward 合并**：无冲突，直接移动指针。
+- **三方合并（Three-way merge）**：产生新合并提交。
+
+### 3. 删除分支
+
+```bash
+git branch -d <branch>      # 安全删除（已合并）
+git branch -D <branch>      # 强制删除
+```
+
+### 4. 重命名分支
+
+```bash
+git branch -m <old> <new>
+```
+
+## 六、远程仓库操作
+
+### 1. 查看远程
+
+```bash
+git remote -v               # 显示远程仓库地址
+git remote show origin      # 详细信息
+```
+
+### 2. 推送
+
+```bash
+git push origin main        # 推送本地 main 到远程 origin/main
+git push -u origin main     # 首次推送并设置上游跟踪
+```
+
+### 3. 拉取
+
+```bash
+git fetch                   # 获取远程更新（不合并）
+git pull                    # fetch + merge（等价于 git fetch && git merge）
+git pull --rebase           # fetch + rebase（推荐，保持线性历史）
+```
+
+> ⚠️ `pull` 可能导致不必要的合并提交，建议用 `fetch + rebase`。
+
+### 4. 远程分支管理
+
+```bash
+git push origin --delete <branch>   # 删除远程分支
+git branch -r                       # 查看远程分支
+git checkout -t origin/dev          # 跟踪远程分支并创建本地分支
+```
+
+## 七、撤销与回退
+
+| 场景                       | 命令                                                     |
+| -------------------------- | -------------------------------------------------------- |
+| 撤销工作区修改             | `git checkout -- <file>` 或 `git restore <file>`         |
+| 取消暂存                   | `git reset HEAD <file>` 或 `git restore --staged <file>` |
+| 修改上一次提交             | `git commit --amend`                                     |
+| 回退到某次提交（保留历史） | `git revert <commit>`                                    |
+| 回退到某次提交（丢弃历史） | `git reset --hard <commit>`                              |
+| 重置暂存区但保留工作区     | `git reset --mixed <commit>`（默认）                     |
+
+> 🔒 `--hard` 会**永久丢失未提交的更改**，慎用！
+
+
+
+## 八、标签（Tag）
+
+用于标记发布版本（如 v1.0.0）。
+
+```bash
+git tag v1.0.0                      # 轻量标签
+git tag -a v1.0.0 -m "Release 1.0"  # 附注标签（推荐）
+git show v1.0.0                     # 查看标签信息
+git push origin v1.0.0              # 推送单个标签
+git push origin --tags              # 推送所有标签
+```
+
+## 九、高级技巧
+
+### 1. Stash（临时存储）
+
+```bash
+git stash               # 保存当前修改（清空工作区）
+git stash list          # 查看 stash 列表
+git stash apply         # 应用最近的 stash（保留记录）
+git stash pop           # 应用并删除
+git stash drop          # 删除 stash
+```
+
+### 2. Rebase（变基）
+
+将一系列提交“移动”到另一个基底上，使历史更线性。
+
+```bash
+git rebase main         # 将当前分支 rebase 到 main
+git rebase -i HEAD~3    # 交互式 rebase（合并/编辑/删除提交）
+```
+
+> ⚠️ 不要对已推送的公共分支使用 rebase！
+
+### 3. Cherry-pick（摘取提交）
+
+```bash
+git cherry-pick <commit>    # 将某个提交应用到当前分支
+```
+
+### 4. Reflog（引用日志）
+
+找回“丢失”的提交（即使被 reset）：
+
+```bash
+git reflog
+git reset --hard HEAD@{2}   # 回到 reflog 中的某个状态
+```
+
+## 十、常用工作流
+
+### 1. Centralized Workflow（集中式）
+
+- 类似 SVN，所有人向同一个 `main` 分支提交。
+- 适合小型团队。
+
+### 2. Feature Branch Workflow（特性分支）
+
+- 每个功能在独立分支开发，完成后 PR/MR 合并。
+- GitHub/GitLab 默认推荐。
+
+### 3. Git Flow（经典模型）
+
+- `main`：生产环境
+- `develop`：集成分支
+- `feature/*`、`release/*`、`hotfix/*`：各类分支
+- 适合严格发布周期的项目。
+
+### 4. Forking Workflow（开源协作）
+
+- 每人 fork 主仓库，向 upstream 提 PR。
+- GitHub 开源项目标准流程。
+
+## 十一、.gitignore 文件
+
+忽略不需要追踪的文件（如日志、编译产物、IDE 配置）。
+
+示例 `.gitignore`：
+
+```text
+# 忽略所有 .log 文件
+*.log
+
+# 忽略 node_modules
+node_modules/
+
+# 忽略特定文件
+.env
+.DS_Store
+
+# 但不忽略 src/.env
+!src/.env
+```
+
+> 在线生成：[https://www.gitignore.io](https://www.gitignore.io)
+
+## 十二、常见问题解决
+
+### ❌ “fatal: refusing to merge unrelated histories”
+
+```bash
+git pull origin main --allow-unrelated-histories
+```
+
+### ❌ 提交了敏感信息（如密码）
+
+1. 使用 `git filter-repo`（推荐）或 `BFG Repo-Cleaner` 彻底清除历史。
+2. **不要只用 `reset`**，因为历史仍存在。
+
+### ❌ 分支冲突
+
+- 手动编辑冲突文件（`<<<<<<<`, `=======`, `>>>>>>>` 标记）
+- `git add` 解决后继续合并/rebase
+
+### ❌ 误删分支
+
+```bash
+git reflog                # 找到分支最后的 commit hash
+git checkout -b recovery-branch <hash>
+```
+
+## 十三、最佳实践
+
+✅ **提交原子性**：每次提交只做一件事  
+✅ **写清晰的提交信息**：说明“为什么”而不是“做了什么”  
+✅ **小步频繁提交**：避免大爆炸式提交  
+✅ **不要提交二进制/敏感文件**  
+✅ **使用 `.gitignore`**  
+✅ **PR 前先 rebase 保持历史整洁**  
+✅ **保护主干分支**（GitHub/GitLab 设置 branch protection）
+
+## 十四、GUI 工具推荐
+
+- **命令行**：`tig`（终端 UI）
+- **桌面端**：
+    - GitHub Desktop（简单易用）
+    - Sourcetree（功能全面）
+    - GitKraken（美观强大）
+    - VS Code 内置 Git 支持
+
+## 十五、学习资源
+
+- 官方文档：[https://git-scm.com/doc](https://git-scm.com/doc)
+- 互动教程：[Learn Git Branching](https://learngitbranching.js.org/)
+- 书籍：《Pro Git》（免费在线版）
+
+> 💡 **记住**：Git 的核心是 **快照（snapshot）**，不是“差异”。每次提交都是整个项目的一个快照。
