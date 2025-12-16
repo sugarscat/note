@@ -12,7 +12,6 @@ export default [
     collapsed: true,
     items: [
       { text: "C 笔记", link: "/program/c.md" },
-      { text: "数据结构", link: "/program/408/data-structure.md" },
       { text: "ASCII 码对照表", link: "/program/ascii.md" },
       { text: "摩斯码", link: "/program/morse-code.md" },
     ],
@@ -22,6 +21,7 @@ export default [
     collapsed: true,
     items: [
       { text: "C++ 笔记", link: "/program/c++.md" },
+      { text: "Java 笔记", link: "/program/java.md" },
       { text: "C# 笔记", link: "/program/csharp.md" },
       { text: "Go 笔记", link: "/program/go.md" },
       { text: "正则表达式", link: "/program/regular-expression.md" },
