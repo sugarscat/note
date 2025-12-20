@@ -21,6 +21,7 @@ export default [
     collapsed: true,
     items: [
       { text: "C++ 笔记", link: "/program/c++.md" },
+      { text: "Python 笔记", link: "/program/python.md" },
       { text: "Java 笔记", link: "/program/java.md" },
       { text: "C# 笔记", link: "/program/csharp.md" },
       { text: "Go 笔记", link: "/program/go.md" },

@@ -1,4 +1,4 @@
-import { defineConfig } from "vitepress";
+import { DefaultTheme, defineConfig } from "vitepress";
 import sidebar from "./sidebar";
 
 const GITHUB_URL = "https://github.com/sugarscat/note";
