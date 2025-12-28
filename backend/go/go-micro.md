@@ -1,6 +1,6 @@
 # Go Micro
 
-> [!TIP]
+> [!NOTE]
 >
 > - [Go Micro 官方文档](https://go-micro.dev/)
 > - [Go Micro GitHub 仓库](https://github.com/asim/go-micro)

@@ -1,6 +1,6 @@
 # Gin 框架
 
-> [!TIP]
+> [!NOTE]
 >
 > - [Gin 官方中文文档](https://gin-gonic.com/zh-cn/docs/)
 > - [Gin GitHub 仓库](https://github.com/gin-gonic/gin)

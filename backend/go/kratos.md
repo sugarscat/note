@@ -1,6 +1,6 @@
 # Kratos 框架
 
-> [!TIP]
+> [!NOTE]
 >
 > - [Kratos 官方文档](https://go-kratos.dev/)
 > - [Kratos GitHub 仓库](https://github.com/go-kratos/kratos)

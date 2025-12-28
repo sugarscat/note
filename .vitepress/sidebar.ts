@@ -121,6 +121,8 @@ export default [
       { text: "Nginx", link: "/server/nginx.md" },
       { text: "Docker", link: "/server/docker.md" },
       { text: "ACME 申请证书", link: "/server/acme.md" },
+      { text: "GitHub Actions", link: "/server/github-actions.md" },
+      { text: "GitLab CI/CD", link: "/server/gitLab-cicd.md" },
     ],
   },
   {

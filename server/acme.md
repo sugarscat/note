@@ -6,7 +6,7 @@
 curl  https://get.acme.sh | sh
 ```
 
-> [!TIP]
+> [!NOTE]
 >
 > **安装程序会自动做以下操作**
 >
