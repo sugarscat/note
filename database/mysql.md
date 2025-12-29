@@ -28,8 +28,6 @@
 
 4. AS 后是”别名“
 
----
-
 ## 一、 增删改查
 
 > 增删改查，又称为 CRUD，数据库基本操作中的基本操作。
@@ -121,8 +119,6 @@
     --查询前百分之五
     SELECT Top 5 percent  * from 表名;
     ```
-
----
 
 ## 二、 子查询（嵌套）
 
@@ -222,8 +218,6 @@ WHERE 字段 = 值));
     WHERE 字段 LIKE '_值';
     ```
 
----
-
 ## 四、 连接和组合
 
 ### 1. 连接（JOIN）
@@ -307,8 +301,6 @@ WHERE 字段 = 值));
 - JOIN 中连接表的列可能不同，但在 UNION 中，所有查询的列数和列顺序必须相同。
 - UNION 将查询之后的行放在一起（垂直放置），但 JOIN 将查询之后的列放在一起（水平放置），即它构成一个笛卡尔积。
 
----
-
 ## 五、函数(适合MySql)
 
 ### 1. 文本处理
@@ -391,8 +383,6 @@ SELECT NOW(); -- 显示当前时间
 SELECT AVG(DISTINCT 字段) AS 别名 FROM 表名;
 ```
 
----
-
 ## 六、 排序和分组
 
 ### 1. ORDER BY
@@ -444,8 +434,6 @@ SELECT AVG(DISTINCT 字段) AS 别名 FROM 表名;
     SELECT 字段, COUNT(*) AS 别名 FROM 表名
     WHERE 字段 IS NOT NULL GROUP BY 字段 HAVING COUNT(*) >= 1;
     ```
-
----
 
 ## 七、 数据定义
 
@@ -605,8 +593,6 @@ SELECT AVG(DISTINCT 字段) AS 别名 FROM 表名;
     ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COMMENT='用户表';
     ```
 
----
-
 ## 八、 事务处理
 
 - 不能回退 SELECT 语句，回退 SELECT 语句也没意义；也不能回退 CREATE 和 DROP 语句。
@@ -639,8 +625,6 @@ ROLLBACK TO updateA;
 -- 提交事务，只有操作 A 生效
 COMMIT;
 ```
-
----
 
 ## 九、 权限控制
 
@@ -710,8 +694,6 @@ SET PASSWORD FOR myuser = 'mypass';
 ```sql
 flush privileges；
 ```
-
----
 
 ## 十、 存储过程
 
@@ -798,8 +780,6 @@ DELIMITER ;
 -- 调用存储过程
 call getTotal();
 ```
-
----
 
 ## 十二、 触发器
 

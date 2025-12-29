@@ -38,8 +38,6 @@ docker --help
 docker [command] --help
 ```
 
----
-
 ## 镜像管理
 
 ### 镜像操作
@@ -88,8 +86,6 @@ docker build --progress=plain .
 # 不使用缓存构建
 docker build --no-cache -t myapp:clean .
 ```
-
----
 
 ## 容器生命周期
 
@@ -145,8 +141,6 @@ docker run -it --rm ubuntu bash
 docker logs -f web
 ```
 
----
-
 ## 存储与网络
 
 ### 数据管理
@@ -189,8 +183,6 @@ docker network ls
 docker run --network=mynet redis
 ```
 
----
-
 ## 私有仓库
 
 ### 本地仓库部署
@@ -216,8 +208,6 @@ docker push localhost:5000/myimage
 # 从仓库拉取
 docker pull localhost:5000/myimage
 ```
-
----
 
 ## 实用技巧
 

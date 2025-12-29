@@ -107,10 +107,11 @@ export default [
     text: "数据库",
     collapsed: true,
     items: [
-      { text: "MySQL", link: "/sql/mysql.md" },
-      { text: "Redis", link: "/sql/redis.md" },
-      { text: "MongoDB", link: "/sql/mongodb.md" },
-      { text: "Neo4j", link: "/sql/neo4j.md" },
+      { text: "MySQL", link: "/database/mysql.md" },
+      { text: "PostgreSQL", link: "/database/postgresql.md" },
+      { text: "Redis", link: "/database/redis.md" },
+      { text: "MongoDB", link: "/database/mongodb.md" },
+      { text: "Neo4j", link: "/database/neo4j.md" },
     ],
   },
   {
