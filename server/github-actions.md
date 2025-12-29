@@ -51,16 +51,16 @@ GitHub Actions 是 GitHub 提供的持续集成与持续部署（CI/CD）服务�
 
     ```yaml
     name: Hello World CI
-    
+
     on: [push]
-    
+
     jobs:
         build:
             runs-on: ubuntu-latest
             steps:
                 - name: Checkout code
                   uses: actions/checkout@v4
-    
+
                 - name: Say hello
                   run: echo "Hello, GitHub Actions!"
     ```

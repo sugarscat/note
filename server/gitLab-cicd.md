@@ -48,7 +48,7 @@ Job 生成的文件（如编译结果、日志、报告），可传递给后续 
     ```yaml
     stages:
         - test
-    
+
     hello_world:
         stage: test
         script:

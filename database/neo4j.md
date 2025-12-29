@@ -110,7 +110,7 @@ docker run \
   neo4j:5
 ```
 
-访问 http://localhost:7474，用户名 `neo4j`，密码 `password`
+访问 `http://localhost:7474`，用户名 `neo4j`，密码 `password`
 
 #### 方式二：Neo4j Desktop（图形化管理，适合开发）
 
@@ -149,7 +149,7 @@ dbms.security.procedures.unrestricted=apoc.*,gds.*
 
 ### 6. Neo4j Browser 使用指南
 
-启动后访问 http://localhost:7474，输入账号密码登录。
+启动后访问 `http://localhost:7474`，输入账号密码登录。
 
 常用命令（以冒号开头）：
 
