@@ -1,4 +1,4 @@
-# Golang
+# Go 语言
 
 > - [Go 语言编程](https://golang.org/doc/)
 

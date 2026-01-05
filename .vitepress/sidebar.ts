@@ -115,6 +115,11 @@ export default [
     ],
   },
   {
+    text: "版本控制",
+    collapsed: true,
+    items: [{ text: "Git", link: "/version_control/git.md" }],
+  },
+  {
     text: "部署与运维",
     collapsed: true,
     items: [
@@ -160,10 +165,5 @@ export default [
     text: "兴趣与收藏",
     collapsed: true,
     items: [{ text: "手办", link: "/pastimes/handmade.md" }],
-  },
-  {
-    text: "版本控制",
-    collapsed: true,
-    items: [{ text: "Git", link: "/version_control/git.md" }],
   },
 ];
