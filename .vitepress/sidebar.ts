@@ -141,6 +141,7 @@ export default [
       { text: "微软 KMS 激活", link: "/software/office-kms.md" },
       { text: "Wireshark", link: "/software/wireshark.md" },
       { text: "chsrc 镜像替换工具", link: "/software/chsrc.md" },
+      { text: "Win11Debloat", link: "/software/Win11Debloat.md" },
     ],
   },
   {
