@@ -4,7 +4,7 @@
 >
 > [官方文档](https://docs.blender.org/)
 >
-> 课程：[【哔哩】GenJi是真想教会你](https://www.bilibili.com/video/BV1kX4y1m7G5) | [【哔哩-Kurt】Blender零基础入门教程](https://ntpad.vercel.app/design/blender)
+> 课程：[【哔哩】GenJi是真想教会你](https://www.bilibili.com/video/BV1kX4y1m7G5) | [【哔哩-Kurt】Blender零基础入门教程](https://www.bilibili.com/video/BV14u41147YH/)
 >
 > 这是本人学习的课程，不一定是最好的。
 
@@ -26,7 +26,7 @@
 | 旋转 | R      |
 | 缩放 | S      |
 
-> [!TIP]
+> [!NOTE]
 >
 > 在此基础上在点击 xyz 轴（可使用 X/Y/Z 键切换，即 G + X），会沿着对应轴进行编辑
 
@@ -53,7 +53,7 @@
 | 顶         | 7      |
 | 最大化显示 | 实心点 |
 
-> [!WARNING]
+> [!NOTE]
 >
 > 上面的按键是键盘右侧小键盘上的按键
 
