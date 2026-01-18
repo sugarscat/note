@@ -7,18 +7,18 @@
 
 ## 开发
 
-[Pnpm](https://pnpm.io/zh/) 安装依赖、编译、打包。
+[bun](https://bun.com/) 安装依赖、编译、打包。
 
 ```shell
-pnpm install
+bun install
 ```
 
 ```shell
-pnpm run docs:dev
+bun run docs:dev
 ```
 
 ```shell
-pnpm run docs:build
+bun run docs:build
 ```
 
 ## 目录
