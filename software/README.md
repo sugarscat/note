@@ -7,4 +7,4 @@
 | [IDEA 快捷键](intellij-idea.md) |
 | [Wireshark](wireshark.md)       |
 | [chsrc 换源工具](chsrc.md)      |
-| [Win11Debloat](Win11Debloat.md)      |
+| [Win11Debloat](Win11Debloat.md) |

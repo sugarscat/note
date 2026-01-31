@@ -4,86 +4,86 @@
 
 ### 时间
 
-| 英语        | 中文  | 英语      | 中文  |
-| --------- | --- | ------- | --- |
-| century   | 世纪  | year    | 年   |
-| season    | 季节  | month   | 月   |
+| 英语      | 中文 | 英语    | 中文 |
+| --------- | ---- | ------- | ---- |
+| century   | 世纪 | year    | 年   |
+| season    | 季节 | month   | 月   |
 | week      | 周   | day     | 天   |
-| hour      | 小时  | minute  | 分钟  |
-| second    | 秒   | A.M.    | 上午  |
-| morning   | 上午  | P.M.    | 下午  |
-| afternoon | 下午  | evening | 晚上  |
-| noon      | 中午  | night   | 夜晚  |
+| hour      | 小时 | minute  | 分钟 |
+| second    | 秒   | A.M.    | 上午 |
+| morning   | 上午 | P.M.    | 下午 |
+| afternoon | 下午 | evening | 晚上 |
+| noon      | 中午 | night   | 夜晚 |
 
 ### 星期
 
-| 英语        | 中文  | 缩写   | 英语       | 中文  | 缩写   |
-| --------- | --- | ---- | -------- | --- | ---- |
+| 英语      | 中文   | 缩写 | 英语     | 中文   | 缩写 |
+| --------- | ------ | ---- | -------- | ------ | ---- |
 | Monday    | 星期一 | Mon. | Tuesday  | 星期二 | Tue. |
 | Wednesday | 星期三 | Wed. | Tuesday  | 星期四 | Thu. |
 | Friday    | 星期五 | Fri  | Saturday | 星期六 | Sat. |
-| Sunday    | 星期日 | Sun. |          |     |      |
+| Sunday    | 星期日 | Sun. |          |        |      |
 
 ### 月份
 
-| 英语        | 中文  | 缩写   | 英语       | 中文  | 缩写   |
-| --------- | --- | ---- | -------- | --- | ---- |
-| January   | 一月  | Jan. | February | 二月  | Feb. |
-| March     | 三月  | Mar. | April    | 四月  | Apr. |
-| May       | 五月  |      | June     | 六月  | Jun. |
-| July      | 七月  | Jul. | August   | 八月  | Aug. |
-| September | 九月  | Sep. | October  | 十月  | Oct. |
+| 英语      | 中文   | 缩写 | 英语     | 中文   | 缩写 |
+| --------- | ------ | ---- | -------- | ------ | ---- |
+| January   | 一月   | Jan. | February | 二月   | Feb. |
+| March     | 三月   | Mar. | April    | 四月   | Apr. |
+| May       | 五月   |      | June     | 六月   | Jun. |
+| July      | 七月   | Jul. | August   | 八月   | Aug. |
+| September | 九月   | Sep. | October  | 十月   | Oct. |
 | November  | 十一月 | Nov. | December | 十二月 | Dec. |
 
 ## 英语单词后缀
 
 ### 名词后缀
 
-| 后缀            | 含义/功能        | 例词                     |
-| ------------- | ------------ | ---------------------- |
-| -er / -or     | 表“人”或“物”     | teacher, actor         |
-| -ist          | 表职业或信仰       | artist, scientist      |
-| -ness         | 抽象名词，表示状态    | happiness, darkness    |
-| -ment         | 行为或过程        | development, movement  |
-| -tion / -sion | 动作或状态        | action, decision       |
-| -ity / -ty    | 抽象名词，性质      | reality, ability       |
-| -ance / -ence | 状态、质量        | importance, existence  |
-| -ship         | 身份、关系        | friendship, leadership |
+| 后缀          | 含义/功能                | 例词                   |
+| ------------- | ------------------------ | ---------------------- |
+| -er / -or     | 表“人”或“物”             | teacher, actor         |
+| -ist          | 表职业或信仰             | artist, scientist      |
+| -ness         | 抽象名词，表示状态       | happiness, darkness    |
+| -ment         | 行为或过程               | development, movement  |
+| -tion / -sion | 动作或状态               | action, decision       |
+| -ity / -ty    | 抽象名词，性质           | reality, ability       |
+| -ance / -ence | 状态、质量               | importance, existence  |
+| -ship         | 身份、关系               | friendship, leadership |
 | -al           | 行为、过程（有时形容词） | refusal, arrival       |
 
 ### 形容词后缀
 
-| 后缀            | 含义/功能      | 例词                 |
-| ------------- | ---------- | ------------------ |
+| 后缀          | 含义/功能          | 例词               |
+| ------------- | ------------------ | ------------------ |
 | -ful          | 充满的，有……性质的 | beautiful, helpful |
-| -less         | 缺乏的        | hopeless, careless |
-| -ous / -ious  | 有……的性质     | dangerous, curious |
-| -al           | 属于……的      | natural, cultural  |
-| -ic           | ……的，具有……的  | poetic, economic   |
-| -able / -ible | 可……的       | readable, possible |
-| -ive          | 有……倾向的     | active, creative   |
-| -y            | 多……的，像……的  | sunny, sleepy      |
+| -less         | 缺乏的             | hopeless, careless |
+| -ous / -ious  | 有……的性质         | dangerous, curious |
+| -al           | 属于……的           | natural, cultural  |
+| -ic           | ……的，具有……的     | poetic, economic   |
+| -able / -ible | 可……的             | readable, possible |
+| -ive          | 有……倾向的         | active, creative   |
+| -y            | 多……的，像……的     | sunny, sleepy      |
 
 ### 动词后缀
 
-| 后缀          | 含义/功能 | 例词                 |
-| ----------- | ----- | ------------------ |
-| -ize / -ise | 使成为   | realize, organize  |
-| -en         | 使变得…… | strengthen, darken |
-| -ify / -fy  | 使变成…… | simplify, beautify |
+| 后缀        | 含义/功能 | 例词               |
+| ----------- | --------- | ------------------ |
+| -ize / -ise | 使成为    | realize, organize  |
+| -en         | 使变得……  | strengthen, darken |
+| -ify / -fy  | 使变成……  | simplify, beautify |
 
 ### 副词后缀
 
-| 后缀             | 含义/功能         | 例词                   |
-| -------------- | ------------- | -------------------- |
+| 后缀           | 含义/功能                | 例词                 |
+| -------------- | ------------------------ | -------------------- |
 | -ly            | ……地（由形容词变为副词） | quickly, happily     |
-| -ward / -wards | 向……方向         | forward, backwards   |
-| -wise          | 以……方式，关于……    | clockwise, otherwise |
+| -ward / -wards | 向……方向                 | forward, backwards   |
+| -wise          | 以……方式，关于……         | clockwise, otherwise |
 
 ## 语法
 
 > [!NOTE]
-> 
+>
 > 课程：[【哔哩哔哩】英语语法精讲合集](https://www.bilibili.com/video/BV1XY411J7aG?p=2)
 
 ### 英语语法综述
@@ -93,23 +93,23 @@
 **结构**：什么 + 怎么样
 
 > [!NOTE]
-> 
+>
 > **什么**：主语，人/物；
-> 
+>
 > **怎么样**：谓语，动作/发生了什么事。
 
 **动作(动词)**：
 
-| 类型              | 说明          | 谓语动词   | 基本句型                      | 示例                                           |
-| --------------- | ----------- | ------ | ------------------------- | -------------------------------------------- |
-| 可以独立完成的动作       | 无需承受者（宾 语）  | 不及物物动词 | 主语 + 不及物物动词               | Papa Rabbit sleeps. _兔老爹睡觉。_                 |
-| 有1个动作的承受者       | 一个宾语，无补充信息  | 单及物动词  | 主语 + 单及物动词 + 宾语           | Papa Rabbit likes you. _兔老爹喜欢你。_             |
-| 有2个动作承受者        | 两个宾语        | 双及物动词  | 主语 + 双及物动词 + 间接宾语 + 直接宾语  | Papa Rabbit teaches you English. _兔老爹教你英语。_  |
-| 只有1个动作承受者（但需补充） | 一个宾语 + 补充信息 | 复杂及物动词 | 主语 + 复杂及物动词 + 宾语 + （宾语）补语 | Papa Rabbit considers you smart. _兔老爹认为你聪明。_ |
-| 非“动作”           | 赋 予 信 息     | 系动词    | 主语 + 系动词 + （主语）补语/表语      | Papa Rabbit smells nice. _兔老爹闻上去香。_          |
+| 类型                          | 说明                 | 谓语动词     | 基本句型                                  | 示例                                                  |
+| ----------------------------- | -------------------- | ------------ | ----------------------------------------- | ----------------------------------------------------- |
+| 可以独立完成的动作            | 无需承受者（宾 语）  | 不及物物动词 | 主语 + 不及物物动词                       | Papa Rabbit sleeps. _兔老爹睡觉。_                    |
+| 有1个动作的承受者             | 一个宾语，无补充信息 | 单及物动词   | 主语 + 单及物动词 + 宾语                  | Papa Rabbit likes you. _兔老爹喜欢你。_               |
+| 有2个动作承受者               | 两个宾语             | 双及物动词   | 主语 + 双及物动词 + 间接宾语 + 直接宾语   | Papa Rabbit teaches you English. _兔老爹教你英语。_   |
+| 只有1个动作承受者（但需补充） | 一个宾语 + 补充信息  | 复杂及物动词 | 主语 + 复杂及物动词 + 宾语 + （宾语）补语 | Papa Rabbit considers you smart. _兔老爹认为你聪明。_ |
+| 非“动作”                      | 赋 予 信 息          | 系动词       | 主语 + 系动词 + （主语）补语/表语         | Papa Rabbit smells nice. _兔老爹闻上去香。_           |
 
 > [!NOTE]
-> 
+>
 > 严格说来，谓语和谓语动词有区别。句子主语后面的余下句子部分就是谓语，谓语动词只是谓语的一部分。通常习惯上，把谓语动词直接称为谓语。
 
 **句子成分**
@@ -125,46 +125,46 @@
 **简单句组合**：将简单句进行组合，可得到复合句（主从句）和并列句。
 
 > [!NOTE]
-> 
+>
 > 从句：把简单句修改一下来充当主句的句子成分。
 
-| 类型      | 说明    | 备注    |
-| ------- | ----- | ----- |
-| 简单句作主语  | 主语从句  | 名词性从句 |
-| 简单句作宾语  | 宾 语从句 | 名词性从句 |
-| 简单句作表语  | 表 语从句 | 名词性从句 |
+| 类型           | 说明       | 备注       |
+| -------------- | ---------- | ---------- |
+| 简单句作主语   | 主语从句   | 名词性从句 |
+| 简单句作宾语   | 宾 语从句  | 名词性从句 |
+| 简单句作表语   | 表 语从句  | 名词性从句 |
 | 简单句作同位语 | 同位语从句 | 名词性从句 |
-| 简单句作定语  | 定语从句  |       |
-| 简单句作状语  | 状语从句  |       |
+| 简单句作定语   | 定语从句   |            |
+| 简单句作状语   | 状语从句   |            |
 
 **词性**：
 
-| 词性  | 示例                                                                                |
-| --- | --------------------------------------------------------------------------------- |
-| 名词  | Papa Rabbit is a **rabbit**. *兔老爹是只兔子。*                                           |
-| 冠词  | Papa Rabbit is **a** rabbit. *兔老爹是只兔子。*                                           |
-| 代词  | **I** am a rabbit. *我是只兔子。*                                                       |
-| 形容词 | I am a **smart** rabbit. *我是只聪明的兔子。*                                              |
-| 数词  | I ate **two** carrots. *我吃了两根胡萝卜。*                                                |
-| 副词  | I ate two carrots **quickly**. *我很快地吃了两根胡萝卜。*                                     |
-| 介词  | I ate two carrots **with** chopsticks. *我用筷子吃了两根胡萝卜。*                             |
-| 叹词  | **Ah**, the carrot is tasty! *啊，胡萝卜好美味！*                                          |
-| 连词  | I ate two carrots and a potato, **because** I was hungry. *我吃了两根胡萝卜和一个马铃薯，因为我饿了。* |
+| 词性   | 示例                                                                                                   |
+| ------ | ------------------------------------------------------------------------------------------------------ |
+| 名词   | Papa Rabbit is a **rabbit**. _兔老爹是只兔子。_                                                        |
+| 冠词   | Papa Rabbit is **a** rabbit. _兔老爹是只兔子。_                                                        |
+| 代词   | **I** am a rabbit. _我是只兔子。_                                                                      |
+| 形容词 | I am a **smart** rabbit. _我是只聪明的兔子。_                                                          |
+| 数词   | I ate **two** carrots. _我吃了两根胡萝卜。_                                                            |
+| 副词   | I ate two carrots **quickly**. _我很快地吃了两根胡萝卜。_                                              |
+| 介词   | I ate two carrots **with** chopsticks. _我用筷子吃了两根胡萝卜。_                                      |
+| 叹词   | **Ah**, the carrot is tasty! *啊，胡萝卜好美味！*                                                      |
+| 连词   | I ate two carrots and a potato, **because** I was hungry. *我吃了两根胡萝卜和一个马铃薯，因为我饿了。* |
 
 > [!NOTE]
-> 
+>
 > 句子成分和词类没有一一对应关系，除了谓语动词是动词，其他成分可能包含不同的词类。
 
 **谓语动词的“三大本领”**：
 
-| 类型       | 说明         | 备注  |
-| -------- | ---------- | --- |
-| 动作时间     | 过去、现在、将来   | 时态  |
-| 动作状态     | 已经完成、正在进行等 | 时态  |
-| 动作假设、情感等 | 语气         |     |
+| 类型             | 说明                 | 备注 |
+| ---------------- | -------------------- | ---- |
+| 动作时间         | 过去、现在、将来     | 时态 |
+| 动作状态         | 已经完成、正在进行等 | 时态 |
+| 动作假设、情感等 | 语气                 |      |
 
 > [!NOTE]
-> 
+>
 > 语气分为虚拟语气、陈述语气、祈使语气
 
 **助动词**
@@ -180,3 +180,5 @@ have 可以作为助动词，也可以是实义动词“有”
 **非谓语动词**
 
 非谓语动词几乎可以取代所有的从句，从而简化句子。但这样，非谓语动词就不再具有表示动作时间、状态语态、语气的功能。
+
+#### 语法

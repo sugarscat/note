@@ -83,7 +83,7 @@ onBeforeUnmount(() => {
   right: 20px;
   width: 50px;
   height: 50px;
-  z-index: 999;
+  z-index: 100;
 }
 
 .vitepress-backTop-main {
