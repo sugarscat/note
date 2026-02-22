@@ -14,11 +14,11 @@ bun install
 ```
 
 ```shell
-bun run docs:dev
+bun run dev
 ```
 
 ```shell
-bun run docs:build
+bun run build
 ```
 
 ## 目录
