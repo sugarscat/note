@@ -28,6 +28,8 @@
     --vp-c-red-2: #fa4549; /* red.4 */
     --vp-c-red-3: #ff8182; /* red.3 */
     --vp-c-red-soft: rgba(207, 34, 46, 0.15);
+
+    --vp-code-color: var(--vp-c-text-1);
 }
 
 .dark {
