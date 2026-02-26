@@ -4,10 +4,6 @@
 >
 > 笔记来自 [黑马程序员](https://www.itheima.com/)
 
-> [!WARNING]
->
-> 本教程使用 [Pnpm](https://pnpm.io/zh/) 进行包管理，请提前下载。
-
 ## 选项式 vs 组合式
 
 ```vue
@@ -53,7 +49,7 @@ const addCount = () => count.value++;
 执行如下命令，这一指令将会安装并执行 `create-vue`
 
 ```bash
-pnpm create vue@latest
+npm create vue@latest
 ```
 
 ![create-vue](./assets/vue/create-vue.webp)
@@ -400,7 +396,7 @@ const getMessage = (msg) =>{
 const emit = defineEmits(['get-message'])
 const sendMsg = () => {
     // 3.触发自定义事件并传递参数
-    emit('get-message'，'this is son msg')
+    emit('get-message', 'this is son msg')
 }
 </script>
 
@@ -464,7 +460,7 @@ defineExpose({
 顶层组件
 
 ```js
-provide('key'，顶层组件中的数据)
+provide('key', "顶层组件中的数据")
 ```
 
 底层组件
@@ -482,7 +478,7 @@ const message = inject("key");
 顶层组件
 
 ```js
-provide('key'，ref对象)
+provide('key', "ref对象")
 ```
 
 底层组件
@@ -593,7 +589,7 @@ export default defineConfig({
 1. 使用 Vite 创建一个空的 Vue3项目
 
 ```bash
-  pnpm add vite@latest
+npm add vite@latest
 ```
 
 2. 按照官方文档安装 `pinia` 到项目中
@@ -691,7 +687,7 @@ const { count, doubleCount } = storeToRefs(counterStore);
 1. 安装插件 `pinia-plugin-persistedstate`
 
     ```shell
-    pnpm add pinia-plugin-persistedstate
+    npm add pinia-plugin-persistedstate
     ```
 
 2. 使用 `main.js`

@@ -11,9 +11,9 @@ public
 !.vscode/extensions.json
 !.vscode/launch.json
 
-pnpm-lock.yaml
 yarn.lock
+bun.lock
 package-lock.json
-.idea/*
+.idea/
 
 program/regular-expression.md

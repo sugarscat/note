@@ -10,7 +10,7 @@ export default defineConfig({
   lang: "zh-CN",
   title: "Note",
   description: "心灵记忆过往，镜头捕捉瞬间。",
-  head: [["link", { rel: "icon", href: BASE_URL + "favicon.ico" }]],
+  head: [["link", { rel: "icon", href: BASE_URL + "favicon.svg" }]],
 
   lastUpdated: true,
   cleanUrls: true,
@@ -18,7 +18,7 @@ export default defineConfig({
 
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
-    logo: "/favicon.ico",
+    logo: "/favicon.svg",
 
     nav: [
       {
